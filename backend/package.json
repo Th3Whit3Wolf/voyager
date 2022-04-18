@@ -1,0 +1,115 @@
+{
+  "name": "voyager-backend",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+		"db": "knex --knexfile src/db/config.js",
+		"db:migrate": "knex --knexfile src/db/config.js migrate:latest",
+		"db:rollback": "knex --knexfile src/db/config.js migrate:rollback",
+		"db:reset": "npm run db:rollback && npm run db:migrate",
+		"db:seed": "knex --knexfile src/db/config.js seed:run",
+		"db:addMigration": "knex --knexfile src/db/config.js migrate:make",
+		"db:addSeed": "knex --knexfile src/db/config.js seed:make",
+		"dev": "nodemon src/index.js",
+		"lint": "npx eslint src",
+		"lint:fix": "npm run lint -- --fix",
+		"prettier": "npx prettier src --check",
+		"prettier:fix": "npm run prettier -- --write",
+		"format": "npm run prettier:fix && npm run lint:fix",
+		"start": "node src/index.js",
+		"test": "NODE_ENV=test jest"
+	},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "knex": "^1.0.7",
+    "objection": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2",
+    "supertest": "^6.2.2"
+  },
+  "jest": {
+		"coveragePathIgnorePatterns": [
+			"/node_modules/"
+		],
+		"testEnvironment": "node"
+	},
+	"eslintConfig": {
+		"env": {
+			"commonjs": true,
+			"es2021": true,
+			"node": true,
+			"jest": true
+		},
+		"extends": [
+			"airbnb-base",
+			"plugin:prettier/recommended"
+		],
+		"parserOptions": {
+			"ecmaVersion": "latest"
+		},
+		"plugins": [
+			"prettier"
+		],
+		"rules": {
+			"indent": [
+				2,
+				"tab",
+				{
+					"SwitchCase": 1,
+					"VariableDeclarator": "first"
+				}
+			],
+			"prettier/prettier": [
+				"error"
+			],
+			"radix": [
+				"error",
+				"as-needed"
+			],
+			"no-console": 0,
+			"no-tabs": [
+				0,
+				"error",
+				{
+					"allowIndentationTabs": true
+				}
+			],
+			"no-unused-vars": [
+				"error",
+				{
+					"args": "none"
+				}
+			]
+		},
+		"ignorePatterns": [
+			"node_modules",
+			"build",
+			"dist",
+			"public"
+		]
+	},
+	"prettier": {
+		"arrowParens": "avoid",
+		"bracketSpacing": true,
+		"bracketSameLine": false,
+		"semi": true,
+		"singleQuote": false,
+		"trailingComma": "none",
+		"endOfLine": "lf",
+		"useTabs": true,
+		"tabWidth": 4
+	}
+}
