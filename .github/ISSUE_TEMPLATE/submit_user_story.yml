@@ -1,0 +1,76 @@
+name: Submit new user story
+description: Submit new user story by raising an issue
+labels: [submit]
+
+title: "Submit new User Story"
+
+body:
+- type: input
+  id: persona
+  attributes:
+    label: Who is the user persona?
+  validations:
+    required: true
+
+- type: input
+  id: goal
+  attributes:
+    label: What do they want?
+  validations:
+    required: true
+    
+- type: input
+  id: reason
+  attributes:
+    label: Why do they want it?
+  validations:
+    required: true
+
+- type: checkboxes
+  id: Labor
+  attributes:
+    label: Where does this user story require work done?
+    options:
+      - Backend
+      - Frontend
+      - Both
+  validations:
+    required: true
+
+- type: dropdown
+  attributes:
+    label: Which project does this user story belong in?
+    options:
+    - MVP
+  validations:
+    required: true
+    
+- type: textarea
+  id: acceptance_criteria
+  attributes:
+    label: Acceptance criteria
+    description: |
+      This is something that can be verified to show that this user story is satisfied and are ideally be tied to another issue so they can be automtically updated. 
+      See url below for more details.
+      
+      https://docs.github.com/en/issues/tracking-your-work-with-issues/about-task-lists#about-task-lists
+    placeholder: "- [ ] Implement database schema for users"
+  validations:
+    required: false
+    
+- type: textarea
+  id: resources
+  attributes:
+    label: Resources
+    description: "Add links to additional relevant resources"
+    placeholder: "* [Style-guides and template for a user story](agile-user-story.md)"
+  validations:
+    required: false
+    
+- type: textarea
+  id: notes
+  attributes:
+    label: Notes
+    description: "Some complementary notes if necessary"
+  validations:
+    required: false
