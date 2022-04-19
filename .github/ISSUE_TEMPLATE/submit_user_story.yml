@@ -5,11 +5,20 @@ labels: [submit]
 title: "Submit new User Story"
 
 body:
+  - type: markdown
+    attributes:
+      value: "## User Story"
+
 - type: input
   id: persona
   attributes:
     label: As a ...
-    description: "Who is the user persona?"
+    description: |
+      Who are we building this for? 
+      We’re not just after a job title, we’re after the persona of the person. Max. 
+      Our team should have a shared understanding of who Max is. 
+      We’ve hopefully interviewed plenty of Max’s. 
+      We understand how that person works, how they think and what they feel. We have empathy for Max.
   validations:
     required: true
 
@@ -17,7 +26,10 @@ body:
   id: goal
   attributes:
     label: I want to ...
-    description: "What do the want?"
+    description: |
+      Here we’re describing their intent — not the features they use.
+      What is it they’re actually trying to achieve?
+      This statement should be implementation free — if you’re describing any part of the UI and not what the user goal is you're missing the point.
   validations:
     required: true
     
@@ -25,7 +37,10 @@ body:
   id: reason
   attributes:
     label: So that ...
-    description: Why do they want it?
+    description: |
+      How does their immediate desire to do something this fit into their bigger picture?
+      What’s the overall benefit they’re trying to achieve? 
+      What is the big problem that needs solving?
   validations:
     required: true
 
@@ -54,9 +69,7 @@ body:
     label: Acceptance criteria
     description: |
       This is something that can be verified to show that this user story is satisfied and are ideally be tied to another issue so they can be automtically updated. 
-      See url below for more details.
-      
-      https://docs.github.com/en/issues/tracking-your-work-with-issues/about-task-lists#about-task-lists
+      [Click here](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-task-lists#about-task-lists) for more details.      
     placeholder: "- [ ] Implement database schema for users"
   validations:
     required: false
