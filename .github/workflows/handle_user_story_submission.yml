@@ -1,0 +1,21 @@
+on:
+  issues:
+    types: [labeled]
+jobs:
+  setup:
+    if: ${{ github.event.label.name == 'merge' }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - uses: stefanbuck/github-issue-praser@v2
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/submit_user_story.yml
+
+      - run: echo '${{ steps.issue-parser.outputs.jsonString }}' > user_story.json
+      - run: cat user_story.json
