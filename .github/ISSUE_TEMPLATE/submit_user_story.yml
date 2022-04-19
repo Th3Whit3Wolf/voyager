@@ -8,21 +8,24 @@ body:
 - type: input
   id: persona
   attributes:
-    label: Who is the user persona?
+    label: As a ...
+    description: "Who is the user persona?"
   validations:
     required: true
 
 - type: input
   id: goal
   attributes:
-    label: What do they want?
+    label: I want to ...
+    description: "What do the want?"
   validations:
     required: true
     
 - type: input
   id: reason
   attributes:
-    label: Why do they want it?
+    label: So that ...
+    description: Why do they want it?
   validations:
     required: true
 
@@ -39,7 +42,7 @@ body:
 
 - type: dropdown
   attributes:
-    label: Which project does this user story belong in?
+    label: Which project does this user story belong?
     options:
     - MVP
   validations:
