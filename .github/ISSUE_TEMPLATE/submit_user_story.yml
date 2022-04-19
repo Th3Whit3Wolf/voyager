@@ -5,9 +5,9 @@ labels: [submit]
 title: "Submit new User Story"
 
 body:
-  - type: markdown
-    attributes:
-      value: "## User Story"
+- type: markdown
+  attributes:
+    value: "## User Story"
 
 - type: input
   id: persona
