@@ -65,7 +65,7 @@ body:
     label: Acceptance criteria
     description: |
       This is something that can be verified to show that this user story is satisfied and are ideally be tied to another issue so they can be automtically updated. 
-      [Click here](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-task-lists#about-task-lists) for more details.      
+      [Click here](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-task-lists#about-task-lists) for more details on how Github tasks lists work.      
     placeholder: "- [ ] Implement database schema for users"
   validations:
     required: false
