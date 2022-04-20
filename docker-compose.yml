@@ -21,7 +21,7 @@ services:
       - pgdatasource:/var/lib/postgresql/data
 
   capstone-api:
-    build: api/
+    build: backend/
     depends_on:
       capstone-db:
         condition: service_healthy
@@ -41,7 +41,7 @@ services:
     command: npm run start:dev
 
   capstone-ui:
-    build: ui/
+    build: frontend/
     depends_on:
       - 'capstone-api'
     ports:
