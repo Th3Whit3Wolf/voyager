@@ -147,7 +147,7 @@ const mkTaskIssues = async (tasks) => {
 }
 
 const run = async () => {
-    const issueData = parseIssuePayload(payload);
+    const issueData = parseIssuePayload(eventPayload);
     const newTasks = await mkTaskIssues(issueData.criteria);
     const body = mkNewBody(issueData, newTasks);
     const title = `As a ${issueData.persona}, I want to ${issueData.goal}, so that ${issueData.goal}`;
