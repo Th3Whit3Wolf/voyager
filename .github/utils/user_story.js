@@ -134,7 +134,7 @@ const mkTaskIssues = async (tasks) => {
         task = task.trim();
         const title = task[0].toUpperCase() + task.substring(1).replaceAll("_", " ");
 
-        const { taskIssueNumber } = await octokit.request("POST /repos/{owner}/{repo}/issues", {
+        const { number: taskIssueNumber } = await octokit.request("POST /repos/{owner}/{repo}/issues", {
             owner,
             repo,
             title,
