@@ -161,7 +161,7 @@ const run = async () => {
         console.log({issueData});
         const newTasks = await mkTaskIssues(issueData.criteria);
         const body = mkNewBody(issueData, newTasks);
-        const title = `As a ${issueData.persona}, I want to ${issueData.goal}, so that ${issueData.goal}`;
+        const title = `As a ${issueData.persona}, I want to ${issueData.goal}, so that ${issueData.reason}`;
         const { data } = await octokit.request("PATCH /repos/{owner}/{repo}/issues/{issue_number}", {
             owner,
             repo,
