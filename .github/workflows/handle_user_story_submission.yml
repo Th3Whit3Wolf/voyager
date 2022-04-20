@@ -10,24 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
 
-      - uses: stefanbuck/github-issue-praser@v2
-        id: issue-parser
-        with:
-          template-path: .github/ISSUE_TEMPLATE/submit_user_story.yml
-
-      - run: echo '${{ steps.issue-parser.outputs.jsonString }}' > user_story.json
-      - run: echo '${{ steps.issue-parser.outputs }}' > outputs.json
-      - run: cat user_story.json
-      - run: cat outputs.json
-
+      - run: cat $GITHUB_EVENT_PATH
       - run: npm install @octokit/action
-      # Node.js script can be anywhere. A good convention is to put local GitHub Actions
-      # into the `.github/actions` folder
       - run: node .github/utils/user_story.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
