@@ -15,7 +15,7 @@ on:
 # 'jobs' is the list of all the workflows that will kick off.
 jobs:
   # This workflow kicks off the build and test for the UI
-  build-and-test-backend:
+  build-and-test-frontend:
     # Name of the build job
     name: Build and Test Frontend
     # The type of runner that the job will run on
@@ -28,7 +28,7 @@ jobs:
       # Runs a single command using the runners shell to build the Frontend
       - name: Build Frontend
         run: |
-          docker build -t capstone-ui ./Frontend
+          docker build -t capstone-ui ./frontend
       # Runs a set of commands using the runners shell to test the Frontend
       - name: Test Frontend
         run: |
@@ -51,7 +51,7 @@ jobs:
   deploy-frontend:
     name: Deploy Frontend to Heroku
     # Needs specifies the steps that must previously complete in order to deploy your application.
-    needs: [ build-and-test-ui, build-and-test-api ]
+    needs: [ build-and-test-frontend, build-and-test-backend ]
     runs-on: ubuntu-latest
 
     steps:
@@ -59,8 +59,8 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with: 
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "gschool-sdi-ui"
-          heroku_email: "jeff.haddock.developer@gmail.com"
+          heroku_app_name: "bsdi1-voyager-frontend"
+          heroku_email: "dkarrick2@gmail.com"
           appdir: "frontend/"
           usedocker: true
   
@@ -78,8 +78,8 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with: 
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "gschool-sdi-api"
-          heroku_email: "jeff.haddock.developer@gmail.com"
+          heroku_app_name: "bsdi1-voyager-backend"
+          heroku_email: "dkarrick2@gmail.com"
           appdir: "backend/"
           usedocker: true
 
