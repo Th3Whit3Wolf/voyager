@@ -135,7 +135,8 @@ ${md}`
 
 const mkTaskIssues = async (tasks) => {
     let newTasks = [];
-    tasks.forEach(async task => {
+
+    for (const task of tasks) {
         task = task.replace("- [ ]", "");
         task = task.trim();
         const title = task[0].toUpperCase() + task.substring(1).replaceAll("_", " ");
@@ -149,7 +150,8 @@ const mkTaskIssues = async (tasks) => {
 
         console.log("New Issue: ", data.number)
         newTasks.push(`- [ ] #${data.number}`)
-    })
+    }
+
     console.log({ newTasks })
     return newTasks;
 }
