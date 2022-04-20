@@ -3,11 +3,7 @@ const { Octokit } = require("@octokit/action");
 const octokit = new Octokit();
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 const eventPayload = require(process.env.GITHUB_EVENT_PATH);
-
-console.log({eventPayload})
-
 const issue_number = eventPayload.issue.number;
-const title = `As a ${ISSUE_DATA.person}, I want to ${ISSUE_DATA.goal}, so that ${ISSUE_DATA.goal}`;
 
 const parseIssuePayload = payload => {
     let headerCount = 0;
@@ -133,7 +129,7 @@ const mkNewBody = (issue, newTasks) => {
 
 const mkTaskIssues = async (tasks) => {
     let newTasks = [];
-    tasks.forEach(task => {
+    tasks.forEach(async task => {
         task = task.replace("- [ ]", "");
         task = task.trim();
         const title = task[0].toUpperCase() + task.substring(1).replaceAll("_", " ");
@@ -152,7 +148,7 @@ const mkTaskIssues = async (tasks) => {
 
 const run = async () => {
     const issueData = parseIssuePayload(payload);
-    const newTasks = mkTaskIssues(issueData.criteria);
+    const newTasks = await mkTaskIssues(issueData.criteria);
     const body = mkNewBody(issueData, newTasks);
     const title = `As a ${issueData.persona}, I want to ${issueData.goal}, so that ${issueData.goal}`;
     const { data } = await octokit.request("PATCH /repos/{owner}/{repo}/issues/{issue_number}", {
