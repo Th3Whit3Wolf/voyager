@@ -156,20 +156,24 @@ const mkTaskIssues = async (tasks) => {
 }
 
 const run = async () => {
-    const issueData = parseIssuePayload(eventPayload);
-    console.log({issueData});
-    const newTasks = await mkTaskIssues(issueData.criteria);
-    const body = mkNewBody(issueData, newTasks);
-    const title = `As a ${issueData.persona}, I want to ${issueData.goal}, so that ${issueData.goal}`;
-    const { data } = await octokit.request("PATCH /repos/{owner}/{repo}/issues/{issue_number}", {
-        owner,
-        repo,
-        issue_number,
-        title,
-        body,
-        labels: issueData.labels
-    });
-    return data;
+    try {
+        const issueData = parseIssuePayload(eventPayload);
+        console.log({issueData});
+        const newTasks = await mkTaskIssues(issueData.criteria);
+        const body = mkNewBody(issueData, newTasks);
+        const title = `As a ${issueData.persona}, I want to ${issueData.goal}, so that ${issueData.goal}`;
+        const { data } = await octokit.request("PATCH /repos/{owner}/{repo}/issues/{issue_number}", {
+            owner,
+            repo,
+            issue_number,
+            title,
+            body,
+            labels: issueData.labels
+        });
+        return data;
+    } catch (err) {
+        console.log("Not a User Story Submission");   
+    }
 }
 
 run().then(data => {
