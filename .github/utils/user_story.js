@@ -124,7 +124,7 @@ const mkNewBody = (issue, newTasks) => {
     const md = (mdArr.length > 0) ? `\n\n${mdArr.join("\n\n")}` : "";
     return `## User Story
 
-    As a ${persona}, I want to ${goal}, so that ${reason}.${md}`
+As a ${persona}, I want to ${goal}, so that ${reason}.${md}`
 }
 
 const mkTaskIssues = async (tasks) => {
