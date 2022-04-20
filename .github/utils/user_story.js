@@ -110,7 +110,7 @@ const parseIssuePayload = payload => {
 const mkNewBody = (issue, newTasks) => {
     const { persona, goal, reason, criteria, resources, notes } = issue;
     let mdArr = [];
-    console.log(newTasks)
+    console.log("New Tasks in mkNewBody: ", newTasks)
     if (newTasks !== undefined && newTasks.length > 0) {
         mdArr.push(`### Acceptance Criteria\n${newTasks.join("\n")}`)
     } else if (resources.length > 0) {
@@ -125,7 +125,12 @@ const mkNewBody = (issue, newTasks) => {
     const md = (mdArr.length > 0) ? `\n\n${mdArr.join("\n\n")}` : "";
     return `## User Story
 
-As a ${persona}, I want to ${goal}, so that ${reason}.${md}`
+As a ${persona}, I want to ${goal}, so that ${reason}.
+
+| As a/an    | I want to ... | So that ... |
+|:---------- |:------------- | :---------- |
+| ${persona} | ${goal}       |  ${reason}  |
+${md}`
 }
 
 const mkTaskIssues = async (tasks) => {
@@ -142,10 +147,10 @@ const mkTaskIssues = async (tasks) => {
             labels: ["task"]
         });
 
-        console.log({ data })
-
+        console.log("New Issue: ", data.number)
         newTasks.push(`- [ ] #${data.number}`)
     })
+    console.log({ newTasks })
     return newTasks;
 }
 
