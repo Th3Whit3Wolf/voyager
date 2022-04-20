@@ -99,9 +99,11 @@ Allowing you to focus on what you actually need to do and help you do it.
 
 ### As Developer
 
+#### When not using Docker
+
 If not using Docker in develomentment mode with volumes then...
-#### Frontend
-- ```npm run dev``` to start up development server for React + Vite (instead of npm start)
+- ##### Frontend
+  - ```npm run dev``` to start up development server for React + Vite (instead of npm start)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
