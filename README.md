@@ -1,5 +1,6 @@
 <div id="top"></div>
 <!--
+*** README format taken from https://github.com/othneildrew/Best-README-Template/blob/master/README.md
 *** Thanks for checking out our project. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
 *** or simply open an issue with the tag "enhancement".
