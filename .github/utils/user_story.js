@@ -110,7 +110,8 @@ const parseIssuePayload = payload => {
 const mkNewBody = (issue, newTasks) => {
     const { persona, goal, reason, criteria, resources, notes } = issue;
     let mdArr = [];
-    if (newTasks?.length > 0) {
+    console.log(newTasks)
+    if (newTasks !== undefined && newTasks.length > 0) {
         mdArr.push(`### Acceptance Criteria\n${newTasks.join("\n")}`)
     } else if (resources.length > 0) {
         mdArr.push(`### Acceptance Criteria\n${criteria.join("\n")}`)
@@ -134,14 +135,16 @@ const mkTaskIssues = async (tasks) => {
         task = task.trim();
         const title = task[0].toUpperCase() + task.substring(1).replaceAll("_", " ");
 
-        const { number: taskIssueNumber } = await octokit.request("POST /repos/{owner}/{repo}/issues", {
+        const { data } = await octokit.request("POST /repos/{owner}/{repo}/issues", {
             owner,
             repo,
             title,
             labels: ["task"]
         });
 
-        newTasks.push(`- [ ] #${taskIssueNumber}`)
+        console.log({ data })
+
+        newTasks.push(`- [ ] #${data.number}`)
     })
     return newTasks;
 }
@@ -159,6 +162,7 @@ const run = async () => {
         body,
         labels: issueData.labels
     });
+    return data;
 }
 
 run().then(data => {
