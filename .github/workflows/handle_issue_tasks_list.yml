@@ -15,6 +15,6 @@ jobs:
           node-version: '16'
 
       - run: npm install @octokit/action
-      - run: node .github/utils/user_story.js
+      - run: node .github/utils/check_tasks.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
