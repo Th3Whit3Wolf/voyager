@@ -21,4 +21,13 @@ jobs:
           template-path: .github/ISSUE_TEMPLATE/submit_user_story.yml
 
       - run: echo '${{ steps.issue-parser.outputs.jsonString }}' > user_story.json
+      - run: echo '${{ steps.issue-parser.outputs }}' > outputs.json
       - run: cat user_story.json
+      - run: cat outputs.json
+
+      - run: npm install @octokit/action
+      # Node.js script can be anywhere. A good convention is to put local GitHub Actions
+      # into the `.github/actions` folder
+      - run: node .github/utils/user_story.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
