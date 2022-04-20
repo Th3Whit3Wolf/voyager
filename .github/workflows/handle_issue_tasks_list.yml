@@ -14,4 +14,7 @@ jobs:
         with:
           node-version: '16'
 
-      - run: cat $GITHUB_EVENT_PATH
+      - run: npm install @octokit/action
+      - run: node .github/utils/user_story.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
