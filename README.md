@@ -97,6 +97,11 @@ Allowing you to focus on what you actually need to do and help you do it.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+### As Developer
+
+#### Frontend
+- ```npm run dev``` to start up development server for React + Vite (instead of npm start)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ROADMAP -->
