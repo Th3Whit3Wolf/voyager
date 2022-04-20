@@ -103,14 +103,12 @@ const parseIssuePayload = payload => {
             issueObj.labels.push("Project: MVP");
             break;
     }
-
     return issueObj;
 }
 
 const mkNewBody = (issue, newTasks) => {
     const { persona, goal, reason, criteria, resources, notes } = issue;
     let mdArr = [];
-    console.log("New Tasks in mkNewBody: ", newTasks)
     if (newTasks !== undefined && newTasks.length > 0) {
         mdArr.push(`### Acceptance Criteria\n${newTasks.join("\n")}`)
     } else if (resources.length > 0) {
@@ -147,12 +145,8 @@ const mkTaskIssues = async (tasks) => {
             title,
             labels: ["task"]
         });
-
-        console.log("New Issue: ", data.number)
         newTasks.push(`- [ ] #${data.number}`)
     }
-
-    console.log({ newTasks })
     return newTasks;
 }
 
