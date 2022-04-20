@@ -136,7 +136,7 @@ ${md}`
 const mkTaskIssues = async (tasks) => {
     let newTasks = [];
 
-    for (const task of tasks) {
+    for (let task of tasks) {
         task = task.replace("- [ ]", "");
         task = task.trim();
         const title = task[0].toUpperCase() + task.substring(1).replaceAll("_", " ");
