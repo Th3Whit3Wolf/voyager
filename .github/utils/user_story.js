@@ -69,7 +69,7 @@ const parseIssuePayload = payload => {
                             issueObj["resources"] = [];
                         }
                         if (str !== "_No response_") {
-                            issueObj["resources"].push(str);
+                            str.split("\n").forEach(c => issueObj["resources"].push(c));
                         }
                         break;
                     case 8:
@@ -77,7 +77,7 @@ const parseIssuePayload = payload => {
                             issueObj["notes"] = [];
                         }
                         if (str !== "_No response_") {
-                            issueObj["notes"].push(str);
+                            str.split("\n").forEach(c => issueObj["notes"].push(c));
                         }
                         break;
                 }
@@ -106,6 +106,8 @@ const parseIssuePayload = payload => {
             issueObj.labels.push("Project: MVP");
             break;
     }
+    
+    issueObj["labels"].push("User Story");
     return issueObj;
 }
 
