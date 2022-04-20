@@ -8,6 +8,8 @@ const issue_number = eventPayload.issue.number;
 const parseIssuePayload = payload => {
     let headerCount = 0;
     let issueObj = {};
+    
+    console.log("Original Body: ", payload.issue.body);
 
     payload.issue.body.split("\n\n").forEach(str => {
         switch (str) {
@@ -54,10 +56,11 @@ const parseIssuePayload = payload => {
                         break;
                     case 6:
                         if (typeof issueObj["criteria"] === 'undefined') {
+                            
                             issueObj["criteria"] = [];
                         }
                         if (str !== "_No response_") {
-                            issueObj["criteria"].push(str);
+                            str.split("\n").forEach(c => issueObj["criteria"].push(c));
                         }
 
                         break;
@@ -152,6 +155,7 @@ const mkTaskIssues = async (tasks) => {
 
 const run = async () => {
     const issueData = parseIssuePayload(eventPayload);
+    console.log({issueData);
     const newTasks = await mkTaskIssues(issueData.criteria);
     const body = mkNewBody(issueData, newTasks);
     const title = `As a ${issueData.persona}, I want to ${issueData.goal}, so that ${issueData.goal}`;
