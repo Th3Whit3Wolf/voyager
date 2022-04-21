@@ -104,8 +104,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 17.x
-      - run: npm install
-      - run: npm run build
+      - run: npm --prefix frontend install
+      - run: npm --prefix frontend run build
       - name: Deploy Frontend
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
