@@ -12,7 +12,12 @@ import { MemoryRouter as Router } from "react-router-dom";
 // from code hardening tools such as SonarCube on
 // previous software projects. --Tony
 
-const setup = () => render(<Router><Login /></Router>);
+const setup = () =>
+	render(
+		<Router>
+			<Login />
+		</Router>
+	);
 
 test("renders a Login component successfully", () => {
 	setup();
