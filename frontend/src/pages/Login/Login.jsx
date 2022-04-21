@@ -2,11 +2,14 @@ import React, { useState } from "react";
 
 // Third Party Components
 import { TextField, Button, Stack } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	// STATE
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+
+	const navigate = useNavigate();
 
 	// EFFECTS
 
@@ -63,6 +66,23 @@ const Login = () => {
 			<br />
 			<Button variant="contained" onClick={handleCAC}>
 				Common Access Card (CAC) Login
+			</Button>
+			<br />
+			<br />
+			<p>Delete all this and below once the Backend and Auth are Set Up</p>
+			<Button
+				color="error"
+				variant="contained"
+				onClick={() => navigate("/dashboard", { state: { role: "user" } })}
+			>
+				USER: Demo Dashboard
+			</Button>
+			<Button
+				color="error"
+				variant="contained"
+				onClick={() => navigate("/dashboard", { state: { role: "admin" } })}
+			>
+				ADMIN: Demo Dashboard
 			</Button>
 		</Stack>
 	);

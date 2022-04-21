@@ -1,7 +1,7 @@
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import "./App.css";
 import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 // Third Party Components
 import Container from "@mui/material/Container";
@@ -17,7 +17,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path="/" element={<Login />} />
-				<Route path="/dashboard" />
+				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 		</Container>
