@@ -81,7 +81,7 @@ jobs:
       - name: Run Linter
         run: npm --prefix ./frontend run lint
 
-  # This workflow kicks off the deployment to Heroku 
+  # This workflow kicks off the deployment to Heroku
   deploy-to-heroku:
     name: Deploy to Heroku
     if: github.event_name == 'push'
@@ -92,14 +92,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Deploy Frontend
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "bsdi1-voyager-frontend"
-          heroku_email: "dkarrick2@gmail.com"
-          appdir: "frontend/"
-          usedocker: true
       - name: Deploy Backend
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
@@ -108,3 +100,16 @@ jobs:
           heroku_email: "dkarrick2@gmail.com"
           appdir: "backend/"
           usedocker: true
+      - name: Use Node.js 17.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17.x
+      - run: npm install
+      - run: npm run build
+      - name: Deploy Frontend
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "bsdi1-voyager-frontend"
+          heroku_email: "dkarrick2@gmail.com"
+          appdir: "frontend/dist"
