@@ -14,7 +14,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
 	return (
 		<Container>
-			<h1>HEADER PLACEHOLDER</h1>
+			<Header />
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/dashboard" />
