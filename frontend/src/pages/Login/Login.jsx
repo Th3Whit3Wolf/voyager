@@ -15,7 +15,10 @@ const Login = () => {
 	}, [username, password]);
 
 	return (
-		<Stack spacing={2}>
+		<Stack
+			spacing={3}
+			style={{ justifyContent: "center", alignItems: "center" }}
+		>
 			<TextField
 				id="username"
 				label="Username"
@@ -23,6 +26,7 @@ const Login = () => {
 				placeholder="Enter Username"
 				value={username}
 				onChange={e => setUsername(e.target.value)}
+				style={{ minWidth: "300px" }}
 			/>
 			<TextField
 				id="password"
@@ -31,8 +35,11 @@ const Login = () => {
 				placeholder="Enter Password"
 				value={password}
 				onChange={e => setPassword(e.target.value)}
+				style={{ minWidth: "300px" }}
 			/>
 			<Button>Username/Password Login</Button>
+			<br />
+			<br />
 			<Button>Common Access Card (CAC) Login</Button>
 		</Stack>
 	);
