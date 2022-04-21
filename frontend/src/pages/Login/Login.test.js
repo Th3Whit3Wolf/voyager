@@ -47,9 +47,10 @@ test("issue45: Login displays a password field that accepts a password", async (
 	expect(passwordInput).toBeInTheDocument();
 });
 
-test("issue46: Login displays a Login Button that takes username and password for authentication", () => {
+test("issue46: Login displays a Login Button that takes username and password for authentication", async () => {
 	setup();
-	expect(true).toEqual(false);
+	const loginButton = await screen.findByRole("button", { name: /login/i });
+	expect(loginButton).toBeInTheDocument();
 });
 
 test("issue47: Login displays a CAC Login button that takes CAC for authentication (note: this is faked for MVP)", () => {
