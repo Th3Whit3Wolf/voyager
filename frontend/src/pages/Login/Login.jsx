@@ -3,7 +3,8 @@ import React from "react";
 const Login = () => {
 	return (
 		<div>
-			<h1>Login</h1>
+			<label htmlFor="username">Username </label>
+			<input type="text" id="username" placeholder="Enter Username" />
 		</div>
 	);
 };
