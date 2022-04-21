@@ -1,12 +1,17 @@
-// Our Pages and Components
+import { createContext, useMemo, useState } from "react";
+
+import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
-import Container from "@mui/material/Container";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+
+
 import getDesignTokens from "./theme.js";
+
 
 // Third Party Components
 import { Routes, Route } from "react-router-dom";
-import { createContext, useMemo, useState } from "react";
+import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -27,14 +32,15 @@ export default function App() {
 	);
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 	return (
-		<ColorModeContext.Provider value={colorMode}>
+
+    <ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<Container>
-					<h1>HEADER PLACEHOLDER</h1>
+					<Header />
 					<Routes>
 						<Route path="/" element={<Login />} />
-						<Route path="/dashboard" />
+						<Route path="/dashboard" element={<Dashboard />} />
 						<Route path="*" element={<PageNotFound />} />
 					</Routes>
 				</Container>
