@@ -49,12 +49,16 @@ test("issue45: Login displays a password field that accepts a password", async (
 
 test("issue46: Login displays a Login Button that takes username and password for authentication", async () => {
 	setup();
-	const loginButton = await screen.findByRole("button", { name: /login/i });
+	const loginButton = await screen.getByRole("button", {
+		name: /username\/password login/i
+	});
 	expect(loginButton).toBeInTheDocument();
 });
 
-test("issue47: Login displays a CAC Login button that takes CAC for authentication (note: this is faked for MVP)", () => {
+test("issue47: Login displays a CAC Login button that takes CAC for authentication (note: this is faked for MVP)", async () => {
 	setup();
-	const loginButton = await screen.findByRole("button", { name: /Common Access Card (CAC) Login/i });
-	expect(loginButton).toBeInTheDocument();
+	const cacButton = await screen.findByRole("button", {
+		name: /common access card \(cac\) login/i
+	});
+	expect(cacButton).toBeInTheDocument();
 });
