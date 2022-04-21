@@ -12,5 +12,25 @@ const setup = () => render(<Login />);
 
 test("renders a Login component successfully", () => {
 	setup();
-	expect(true).toEqual(true);
+	//expect(true).toEqual(true);
+});
+
+test("issue44: Login displays a username field that accepts text for a username", () => {
+	setup();
+	expect(true).toEqual(false);
+});
+
+test("issue45: Login displays a password field that accepts a password", () => {
+	setup();
+	expect(true).toEqual(false);
+});
+
+test("issue46: Login displays a Login Button that takes username and password for authentication", () => {
+	setup();
+	expect(true).toEqual(false);
+});
+
+test("issue47: Login displays a CAC Login button that takes CAC for authentication (note: this is faked for MVP)", () => {
+	setup();
+	expect(true).toEqual(false);
 });
