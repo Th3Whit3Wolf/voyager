@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 
 // Third Party Components
-import { TextField, Button } from "@mui/material";
-
-// Styling
-import { Stack } from "@mui/material";
+import { TextField, Button, Stack } from "@mui/material";
 
 const Login = () => {
 	const [username, setUsername] = useState("");
