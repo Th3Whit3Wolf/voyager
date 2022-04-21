@@ -34,3 +34,9 @@ const brokenRouteSetup = () => {
 test("renders a PageNotFound component successfully", () => {
 	setup();
 });
+
+test("renders the App component and NOT PageNotFound successfully at root route", async () => {
+	rootRouteSetup();
+	const usernameLabel = await screen.findByLabelText(/username/i);
+	expect(usernameLabel).toBeInTheDocument();
+});
