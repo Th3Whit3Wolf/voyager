@@ -1,8 +1,10 @@
-import { useState } from "react";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
-import Header from "/components/Header/Header";
+import Header from "./components/Header/Header";
+import Login from "./pages/Login/Login";
 
 // Third Party Components
+import Container from "@mui/material/Container";
 import { Routes, Route } from "react-router-dom";
 
 // Notes: path="/" will use element Login component from issue43
@@ -10,22 +12,15 @@ import { Routes, Route } from "react-router-dom";
 //.    this can be most easily achieved through early returns on a Dashboard element
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
-		<div className="App">
-			<h1>Voyager Placeholder</h1>
-			<p>Will show null Outlets until Route elements set up</p>
-			<p>
-				This scaffolding was added in order to just instantiate React Router for
-				the DOM and to give tests something to grab onto as we all work on
-				components and pages.
-			</p>
+		<Container>
+			<h1>HEADER PLACEHOLDER</h1>
 			<Routes>
-				<Route path="/" />
+				<Route path="/" element={<Login />} />
 				<Route path="/dashboard" />
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
-		</div>
+		</Container>
 	);
 }
 

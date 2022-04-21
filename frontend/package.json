@@ -9,6 +9,7 @@
 		"format": "prettier --ignore-path .gitignore --write .",
 		"lint": "eslint src/ --ext .js,.jsx",
 		"test": "NODE_ENV=test jest",
+		"test:watch" : "NODE_ENV=test jest --watch",
 		"preview": "vite preview"
 	},
 	"dependencies": {
