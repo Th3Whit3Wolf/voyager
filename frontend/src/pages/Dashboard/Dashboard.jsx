@@ -2,10 +2,11 @@
 // This is a demo dashboard as a placeholder
 // when actual dashboards are built up, switch to TDD
 
-import React from "react";
+import React, { useState } from "react";
 
 // Third Party Components and Utilities
-import { Tab, TabContext, TabList, TabPanel, Stack } from "@mui/material";
+import { Tab } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 // NOTE: Currently Dashboard is taking a prop called
 // role. This is coming from Login.jsx where the Fake
@@ -22,6 +23,8 @@ import { Tab, TabContext, TabList, TabPanel, Stack } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
+	const [tabValue, setTabValue] = useState("1");
+
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 	const role = location.state.role;
 
@@ -36,19 +39,54 @@ const Dashboard = () => {
 		return (
 			<>
 				<h1>User's Dashboard</h1>
-					<div>
-						<h3>Outprocessing Tasks</h3>
-					</div>
-					<div>
-						<h3>Inprocessing Tasks</h3>
-					</div>
+
+				<TabContext value={tabValue}>
+					<TabList onChange={(e, nv) => setTabValue(nv)}>
+						<Tab label="Inprocessing Tasks" value="1" />
+						<Tab label="Outprocessing Tasks" value="2" />
+					</TabList>
+
+					<TabPanel value="1">
+						These is where my in-processing task list shows up.
+            <p>This should show as a table view, where each row has a status and can be toggled as complete or not. Clicking on a might show more info?</p>
+					</TabPanel>
+
+					<TabPanel value="2">
+						These is where my out-processing task list shows up
+            <p>This should show as a table view, where each row has a status and can be toggled as complete or not. Clicking on a might show more info?</p>
+					</TabPanel>
+				</TabContext>
 			</>
 		);
 	}
 
 	// Generic Admin View ... this conditional compares to role from location, should be changed to AUTH obj later
 	if (role === "admin") {
-		return <h1>Admin's Dashboard</h1>;
+		return (
+			<>
+				<h1>Admin's Dashboard</h1>
+
+				<TabContext value={tabValue}>
+					<TabList onChange={(e, nv) => setTabValue(nv)}>
+						<Tab label="Inprocessing Tasks" value="1" />
+						<Tab label="Outprocessing Tasks" value="2" />
+					</TabList>
+
+					<TabPanel value="1">
+						<p>
+							These is where all the admin in-processing tasks should show up as a
+							table view.</p><p>Each row in a Table that matches the Role of the logged in Admin should allow for Delete, Row-wise Entry Patches, or adding a new row to the bottom.
+						</p>
+					</TabPanel>
+
+					<TabPanel value="2">
+          <p>
+							These is where all the admin out-processing tasks should show up as a
+							table view.</p><p>Each row in a Table that matches the Role of the logged in Admin should allow for Delete, Row-wise Entry Patches, or adding a new row to the bottom.
+						</p>					</TabPanel>
+				</TabContext>
+			</>
+		);
 	}
 
 	// Installation Admin View
