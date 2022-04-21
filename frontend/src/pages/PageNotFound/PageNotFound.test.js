@@ -40,3 +40,9 @@ test("renders the App component and NOT PageNotFound successfully at root route"
 	const usernameLabel = await screen.findByLabelText(/username/i);
 	expect(usernameLabel).toBeInTheDocument();
 });
+
+test("renders the PageNotFound component successfully at brokenFooBar route", async () => {
+	brokenRouteSetup();
+	const pageNotFoundText = await screen.findByText(/page not found/i);
+	expect(pageNotFoundText).toBeInTheDocument();
+});
