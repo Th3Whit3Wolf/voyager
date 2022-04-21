@@ -5,9 +5,9 @@ name: CICD for Main branch
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
       - name: Test Frontend
         run: |
           docker run -e CI=true capstone-ui npm run test
-          
+
   # This workflow kicks off the build and test for the Backend
   build-and-test-backend:
     name: Build and Test Backend
@@ -46,28 +46,30 @@ jobs:
       - name: Test Backend
         run: |
           docker run -e CI=true capstone-api npm run test
-  
+
   # This workflow kicks off the deployment to Heroku for the Frontend
   deploy-frontend:
     name: Deploy Frontend to Heroku
+    if: github.event.pull_request.merged == true
     # Needs specifies the steps that must previously complete in order to deploy your application.
-    needs: [ build-and-test-frontend, build-and-test-backend ]
+    needs: [build-and-test-frontend, build-and-test-backend]
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - uses: akhileshns/heroku-deploy@v3.12.12
-        with: 
+        with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "bsdi1-voyager-frontend"
           heroku_email: "dkarrick2@gmail.com"
           appdir: "frontend/"
           usedocker: true
-  
+
   # This workflow kicks off the deployment to Heroku for the Backend
   deploy-backend:
     name: Deploy Backend to Heroku
-    needs: [ build-and-test-frontend, build-and-test-backend ]
+    if: github.event.pull_request.merged == true
+    needs: [build-and-test-frontend, build-and-test-backend]
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -76,18 +78,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - uses: akhileshns/heroku-deploy@v3.12.12
-        with: 
+        with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "bsdi1-voyager-backend"
           heroku_email: "dkarrick2@gmail.com"
           appdir: "backend/"
           usedocker: true
 
-  # This workflow kicks off the linter for your Backend.  
+  # This workflow kicks off the linter for your Backend.
   run-backend-linter:
     name: Lint Backend Code Base
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -100,8 +102,8 @@ jobs:
       # Executes the linter on the Backend code base.
       - name: Run Linter
         run: npm --prefix ./backend run lint
-  
-  # This workflow kicks off the linter for Frontend.  
+
+  # This workflow kicks off the linter for Frontend.
   run-frontend-linter:
     name: Lint Frontend Code Base
     runs-on: ubuntu-latest
