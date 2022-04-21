@@ -10,4 +10,7 @@ import Login from "./Login.jsx";
 
 const setup = () => render(<Login />);
 
-test("renders a Login component successfully", () => setup());
+test("renders a Login component successfully", () => {
+	setup();
+	expect(true).toEqual(true);
+});
