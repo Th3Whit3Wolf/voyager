@@ -55,5 +55,6 @@ test("issue46: Login displays a Login Button that takes username and password fo
 
 test("issue47: Login displays a CAC Login button that takes CAC for authentication (note: this is faked for MVP)", () => {
 	setup();
-	expect(true).toEqual(false);
+	const loginButton = await screen.findByRole("button", { name: /Common Access Card (CAC) Login/i });
+	expect(loginButton).toBeInTheDocument();
 });
