@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css";
+import Header from "/components/Header/Header";
 
 // Third Party Components
 import { Routes, Route } from "react-router-dom";
-
 
 // Notes: path="/" will use element Login component from issue43
 // Notes: path='/dashboard' will use element with a changing view based on Role
@@ -22,7 +22,7 @@ function App() {
 				components and pages.
 			</p>
 			<Routes>
-				<Route path="/" /> 
+				<Route path="/" />
 				<Route path="/dashboard" />
 			</Routes>
 		</div>
