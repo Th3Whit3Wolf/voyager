@@ -100,6 +100,18 @@ jobs:
           heroku_email: "dkarrick2@gmail.com"
           appdir: "backend/"
           usedocker: true
+          
+  # This workflow kicks off the deployment to Heroku
+  deploy-frontend-to-heroku:
+    name: Deploy frontend to Heroku
+    if: github.event_name == 'push'
+    # Needs specifies the steps that must previously complete in order to deploy your application.
+    needs: [build-and-test-frontend, build-and-test-backend]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Use Node.js 17.x
         uses: actions/setup-node@v1
         with:
