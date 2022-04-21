@@ -30,7 +30,8 @@ const Login = () => {
 				value={password}
 				onChange={e => setPassword(e.target.value)}
 			/>
-			<Button>Login</Button>
+			<Button>Username/Password Login</Button>
+			<Button>Common Access Card (CAC) Login</Button>
 		</div>
 	);
 };
