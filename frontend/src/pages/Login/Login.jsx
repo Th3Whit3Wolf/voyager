@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // Third Party Components
-import { InputLabel, Input } from "@mui/material";
+import { InputLabel, Input, Button } from "@mui/material";
 
 const Login = () => {
 	const [username, setUsername] = useState("");
@@ -30,6 +30,7 @@ const Login = () => {
 				value={password}
 				onChange={e => setPassword(e.target.value)}
 			/>
+			<Button>Login</Button>
 		</div>
 	);
 };
