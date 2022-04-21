@@ -63,7 +63,7 @@ const Dashboard = () => {
 							info?
 						</p>
 						<TableContainer component={Paper}>
-							<Table>
+							<Table size={"small"}>
 								<TableHead>
 									<TableRow>
 										<TableCell>Checkbox</TableCell>
@@ -75,8 +75,8 @@ const Dashboard = () => {
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									<TableRow>
-										<TableCell>Checkbox</TableCell>
+									<TableRow hover={true}>
+										<TableCell>CB Icon Here</TableCell>
 										<TableCell>Form 55</TableCell>
 										<TableCell>
 											Send your current form 55 to Safety Rep.
@@ -84,6 +84,14 @@ const Dashboard = () => {
 										<TableCell>Capt Safety Pants</TableCell>
 										<TableCell>(123) 456-7899</TableCell>
 										<TableCell>safety.pants@email.com</TableCell>
+									</TableRow>
+									<TableRow hover={true}>
+										<TableCell>CB Icon Here</TableCell>
+										<TableCell>GTC Activation</TableCell>
+										<TableCell>Go see Sally Sue to activate GTC</TableCell>
+										<TableCell>Ms. Sally Sue</TableCell>
+										<TableCell>(123) 456-7899</TableCell>
+										<TableCell>sally.sue@email.com</TableCell>
 									</TableRow>
 								</TableBody>
 							</Table>
@@ -98,7 +106,7 @@ const Dashboard = () => {
 							info?
 						</p>
 						<TableContainer component={Paper}>
-							<Table>
+							<Table size={"small"}>
 								<TableHead>
 									<TableRow>
 										<TableCell>Checkbox</TableCell>
@@ -110,8 +118,8 @@ const Dashboard = () => {
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									<TableRow>
-										<TableCell>Checkbox</TableCell>
+									<TableRow hover={true}>
+										<TableCell>CB Icon Here</TableCell>
 										<TableCell>Form 55</TableCell>
 										<TableCell>
 											Send your current form 55 to Safety Rep.
@@ -119,6 +127,14 @@ const Dashboard = () => {
 										<TableCell>Capt Safety Pants</TableCell>
 										<TableCell>(123) 456-7899</TableCell>
 										<TableCell>safety.pants@email.com</TableCell>
+									</TableRow>
+									<TableRow hover={true}>
+										<TableCell>CB Icon Here</TableCell>
+										<TableCell>GTC Activation</TableCell>
+										<TableCell>Go see Sally Sue to activate GTC</TableCell>
+										<TableCell>Ms. Sally Sue</TableCell>
+										<TableCell>(123) 456-7899</TableCell>
+										<TableCell>sally.sue@email.com</TableCell>
 									</TableRow>
 								</TableBody>
 							</Table>
