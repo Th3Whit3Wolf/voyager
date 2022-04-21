@@ -35,6 +35,8 @@ test("issue44: ... accepts text for a username", async () => {
 	const usernameInput = await screen.findByPlaceholderText(/enter username/i);
 	expect(usernameLabel).toBeInTheDocument();
 	expect(usernameInput).toBeInTheDocument();
+	userEvent.type(usernameInput, "scruffy");
+	expect(usernameInput).toHaveValue("scruffy");
 });
 
 test("issue45: Login displays a password field that accepts a password", () => {
