@@ -13,23 +13,29 @@ import PageNotFound from "./PageNotFound.jsx";
 // from code hardening tools such as SonarCube on
 // previous software projects. --Tony
 
-const setup = () => render(<PageNotFound />);
+const setup = () => {
+	render(
+		<MemoryRouter initialEntries={["/"]}>
+			<PageNotFound />
+		</MemoryRouter>
+	);
+};
 
 const rootRouteSetup = () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <App />
-    </MemoryRouter>
-  )
-}
+	render(
+		<MemoryRouter initialEntries={["/"]}>
+			<App />
+		</MemoryRouter>
+	);
+};
 
 const brokenRouteSetup = () => {
-  render(
-    <MemoryRouter initialEntries={['/brokenFooBar']}>
-      <App />
-    </MemoryRouter>
-  )
-}
+	render(
+		<MemoryRouter initialEntries={["/brokenFooBar"]}>
+			<App />
+		</MemoryRouter>
+	);
+};
 
 test("renders a PageNotFound component successfully", () => {
 	setup();
