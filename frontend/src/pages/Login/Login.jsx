@@ -33,10 +33,10 @@ const Login = () => {
 				onChange={e => setPassword(e.target.value)}
 				style={{ minWidth: "300px" }}
 			/>
-			<Button>Username/Password Login</Button>
+			<Button variant="contained">Username/Password Login</Button>
 			<br />
 			<br />
-			<Button>Common Access Card (CAC) Login</Button>
+			<Button variant="contained">Common Access Card (CAC) Login</Button>
 		</Stack>
 	);
 };
