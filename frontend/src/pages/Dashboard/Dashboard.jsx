@@ -48,12 +48,20 @@ const Dashboard = () => {
 
 					<TabPanel value="1">
 						These is where my in-processing task list shows up.
-            <p>This should show as a table view, where each row has a status and can be toggled as complete or not. Clicking on a might show more info?</p>
+						<p>
+							This should show as a table view, where each row has a status and
+							can be toggled as complete or not. Clicking on a might show more
+							info?
+						</p>
 					</TabPanel>
 
 					<TabPanel value="2">
 						These is where my out-processing task list shows up
-            <p>This should show as a table view, where each row has a status and can be toggled as complete or not. Clicking on a might show more info?</p>
+						<p>
+							This should show as a table view, where each row has a status and
+							can be toggled as complete or not. Clicking on a might show more
+							info?
+						</p>
 					</TabPanel>
 				</TabContext>
 			</>
@@ -74,16 +82,27 @@ const Dashboard = () => {
 
 					<TabPanel value="1">
 						<p>
-							These is where all the admin in-processing tasks should show up as a
-							table view.</p><p>Each row in a Table that matches the Role of the logged in Admin should allow for Delete, Row-wise Entry Patches, or adding a new row to the bottom.
+							These is where all the admin in-processing tasks should show up as
+							a table view.
+						</p>
+						<p>
+							Each row in a Table that matches the Role of the logged in Admin
+							should allow for Delete, Row-wise Entry Patches, or adding a new
+							row to the bottom.
 						</p>
 					</TabPanel>
 
 					<TabPanel value="2">
-          <p>
-							These is where all the admin out-processing tasks should show up as a
-							table view.</p><p>Each row in a Table that matches the Role of the logged in Admin should allow for Delete, Row-wise Entry Patches, or adding a new row to the bottom.
-						</p>					</TabPanel>
+						<p>
+							These is where all the admin out-processing tasks should show up
+							as a table view.
+						</p>
+						<p>
+							Each row in a Table that matches the Role of the logged in Admin
+							should allow for Delete, Row-wise Entry Patches, or adding a new
+							row to the bottom.
+						</p>{" "}
+					</TabPanel>
 				</TabContext>
 			</>
 		);
