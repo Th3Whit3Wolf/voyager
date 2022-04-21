@@ -39,9 +39,12 @@ test("issue44: ... accepts text for a username", async () => {
 	expect(usernameInput.value).toBe("scruffy");
 });
 
-test("issue45: Login displays a password field that accepts a password", () => {
+test("issue45: Login displays a password field that accepts a password", async () => {
 	setup();
-	expect(true).toEqual(false);
+	const passwordLabel = await screen.findByLabelText(/password/i);
+	const passwordInput = await screen.findByPlaceholderText(/enter password/i);
+	expect(passwordLabel).toBeInTheDocument();
+	expect(passwordInput).toBeInTheDocument();
 });
 
 test("issue46: Login displays a Login Button that takes username and password for authentication", () => {
