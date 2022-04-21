@@ -1,5 +1,6 @@
 // Import Testing Utilities
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 // Import Third Party Components or Features
 import { MemoryRouter as Router } from "react-router-dom";
