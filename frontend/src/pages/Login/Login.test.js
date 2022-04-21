@@ -1,12 +1,7 @@
 // Import Testing Utilities
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-
-// Import Third Party Components or Features
-import { MemoryRouter as Router } from "react-router-dom";
 
 // Import Features to be Tested
-import App from "../../App.jsx";
 import Login from "./Login.jsx";
 
 // Note that I use a setup function here instead of
@@ -18,7 +13,6 @@ const setup = () => render(<Login />);
 
 test("renders a Login component successfully", () => {
 	setup();
-	//expect(true).toEqual(true);
 });
 
 test("issue44: Login displays a username input field that ...", async () => {
