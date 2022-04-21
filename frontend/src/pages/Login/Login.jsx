@@ -25,6 +25,13 @@ const Login = () => {
 			);
 		}
 	};
+
+	const handleCAC = () => {
+		alert(
+			"Once auth is set up, fake this to essentially auto-login a default User. For MVP, no other features needed."
+		);
+	};
+
 	return (
 		<Stack
 			spacing={3}
@@ -54,7 +61,9 @@ const Login = () => {
 			</Button>
 			<br />
 			<br />
-			<Button variant="contained">Common Access Card (CAC) Login</Button>
+			<Button variant="contained" onClick={handleCAC}>
+				Common Access Card (CAC) Login
+			</Button>
 		</Stack>
 	);
 };
