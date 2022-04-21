@@ -20,11 +20,9 @@ import { useLocation } from "react-router-dom";
 const Dashboard = () => {
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 
-  console.log(location);
-
  	return (
 		<>
-			<h3>DASHBOARD for {}</h3>
+			<h3>{location.state.role.toUpperCase()} DEMO DASHBOARD</h3>
 		</>
 	);
 };
