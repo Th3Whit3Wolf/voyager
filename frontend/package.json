@@ -4,6 +4,7 @@
 	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite",
+		"start": "vite --port $PORT",
 		"build": "vite build",
 		"coverage": "jest --coverage",
 		"format": "prettier --ignore-path .gitignore --write .",
