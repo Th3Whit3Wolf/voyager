@@ -8,6 +8,11 @@ import { MemoryRouter as Router } from "react-router-dom";
 import App from "../../App.jsx";
 import Login from "./Login.jsx";
 
+// Note that I use a setup function here instead of
+// beforeAll or beforeEach due to feedback received
+// from code hardening tools such as SonarCube on
+// previous software projects. --Tony
+
 const setup = () => render(<Login />);
 
 test("renders a Login component successfully", () => {
@@ -15,9 +20,20 @@ test("renders a Login component successfully", () => {
 	//expect(true).toEqual(true);
 });
 
-test("issue44: Login displays a username field that accepts text for a username", () => {
+test("issue44: Login displays a username input field that ...", async () => {
 	setup();
-	expect(true).toEqual(false);
+	const usernameLabel = await screen.findByLabelText(/username/i);
+	const usernameInput = await screen.findByPlaceholderText(/enter username/i);
+	expect(usernameLabel).toBeInTheDocument();
+	expect(usernameInput).toBeInTheDocument();
+});
+
+test("issue44: ... accepts text for a username", async () => {
+	setup();
+	const usernameLabel = await screen.findByLabelText(/username/i);
+	const usernameInput = await screen.findByPlaceholderText(/enter username/i);
+	expect(usernameLabel).toBeInTheDocument();
+	expect(usernameInput).toBeInTheDocument();
 });
 
 test("issue45: Login displays a password field that accepts a password", () => {
