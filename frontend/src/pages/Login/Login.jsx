@@ -24,16 +24,14 @@ const Login = () => {
 				value={username}
 				onChange={e => setUsername(e.target.value)}
 			/>
-			<div>
-				<InputLabel htmlFor="password">Password </InputLabel>
-				<Input
-					type="password"
-					id="password"
-					placeholder="Enter Password"
-					value={password}
-					onChange={e => setPassword(e.target.value)}
-				/>
-			</div>
+			<TextField
+				id="password"
+				label="Password"
+				variant="standard"
+				placeholder="Enter Password"
+				value={password}
+				onChange={e => setPassword(e.target.value)}
+			/>
 			<Button>Username/Password Login</Button>
 			<Button>Common Access Card (CAC) Login</Button>
 		</Stack>
