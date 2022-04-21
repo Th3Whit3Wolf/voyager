@@ -4,6 +4,11 @@ import "./App.css";
 // Third Party Components
 import { Routes, Route } from "react-router-dom";
 
+
+// Notes: path="/" will use element Login component from issue43
+// Notes: path='/dashboard' will use element with a changing view based on Role
+//.    this can be most easily achieved through early returns on a Dashboard element
+
 function App() {
 	const [count, setCount] = useState(0);
 
@@ -17,7 +22,7 @@ function App() {
 				components and pages.
 			</p>
 			<Routes>
-				<Route path="/" />
+				<Route path="/" /> 
 				<Route path="/dashboard" />
 			</Routes>
 		</div>
