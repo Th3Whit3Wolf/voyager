@@ -5,9 +5,7 @@ import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
-
 import getDesignTokens from "./theme.js";
-
 
 // Third Party Components
 import { Routes, Route } from "react-router-dom";
@@ -32,8 +30,7 @@ export default function App() {
 	);
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 	return (
-
-    <ColorModeContext.Provider value={colorMode}>
+		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<Container>
