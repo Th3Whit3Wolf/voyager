@@ -38,7 +38,7 @@ const Dashboard = () => {
 	if (role === "user") {
 		return (
 			<>
-				<h1>User's Dashboard</h1>
+				<h1>User Dashboard</h1>
 
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
@@ -72,7 +72,7 @@ const Dashboard = () => {
 	if (role === "admin") {
 		return (
 			<>
-				<h1>Admin's Dashboard</h1>
+				<h1>Admin Dashboard</h1>
 
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
