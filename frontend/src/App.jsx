@@ -1,5 +1,3 @@
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import "./App.css";
 import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
