@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 // Third Party Components
 import Container from "@mui/material/Container";
 import { Routes, Route } from "react-router-dom";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 // Notes: path="/" will use element Login component from issue43
 // Notes: path='/dashboard' will use element with a changing view based on Role
@@ -16,6 +17,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/dashboard" />
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 		</Container>
 	);
