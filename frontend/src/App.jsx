@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 
+// Our Pages and Components
+import Login from "./pages/Login/Login";
+
 // Third Party Components
 import { Routes, Route } from "react-router-dom";
 
@@ -17,7 +20,7 @@ function App() {
 				components and pages.
 			</p>
 			<Routes>
-				<Route path="/" />
+				<Route path="/" element={<Login />} />
 				<Route path="/dashboard" />
 			</Routes>
 		</div>

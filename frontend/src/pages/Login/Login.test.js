@@ -36,7 +36,7 @@ test("issue44: ... accepts text for a username", async () => {
 	expect(usernameLabel).toBeInTheDocument();
 	expect(usernameInput).toBeInTheDocument();
 	userEvent.type(usernameInput, "scruffy");
-	expect(usernameInput).toHaveValue("scruffy");
+	expect(usernameInput.value).toBe("scruffy");
 });
 
 test("issue45: Login displays a password field that accepts a password", () => {
