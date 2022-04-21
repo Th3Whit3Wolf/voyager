@@ -1,10 +1,11 @@
-// Our Pages and Components
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import "./App.css";
+import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
 
 // Third Party Components
 import Container from "@mui/material/Container";
 import { Routes, Route } from "react-router-dom";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 // Notes: path="/" will use element Login component from issue43
 // Notes: path='/dashboard' will use element with a changing view based on Role
@@ -13,7 +14,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 function App() {
 	return (
 		<Container>
-			<h1>HEADER PLACEHOLDER</h1>
+			<Header />
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/dashboard" />
