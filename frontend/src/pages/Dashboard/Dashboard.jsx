@@ -5,7 +5,16 @@
 import React, { useState } from "react";
 
 // Third Party Components and Utilities
-import { Tab } from "@mui/material";
+import {
+	Paper,
+	Tab,
+	TableContainer,
+	Table,
+	TableHead,
+	TableBody,
+	TableRow,
+	TableCell
+} from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 // NOTE: Currently Dashboard is taking a prop called
@@ -53,6 +62,32 @@ const Dashboard = () => {
 							can be toggled as complete or not. Clicking on a might show more
 							info?
 						</p>
+						<TableContainer component={Paper}>
+							<Table>
+								<TableHead>
+									<TableRow>
+										<TableCell>Checkbox</TableCell>
+										<TableCell>Task Name</TableCell>
+										<TableCell>Short Description</TableCell>
+										<TableCell>POC Name</TableCell>
+										<TableCell>POC Phone</TableCell>
+										<TableCell>POC Email</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									<TableRow>
+										<TableCell>Checkbox</TableCell>
+										<TableCell>Form 55</TableCell>
+										<TableCell>
+											Send your current form 55 to Safety Rep.
+										</TableCell>
+										<TableCell>Capt Safety Pants</TableCell>
+										<TableCell>(123) 456-7899</TableCell>
+										<TableCell>safety.pants@email.com</TableCell>
+									</TableRow>
+								</TableBody>
+							</Table>
+						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="2">
@@ -62,6 +97,32 @@ const Dashboard = () => {
 							can be toggled as complete or not. Clicking on a might show more
 							info?
 						</p>
+						<TableContainer component={Paper}>
+							<Table>
+								<TableHead>
+									<TableRow>
+										<TableCell>Checkbox</TableCell>
+										<TableCell>Task Name</TableCell>
+										<TableCell>Short Description</TableCell>
+										<TableCell>POC Name</TableCell>
+										<TableCell>POC Phone</TableCell>
+										<TableCell>POC Email</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									<TableRow>
+										<TableCell>Checkbox</TableCell>
+										<TableCell>Form 55</TableCell>
+										<TableCell>
+											Send your current form 55 to Safety Rep.
+										</TableCell>
+										<TableCell>Capt Safety Pants</TableCell>
+										<TableCell>(123) 456-7899</TableCell>
+										<TableCell>safety.pants@email.com</TableCell>
+									</TableRow>
+								</TableBody>
+							</Table>
+						</TableContainer>
 					</TabPanel>
 				</TabContext>
 			</>
