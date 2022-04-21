@@ -112,4 +112,5 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "bsdi1-voyager-frontend"
           heroku_email: "dkarrick2@gmail.com"
-          appdir: "frontend/dist"
+          appdir: "frontend"
+          buildpack: "https://github.com/heroku/heroku-buildpack-static.git"
