@@ -10,10 +10,6 @@ const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
-	useEffect(() => {
-		console.log(username, password);
-	}, [username, password]);
-
 	return (
 		<Stack
 			spacing={3}
