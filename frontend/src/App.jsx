@@ -1,4 +1,6 @@
-// Our Pages and Components
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import "./App.css";
+import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
@@ -14,7 +16,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
 	return (
 		<Container>
-			<h1>HEADER PLACEHOLDER</h1>
+			<Header />
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/dashboard" element={<Dashboard />} />
