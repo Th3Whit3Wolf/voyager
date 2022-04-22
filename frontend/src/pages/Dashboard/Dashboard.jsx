@@ -14,7 +14,8 @@ import {
 	TableHead,
 	TableBody,
 	TableRow,
-	TableCell
+	TableCell,
+	Switch
 } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
@@ -38,7 +39,7 @@ const Dashboard = () => {
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 	const role = location.state.role;
-	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1000);
+	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1000); // only created data for User , not Admin yet, Admin gives a console log
 
 	useEffect(() => {
 		console.log(data, error, isLoading);
@@ -50,6 +51,7 @@ const Dashboard = () => {
 	// way with a final return that always shows in the event all other
 	// conditionals do not trigger
 
+	if (isLoading) return <p>Loading data...</p>;
 	// User View ... this conditional compares to role from location, should be changed to AUTH obj later
 	if (role === "user") {
 		return (
@@ -73,7 +75,7 @@ const Dashboard = () => {
 							<Table size={"small"}>
 								<TableHead>
 									<TableRow>
-										<TableCell>Checkbox</TableCell>
+										<TableCell></TableCell>
 										<TableCell>Task Name</TableCell>
 										<TableCell>Short Description</TableCell>
 										<TableCell>POC Name</TableCell>
@@ -83,7 +85,9 @@ const Dashboard = () => {
 								</TableHead>
 								<TableBody>
 									<TableRow hover={true}>
-										<TableCell>CB Icon Here</TableCell>
+										<TableCell>
+											<Switch />
+										</TableCell>
 										<TableCell>Form 55</TableCell>
 										<TableCell>
 											Send your current form 55 to Safety Rep.
@@ -93,13 +97,23 @@ const Dashboard = () => {
 										<TableCell>safety.pants@email.com</TableCell>
 									</TableRow>
 									<TableRow hover={true}>
-										<TableCell>CB Icon Here</TableCell>
+										<TableCell>
+											<Switch />
+										</TableCell>
 										<TableCell>GTC Activation</TableCell>
 										<TableCell>Go see Sally Sue to activate GTC</TableCell>
 										<TableCell>Ms. Sally Sue</TableCell>
 										<TableCell>(123) 456-7899</TableCell>
 										<TableCell>sally.sue@email.com</TableCell>
 									</TableRow>
+									{data.map(entry => {
+										<TableRow>
+											<TableCell>
+												<Switch />
+											</TableCell>
+											<TableCell>entry.title</TableCell>
+										</TableRow>;
+									})}
 								</TableBody>
 							</Table>
 						</TableContainer>

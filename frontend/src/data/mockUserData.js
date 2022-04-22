@@ -7,6 +7,7 @@ export const mockUserData = [
 		approver: "Capt Safety Pants",
 		created_at: new Date("July 1 2002 11:53"),
 		updated_at: new Date("July 1 2002 11:53"),
-		owner: "Delta"
+		owner: "Delta",
+		checked: false
 	}
 ];
