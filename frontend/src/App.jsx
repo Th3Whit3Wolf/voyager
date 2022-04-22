@@ -31,8 +31,8 @@ export default function App() {
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
+				<Header />
 				<Container>
-					<Header />
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/dashboard" element={<Dashboard />} />

@@ -85,45 +85,26 @@ const Dashboard = () => {
 										<TableCell>POC Name</TableCell>
 										<TableCell>POC Phone</TableCell>
 										<TableCell>POC Email</TableCell>
+										<TableCell>Last Updated</TableCell>
+										<TableCell></TableCell>
+										<TableCell></TableCell>
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									<TableRow hover={true}>
-										<TableCell>
-											<Switch />
-										</TableCell>
-										<TableCell>Form 55</TableCell>
-										<TableCell>
-											Send your current form 55 to Safety Rep.
-										</TableCell>
-										<TableCell>Capt Safety Pants</TableCell>
-										<TableCell>(123) 456-7899</TableCell>
-										<TableCell>safety.pants@email.com</TableCell>
-									</TableRow>
-									<TableRow hover={true}>
-										<TableCell>
-											<Switch />
-										</TableCell>
-										<TableCell>GTC Activation</TableCell>
-										<TableCell>Go see Sally Sue to activate GTC</TableCell>
-										<TableCell>Ms. Sally Sue</TableCell>
-										<TableCell>(123) 456-7899</TableCell>
-										<TableCell>sally.sue@email.com</TableCell>
-									</TableRow>
-								</TableBody>
-							</Table>
-							<Table>
-								<TableBody>
-									{data.map(entry => {
-										console.log(entry.description);
+									{data.map(entry => (
 										<TableRow hover={true} key={entry.id}>
 											<TableCell>
 												<Switch />
 											</TableCell>
 											<TableCell>{entry.title}</TableCell>
 											<TableCell>{entry.description}</TableCell>
-										</TableRow>;
-									})}
+											<TableCell>{entry.approver}</TableCell>
+											<TableCell>Not in Current ERD</TableCell>
+											<TableCell>Not in Current ERD</TableCell>
+											<TableCell>{entry.id}</TableCell>
+											<TableCell>{entry.approver}</TableCell>
+										</TableRow>
+									))}
 								</TableBody>
 							</Table>
 						</TableContainer>
