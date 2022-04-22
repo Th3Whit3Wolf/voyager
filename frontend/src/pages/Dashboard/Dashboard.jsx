@@ -41,9 +41,9 @@ const Dashboard = () => {
 	const role = location.state.role;
 	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1000); // only created data for User , not Admin yet, Admin gives a console log
 
-	useEffect(() => {
-		console.log(data, error, isLoading);
-	}, [data, error, isLoading]);
+	// useEffect(() => {
+	// 	console.log(data, error, isLoading);
+	// }, [data, error, isLoading]);
 
 	// Setting up Different Views Based on Role
 	// There are many ways to do conditional views, but with
@@ -53,6 +53,10 @@ const Dashboard = () => {
 
 	if (isLoading) return <p>Loading data...</p>;
 	// User View ... this conditional compares to role from location, should be changed to AUTH obj later
+
+	// Note, this should be turned into components. I would almost never keep a component looking like this,
+	// but for sake of communicating with other Devs in the project, I have it in long form here so the logic
+	// is easier to see all in one page. --Tony
 	if (role === "user") {
 		return (
 			<>
@@ -106,12 +110,18 @@ const Dashboard = () => {
 										<TableCell>(123) 456-7899</TableCell>
 										<TableCell>sally.sue@email.com</TableCell>
 									</TableRow>
+								</TableBody>
+							</Table>
+							<Table>
+								<TableBody>
 									{data.map(entry => {
-										<TableRow>
+										console.log(entry.description);
+										<TableRow hover={true} key={entry.id}>
 											<TableCell>
 												<Switch />
 											</TableCell>
-											<TableCell>entry.title</TableCell>
+											<TableCell>{entry.title}</TableCell>
+											<TableCell>{entry.description}</TableCell>
 										</TableRow>;
 									})}
 								</TableBody>
