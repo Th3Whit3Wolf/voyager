@@ -75,6 +75,12 @@ jobs:
           npm --prefix frontend install
           npm --prefix frontend run build
 
+      - name: Brotli compress the html, css and js files in the "build" directory
+        id: brotli
+        uses: charlesworth/compress-action@1.0
+        with:
+          target-directory: "frontend/dist"
+
       - name: Commit Build
         run: |
           git config --local user.email "actions@users.noreply.github.com"
