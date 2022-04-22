@@ -56,7 +56,9 @@ const Dashboard = () => {
 
 	// Note, this should be turned into components. I would almost never keep a component looking like this,
 	// but for sake of communicating with other Devs in the project, I have it in long form here so the logic
-	// is easier to see all in one page. --Tony
+	// is easier to see all in one page. But I can see someone taking it down to User, Site Admin, Base Admin, etc
+	// then the conditional early returns will turn this Dashboard.jsx into like 5 lines of code down below, and different
+	// people can work on different sections without stepping on each others toes. --Tony
 	if (role === "user") {
 		return (
 			<>
@@ -86,7 +88,7 @@ const Dashboard = () => {
 										<TableCell>POC Phone</TableCell>
 										<TableCell>POC Email</TableCell>
 										<TableCell>Last Updated</TableCell>
-										<TableCell></TableCell>
+										<TableCell>Owner</TableCell>
 										<TableCell></TableCell>
 									</TableRow>
 								</TableHead>
@@ -101,8 +103,8 @@ const Dashboard = () => {
 											<TableCell>{entry.approver}</TableCell>
 											<TableCell>Not in Current ERD</TableCell>
 											<TableCell>Not in Current ERD</TableCell>
-											<TableCell>{entry.id}</TableCell>
-											<TableCell>{entry.approver}</TableCell>
+											<TableCell>{}</TableCell>
+											<TableCell>{entry.owner}</TableCell>
 										</TableRow>
 									))}
 								</TableBody>
@@ -115,7 +117,11 @@ const Dashboard = () => {
 						<p>
 							This should show as a table view, where each row has a status and
 							can be toggled as complete or not. Clicking on a might show more
-							info?
+							info?{" "}
+							<strong>
+								Did not update the table below to be reflective of mockUserData
+								as the Inprocessing tab{" "}
+							</strong>
 						</p>
 						<TableContainer component={Paper}>
 							<Table size={"small"}>

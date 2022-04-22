@@ -32,7 +32,7 @@ export default function App() {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<Header />
-				<Container>
+				<Container maxWidth="xl">
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/dashboard" element={<Dashboard />} />
