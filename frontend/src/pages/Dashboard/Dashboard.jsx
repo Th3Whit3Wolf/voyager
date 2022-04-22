@@ -103,7 +103,11 @@ const Dashboard = () => {
 											<TableCell>{entry.approver}</TableCell>
 											<TableCell>Not in Current ERD</TableCell>
 											<TableCell>Not in Current ERD</TableCell>
-											<TableCell>{}</TableCell>
+											<TableCell>
+												{`${
+													entry.updated_at.getUTCMonth() + 1
+												} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
+											</TableCell>
 											<TableCell>{entry.owner}</TableCell>
 										</TableRow>
 									))}
