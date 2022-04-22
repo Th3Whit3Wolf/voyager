@@ -6,13 +6,18 @@ const useFetchMock = (mockUrlRoute, revision, delay) => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const dataPromise = new Promise((resolve, reject) => {
-		setTimeout(() => {
-			setData(mockUserData);
-		}, delay);
-	});
+	if (mockUrlRoute === "/api/mock/user")
+		new Promise((resolve, reject) => {
+			setTimeout(() => {
+				setData(mockUserData);
+			}, delay);
+		})
+			.then(() => console.log(data))
+			.finally(() => setIsLoading(false));
 
-	dataPromise.then(() => console.log(data)).finally(() => setIsLoading(false));
+	if (mockUrlRoute === "/api/mock/admin") {
+		console.log("No mockAdinData in data folder yet.");
+	}
 
 	return { data, error, isLoading };
 };

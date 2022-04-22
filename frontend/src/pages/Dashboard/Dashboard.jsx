@@ -38,7 +38,7 @@ const Dashboard = () => {
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 	const role = location.state.role;
-	const { data, error, isLoading } = useFetchMock("/", 0, 500);
+	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1000);
 
 	useEffect(() => {
 		console.log(data, error, isLoading);
