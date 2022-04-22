@@ -4,5 +4,6 @@
 	"logging": {
 		"access": false,
 		"error": "warn"
-	}
+	},
+	"brotli_static": "on"
 }
