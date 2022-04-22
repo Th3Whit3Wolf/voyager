@@ -10,10 +10,9 @@ const useFetchMock = (mockUrlRoute, revision, delay) => {
 		new Promise((resolve, reject) => {
 			setTimeout(() => {
 				setData(mockUserData);
+				setIsLoading(false);
 			}, delay);
-		})
-			.then(() => console.log(data))
-			.finally(() => setIsLoading(false));
+		});
 
 	if (mockUrlRoute === "/api/mock/admin") {
 		console.log("No mockAdinData in data folder yet.");
