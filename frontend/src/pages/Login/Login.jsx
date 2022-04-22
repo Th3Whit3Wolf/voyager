@@ -37,15 +37,16 @@ const Login = () => {
 
 	return (
 		<>
-			<Container maxWidth="sm" py={2}>
+			<Container maxWidth="sm">
 				<Stack
 					spacing={3}
-					py={5}
+					pb={3}
 					border={2}
 					lineHeight={2}
 					sx={{
 						justifyContent: "center",
-						alignItems: "center"
+						alignItems: "center",
+						borderRadius: "25px"
 					}}
 				>
 					<TextField
