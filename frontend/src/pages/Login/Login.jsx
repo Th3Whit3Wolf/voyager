@@ -23,6 +23,8 @@ const Login = () => {
 			setPassword("");
 			alert("Password Required");
 		} else {
+			setUsername("");
+			setPassword("");
 			alert(
 				`Entered User: ${username} with Pass: ${password}\n\nDavid would like to handle the Firebase Config file.\n\nUpdate this functionality for auth. after that is complete. Recommend its own Context.`
 			);
