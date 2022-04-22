@@ -3,6 +3,7 @@
 // when actual dashboards are built up, switch to TDD
 
 import React, { useState } from "react";
+import useFetchMock from "../../hooks/useFetchMock";
 
 // Third Party Components and Utilities
 import {
@@ -34,8 +35,10 @@ import { useLocation } from "react-router-dom";
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
 
+	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 	const role = location.state.role;
+	const { data, error, isLoading } = useFetchMock("/", 0);
 
 	// Setting up Different Views Based on Role
 	// There are many ways to do conditional views, but with
