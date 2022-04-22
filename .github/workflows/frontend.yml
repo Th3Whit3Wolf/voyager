@@ -101,3 +101,4 @@ jobs:
           heroku_email: "dkarrick2@gmail.com"
           appdir: "frontend"
           buildpack: "https://github.com/heroku/heroku-buildpack-static.git"
+          branch: main
