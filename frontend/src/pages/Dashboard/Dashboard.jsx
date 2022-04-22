@@ -32,6 +32,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 // read this more easily. --Tony
 
 import { useLocation } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
@@ -39,7 +40,7 @@ const Dashboard = () => {
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 	const role = location.state.role;
-	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1000); // only created data for User , not Admin yet, Admin gives a console log
+	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1500); // only created data for User , not Admin yet, Admin gives a console log
 
 	// useEffect(() => {
 	// 	console.log(data, error, isLoading);
@@ -51,7 +52,7 @@ const Dashboard = () => {
 	// way with a final return that always shows in the event all other
 	// conditionals do not trigger
 
-	if (isLoading) return <p>Loading data...</p>;
+	if (isLoading) return <Loading />;
 	// User View ... this conditional compares to role from location, should be changed to AUTH obj later
 
 	// Note, this should be turned into components. I would almost never keep a component looking like this,
