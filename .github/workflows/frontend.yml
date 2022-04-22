@@ -1,13 +1,17 @@
-# This Workflow Builds, Tests, Lints, and Deploys the Frontend and Backend to Heroku
-name: CI/CD for Main branch
+# This Workflow Builds, Tests, Lints, and Deploys the Frontend to Heroku
+name: CI/CD for Main branch's Frontend
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [main]
+    paths:
+      - "frontend/**"
   pull_request:
     branches: [main]
+    paths:
+      - "frontend/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -15,7 +19,7 @@ on:
 # 'jobs' is the list of all the workflows that will kick off.
 jobs:
   # This workflow kicks off the build and test for the UI
-  build-and-test-frontend:
+  build-and-test:
     # Name of the build job
     name: Build and Test Frontend
     # The type of runner that the job will run on
@@ -34,39 +38,8 @@ jobs:
         run: |
           docker run -e CI=true capstone-ui npm run test
 
-  # This workflow kicks off the build and test for the Backend
-  build-and-test-backend:
-    name: Build and Test Backend
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build Backend
-        run: |
-          docker build -t capstone-api ./backend
-      - name: Test Backend
-        run: |
-          docker run -e CI=true capstone-api npm run test
-
-  # This workflow kicks off the linter for your Backend.
-  run-backend-linter:
-    name: Lint Backend Code Base
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          # Full git history is needed to get a proper list of changed files
-          fetch-depth: 0
-      # Installs dependencies on the runner for Backend
-      - name: Install linter options
-        run: npm --prefix ./backend install
-      # Executes the linter on the Backend code base.
-      - name: Run Linter
-        run: npm --prefix ./backend run lint
-
   # This workflow kicks off the linter for Frontend.
-  run-frontend-linter:
+  linter:
     name: Lint Frontend Code Base
     runs-on: ubuntu-latest
     steps:
@@ -83,30 +56,10 @@ jobs:
 
   # This workflow kicks off the deployment to Heroku
   deploy-to-heroku:
-    name: Deploy to Heroku
+    name: Deploy Frontend to Heroku
     if: github.event_name == 'push'
     # Needs specifies the steps that must previously complete in order to deploy your application.
-    needs: [build-and-test-frontend, build-and-test-backend]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Deploy Backend
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "bsdi1-voyager-backend"
-          heroku_email: "dkarrick2@gmail.com"
-          appdir: "backend/"
-          usedocker: true
-          
-  # This workflow kicks off the deployment to Heroku
-  deploy-frontend-to-heroku:
-    name: Deploy frontend to Heroku
-    if: github.event_name == 'push'
-    # Needs specifies the steps that must previously complete in order to deploy your application.
-    needs: [build-and-test-frontend, build-and-test-backend]
+    needs: [build-and-test]
     runs-on: ubuntu-latest
 
     steps:
@@ -116,8 +69,24 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 17.x
-      - run: npm --prefix frontend install
-      - run: npm --prefix frontend run build
+
+      - name: Build Frontend
+        run: |
+          npm --prefix frontend install
+          npm --prefix frontend run build
+
+      - name: Commit Build
+        run: |
+          git config --local user.email "actions@users.noreply.github.com"
+          git config --local user.name "Automated Publisher"
+          git -am "Chore: Build frontend for distribution"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
       - name: Deploy Frontend
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
