@@ -87,9 +87,14 @@ Allowing you to focus on what you actually need to do and help you do it.
 
 ### Built With
 
+#### Primary Packages and Libraries
 * [React](https://reactjs.org/)
 * [Vite](https://vitejs.dev/)
 * [Express](https://expressjs.com/)
+
+#### Supporting Packages and Libraries
+* [React Router](https://reactrouter.com/)
+* [MUI](https://mui.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
