@@ -71,6 +71,12 @@
 We would like to reduce the amount of actual work and guess work currently involved in the in/out-processing process, by allowing computers to do the tedious work.
 Allowing you to focus on what you actually need to do and help you do it.
 
+#### Desktop View Mode
+
+#### Mobile View Mode (Frontend SPA Can be Saved as App to Homescreen)
+
+![Mobile View Login Screen](/../screenshots/frontend/screenshots/mobileView1DarkMode.PNG?raw=true "Optional Title")
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
