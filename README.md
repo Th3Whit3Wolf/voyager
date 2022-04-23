@@ -8,7 +8,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -62,6 +61,7 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 <!--
@@ -75,19 +75,32 @@ Allowing you to focus on what you actually need to do and help you do it.
 
 #### Mobile View Mode (Frontend SPA Can be Saved as App to Homescreen)
 
-![Mobile View Login Screen](/../screenshots/frontend/screenshots/mobileView1DarkMode.PNG?raw=true "Optional Title")
-
+<p float="left">
+<img src="/../screenshots/frontend/screenshots/mobileView1DarkMode.PNG" alt="Mobile View Login Screen" width=200>
+  -->
+<img src="/../screenshots/frontend/screenshots/mobileView2DarkMode.PNG" alt="Mobile View Loading User Data" width=200>
+  -->
+<img src="/../screenshots/frontend/screenshots/mobileView3DarkMode.PNG" alt="Mobile View Checking Off User Tasks" width=200>
+</p>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
 
-* [React](https://reactjs.org/)
-* [Vite](https://vitejs.dev/)
-* [Express](https://expressjs.com/)
+#### Primary Packages and Libraries
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Express](https://expressjs.com/)
+
+#### Supporting Packages and Libraries
+
+- [React Router](https://reactrouter.com/)
+- [MUI](https://mui.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -101,6 +114,7 @@ Allowing you to focus on what you actually need to do and help you do it.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 ### As Developer
@@ -108,32 +122,38 @@ Allowing you to focus on what you actually need to do and help you do it.
 #### When not using Docker
 
 If not using Docker in develomentment mode with volumes then...
+
 - ##### Frontend
-  - ```npm run dev``` to start up development server for React + Vite (instead of npm start)
+  - `npm run dev` to start up development server for React + Vite (instead of npm start)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- LICENSE -->
+
 ## License
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTACT -->
+
 ## Contact
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
 <p align="right">(<a href="#top">back to top</a>)</p>
