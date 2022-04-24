@@ -17,6 +17,7 @@ const URI =
 
 const require = createRequire(import.meta.url);
 const installations = require("./installations.json");
+const commands = require("./commands.json");
 
 const prisma = new PrismaClient({
 	datasources: {
@@ -29,19 +30,32 @@ const prisma = new PrismaClient({
 const createInstallations = async () => {
 	installations.forEach(async installation => {
 		const entry = await prisma.Installation.upsert({
-			where: { location: installation.location },
+			where: { name: installation.name },
 			update: {},
 			create: {
 				...installation
 			}
 		});
+		console.log("Installation: ", entry);
+	});
+};
 
-		console.log(entry);
+const createCommands = async () => {
+	commands.forEach(async command => {
+		const entry = await prisma.Command.upsert({
+			where: { name: command.name },
+			update: {},
+			create: {
+				...command
+			}
+		});
+		console.log("Command: ", entry);
 	});
 };
 
 async function main() {
 	await createInstallations();
+	await createCommands();
 }
 
 main()
