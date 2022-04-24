@@ -11,6 +11,7 @@
 		"db:addMigration": "eval $npm_package_config_db prisma migrate dev --schema src/db/schema.prisma --name",
 		"db:seed": "eval $npm_package_config_db prisma db seed",
 		"db:migrate": "eval $npm_package_config_db prisma db push --schema src/db/schema.prisma",
+		"db:reset": "eval $npm_package_config_db prisma migrate reset --schema src/db/schema.prisma",
 		"db:view": "eval $npm_package_config_db prisma studio --schema src/db/schema.prisma",
 		"dev": "nodemon --experimental-specifier-resolution=node src",
 		"lint": "npx eslint src",
