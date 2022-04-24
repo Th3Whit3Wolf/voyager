@@ -20,7 +20,7 @@ const Login = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			setSplashOff(true);
-		}, 3500);
+		}, 5000);
 	});
 
 	// Internal Functions

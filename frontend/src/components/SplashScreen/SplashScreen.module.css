@@ -7,6 +7,8 @@
 	width: 100%;
 	height: 100%;
 	background-color: black;
+	animation: bkg-shift 3s linear;
+	animation-fill-mode: forwards;
 }
 
 .center {
@@ -15,4 +17,14 @@
 	justify-content: center;
 	align-items: center;
 	height: 75vh;
+	color: white;
+}
+
+@keyframes bkg-shift {
+	from {
+		background-color: black;
+	}
+	to {
+		background-color: rgba(0, 0, 0, 0.34);
+	}
 }
