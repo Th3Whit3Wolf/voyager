@@ -1,9 +1,18 @@
+.blackout {
+	position: fixed;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+}
+
 .center {
 	display: flex;
 	flex-direction: column;
-	height: 50vh;
-	width: 100vw;
 	justify-content: center;
 	align-items: center;
-	background-color: black;
+	height: 75vh;
 }
