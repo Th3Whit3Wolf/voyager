@@ -1,11 +1,13 @@
-FROM node:alpine 
+FROM node:alpine
 
 WORKDIR /app
 
 COPY . /app
-RUN npm install -g nodemon@2.0.15 &&\
-    npm install
+
+RUN npm install
+
+ENV PORT 8082
 
 EXPOSE 8082
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
