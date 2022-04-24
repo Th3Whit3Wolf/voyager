@@ -1,31 +1,34 @@
 {
-	"emmet.includeLanguages": {
-		"javascript": "javascriptreact"
-	},
-	"emmet.showSuggestionsAsSnippets": true,
-	"emmet.triggerExpansionOnTab": true,
-	"editor.cursorSmoothCaretAnimation": true,
-	"editor.defaultFormatter": "esbenp.prettier-vscode", // Use prettier as default formatter
-	"editor.formatOnPaste": true, // format code on paste
-	"editor.formatOnSave": true, // format code when you hit save
-	"editor.tabSize": 4,
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	},
-	"files.trimTrailingWhitespace": true, // remove trailing white spaces from all lines
-	"files.trimFinalNewlines": true, // Ensures there's only one blank line at the end of the file
-	"json.schemas": [
-		{
-			"fileMatch": ["cypress.json"],
-			"url": "https://on.cypress.io/cypress.schema.json"
-		}
-	],
-	"search.exclude": {
-		"**/node_modules": true
-	},
-	"typescript.suggest.paths": false,
-	"javascript.suggest.paths": false,
-	"javascript.validate.enable": false,
-	"eslint.validate": ["javascript", "javascriptreact"],
-	"git.enableCommitSigning": true
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.triggerExpansionOnTab": true,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Use prettier as default formatter
+  "editor.formatOnPaste": true, // format code on paste
+  "editor.formatOnSave": true, // format code when you hit save
+  "editor.tabSize": 4,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.trimTrailingWhitespace": true, // remove trailing white spaces from all lines
+  "files.trimFinalNewlines": true, // Ensures there's only one blank line at the end of the file
+  "json.schemas": [
+    {
+      "fileMatch": ["cypress.json"],
+      "url": "https://on.cypress.io/cypress.schema.json"
+    }
+  ],
+  "search.exclude": {
+    "**/node_modules": true
+  },
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "javascript.validate.enable": false,
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "git.enableCommitSigning": true,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }
