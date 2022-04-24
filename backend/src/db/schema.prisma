@@ -13,9 +13,20 @@ datasource db {
 model Installation {
   id       Int     @default(autoincrement()) @id
   name     String  @db.Text                  @unique
-  location String  @db.VarChar(50)           @unique
+  location String  @db.VarChar(100)
 
   /// Rename table to installations to conform to
   /// SQL naming conventions
   @@map("installations")
+}
+
+model Command {
+  id       Int     @default(autoincrement()) @id
+  name     String  @db.Text                  @unique
+  abbrev   String  @db.VarChar(50)           @unique
+  function String  @db.Text
+
+  /// Rename table to installations to conform to
+  /// SQL naming conventions
+  @@map("commands")
 }
