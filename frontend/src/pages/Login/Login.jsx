@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Our Components
 import SplashScreen from "../../components/SplashScreen/SplashScreen";
@@ -17,11 +17,10 @@ const Login = () => {
 
 	// EFFECTS
 
-	// Pseudo Effects
-	new Promise((resolve, reject) => {
+	useEffect(() => {
 		setTimeout(() => {
 			setSplashOff(true);
-		}, 2000);
+		}, 3500);
 	});
 
 	// Internal Functions
