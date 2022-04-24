@@ -1,0 +1,54 @@
+[
+	{
+		"name": "Buckley Space Force Base",
+		"location": "Aurora, Colorado"
+	},
+	{
+		"name": "Los Angeles Air Force Base",
+		"location": "El Segundo, California"
+	},
+	{
+		"name": "Patrick Space Force Base",
+		"location": "Brevard County, Florida"
+	},
+	{
+		"name": "Peterson Space Force Base",
+		"location": "Colorado Springs, Colorado"
+	},
+	{
+		"name": "Schriever Space Force Base",
+		"location": "Colorado Springs, Colorado"
+	},
+	{
+		"name": "Vandenberg Space Force Base",
+		"location": "Santa Barbara County, California"
+	},
+	{
+		"name": "Cape Canaveral Space Force Station",
+		"location": "Cape Canaveral, Florida"
+	},
+	{
+		"name": "Cape Cod Space Force Station",
+		"location": "Bourne, Massachusetts"
+	},
+	{
+		"name": "Cavalier Space Force Station",
+		"location": "Cavalier, North Dakota"
+	},
+	{
+		"name": "Cheyenne Mountain Space Force Station",
+		"location": "Colorado Springs, Colorado"
+	},
+	{
+		"name": "Clear Space Force Station",
+		"location": "Clear, Alaska"
+	},
+	{
+		"name": "Kaena Point Space Force Station",
+		"location": "Honolulu County, Hawaii"
+	},
+	{
+		"name": "New Boston Space Force Station",
+		"location": "New Boston, New Hampshire"
+	}
+]
