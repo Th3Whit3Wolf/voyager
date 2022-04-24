@@ -1,0 +1,80 @@
+[
+	{
+		"name": "Space Delta 1",
+		"abbrev": "DEL 1",
+		"function": "Space training",
+		"under": "Space Training and Readiness Command"
+	},
+	{
+		"name": "Space Delta 2",
+		"abbrev": "DEL 2",
+		"function": "Space domain awareness",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 3",
+		"abbrev": "DEL 3",
+		"function": "Space electronic warfare",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 4",
+		"abbrev": "DEL 4",
+		"function": "Missile warning",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 5",
+		"abbrev": "DEL 5",
+		"function": "Command and control",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 6",
+		"abbrev": "DEL 6",
+		"function": "Cyberspace operations",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 7",
+		"abbrev": "DEL 7",
+		"function": "Intelligence, surveillance, and reconnaissance",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 8",
+		"abbrev": "DEL 8",
+		"function": "Satellite communication and navigation warfare",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 9",
+		"abbrev": "DEL 9",
+		"function": "Orbital warfare",
+		"under": "Space Operations Command"
+	},
+	{
+		"name": "Space Delta 10",
+		"abbrev": "DEL 10",
+		"function": "Space doctrine and wargaming",
+		"under": "Space Training and Readiness Command"
+	},
+	{
+		"name": "Space Delta 11",
+		"abbrev": "DEL 11",
+		"function": "Space range and aggressor",
+		"under": "Space Training and Readiness Command"
+	},
+	{
+		"name": "Space Delta 12",
+		"abbrev": "DEL 12",
+		"function": "Space test and evaluation",
+		"under": "Space Training and Readiness Command"
+	},
+	{
+		"name": "Space Delta 13",
+		"abbrev": "DEL 13",
+		"function": "Space education",
+		"under": "Space Training and Readiness Command"
+	}
+]
