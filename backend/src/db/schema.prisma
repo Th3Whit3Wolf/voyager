@@ -1,8 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
+}
+
+generator docs {
+  provider = "node node_modules/prisma-docs-generator"
+  output   = "../../../docs/db"
 }
 
 datasource db {
@@ -11,9 +13,9 @@ datasource db {
 }
 
 model Installation {
-  id       Int     @default(autoincrement()) @id
-  name     String  @db.Text                  @unique
-  location String  @db.VarChar(100)
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  location String @db.VarChar(100)
 
   /// Rename table to installations to conform to
   /// SQL naming conventions
@@ -21,12 +23,28 @@ model Installation {
 }
 
 model Command {
-  id       Int     @default(autoincrement()) @id
-  name     String  @db.Text                  @unique
-  abbrev   String  @db.VarChar(50)           @unique
-  function String  @db.Text
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  abbrev   String  @unique @db.VarChar(50)
+  function String
+  deltas   Delta[]
 
-  /// Rename table to installations to conform to
+  /// Rename table to commands to conform to
   /// SQL naming conventions
   @@map("commands")
+}
+
+model Delta {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  abbrev   String @unique @db.VarChar(50)
+  function String
+
+  Command   Command? @relation(fields: [commandId], references: [id])
+  /// Rename key to command_id (seems to be convention for naming foreign keys)
+  commandId Int?     @map("command_id")
+
+  /// Rename table to deltas to conform to
+  /// SQL naming conventions
+  @@map("deltas")
 }

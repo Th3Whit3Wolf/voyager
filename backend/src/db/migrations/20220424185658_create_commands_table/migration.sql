@@ -1,6 +1,3 @@
--- AlterTable
-ALTER TABLE "installations" ALTER COLUMN "location" SET DATA TYPE VARCHAR(100);
-
 -- CreateTable
 CREATE TABLE "commands" (
     "id" SERIAL NOT NULL,
