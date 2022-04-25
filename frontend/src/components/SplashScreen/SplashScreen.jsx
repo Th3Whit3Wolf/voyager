@@ -23,13 +23,22 @@ const SplashScreen = () => {
 					<table>
 						<tbody>
 							<tr>
-								<td className={styles.mimicTyping1}>Inprocessing Now</td>
+								<td>
+									<div className={styles.mimicTyping1}>Inprocessing Now</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div className={styles.mimicTyping2}>Outprocessing Now</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div className={styles.mimicTyping3}>Success!</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
-					{/* <p className={styles.mimicTyping1}>Inprocessing Now</p>
-					<p className={styles.mimicTyping2}>Outprocessing Now</p>
-					<p className={styles.mimicTyping3}>Success!</p> */}
 				</div>
 				{/* <TableContainer component={Paper} sx={{ width: "50%" }}>
 					<Table size={"small"}>

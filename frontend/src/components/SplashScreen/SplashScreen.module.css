@@ -22,23 +22,34 @@
 
 .mimicTyping1 {
 	overflow: hidden;
-	border-right: 1rem solid whitesmoke;
+	border-right: 0.3rem solid whitesmoke;
 	white-space: nowrap;
 	font-size: 2rem;
-	width: 100%;
-	animation: typing 1s steps(10, end) forwards;
+	width: 0;
+	animation: typing 1s forwards;
 	animation-fill-mode: forwards;
 }
 
 .mimicTyping2 {
 	overflow: hidden;
-	border-right: 1rem solid whitesmoke;
+	border-right: 0.3rem solid whitesmoke;
 	white-space: nowrap;
 	font-size: 2rem;
 	width: 0;
-	animation: typing 1s steps(10, end) forwards;
+	animation: typing 1s forwards;
 	animation-fill-mode: forwards;
-	animation-delay: 2s;
+	animation-delay: 1.1s;
+}
+
+.mimicTyping3 {
+	overflow: hidden;
+	border-right: 0.3rem solid whitesmoke;
+	white-space: nowrap;
+	font-size: 2rem;
+	width: 0;
+	animation: typing 1s forwards;
+	animation-fill-mode: forwards;
+	animation-delay: 2.1s;
 }
 
 @keyframes bkg-shift {
@@ -52,9 +63,10 @@
 
 @keyframes typing {
 	from {
-		width: 100%;
+		width: 0;
 	}
 	to {
-		width: 0;
+		width: 100%;
+		border-right: none;
 	}
 }
