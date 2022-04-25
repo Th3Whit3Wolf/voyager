@@ -20,11 +20,41 @@
 	color: white;
 }
 
+.mimicTyping1 {
+	overflow: hidden;
+	border-right: 1rem solid whitesmoke;
+	white-space: nowrap;
+	font-size: 2rem;
+	width: 0;
+	animation: typing 1s steps(10, end) forwards;
+	animation-fill-mode: forwards;
+}
+
+.mimicTyping2 {
+	overflow: hidden;
+	border-right: 1rem solid whitesmoke;
+	white-space: nowrap;
+	font-size: 2rem;
+	width: 0;
+	animation: typing 1s steps(10, end) forwards;
+	animation-fill-mode: forwards;
+	animation-delay: 2s;
+}
+
 @keyframes bkg-shift {
 	from {
 		background-color: black;
 	}
 	to {
 		background-color: rgba(0, 0, 0, 0.34);
+	}
+}
+
+@keyframes typing {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
 	}
 }

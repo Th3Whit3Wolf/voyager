@@ -18,7 +18,12 @@ const SplashScreen = () => {
 	return (
 		<div className={styles.blackout}>
 			<div className={styles.center}>
-				<h1>Voyager</h1>
+				<div>
+					<h1>Voyager</h1>
+					<p className={styles.mimicTyping1}>Inprocessing Now</p>
+					<p className={styles.mimicTyping2}>Outprocessing Now</p>
+					<p className={styles.mimicTyping3}>Success!</p>
+				</div>
 				{/* <TableContainer component={Paper} sx={{ width: "50%" }}>
 					<Table size={"small"}>
 						<TableBody>
