@@ -19,6 +19,8 @@ model Installation {
 
   /// Define relationship with Squadrons
   Squadron Squadron[]
+  /// Define relationship with Units
+  Unit     Unit[]
 
   /// Rename table to installations to conform to
   /// SQL naming conventions
@@ -33,6 +35,8 @@ model Command {
 
   /// Define relationship with Deltas
   Delta Delta[]
+  /// Define relationship with Units
+  Unit  Unit[]
 
   /// Rename table to commands to conform to
   /// SQL naming conventions
@@ -52,6 +56,8 @@ model Delta {
 
   /// Define relationship with Squadrons
   Squadron Squadron[]
+  /// Define relationship with Units
+  Unit     Unit[]
 
   /// Rename table to deltas to conform to
   /// SQL naming conventions
@@ -74,7 +80,30 @@ model Squadron {
   /// Rename key to installation_id (seems to be convention for naming foreign keys)
   installationId Int?          @map("installation_id")
 
+  /// Define relationship with Units
+  Unit Unit[]
   /// Rename table to squadrons to conform to
   /// SQL naming conventions
   @@map("squadrons")
+}
+
+model Unit {
+  id Int @id @default(autoincrement())
+
+  /// Define relationship with Installations
+  Installation   Installation? @relation(fields: [installationId], references: [id])
+  /// Rename key to installation_id (seems to be convention for naming foreign keys)
+  installationId Int?          @map("installation_id")
+  /// Define relationship with Commands
+  Command        Command?      @relation(fields: [commandId], references: [id])
+  /// Rename key to command_id (seems to be convention for naming foreign keys)
+  commandId      Int?          @map("command_id")
+  /// Define relationship with Deltas
+  Delta          Delta?        @relation(fields: [deltaId], references: [id])
+  /// Rename key to delta_id (seems to be convention for naming foreign keys)
+  deltaId        Int?          @map("delta_id")
+  /// Define relationship with Squadrons
+  Squadron       Squadron?     @relation(fields: [squadronId], references: [id])
+  /// Rename key to command_id (seems to be convention for naming foreign keys)
+  squadronId     Int?          @map("squadron_id")
 }
