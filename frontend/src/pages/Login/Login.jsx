@@ -20,7 +20,7 @@ const Login = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			setSplashOff(true);
-		}, 4400);
+		}, 4500);
 	});
 
 	// Internal Functions
@@ -47,7 +47,7 @@ const Login = () => {
 		);
 	};
 
-	if (splashOff === false) return <SplashScreen />;
+	//if (splashOff === false) return <SplashScreen />;
 
 	return (
 		<>
