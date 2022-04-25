@@ -107,3 +107,11 @@ model Unit {
   /// Rename key to command_id (seems to be convention for naming foreign keys)
   squadronId     Int?          @map("squadron_id")
 }
+
+enum ProcessingStatus {
+  IN_PROCESSING
+  IN_PROCESSING_WITH_ORDERS
+  IN_TRANSIT
+  OUT_PROCESSING
+  STATIONARY
+}
