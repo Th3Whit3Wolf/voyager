@@ -25,7 +25,7 @@
 	border-right: 1rem solid whitesmoke;
 	white-space: nowrap;
 	font-size: 2rem;
-	width: 0;
+	width: 100%;
 	animation: typing 1s steps(10, end) forwards;
 	animation-fill-mode: forwards;
 }
@@ -52,9 +52,9 @@
 
 @keyframes typing {
 	from {
-		width: 0;
+		width: 100%;
 	}
 	to {
-		width: 100%;
+		width: 0;
 	}
 }
