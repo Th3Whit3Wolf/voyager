@@ -19,22 +19,34 @@ const require = createRequire(import.meta.url);
 const installations = require("./installations.json");
 const commands = require("./commands.json");
 const deltas = require("./deltas.json");
+const squadrons = require("./squadrons.json");
 
 /*
-model: ""
-require: {
+seedObj : {
 	model: "",
-	data: jsonObj
+	require: [
+		{
+			model: "",
+			data: jsonObj,
+			foreignKey: "",
+			keyName: "",
+			where: {
+				operation: "",
+				foreignKey: "",
+				equalsKeyValue: ""
+			}
+		}
+	],
+	data: jsonObj,
+	where: {},
+	update: {},
+	create: {}
 }
-data: jsonObj
-where: {}
-update: {}
-create: {}
 */
 
 const installationsObj = {
 	model: "Installation",
-	req: {},
+	req: [],
 	data: installations,
 	where: "name",
 	update: {},
@@ -43,7 +55,7 @@ const installationsObj = {
 
 const commandsObj = {
 	model: "Command",
-	req: {},
+	req: [],
 	data: commands,
 	where: "name",
 	update: {},
@@ -52,18 +64,52 @@ const commandsObj = {
 
 const deltasObj = {
 	model: "Delta",
-	req: {
-		model: "Command",
-		data: commands,
-		foreignKey: "id",
-		keyName: "commandId",
-		where: {
-			operation: "findFirst",
-			foreignKey: "name",
-			equalsKeyValue: "under"
+	req: [
+		{
+			model: "Command",
+			data: commands,
+			foreignKey: "id",
+			keyName: "commandId",
+			where: {
+				operation: "findFirst",
+				foreignKey: "name",
+				equalsKeyValue: "under"
+			}
 		}
-	},
+	],
 	data: deltas,
+	where: "name",
+	update: {},
+	create: ["name", "abbrev", "function"]
+};
+
+const squadronsObj = {
+	model: "Squadron",
+	req: [
+		{
+			model: "Installation",
+			data: installations,
+			foreignKey: "id",
+			keyName: "installationId",
+			where: {
+				operation: "findFirst",
+				foreignKey: "name",
+				equalsKeyValue: "location"
+			}
+		},
+		{
+			model: "Delta",
+			data: deltas,
+			foreignKey: "id",
+			keyName: "deltaId",
+			where: {
+				operation: "findFirst",
+				foreignKey: "name",
+				equalsKeyValue: "under"
+			}
+		}
+	],
+	data: squadrons,
 	where: "name",
 	update: {},
 	create: ["name", "abbrev", "function"]
@@ -78,7 +124,6 @@ const seedExecutor = async (
 	where,
 	update
 ) => {
-	// console.log({ model }, { data }, { create }, { where }, { update });
 	const promises = data.map(async iota => {
 		const createData = Array.isArray(create)
 			? create.reduce((ac, a) => ({ ...ac, [a]: iota[a] }), {})
@@ -86,19 +131,45 @@ const seedExecutor = async (
 		if (iota[where] === undefined) {
 			console.log(`${model}obj.data.${where} doesn't exist`);
 		}
-		if (
-			req.model !== undefined &&
-			req.data !== undefined &&
-			req.foreignKey !== undefined &&
-			req.where !== undefined
-		) {
-			const reqTableRow = await prisma[req.model][req.where.operation]({
-				where: {
-					[req.where.foreignKey]: iota[req.where.equalsKeyValue]
+		if (req.length > 0) {
+			// eslint-disable-next-line no-restricted-syntax
+			for (const requirement of req) {
+				if (
+					requirement.model !== undefined &&
+					requirement.data !== undefined &&
+					requirement.foreignKey !== undefined &&
+					requirement.where !== undefined
+				) {
+					try {
+						// eslint-disable-next-line no-await-in-loop
+						const reqTableRow = await prisma[requirement.model][
+							requirement.where.operation
+						]({
+							where: {
+								[requirement.where.foreignKey]:
+									iota[requirement.where.equalsKeyValue]
+							}
+						});
+						createData[requirement.keyName] =
+							reqTableRow[requirement.foreignKey];
+					} catch (err) {
+						// console.log({ requirement });
+						console.log(
+							`[ISSUE]::${model} unable to find ${
+								requirement.model
+							} with ${requirement.where.foreignKey} = "${
+								iota[requirement.where.equalsKeyValue]
+							}"`
+						);
+					}
+				} else {
+					console.log(
+						`[ISSUE]::${model} requirements incorrectly defined`
+					);
 				}
-			});
-			createData[req.keyName] = reqTableRow[req.foreignKey];
+			}
 		}
+		console.log({ createData });
 		const entry = await prisma[model].upsert({
 			where: { [where]: iota[where] },
 			update,
@@ -130,12 +201,25 @@ const seedGenerator = async (
 	prisma,
 	{ model, req, data, where, update, create }
 ) => {
-	if (req.model !== undefined && req.data !== undefined) {
-		const reqModelCount = await prisma[req.model].count();
-		if (reqModelCount < req.data.length) {
+	console.log(`[INIT]:${model}`);
+	if (req.length > 0) {
+		const issues = [];
+		// eslint-disable-next-line no-restricted-syntax
+		for (const requirement of req) {
+			// eslint-disable-next-line no-await-in-loop
+			const reqModelCount = await prisma[requirement.model].count();
 			console.log(
-				`[ISSUE]::${model} requires ${req.model}\n[STATUS]::${req.model}\n  Current Count: ${reqModelCount}\n  Expected: ${req.data.length}\n... task sleeping for 2 seconds`
+				`[LOG]::${model} requires ${requirement.model} ${reqModelCount}/${requirement.data.length}`
 			);
+			if (reqModelCount < requirement.data.length) {
+				issues.push(
+					`[ISSUE]::${model} requires ${requirement.model}\n[STATUS]::${requirement.model}\n  Current Count: ${reqModelCount}\n  Expected: ${requirement.data.length}`
+				);
+			}
+		}
+		if (issues.length > 0) {
+			issues.forEach(issue => console.log(issue));
+			console.log("...task sleeping for 2 seconds");
 			setTimeout(seedGenerator, 2000, prisma, {
 				model,
 				req,
@@ -153,7 +237,8 @@ const seedGenerator = async (
 };
 
 async function main(prisma) {
-	const schemas = [installationsObj, commandsObj, deltasObj];
+	const schemas = [installationsObj, commandsObj, deltasObj, squadronsObj];
+
 	schemas.forEach(async schema => {
 		try {
 			await seedGenerator(prisma, schema);
