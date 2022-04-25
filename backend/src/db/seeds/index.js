@@ -201,7 +201,7 @@ const seedGenerator = async (
 	prisma,
 	{ model, req, data, where, update, create }
 ) => {
-	console.log(`[INIT]:${model}`);
+	console.log(`[INIT]::${model}`);
 	if (req.length > 0) {
 		const issues = [];
 		// eslint-disable-next-line no-restricted-syntax
@@ -219,7 +219,7 @@ const seedGenerator = async (
 		}
 		if (issues.length > 0) {
 			issues.forEach(issue => console.log(issue));
-			console.log("...task sleeping for 2 seconds");
+			console.log("...task restarting for 2 seconds");
 			setTimeout(seedGenerator, 2000, prisma, {
 				model,
 				req,
@@ -236,7 +236,105 @@ const seedGenerator = async (
 	}
 };
 
-async function main(prisma) {
+const mkUnits = async prisma => {
+	console.log(`[INIT]::Units`);
+	const dbCommandsCount = await prisma.Command.count();
+	const seedCommandsCount = commands.length;
+
+	const dbInstallationsCount = await prisma.Installation.count();
+	const seedInstallationsCount = installations.length;
+
+	const dbDeltasCount = await prisma.Delta.count();
+	const seedDeltasCount = deltas.length;
+
+	const dbSquadronsCount = await prisma.Squadron.count();
+	const seedSquadronsCount = squadrons.length;
+
+	if (
+		dbCommandsCount < seedCommandsCount ||
+		dbInstallationsCount < seedInstallationsCount ||
+		dbDeltasCount < seedDeltasCount ||
+		dbSquadronsCount < seedSquadronsCount
+	) {
+		console.log(
+			`[ISSUE]::Units\n[STATUS]::Database Not Ready\n  Commands: ${dbCommandsCount}/${seedCommandsCount}\n  Installations: ${dbInstallationsCount}/${seedInstallationsCount}\n  Deltas: ${dbDeltasCount}/${seedDeltasCount}\n Squadrons: ${dbSquadronsCount}/${seedSquadronsCount}`
+		);
+		console.log("... task restarting in 2 seconds");
+		setTimeout(mkUnits, 2000, prisma);
+	} else {
+		const dbCommands = await prisma.Command.findMany();
+		const dbInstallations = await prisma.Installation.findMany();
+		const dbDeltas = await prisma.Delta.findMany();
+		const dbSquadrons = await prisma.Squadron.findMany();
+
+		const inserter = async data => {
+			const check = await prisma.Unit.findFirst({
+				where: data
+			});
+			if (check == null) {
+				const entry = await prisma.Unit.create({
+					data
+				});
+				console.log("Unit: {");
+				Object.entries(entry).forEach(([k, v], idx) => {
+					console.log(
+						`    ${k}: ${v}${
+							Object.entries(entry).length - 1 < idx ? "," : ""
+						}`
+					);
+				});
+				console.log("}");
+			}
+		};
+
+		dbCommands.forEach(command =>
+			inserter({
+				installationId: null,
+				commandId: command.id,
+				deltaId: null,
+				squadronId: null
+			})
+		);
+
+		dbInstallations.forEach(installation =>
+			inserter({
+				installationId: installation.id,
+				commandId: null,
+				deltaId: null,
+				squadronId: null
+			})
+		);
+
+		dbDeltas.forEach(delta => {
+			const deltaCommand = dbCommands.find(
+				command => command.id === delta.commandId
+			);
+			inserter({
+				installationId: null,
+				commandId: deltaCommand.id,
+				deltaId: delta.id,
+				squadronId: null
+			});
+		});
+
+		dbSquadrons.forEach(squadron => {
+			const squadronDelta = dbDeltas.find(
+				delta => delta.id === squadron.deltaId
+			);
+			const deltaCommand = dbCommands.find(
+				command => command.id === squadronDelta.commandId
+			);
+			inserter({
+				installationId: squadron.installationId,
+				commandId: deltaCommand.id,
+				deltaId: squadronDelta.id,
+				squadronId: squadron.id
+			});
+		});
+	}
+};
+
+const main = async prisma => {
 	const schemas = [installationsObj, commandsObj, deltasObj, squadronsObj];
 
 	schemas.forEach(async schema => {
@@ -248,7 +346,9 @@ async function main(prisma) {
 			);
 		}
 	});
-}
+
+	await mkUnits(prisma);
+};
 
 const prisma = new PrismaClient({
 	datasources: {
