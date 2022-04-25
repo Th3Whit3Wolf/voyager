@@ -50,5 +50,37 @@
 	{
 		"name": "New Boston Space Force Station",
 		"location": "New Boston, New Hampshire"
+	},
+	{
+		"name": "Thule Air Base",
+		"location": "Qaanaaq, Greenland"
+	},
+	{
+		"name": "Kirtland Air Force Base",
+		"location": "Albuquerque, New Mexico"
+	},
+	{
+		"name": "Wright-Patterson Air Force Base",
+		"location": "Dayton, Ohio"
+	},
+	{
+		"name": "Eglin Air Force Base",
+		"location": "Eglin AFB, Florida"
+	},
+	{
+		"name": "Maxwell Air Force Base",
+		"location": "Montgomery, Alabama"
+	},
+	{
+		"name": "Beale Air Force Base",
+		"location": "Marysville, California"
+	},
+	{
+		"name": "United States Air Force Academy",
+		"location": "Colorado Springs, Colorado"
+	},
+	{
+		"name": "Nellis Air Force Base",
+		"location": "Nellis AFB, Nevada"
 	}
 ]
