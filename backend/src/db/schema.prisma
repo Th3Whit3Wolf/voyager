@@ -124,3 +124,9 @@ enum Role {
   DELTA_ADMIN
   SQUADRON_ADMIN
 }
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
