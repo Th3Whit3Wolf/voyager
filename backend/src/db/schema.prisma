@@ -17,17 +17,22 @@ model Installation {
   name     String @unique
   location String @db.VarChar(100)
 
+  /// Define relationship with Squadrons
+  Squadron Squadron[]
+
   /// Rename table to installations to conform to
   /// SQL naming conventions
   @@map("installations")
 }
 
 model Command {
-  id       Int     @id @default(autoincrement())
-  name     String  @unique
-  abbrev   String  @unique @db.VarChar(50)
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  abbrev   String @unique @db.VarChar(50)
   function String
-  deltas   Delta[]
+
+  /// Define relationship with Deltas
+  Delta Delta[]
 
   /// Rename table to commands to conform to
   /// SQL naming conventions
@@ -40,11 +45,36 @@ model Delta {
   abbrev   String @unique @db.VarChar(50)
   function String
 
+  /// Define relationship with Commands
   Command   Command? @relation(fields: [commandId], references: [id])
   /// Rename key to command_id (seems to be convention for naming foreign keys)
   commandId Int?     @map("command_id")
 
+  /// Define relationship with Squadrons
+  Squadron Squadron[]
+
   /// Rename table to deltas to conform to
   /// SQL naming conventions
   @@map("deltas")
+}
+
+model Squadron {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  abbrev   String @unique @db.VarChar(50)
+  function String
+
+  /// Define relationship with Deltas
+  Delta   Delta? @relation(fields: [deltaId], references: [id])
+  /// Rename key to delta_id (seems to be convention for naming foreign keys)
+  deltaId Int?   @map("delta_id")
+
+  /// Define relationship with Installations
+  Installation   Installation? @relation(fields: [installationId], references: [id])
+  /// Rename key to installation_id (seems to be convention for naming foreign keys)
+  installationId Int?          @map("installation_id")
+
+  /// Rename table to squadrons to conform to
+  /// SQL naming conventions
+  @@map("squadrons")
 }
