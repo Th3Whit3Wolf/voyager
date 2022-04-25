@@ -21,26 +21,20 @@ test("renders a SplashScreen component successfully", () => {
 	setup();
 });
 
-test("renders the text Voyager on the screen", () => {
+test("renders the text loading Inprocessing Now on the screen", async () => {
 	setup();
-	const appName = screen.getByText(/voyager/i);
+	const appName = await screen.findByText(/inprocessing now/i);
 	expect(appName).toBeVisible();
 });
 
-test("renders the text loading Inprocessing Now on the screen", () => {
+test("renders the text loading Outprocessing Now on the screen", async () => {
 	setup();
-	const appName = screen.getByText(/inprocessing now/i);
+	const appName = await screen.findByText(/outprocessing now/i);
 	expect(appName).toBeVisible();
 });
 
-test("renders the text loading Outprocessing Now on the screen", () => {
+test("renders the text loading Success! on the screen", async () => {
 	setup();
-	const appName = screen.getByText(/outprocessing now/i);
-	expect(appName).toBeVisible();
-});
-
-test("renders the text loading Success! on the screen", () => {
-	setup();
-	const appName = screen.getByText(/success!/i);
+	const appName = await screen.findByText(/success!/i);
 	expect(appName).toBeVisible();
 });
