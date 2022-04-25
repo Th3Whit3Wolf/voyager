@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+// Our Components
+import SplashScreen from "../../components/SplashScreen/SplashScreen";
 
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
@@ -8,10 +11,17 @@ const Login = () => {
 	// STATE
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [splashOff, setSplashOff] = useState(false);
 
 	const navigate = useNavigate();
 
 	// EFFECTS
+
+	useEffect(() => {
+		setTimeout(() => {
+			setSplashOff(true);
+		}, 4500);
+	});
 
 	// Internal Functions
 
@@ -36,6 +46,8 @@ const Login = () => {
 			"Once auth is set up, fake this to essentially auto-login a default User. For MVP, no other features needed."
 		);
 	};
+
+	//if (splashOff === false) return <SplashScreen />;
 
 	return (
 		<>
