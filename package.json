@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "install": "npm --prefix frontend install && npm --prefix backend install",
+    "test": "npm --prefix frontend test && npm --prefix backend test"
   },
   "repository": {
     "type": "git",
