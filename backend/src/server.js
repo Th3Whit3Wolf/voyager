@@ -1,8 +1,14 @@
-const express = require("express");
+import express from "express";
+import routes from "./routes";
 // const db = require("./db");
 
 const app = express();
 
 app.use(express.json());
+app.get("/status", (req, res) => {
+	return res.status(200).send("Green Status");
+});
 
-module.exports = app;
+app.get("/api/v1/deltas", routes.delta);
+
+export default app;
