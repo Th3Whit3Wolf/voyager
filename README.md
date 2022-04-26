@@ -107,24 +107,46 @@ Allowing you to focus on what you actually need to do and help you do it.
 
 ### Prerequisites
 
+* Docker must be installed on the system at a minimum 
+    * note: while the server and user interface can be spun up manually, the database requires docker for installation)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Installation
 
+### As a User
+
+- Navigate to: [https://bsdi1-voyager-frontend.herokuapp.com](https://bsdi1-voyager-frontend.herokuapp.com)
+
+### As Developer
+
+* IF using Docker Compose (__recommended__)
+    1. git clone this repo
+    2. navigate into the repo (voyager by default if you did not rename the clone)
+    3. type `docker compose up` on the terminal 
+    4. open a new browser and navigate to http://localhost:3000
+    5. to spin the application back down, in another terminal: type `docker compose down`
+* IF NOT using Docker Compose (but still have Docker available: see prerequisites)
+    * __NOTE: The Database is not currently constructed in such a way to make this feasible. Use Docker Compose for now.___ 
+    * Spin up the Frontend
+        1. Open a new terminal
+        2. Navigate into the repo -> frontend
+        3. type `npm run dev` to start up development server for React + Vite (instead of npm start)
+        4. CTRL+C to stop the frontend whenever finished 
+    * Spin up the Backend
+        1. Open a new terminal
+        2. Navigate into the repo -> backend
+        3. type `npm run dev` to start up the backend server with nodemon
+        4. CTRL+C to stop the backend whenever finished
+    * Spin up the Database
+        1. .... this hasn't been setup as an option yet, since the Docker Compose file spins up postgres straight from an image, this could be modified in order to have a database folder where a dockerfile instead takes up the task of setting up the database
+ 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-### As Developer
-
-#### When not using Docker
-
-If not using Docker in develomentment mode with volumes then...
-
-- ##### Frontend
-  - `npm run dev` to start up development server for React + Vite (instead of npm start)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
