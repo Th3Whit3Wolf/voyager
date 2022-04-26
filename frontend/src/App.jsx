@@ -13,8 +13,11 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
-
+const RoleContext = createContext({role: "user", setRole: () => {}});
 export default function App() {
+	//role = 0 makes it a basic user, role = 1 makes it an admin
+	const [role, setRole] = useState("user");
+	const roleContextValue = {role, setRole};
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 	const [mode, setMode] = useState(prefersDarkMode ? "dark" : "light");
 	const colorMode = useMemo(
@@ -28,6 +31,7 @@ export default function App() {
 	);
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 	return (
+		<RoleContext.Provider value={roleContextValue}>
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
@@ -41,5 +45,6 @@ export default function App() {
 				</Container>
 			</ThemeProvider>
 		</ColorModeContext.Provider>
+		</RoleContext.Provider>
 	);
 }

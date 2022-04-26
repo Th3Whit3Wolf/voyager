@@ -2,7 +2,7 @@
 // This is a demo dashboard as a placeholder
 // when actual dashboards are built up, switch to TDD
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useFetchMock from "../../hooks/useFetchMock";
 
 // Third Party Components and Utilities
@@ -33,8 +33,11 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import { useLocation } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-
+import {roleContext} from "../../App"
 const Dashboard = () => {
+
+	const [role, setRole] = useContext(roleContext);
+
 	const [tabValue, setTabValue] = useState("1");
 
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
