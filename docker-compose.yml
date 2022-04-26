@@ -5,11 +5,11 @@ services:
     image: postgres
     restart: always
     environment:
-      - DATABASE_HOST=127.0.0.1
+      - DATABASE_HOST=${PG_HOST:-127.0.0.1}
       - POSTGRES_USER=${PG_USER:-postgres}
       - POSTGRES_PASSWORD=${PG_PASSWD:-docker}
       - POSTGRES_PORT=5432
-      - POSTGRES_DB=capstone
+      - POSTGRES_DB=voyager
     ports:
       - "${PG_PORT-5432}:5432"
     healthcheck:
@@ -18,8 +18,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - pgdatasource:/var/lib/postgresql/data
-
+      - ./pg-data:/var/lib/postgresql/data
   capstone-api:
     build: backend/
     depends_on:
@@ -39,7 +38,6 @@ services:
         source: ./backend
         target: /app
     command: npm run dev
-
   capstone-ui:
     build: frontend/
     depends_on:
