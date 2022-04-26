@@ -5,6 +5,10 @@ const app = express();
 
 app.use(express.json());
 
+app.use( (req, res, next) => {
+	next();
+})
+
 app.get("/status", (req, res) => {
 	res.send("good");
 });
