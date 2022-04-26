@@ -1,5 +1,5 @@
-import express from "express";
-import routes from "./routes";
+const express = require("express");
+const routes = require("./routes");
 // const db = require("./db");
 
 const app = express();
@@ -11,4 +11,4 @@ app.get("/status", (req, res) => {
 
 app.get("/api/v1/deltas", routes.delta);
 
-export default app;
+require("./routes")(app);
