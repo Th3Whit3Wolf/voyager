@@ -33,9 +33,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import { useLocation } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-import {roleContext} from "../../App"
+import { roleContext } from "../../App";
 const Dashboard = () => {
-
 	//const role = useContext(roleContext);
 
 	const [tabValue, setTabValue] = useState("1");

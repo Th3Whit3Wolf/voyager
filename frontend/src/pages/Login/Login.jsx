@@ -6,7 +6,7 @@ import SplashScreen from "../../components/SplashScreen/SplashScreen";
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {roleContext} from "../../App";
+import { roleContext } from "../../App";
 const Login = () => {
 	//USECONTEXT
 	//const [role, setRole] = useContext(roleContext);
