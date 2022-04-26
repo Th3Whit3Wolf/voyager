@@ -1,8 +1,12 @@
-const express = require("express");
+import express from "express";
 // const db = require("./db");
 
 const app = express();
 
 app.use(express.json());
 
-module.exports = app;
+app.get("/status", (req, res) => {
+	res.send("good");
+});
+
+export default app;

@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator docs {
+  provider = "node node_modules/prisma-docs-generator"
+  output   = "../../../docs/db"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UnitKind {
+  INSTALLATION
+  COMMAND
+  DELTA
+  SQUADRON
+}
+
+model Unit {
+  id       Int      @id @default(autoincrement())
+  name     String   @unique
+  abbrev   String?  @db.VarChar(50)
+  kind     UnitKind
+  function String?  @db.Text
+  location String?  @db.Text
+
+  /// Define possible relationship with parent Unit
+  parentID       Int?
+  parent         Unit? @relation("ParentUnit", fields: [parentID], references: [id])
+  /// Define possible relationship with grandparent Unit
+  grandParentID  Int?
+  grandParent    Unit? @relation("GrandParentUnit", fields: [grandParentID], references: [id])
+  /// Define possible relationship with installation Unit
+  installationID Int?
+  installation   Unit? @relation("InstallationUnit", fields: [installationID], references: [id])
+
+  ParentUnit       Unit[] @relation("ParentUnit")
+  GrandParentUnit  Unit[] @relation("GrandParentUnit")
+  InstallationUnit Unit[] @relation("InstallationUnit")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  /// Rename table to units to conform to
+  /// SQL naming conventions
+  @@map("units")
+}
+
+enum ProcessingStatus {
+  IN_PROCESSING
+  IN_PROCESSING_WITH_ORDERS
+  IN_TRANSIT
+  OUT_PROCESSING
+  STATIONARY
+}
+
+enum Role {
+  USER
+  SITE_ADMIN
+  COMMAND_ADMIN
+  INSTALLATION_ADMIN
+  DELTA_ADMIN
+  SQUADRON_ADMIN
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}

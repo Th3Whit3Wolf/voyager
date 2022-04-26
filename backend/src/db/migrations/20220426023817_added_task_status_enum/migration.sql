@@ -1,0 +1,2 @@
+-- CreateEnum
+CREATE TYPE "TaskStatus" AS ENUM ('NOT_STARTED', 'IN_PROGRESS', 'COMPLETED');
