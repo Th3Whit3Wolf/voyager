@@ -36,7 +36,7 @@ import Loading from "../../components/Loading/Loading";
 import {roleContext} from "../../App"
 const Dashboard = () => {
 
-	const [role, setRole] = useContext(roleContext);
+	//const role = useContext(roleContext);
 
 	const [tabValue, setTabValue] = useState("1");
 

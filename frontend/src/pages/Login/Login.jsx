@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import {roleContext} from "../../App";
 const Login = () => {
 	//USECONTEXT
-	const [role, setRole] = useContext(roleContext);
+	//const [role, setRole] = useContext(roleContext);
 
 	// STATE
 	const [username, setUsername] = useState("");
