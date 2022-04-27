@@ -7,16 +7,17 @@ import {
 	TableBody,
 	TableRow,
 	TableCell,
-	Switch
+	Switch,
+	Checkbox
 } from "@mui/material";
 
-const Table = data => {
+const Table = ({ data }) => {
 	return (
 		<>
 			<MuiTable size={"small"}>
 				<TableHead>
 					<TableRow>
-						<TableCell></TableCell>
+						<TableCell>Checkbox</TableCell>
 						<TableCell>Task Name</TableCell>
 						<TableCell>Short Description</TableCell>
 						<TableCell>POC Name</TableCell>
@@ -31,7 +32,7 @@ const Table = data => {
 					{data.map(entry => (
 						<TableRow hover={true} key={entry.id}>
 							<TableCell>
-								<Switch />
+								<Checkbox />
 							</TableCell>
 							<TableCell>{entry.title}</TableCell>
 							<TableCell>{entry.description}</TableCell>

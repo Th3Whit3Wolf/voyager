@@ -10,7 +10,7 @@ import {
 	Paper,
 	Tab,
 	TableContainer,
-	Table,
+	Table as MuiTable,
 	TableHead,
 	TableBody,
 	TableRow,
@@ -18,7 +18,7 @@ import {
 	Switch
 } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-
+import Table from "../../components/Table/Table";
 // NOTE: Currently Dashboard is taking a prop called
 // role. This is coming from Login.jsx where the Fake
 // User and Admin navigations pass it in order to
@@ -63,8 +63,6 @@ const Dashboard = () => {
 	if (role === "user") {
 		return (
 			<>
-				<h1>User Dashboard</h1>
-
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
@@ -79,41 +77,7 @@ const Dashboard = () => {
 							info?
 						</p>
 						<TableContainer component={Paper}>
-							<Table size={"small"}>
-								<TableHead>
-									<TableRow>
-										<TableCell></TableCell>
-										<TableCell>Task Name</TableCell>
-										<TableCell>Short Description</TableCell>
-										<TableCell>POC Name</TableCell>
-										<TableCell>POC Phone</TableCell>
-										<TableCell>POC Email</TableCell>
-										<TableCell>Last Updated</TableCell>
-										<TableCell>Owner</TableCell>
-										<TableCell></TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{data.map(entry => (
-										<TableRow hover={true} key={entry.id}>
-											<TableCell>
-												<Switch />
-											</TableCell>
-											<TableCell>{entry.title}</TableCell>
-											<TableCell>{entry.description}</TableCell>
-											<TableCell>{entry.approver}</TableCell>
-											<TableCell>Not in Current ERD</TableCell>
-											<TableCell>Not in Current ERD</TableCell>
-											<TableCell>
-												{`${
-													entry.updated_at.getUTCMonth() + 1
-												} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
-											</TableCell>
-											<TableCell>{entry.owner}</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
-							</Table>
+							<Table data={data} />
 						</TableContainer>
 					</TabPanel>
 
@@ -129,7 +93,7 @@ const Dashboard = () => {
 							</strong>
 						</p>
 						<TableContainer component={Paper}>
-							<Table size={"small"}>
+							<MuiTable size={"small"}>
 								<TableHead>
 									<TableRow>
 										<TableCell>Checkbox</TableCell>
@@ -160,7 +124,7 @@ const Dashboard = () => {
 										<TableCell>sally.sue@email.com</TableCell>
 									</TableRow>
 								</TableBody>
-							</Table>
+							</MuiTable>
 						</TableContainer>
 					</TabPanel>
 				</TabContext>
