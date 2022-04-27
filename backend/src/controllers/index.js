@@ -1,3 +1,6 @@
 import Squadrons from "./squadrons";
+import Commands from "./command";
+import Deltas from "./delta";
+import Installations from "./installation";
 
-export { Squadrons };
+export { Commands, Deltas, Installations, Squadrons };
