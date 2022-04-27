@@ -20,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/Th3Whit3Wolf/voyager/issues"
   },
-  "homepage": "https://github.com/Th3Whit3Wolf/voyager#readme",
-  "dependencies": {
-    "@mui/icons-material": "^5.6.2"
-  }
+  "homepage": "https://github.com/Th3Whit3Wolf/voyager#readme"
 }
