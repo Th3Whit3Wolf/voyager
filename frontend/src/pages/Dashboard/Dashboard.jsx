@@ -96,10 +96,6 @@ const Dashboard = () => {
 							This should show as a table view, where each row has a status and
 							can be toggled as complete or not. Clicking on a might show more
 							info?{" "}
-							<strong>
-								Did not update the table below to be reflective of mockUserData
-								as the Inprocessing tab{" "}
-							</strong>
 						</p>
 						<TableContainer component={Paper}>
 							<UserTable
