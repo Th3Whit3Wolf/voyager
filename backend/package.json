@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"config": {
-		"db": "DATABASE_URL=$(node scripts/db.js)"	
+		"db": "DATABASE_URL=$(node scripts/db.js)"
 	},
 	"scripts": {
 		"db:addMigration": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma migrate dev --schema src/db/schema.prisma --name",
@@ -13,6 +13,7 @@
 		"db:testMigration": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma db push --schema src/db/schema.prisma",
 		"db:reset": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma migrate reset --schema src/db/schema.prisma",
 		"db:view": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma studio --schema src/db/schema.prisma",
+		"db:gen": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma generate --schema src/db/schema.prisma",
 		"db:introspect": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma db pull --schema src/db/schema.prisma",
 		"dev": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db nodemon src",
 		"lint": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npx eslint src",
