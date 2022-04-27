@@ -14,7 +14,7 @@
 		"db:reset": "eval $npm_package_config_db prisma migrate reset --schema src/db/schema.prisma",
 		"db:view": "eval $npm_package_config_db prisma studio --schema src/db/schema.prisma",
 		"db:introspect": "eval $npm_package_config_db prisma db pull --schema src/db/schema.prisma",
-		"dev": "nodemon --experimental-specifier-resolution=node src",
+		"dev": "eval $npm_package_config_db nodemon --experimental-specifier-resolution=node src",
 		"lint": "npx eslint src",
 		"lint:fix": "npm run lint -- --fix",
 		"prettier": "npx prettier src --check",
