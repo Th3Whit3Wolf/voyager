@@ -16,7 +16,23 @@ const select = {
 	id: true,
 	name: true,
 	abbrev: true,
-	function: true
+	function: true,
+	children: {
+		select: {
+			id: true,
+			name: true,
+			abbrev: true,
+			function: true
+		}
+	},
+	grandChildren: {
+		select: {
+			id: true,
+			name: true,
+			abbrev: true,
+			function: true
+		}
+	}
 };
 
 const Commands = {
