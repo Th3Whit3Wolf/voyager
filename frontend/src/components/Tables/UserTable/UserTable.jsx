@@ -27,7 +27,7 @@ const UserTable = ({ data }) => {
 				</TableHead>
 				<TableBody>
 					{data.map(entry => (
-						<UserTableRow key={entry.id} entry={entry} />
+						<UserTableRow hover={true} key={entry.id} entry={entry} />
 					))}
 				</TableBody>
 			</MuiTable>
