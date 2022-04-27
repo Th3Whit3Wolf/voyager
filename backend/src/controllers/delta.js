@@ -24,6 +24,14 @@ const select = {
 			abbrev: true,
 			function: true
 		}
+	},
+	children: {
+		select: {
+			id: true,
+			name: true,
+			abbrev: true,
+			function: true
+		}
 	}
 };
 
