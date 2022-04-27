@@ -4,11 +4,11 @@ import {
 	TableBody,
 	TableRow,
 	TableCell,
-	Switch,
-	Button
+	IconButton
 } from "@mui/material";
 
-//import { DeleteIcon } from "@mui/icons-material";
+import { AddCircle } from "@mui/icons-material";
+
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
 const AdminTable = ({ data }) => {
 	return (
@@ -34,6 +34,9 @@ const AdminTable = ({ data }) => {
 					))}
 				</TableBody>
 			</MuiTable>
+			<IconButton color="primary" size="large" sx={{ width: "100%" }}>
+				<AddCircle />
+			</IconButton>
 		</>
 	);
 };

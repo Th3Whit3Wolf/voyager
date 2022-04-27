@@ -1,0 +1,80 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Project "Voyager" {
+  database_type: 'PostgreSQL'
+  Note: 'Better In/Out-Processing'
+}
+
+Table units {
+  id Int [pk, increment]
+  name String [unique, not null]
+  abbrev String
+  kind UnitKind [not null]
+  function String
+  location String
+  parentID Int [note: 'Define possible relationship with parent Unit
+Rename collumn to conform to SQL naming conventions']
+  parent Unit
+  grandParentID Int [note: 'Define possible relationship with grandparent Unit
+Rename collumn to conform to SQL naming conventions']
+  grandParent Unit
+  installationID Int [note: 'Define possible relationship with installation Unit
+Rename collumn to conform to SQL naming conventions']
+  installation Unit
+  children Unit [not null]
+  grandChildren Unit [not null]
+  installationChildren Unit [not null]
+  Role Role [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+}
+
+Table roles {
+  id Int [pk, increment]
+  kind RoleKind [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  unitID Int [note: 'Define possible relationship with installation Unit
+Rename collumn to conform to SQL naming conventions']
+  unit Unit
+}
+
+Enum UnitKind {
+  INSTALLATION
+  COMMAND
+  DELTA
+  SQUADRON
+}
+
+Enum ProcessingStatus {
+  IN_PROCESSING
+  IN_PROCESSING_WITH_ORDERS
+  IN_TRANSIT
+  OUT_PROCESSING
+  STATIONARY
+}
+
+Enum RoleKind {
+  USER
+  SITE_ADMIN
+  COMMAND_ADMIN
+  INSTALLATION_ADMIN
+  DELTA_ADMIN
+  SQUADRON_ADMIN
+}
+
+Enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+Ref: Unit.parentID - Unit.id
+
+Ref: Unit.grandParentID - Unit.id
+
+Ref: Unit.installationID - Unit.id
+
+Ref: Role.unitID > Unit.id
