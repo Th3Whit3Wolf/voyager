@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import UserTable from "../../components/Tables/UserTable/UserTable";
+import AdminTable from "../../components/Tables/AdminTable/AdminTable";
 //import AdminTable from "../../components/Tables/AdminTable/AdminTable";
 // NOTE: Currently Dashboard is taking a prop called
 // role. This is coming from Login.jsx where the Fake
@@ -41,7 +42,7 @@ const Dashboard = () => {
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 	const role = location.state.role;
-	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1500); // only created data for User , not Admin yet, Admin gives a console log
+	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 500); // only created data for User , not Admin yet, Admin gives a console log
 
 	// useEffect(() => {
 	// 	console.log(data, error, isLoading);
@@ -74,8 +75,8 @@ const Dashboard = () => {
 						This is where my in-processing task list shows up.
 						<p>
 							This should show as a table view, where each row has a status and
-							can be toggled as complete or not. Clicking on a might show more
-							info?
+							can be toggled as complete or not. Clicking on a row might show
+							more info?
 						</p>
 						<TableContainer component={Paper}>
 							<UserTable
@@ -118,8 +119,6 @@ const Dashboard = () => {
 	if (role === "admin") {
 		return (
 			<>
-				<h1>Admin Dashboard</h1>
-
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
@@ -136,6 +135,17 @@ const Dashboard = () => {
 							should allow for Delete, Row-wise Entry Patches, or adding a new
 							row to the bottom.
 						</p>
+						<TableContainer component={Paper}>
+							<AdminTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
+						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="2">
@@ -148,6 +158,17 @@ const Dashboard = () => {
 							should allow for Delete, Row-wise Entry Patches, or adding a new
 							row to the bottom.
 						</p>{" "}
+						<TableContainer component={Paper}>
+							<AdminTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
+						</TableContainer>
 					</TabPanel>
 				</TabContext>
 			</>
