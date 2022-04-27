@@ -35,16 +35,5 @@ h1 {
 	display: flex;
 	align-items: center;
 	padding: 5px 5px 5px 25px;
-}
-
-.link {
-	text-decoration: none;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 35px;
-
-	/* identical to box height */
-
-	color: #ffffff;
+	flex-grow: 1;
 }

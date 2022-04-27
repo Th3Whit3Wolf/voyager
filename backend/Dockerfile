@@ -6,9 +6,9 @@ COPY . /app
 
 RUN npm install
 
-ENV PORT 8082
+ENV PORT 8081
 
-EXPOSE 8082
+EXPOSE 8081
 
 RUN npm run db:gen
 
