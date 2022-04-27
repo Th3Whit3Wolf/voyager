@@ -1,0 +1,19 @@
+-- CreateEnum
+CREATE TYPE "RoleKind" AS ENUM ('USER', 'SITE_ADMIN', 'COMMAND_ADMIN', 'INSTALLATION_ADMIN', 'DELTA_ADMIN', 'SQUADRON_ADMIN');
+
+-- DropEnum
+DROP TYPE "Role";
+
+-- CreateTable
+CREATE TABLE "roles" (
+    "id" SERIAL NOT NULL,
+    "kind" "RoleKind" NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "unitID" INTEGER,
+
+    CONSTRAINT "roles_pkey" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "roles" ADD CONSTRAINT "roles_unitID_fkey" FOREIGN KEY ("unitID") REFERENCES "units"("id") ON DELETE SET NULL ON UPDATE CASCADE;

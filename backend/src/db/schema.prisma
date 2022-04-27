@@ -8,6 +8,15 @@ generator docs {
   output   = "../../../docs/db"
 }
 
+generator dbml {
+  provider            = "prisma-dbml-generator"
+  output              = "../../../assets"
+  outputName          = "voyager.dbml"
+  projectName         = "Voyager"
+  projectDatabaseType = "PostgreSQL"
+  projectNote         = "Better In/Out-Processing"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -29,21 +38,26 @@ model Unit {
   location String?  @db.Text
 
   /// Define possible relationship with parent Unit
-  parentID       Int?
-  parent         Unit? @relation("ParentUnit", fields: [parentID], references: [id])
+  /// Rename collumn to conform to SQL naming conventions
+  parentID Int?  @map("parent_id")
+  parent   Unit? @relation("ParentUnit", fields: [parentID], references: [id])
+
   /// Define possible relationship with grandparent Unit
-  grandParentID  Int?
-  grandParent    Unit? @relation("GrandParentUnit", fields: [grandParentID], references: [id])
+  /// Rename collumn to conform to SQL naming conventions
+  grandParentID Int?  @map("grand_parent_id")
+  grandParent   Unit? @relation("GrandParentUnit", fields: [grandParentID], references: [id])
+
   /// Define possible relationship with installation Unit
-  installationID Int?
+  /// Rename collumn to conform to SQL naming conventions
+  installationID Int?  @map("installation_id")
   installation   Unit? @relation("InstallationUnit", fields: [installationID], references: [id])
 
-  ParentUnit       Unit[] @relation("ParentUnit")
-  GrandParentUnit  Unit[] @relation("GrandParentUnit")
-  InstallationUnit Unit[] @relation("InstallationUnit")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  children             Unit[]   @relation("ParentUnit")
+  grandChildren        Unit[]   @relation("GrandParentUnit")
+  installationChildren Unit[]   @relation("InstallationUnit")
+  Role                 Role[]   @relation("Admin Of Unit")
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @default(now()) @updatedAt
 
   /// Rename table to units to conform to
   /// SQL naming conventions
@@ -58,7 +72,7 @@ enum ProcessingStatus {
   STATIONARY
 }
 
-enum Role {
+enum RoleKind {
   USER
   SITE_ADMIN
   COMMAND_ADMIN
@@ -71,4 +85,20 @@ enum TaskStatus {
   NOT_STARTED
   IN_PROGRESS
   COMPLETED
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  kind      RoleKind
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  /// Define possible relationship with installation Unit
+  /// Rename collumn to conform to SQL naming conventions
+  unitID Int?  @map("unit_id")
+  unit   Unit? @relation("Admin Of Unit", fields: [unitID], references: [id])
+
+  /// Rename table to units to conform to
+  /// SQL naming conventions
+  @@map("roles")
 }
