@@ -6,6 +6,7 @@ import {
 	TableCell,
 	Checkbox
 } from "@mui/material";
+import UserTableRow from "../../TableRow/UserTableRow/UserTableRow";
 
 const UserTable = ({ data }) => {
 	return (
@@ -26,22 +27,7 @@ const UserTable = ({ data }) => {
 				</TableHead>
 				<TableBody>
 					{data.map(entry => (
-						<TableRow hover={true} key={entry.id}>
-							<TableCell>
-								<Checkbox />
-							</TableCell>
-							<TableCell>{entry.title}</TableCell>
-							<TableCell>{entry.description}</TableCell>
-							<TableCell>{entry.approver}</TableCell>
-							<TableCell>Not in Current ERD</TableCell>
-							<TableCell>Not in Current ERD</TableCell>
-							<TableCell>
-								{`${
-									entry.updated_at.getUTCMonth() + 1
-								} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
-							</TableCell>
-							<TableCell>{entry.owner}</TableCell>
-						</TableRow>
+						<UserTableRow key={entry.id} entry={entry} />
 					))}
 				</TableBody>
 			</MuiTable>

@@ -1,8 +1,8 @@
-import { TableCell, Checkbox } from "@mui/material";
+import { TableRow, TableCell, Checkbox } from "@mui/material";
 
 const UserTableRow = ({ entry }) => {
 	return (
-		<>
+		<TableRow>
 			<TableCell>
 				<Checkbox
 					onChange={() => console.log(`Update Checkbox of id ${entry.id}`)}
@@ -19,7 +19,7 @@ const UserTableRow = ({ entry }) => {
 				} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
 			</TableCell>
 			<TableCell>{entry.owner}</TableCell>
-		</>
+		</TableRow>
 	);
 };
 export default UserTableRow;

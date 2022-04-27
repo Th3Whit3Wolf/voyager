@@ -2,6 +2,7 @@ import {
 	Table as MuiTable,
 	TableHead,
 	TableBody,
+	TableRow,
 	TableCell,
 	Switch,
 	Button
@@ -9,7 +10,7 @@ import {
 
 const AdminTableRow = ({ entry }) => {
 	return (
-		<>
+		<TableRow>
 			<TableCell>
 				<Switch
 					onChange={() => console.log(`Switch has been changed id ${entry.id}`)}
@@ -31,7 +32,7 @@ const AdminTableRow = ({ entry }) => {
 					Delete
 				</Button>
 			</TableCell>
-		</>
+		</TableRow>
 	);
 };
 export default AdminTableRow;
