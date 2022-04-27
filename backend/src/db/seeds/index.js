@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import Prisma from "@prisma/client";
-import { URI } from "./utils.js";
-import { mkUnits, checkUnitStatus } from "./units.js";
+import { URI } from "./utils";
+import { mkUnits, checkUnitStatus } from "./units";
 
 const { PrismaClient } = Prisma;
 

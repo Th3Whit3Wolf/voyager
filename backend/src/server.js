@@ -1,5 +1,5 @@
 import express from "express";
-// const db = require("./db");
+import routes from "./routes";
 
 const app = express();
 
@@ -19,5 +19,7 @@ app.use((req, res, next) => {
 app.get("/status", (req, res) => {
 	res.send("good");
 });
+
+app.use("/api/v1/", routes.squadrons);
 
 export default app;

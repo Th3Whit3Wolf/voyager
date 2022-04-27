@@ -27,6 +27,7 @@ services:
     ports:
       - "8080:8082"
     environment:
+      - NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node'
       - NODE_ENV=development
       - DATABASE_HOST=capstone-db
       - PG_USER=${PG_USER:-postgres}

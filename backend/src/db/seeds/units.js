@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { createRequire } from "module";
-import { log } from "./utils.js";
+import { log } from "./utils";
 
 const require = createRequire(import.meta.url);
 const installations = require("./data/installations.json");
