@@ -20,5 +20,16 @@ export const mockUserData = [
 		updated_at: new Date("July 7 2002 11:53"),
 		owner: "Base",
 		checked: false
+	},
+	{
+		id: 3,
+		title: "GTC Activiation",
+		description: "Go see Sally Sue to activate GTC",
+		task_type: "Outprocessig",
+		approver: "Ms. Sally Sue",
+		created_at: new Date("July 1 2002 11:53"),
+		updated_at: new Date("July 7 2002 11:53"),
+		owner: "Base",
+		checked: false
 	}
 ];
