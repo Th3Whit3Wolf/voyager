@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+
 import {
 	Table as MuiTable,
 	TableHead,
@@ -10,7 +12,32 @@ import {
 import { AddCircle } from "@mui/icons-material";
 
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
+
 const AdminTable = ({ data }) => {
+	const [adminData, setAdminData] = useState([]);
+
+	useEffect(() => {
+		setAdminData(data);
+	}, []);
+
+	const handleAddRow = () => {
+		setAdminData([
+			...adminData,
+			{
+				id: adminData.length + 1,
+				title: "Task Title",
+				description: "Task Description",
+				task_type: "Outprocessing",
+				approver: "Task Approver",
+				created_at: new Date(),
+				updated_at: new Date(),
+				owner: "Owner",
+				checked: false
+			}
+		]);
+		console.log(adminData);
+	};
+
 	return (
 		<>
 			<MuiTable size={"small"}>
@@ -29,12 +56,17 @@ const AdminTable = ({ data }) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{data.map(entry => (
+					{adminData.map(entry => (
 						<AdminTableRow hover={true} key={entry.id} entry={entry} />
 					))}
 				</TableBody>
 			</MuiTable>
-			<IconButton color="primary" size="large" sx={{ width: "100%" }}>
+			<IconButton
+				color="primary"
+				size="large"
+				sx={{ width: "100%" }}
+				onClick={handleAddRow}
+			>
 				<AddCircle />
 			</IconButton>
 		</>
