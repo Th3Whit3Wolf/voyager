@@ -102,38 +102,15 @@ const Dashboard = () => {
 							</strong>
 						</p>
 						<TableContainer component={Paper}>
-							<MuiTable size={"small"}>
-								<TableHead>
-									<TableRow>
-										<TableCell>Checkbox</TableCell>
-										<TableCell>Task Name</TableCell>
-										<TableCell>Short Description</TableCell>
-										<TableCell>POC Name</TableCell>
-										<TableCell>POC Phone</TableCell>
-										<TableCell>POC Email</TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									<TableRow hover={true}>
-										<TableCell>CB Icon Here</TableCell>
-										<TableCell>Form 55</TableCell>
-										<TableCell>
-											Send your current form 55 to Safety Rep.
-										</TableCell>
-										<TableCell>Capt Safety Pants</TableCell>
-										<TableCell>(123) 456-7899</TableCell>
-										<TableCell>safety.pants@email.com</TableCell>
-									</TableRow>
-									<TableRow hover={true}>
-										<TableCell>CB Icon Here</TableCell>
-										<TableCell>GTC Activation</TableCell>
-										<TableCell>Go see Sally Sue to activate GTC</TableCell>
-										<TableCell>Ms. Sally Sue</TableCell>
-										<TableCell>(123) 456-7899</TableCell>
-										<TableCell>sally.sue@email.com</TableCell>
-									</TableRow>
-								</TableBody>
-							</MuiTable>
+							<UserTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
 						</TableContainer>
 					</TabPanel>
 				</TabContext>
