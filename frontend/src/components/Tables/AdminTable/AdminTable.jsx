@@ -24,6 +24,7 @@ const AdminTable = ({ data }) => {
 						<TableCell>POC Email</TableCell>
 						<TableCell>Last Updated</TableCell>
 						<TableCell>Owner</TableCell>
+						<TableCell>More Info</TableCell>
 						<TableCell>Delete Task</TableCell>
 					</TableRow>
 				</TableHead>

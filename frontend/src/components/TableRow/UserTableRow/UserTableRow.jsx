@@ -6,25 +6,28 @@ import {
 	DialogContent,
 	DialogContentText
 } from "@mui/material";
-
+import { useState } from "react";
 const UserTableRow = ({ entry }) => {
-	var modalDisplay = false;
-	function OnOffModal() {
-		if (modalDisplay && true) modalDisplay = false;
-		else modalDisplay = true;
-	}
+	const [open, setOpen] = useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 	return (
 		<>
-			<Dialog open={modalDisplay}>
-				<DialogContent open={modalDisplay} onBackdropClick={() => OnOffModal()}>
+			<Dialog open={open} onClose={handleClose}>
+				<DialogContent>
 					<DialogContentText id="alert-dialog-description">
-						Let Google help apps determine location. This means sending
-						anonymous location data to Google, even when no apps are running.
+						More Info Coming
 					</DialogContentText>
 				</DialogContent>
 			</Dialog>
-			<TableRow onClick={() => OnOffModal()}>
+			<TableRow onClick={() => handleClickOpen()}>
 				<TableCell>
 					<Checkbox
 						onChange={() => console.log(`Update Checkbox of id ${entry.id}`)}
