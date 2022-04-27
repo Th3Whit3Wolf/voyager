@@ -31,6 +31,7 @@ services:
       - NODE_ENV=development
       - DATABASE_HOST=capstone-db
       - PG_USER=${PG_USER:-postgres}
+      - PG_HOST=${PG_HOST:-capstone-db}
       - PG_PASSWD=${PG_PASSWD:-docker}
       - POSTGRES_PORT=${PG_PORT-5432}
       - POSTGRES_DB=capstone

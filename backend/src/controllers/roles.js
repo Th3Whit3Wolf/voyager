@@ -13,7 +13,6 @@ const prisma = new PrismaClient({
 
 const select = {
 	id: true,
-	name: true,
 	unit: true
 };
 
@@ -57,7 +56,11 @@ const Roles = {
 		try {
 			const query = await prisma.Role.findMany({
 				where: {
-					NOT: { kind: "USERS" }
+					NOT: {
+						kind: {
+							equals: "USER"
+						}
+					}
 				},
 				select
 			});
