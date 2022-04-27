@@ -1,6 +1,5 @@
-/* eslint-disable import/extensions */
 import { createRequire } from "module";
-import { log } from "./utils";
+import { log, statusUpdate } from "./utils";
 
 const require = createRequire(import.meta.url);
 const installations = require("./data/installations.json");
@@ -9,6 +8,33 @@ const deltas = require("./data/deltas.json");
 const squadrons = require("./data/squadrons.json");
 
 const debug = process.env.DEBUG;
+
+const getUnit = {
+	Command: async prisma => {
+		const q = await prisma.Unit.findMany({
+			where: { kind: "COMMAND" }
+		});
+		return q;
+	},
+	Installation: async prisma => {
+		const q = await prisma.Unit.findMany({
+			where: { kind: "INSTALLATION" }
+		});
+		return q;
+	},
+	Delta: async prisma => {
+		const q = await prisma.Unit.findMany({
+			where: { kind: "DELTA" }
+		});
+		return q;
+	},
+	Squadron: async prisma => {
+		const q = await prisma.Unit.findMany({
+			where: { kind: "SQUADRON" }
+		});
+		return q;
+	}
+};
 
 const inserterUnits = async (prisma, kind, insertData, last) => {
 	if (
@@ -207,21 +233,10 @@ const addSquadrons = async (prisma, dbDeltas, dbCommands, dbInstallations) => {
 };
 
 const mkUnits = async prisma => {
-	let dbCommands = await prisma.Unit.findMany({
-		where: { kind: "COMMAND" }
-	});
-
-	let dbInstallations = await prisma.Unit.findMany({
-		where: { kind: "INSTALLATION" }
-	});
-
-	let dbDeltas = await prisma.Unit.findMany({
-		where: { kind: "DELTA" }
-	});
-
-	let dbSquadrons = await prisma.Unit.findMany({
-		where: { kind: "SQUADRON" }
-	});
+	let dbCommands = await getUnit.Command(prisma);
+	let dbInstallations = await getUnit.Installation(prisma);
+	let dbDeltas = await getUnit.Delta(prisma);
+	let dbSquadrons = await getUnit.Squadron(prisma);
 
 	if (
 		dbCommands == null ||
@@ -235,9 +250,7 @@ const mkUnits = async prisma => {
 	) {
 		if (dbCommands == null || dbCommands.length < commands.length) {
 			await addCommands(prisma);
-			dbCommands = await prisma.Unit.findMany({
-				where: { kind: "COMMAND" }
-			});
+			dbCommands = await getUnit.Command(prisma);
 		} else {
 			log.issue("Commands", "Commands are already seeded");
 		}
@@ -247,9 +260,7 @@ const mkUnits = async prisma => {
 			dbInstallations.length < installations.length
 		) {
 			await addInstallations(prisma);
-			dbInstallations = await prisma.Unit.findMany({
-				where: { kind: "INSTALLATION" }
-			});
+			dbInstallations = await getUnit.Installation(prisma);
 		} else {
 			log.issue("Installations", "Installations are already seeded");
 		}
@@ -257,9 +268,7 @@ const mkUnits = async prisma => {
 		if (dbDeltas == null || dbDeltas.length < deltas.length) {
 			if (dbCommands.length === commands.length) {
 				await addDeltas(prisma, dbCommands);
-				dbDeltas = await prisma.Unit.findMany({
-					where: { kind: "DELTA" }
-				});
+				dbDeltas = await getUnit.Delta(prisma);
 			} else {
 				log.issue("Deltas", "Commands are not yet ready");
 			}
@@ -284,43 +293,42 @@ const mkUnits = async prisma => {
 					dbCommands,
 					dbInstallations
 				);
-				dbSquadrons = await prisma.Unit.findMany({
-					where: { kind: "SQUADRON" }
-				});
+				dbSquadrons = await getUnit.Squadron(prisma);
 			}
 		} else {
 			log.issue("Squadrons", "Squadrons are already seeded");
 		}
-	} else {
-		console.log("All units are already seeded");
 	}
 };
 
 const checkUnitStatus = async prisma => {
-	const dbCommands = await prisma.Unit.findMany({
-		where: { kind: "COMMAND" }
-	});
+	const dbCommands = await getUnit.Command(prisma);
+	const dbInstallations = await getUnit.Installation(prisma);
+	const dbDeltas = await getUnit.Delta(prisma);
+	const dbSquadrons = await getUnit.Squadron(prisma);
 
-	const dbInstallations = await prisma.Unit.findMany({
-		where: { kind: "INSTALLATION" }
-	});
-
-	const dbDeltas = await prisma.Unit.findMany({
-		where: { kind: "DELTA" }
-	});
-
-	const dbSquadrons = await prisma.Unit.findMany({
-		where: { kind: "SQUADRON" }
-	});
-
-	console.log(`
-| Units         | Current | Expected |
-| ------------- | ------- | -------- |
-| Commands      | ${dbCommands.length}       | ${commands.length}        |
-| Installations | ${dbInstallations.length}      | ${installations.length}       |
-| Deltas        | ${dbDeltas.length}      | ${deltas.length}       |
-| Squadrons     | ${dbSquadrons.length}      | ${squadrons.length}       |
-	`);
+	statusUpdate("Unit", [
+		{
+			Name: "Commands",
+			Current: dbCommands.length,
+			Expected: commands.length
+		},
+		{
+			Name: "Commands",
+			Current: dbInstallations.length,
+			Expected: installations.length
+		},
+		{
+			Name: "Commands",
+			Current: dbDeltas.length,
+			Expected: deltas.length
+		},
+		{
+			Name: "Commands",
+			Current: dbSquadrons.length,
+			Expected: squadrons.length
+		}
+	]);
 };
 
-export { mkUnits, checkUnitStatus };
+export { mkUnits, checkUnitStatus, getUnit };
