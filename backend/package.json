@@ -5,23 +5,23 @@
 	"main": "index.js",
 	"type": "module",
 	"config": {
-		"db": "DATABASE_URL=$(node scripts/db.js)"
+		"db": "DATABASE_URL=$(node scripts/db.js)"	
 	},
 	"scripts": {
-		"db:addMigration": "eval $npm_package_config_db prisma migrate dev --schema src/db/schema.prisma --name",
-		"db:seed": "eval $npm_package_config_db prisma db seed",
-		"db:testMigration": "eval $npm_package_config_db prisma db push --schema src/db/schema.prisma",
-		"db:reset": "eval $npm_package_config_db prisma migrate reset --schema src/db/schema.prisma",
-		"db:view": "eval $npm_package_config_db prisma studio --schema src/db/schema.prisma",
-		"db:introspect": "eval $npm_package_config_db prisma db pull --schema src/db/schema.prisma",
-		"dev": "eval $npm_package_config_db nodemon --experimental-specifier-resolution=node src",
-		"lint": "npx eslint src",
-		"lint:fix": "npm run lint -- --fix",
-		"prettier": "npx prettier src --check",
-		"prettier:fix": "npm run prettier -- --write",
-		"format": "npm run prettier:fix && npm run lint:fix",
-		"start": "node --experimental-specifier-resolution=node src",
-		"test": "NODE_ENV=test node --experimental-vm-modules --experimental-specifier-resolution=node node_modules/jest/bin/jest.js"
+		"db:addMigration": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma migrate dev --schema src/db/schema.prisma --name",
+		"db:seed": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma db seed",
+		"db:testMigration": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma db push --schema src/db/schema.prisma",
+		"db:reset": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma migrate reset --schema src/db/schema.prisma",
+		"db:view": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma studio --schema src/db/schema.prisma",
+		"db:introspect": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db prisma db pull --schema src/db/schema.prisma",
+		"dev": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' eval $npm_package_config_db nodemon src",
+		"lint": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npx eslint src",
+		"lint:fix": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npm run lint -- --fix",
+		"prettier": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npx prettier src --check",
+		"prettier:fix": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npm run prettier -- --write",
+		"format": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npm run prettier:fix && npm run lint:fix",
+		"start": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' node src",
+		"test": "NODE_ENV=test NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npx jest"
 	},
 	"prisma": {
 		"seed": "node src/db/seeds/index.js"
