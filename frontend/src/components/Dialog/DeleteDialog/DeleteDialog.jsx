@@ -2,13 +2,35 @@ import {
 	Dialog,
 	DialogTitle,
 	DialogContent,
-	DialogContentText
+	DialogActions,
+	DialogContentText,
+	Button
 } from "@mui/material";
 
-const DeleteDialog = () => {
+const DeleteDialog = (dialogDetails) => {
+    {open, setOpen}  = dialogDetails;
+    const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
 	return (
-		<Dialog>
-			<DialogTitle></DialogTitle>
+		<Dialog open={open} onClose={handleClose}>
+			<DialogTitle id="delete-modal">
+				{"Are you sure you want to delete ${entry.title}"}
+			</DialogTitle>
+			<DialogContentText id="delete-dialog-description">
+				You will not be able to reset this deletion
+			</DialogContentText>
+			<DialogActions>
+				<Button onClick={handleClose}>Cancel</Button>
+				<Button onClick={handleClose} autoFocus>
+					Delete
+				</Button>
+			</DialogActions>
 		</Dialog>
 	);
 };
