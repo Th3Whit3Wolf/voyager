@@ -13,7 +13,14 @@ const Header = () => {
 			<h1>
 				<span className={styles.header__title2}>Voyager</span>
 			</h1>
-			<Grid className={styles.header__button}>
+			<Grid
+				className={styles.header__button}
+				sx={{
+					display: "flex",
+					flexGrow: 1,
+					justifyContent: "flex-end"
+				}}
+			>
 				<Button variant="contained" onClick={() => navigate("/")}>
 					Logout
 				</Button>
