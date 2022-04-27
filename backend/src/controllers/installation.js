@@ -15,7 +15,15 @@ const kind = "INSTALLATION";
 const select = {
 	id: true,
 	name: true,
-	location: true
+	location: true,
+	installationChildren: {
+		select: {
+			id: true,
+			name: true,
+			abbrev: true,
+			function: true
+		}
+	}
 };
 
 const Installations = {
