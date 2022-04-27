@@ -19,32 +19,6 @@ const select = {
 	function: true
 };
 
-const getAllCommands = async (req, res, next) => {
-	try {
-		const query = await prisma.Unit.findMany({
-			where: { kind },
-			select
-		});
-		res.status(200).json(query);
-	} catch (err) {
-		next(err);
-	}
-};
-
-const getCommandByID = async (req, res, next) => {
-	const { commandID } = req.params;
-	const id = parseInt(commandID);
-	try {
-		const query = await prisma.Unit.findMany({
-			where: { kind, id },
-			select
-		});
-		return res.status(200).json(query);
-	} catch (err) {
-		return next(err);
-	}
-};
-
 const Commands = {
 	getByID: async (req, res, next) => {
 		const { commandID } = req.params;
