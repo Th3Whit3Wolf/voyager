@@ -15,9 +15,10 @@ import {
 
 import { Delete, Star } from "@mui/icons-material";
 import { useState } from "react";
+import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 const AdminTableRow = ({ entry }) => {
 	const [open, setOpen] = useState(false);
-
+	const dialogDetails = { open, setOpen };
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
@@ -28,6 +29,7 @@ const AdminTableRow = ({ entry }) => {
 
 	return (
 		<>
+			<DeleteDialog />
 			<Dialog open={open} onClose={handleClose}>
 				<DialogContent>
 					<DialogContentText id="alert-dialog-description">

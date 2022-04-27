@@ -7,12 +7,7 @@ import {
 	Button
 } from "@mui/material";
 
-const DeleteDialog = (dialogDetails) => {
-    {open, setOpen}  = dialogDetails;
-    const handleClickOpen = () => {
-		setOpen(true);
-	};
-
+const DeleteDialog = ({ open, setOpen }) => {
 	const handleClose = () => {
 		setOpen(false);
 	};
