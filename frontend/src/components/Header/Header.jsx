@@ -1,17 +1,30 @@
 import React from "react";
 import styles from "./Header.module.css";
 import logo from "../../space-force-logo.png";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 // Also need a small title shows USER or ADMIN
 
 const Header = () => {
+	const navigate = useNavigate();
 	return (
 		<header className={styles.header__container}>
 			<img src={logo} alt="Space Force Logo" />
 			<h1>
 				<span className={styles.header__title2}>Voyager</span>
 			</h1>
-			<Button variant="contained">Logout</Button>
+			<Grid
+				className={styles.header__button}
+				sx={{
+					display: "flex",
+					flexGrow: 1,
+					justifyContent: "flex-end"
+				}}
+			>
+				<Button variant="contained" onClick={() => navigate("/")}>
+					Logout
+				</Button>
+			</Grid>
 		</header>
 	);
 };

@@ -6,8 +6,11 @@ import {
 	TableCell,
 	Switch,
 	Button,
-	TextField
+	TextField,
+	IconButton
 } from "@mui/material";
+
+import { Delete } from "@mui/icons-material";
 
 const AdminTableRow = ({ entry }) => {
 	return (
@@ -42,9 +45,12 @@ const AdminTableRow = ({ entry }) => {
 				{/* should be a drop down once able to pull all the base names */}
 			</TableCell>
 			<TableCell>
-				<Button onClick={() => console.log(`Item Deleted id ${entry.id}`)}>
-					Delete
-				</Button>
+				<IconButton
+					aria-label="delete"
+					onClick={() => console.log(`Item Deleted id ${entry.id}`)}
+				>
+					<Delete />
+				</IconButton>
 			</TableCell>
 		</TableRow>
 	);
