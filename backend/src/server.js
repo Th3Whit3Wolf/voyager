@@ -20,6 +20,9 @@ app.get("/status", (req, res) => {
 	res.send("good");
 });
 
-app.use("/api/v1/", routes.squadrons);
+/// Read all exported routes and use them
+Object.keys(routes).forEach(route => {
+	app.use("/api/v1/", routes[route]);
+});
 
 export default app;
