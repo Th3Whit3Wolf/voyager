@@ -18,7 +18,8 @@ import {
 	Switch
 } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import Table from "../../components/Table/Table";
+import UserTable from "../../components/Tables/UserTable/UserTable";
+//import AdminTable from "../../components/Tables/AdminTable/AdminTable";
 // NOTE: Currently Dashboard is taking a prop called
 // role. This is coming from Login.jsx where the Fake
 // User and Admin navigations pass it in order to
@@ -70,14 +71,22 @@ const Dashboard = () => {
 					</TabList>
 
 					<TabPanel value="1">
-						These is where my in-processing task list shows up.
+						This is where my in-processing task list shows up.
 						<p>
 							This should show as a table view, where each row has a status and
 							can be toggled as complete or not. Clicking on a might show more
 							info?
 						</p>
 						<TableContainer component={Paper}>
-							<Table data={data} />
+							<UserTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
 						</TableContainer>
 					</TabPanel>
 
