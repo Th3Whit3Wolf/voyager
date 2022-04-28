@@ -14,7 +14,14 @@ const prisma = new PrismaClient({
 const select = {
 	id: true,
 	kind: true,
-	unit: true
+	unit: {
+		select: {
+			id: true,
+			name: true,
+			abbrev: true,
+			function: true
+		}
+	}
 };
 
 const Roles = {
