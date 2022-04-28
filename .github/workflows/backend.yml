@@ -22,44 +22,23 @@ jobs:
   build-and-test:
     name: Build and Test Backend
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:14-alpine
-        env:
-          # optional (defaults to `postgres`)
-          POSTGRES_DB: test
-          # required
-          POSTGRES_PASSWORD: postgres
-          # optional (defaults to `5432`)
-          POSTGRES_PORT: 5432
-          # optional (defaults to `postgres`)
-          POSTGRES_USER: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    env:
-      POSTGRES_HOST: postgres
-      DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
     steps:
       - uses: actions/checkout@v3
-      - name: Install dependencies
-        run: npm install
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Start containers
+        run: docker-compose -f "docker-compose.yml" up -d --build
 
       - name: Migrate database
         run: npm --prefix backend run db:reset -- --skip-generate --force
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
-          NODE_OPTIONS: "--experimental-vm-modules --experimental-specifier-resolution=node"
 
       - name: Run tests
         run: npm --prefix backend run test
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
-          NODE_OPTIONS: "--experimental-vm-modules --experimental-specifier-resolution=node"
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose -f "docker-compose.yml" down
 
   # This workflow kicks off the linter for your Backend.
   lint:
