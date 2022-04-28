@@ -22,13 +22,32 @@ jobs:
   build-and-test:
     name: Build and Test Backend
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_USER: localUser
+          POSTGRES_PASSWORD: localPassword
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
       - name: Build Backend
+        env:
+          DATABASE_URL: postgresql://localUser:localPassword@localhost:5432/test
         run: |
           docker build -t capstone-api ./backend
       - name: Test Backend
+        env:
+          DATABASE_URL: postgresql://localUser:localPassword@localhost:5432/test
         run: |
+          docker run -e CI=true capstone-api npm run db:reset -- --skip-generate --force
           docker run -e CI=true capstone-api npm run test
 
   # This workflow kicks off the linter for your Backend.
