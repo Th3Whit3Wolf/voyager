@@ -50,6 +50,11 @@ jobs:
           docker run \
           -e CI=true \
           -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
+          capstone-api npm run db:reset -- --skip-generate --force
+
+          docker run \
+          -e CI=true \
+          -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
           capstone-api npm run test
 
   # This workflow kicks off the linter for your Backend.
