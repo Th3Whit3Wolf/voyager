@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   capstone-db:
-    image: postgres
+    image: postgres:14-alpine
     restart: always
     environment:
       - DATABASE_HOST=${PG_HOST:-127.0.0.1}
