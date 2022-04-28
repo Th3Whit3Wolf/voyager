@@ -5,6 +5,7 @@ WORKDIR /app
 COPY . /app
 
 RUN npm install
+RUN npm run db:gen
 
 ENV PORT 8081
 
