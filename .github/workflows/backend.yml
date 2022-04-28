@@ -26,9 +26,14 @@ jobs:
       postgres:
         image: postgres:14-alpine
         env:
-          POSTGRES_USER: localUser
-          POSTGRES_PASSWORD: localPassword
+          # optional (defaults to `postgres`)
           POSTGRES_DB: test
+          # required
+          POSTGRES_PASSWORD: postgres
+          # optional (defaults to `5432`)
+          POSTGRES_PORT: 5432
+          # optional (defaults to `postgres`)
+          POSTGRES_USER: postgres
         ports:
           - 5432:5432
         options: >-
@@ -38,6 +43,7 @@ jobs:
           --health-retries 5
     env:
       POSTGRES_HOST: postgres
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
     steps:
       - uses: actions/checkout@v3
       - name: Build Backend
@@ -47,14 +53,28 @@ jobs:
             ./backend
       - name: Test Backend
         run: |
+          echo ${DATABASE_URL}
           docker run \
             -e CI=true \
-            -e DATABASE_URL="postgresql://localUser:localPassword@${POSTGRES_HOST}:5432/test" \
+            -e DATABASE_URL="postgres://postgres:postgres@localhost:5432/test" \
             capstone-api npm run db:reset -- --skip-generate --force
           docker run \
             -e CI=true \
-            -e DATABASE_URL="postgresql://localUser:localPassword@${POSTGRES_HOST}:5432/test" \
+            -e DATABASE_URL="postgres://postgres:postgres@localhost:5432/test" \
             capstone-api npm run test
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Migrate database
+        run: npm --prefix backend run db:reset
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
+
+      - name: Run tests
+        run: npm --prefix backend run test
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
 
   # This workflow kicks off the linter for your Backend.
   lint:
