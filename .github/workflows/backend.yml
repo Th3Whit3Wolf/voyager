@@ -22,26 +22,35 @@ jobs:
   build-and-test:
     name: Build and Test Backend
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        # Health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
-      - name: Get Node 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "npm"
-          cache-dependency-path: backend/package-lock.json
-      - run: npm --prefix backend install
-
-      - name: Start containers
-        run: docker-compose up -d --build
-
-      - name: Run tests
-        working-directory: ./backend
-        run: docker compose run capstone-api npm run test
-
-      - name: Stop containers
-        if: always()
-        run: docker-compose down
+      - name: Build Backend
+        run: |
+          docker build \
+          -t capstone-api \
+          -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
+          ./backend
+      - name: Test Backend
+        run: |
+          docker run \
+          -e CI=true \
+          -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
+          capstone-api npm run test
 
   # This workflow kicks off the linter for your Backend.
   lint:
