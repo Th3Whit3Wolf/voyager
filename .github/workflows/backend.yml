@@ -44,6 +44,12 @@ jobs:
           docker build \
           -t capstone-api \
           ./backend
+      - name: Migrate Database
+        run: |
+          pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
+          cd backend
+          export DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres"
+          run db:reset -- --skip-generate --force
       - name: Test Backend
         run: |
           pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
