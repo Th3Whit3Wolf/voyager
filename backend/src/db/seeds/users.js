@@ -221,7 +221,6 @@ const insertRandomUser = async (prisma, role, assignedUnit, allUnits, kind) => {
 		const entry = await prisma.User.create({
 			data
 		});
-		console.log({ entry });
 		if (debug) {
 			console.log(`  User: ${role.kind}: {`);
 			Object.entries(entry).forEach(([k, v], idx) => {
