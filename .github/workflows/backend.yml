@@ -24,12 +24,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build Backend
+      - name: Get Node 17
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17
+          cache: "npm"
+          cache-dependency-path: backend/package-lock.json
+      - run: npm --prefix backend install
+
+      - name: Start containers
+        run: docker-compose up -d
+
+      - name: Migrate database
+        working-directory: ./backend
         run: |
-          docker build -t capstone-api ./backend
-      - name: Test Backend
-        run: |
-          docker run -e CI=true capstone-api npm run test
+          pwd
+          npm install
+          npm run db:reset -- --skip-generate --force
+
+      - name: Run tests
+        working-directory: ./backend
+        run: npm run test
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose down
 
   # This workflow kicks off the linter for your Backend.
   lint:
