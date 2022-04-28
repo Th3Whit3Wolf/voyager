@@ -39,16 +39,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build Backend
-        env:
-          DATABASE_URL: postgresql://localUser:localPassword@localhost:5432/test
         run: |
-          docker build -t capstone-api ./backend
+          docker build \
+            -e DATABASE_URL:="postgresql://localUser:localPassword@localhost:5432/test"
+            -t capstone-api \
+            ./backend
       - name: Test Backend
-        env:
-          DATABASE_URL: postgresql://localUser:localPassword@localhost:5432/test
         run: |
-          docker run -e CI=true capstone-api npm run db:reset -- --skip-generate --force
-          docker run -e CI=true capstone-api npm run test
+          docker run \
+            -e CI=true \
+            -e DATABASE_URL:="postgresql://localUser:localPassword@localhost:5432/test" \
+            capstone-api npm run db:reset -- --skip-generate --force
+          docker run \
+            -e CI=true \
+            -e DATABASE_URL:="postgresql://localUser:localPassword@localhost:5432/test" \
+            capstone-api npm run test
 
   # This workflow kicks off the linter for your Backend.
   lint:
