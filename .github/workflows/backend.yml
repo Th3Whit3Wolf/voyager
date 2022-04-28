@@ -39,11 +39,27 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+          cache-dependency-path: backend/package-lock.json
+      - run: npm --prefix backend install
       - name: Build Backend
         run: |
           docker build \
           -t capstone-api \
           ./backend
+      - name: Migrate Database
+        working-directory: backend
+        run: |
+          pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
+          node -v
+          export DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres"
+          export NODE_OPTIONS="--experimental-vm-modules --experimental-specifier-resolution=node"
+          npm run db:testMigration
+          npm run db:seed
+
       - name: Test Backend
         run: |
           docker run \
