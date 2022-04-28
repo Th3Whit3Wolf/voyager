@@ -6,6 +6,8 @@ CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
     "firstName" VARCHAR(64) NOT NULL,
     "lastName" VARCHAR(64) NOT NULL,
+    "email" VARCHAR(128) NOT NULL,
+    "dsn" VARCHAR(32),
     "auth" TEXT NOT NULL,
     "officeSymbol" VARCHAR(64) NOT NULL,
     "status" "ProcessingStatus" NOT NULL,
@@ -19,6 +21,9 @@ CREATE TABLE "users" (
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_assigned_unit_id_fkey" FOREIGN KEY ("assigned_unit_id") REFERENCES "units"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
