@@ -33,7 +33,7 @@ jobs:
       - run: npm --prefix backend install
 
       - name: Start containers
-        run: docker-compose up -d
+        run: docker-compose up -d --build
 
       - name: Run tests
         working-directory: ./backend
