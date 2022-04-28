@@ -32,7 +32,10 @@ jobs:
 
       - name: Migrate database
         working-directory: ./backend
-        run: npm run db:reset -- --skip-generate --force
+        run: |
+          pwd
+          npm install
+          npm run db:reset -- --skip-generate --force
 
       - name: Run tests
         working-directory: ./backend
