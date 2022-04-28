@@ -32,7 +32,11 @@ export default function App() {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<Header />
-				<Container maxWidth="xl">
+				<Container
+					maxWidth="fixed"
+					sx={{ maxWidth: "auto" }}
+					disableGutters={false}
+				>
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/dashboard" element={<Dashboard />} />
