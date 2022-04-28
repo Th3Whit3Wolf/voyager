@@ -23,9 +23,13 @@ jobs:
     name: Build and Test Backend
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+
+      - name: Get Node 17
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 17
 
       - name: Start containers
         run: docker-compose up -d
