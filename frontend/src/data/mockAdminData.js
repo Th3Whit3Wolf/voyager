@@ -1,4 +1,4 @@
-export const mockUserData = [
+export const mockAdminData = [
 	{
 		id: 1,
 		title: "Form 55",

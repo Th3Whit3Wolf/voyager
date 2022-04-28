@@ -10,7 +10,7 @@ import {
 	Paper,
 	Tab,
 	TableContainer,
-	Table,
+	Table as MuiTable,
 	TableHead,
 	TableBody,
 	TableRow,
@@ -18,7 +18,9 @@ import {
 	Switch
 } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-
+import UserTable from "../../components/Tables/UserTable/UserTable";
+import AdminTable from "../../components/Tables/AdminTable/AdminTable";
+//import AdminTable from "../../components/Tables/AdminTable/AdminTable";
 // NOTE: Currently Dashboard is taking a prop called
 // role. This is coming from Login.jsx where the Fake
 // User and Admin navigations pass it in order to
@@ -40,7 +42,7 @@ const Dashboard = () => {
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
 	const role = location.state.role;
-	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 1500); // only created data for User , not Admin yet, Admin gives a console log
+	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 500); // only created data for User , not Admin yet, Admin gives a console log
 
 	// useEffect(() => {
 	// 	console.log(data, error, isLoading);
@@ -63,8 +65,6 @@ const Dashboard = () => {
 	if (role === "user") {
 		return (
 			<>
-				<h1>User Dashboard</h1>
-
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
@@ -72,48 +72,22 @@ const Dashboard = () => {
 					</TabList>
 
 					<TabPanel value="1">
-						These is where my in-processing task list shows up.
+						This is where my in-processing task list shows up.
 						<p>
 							This should show as a table view, where each row has a status and
-							can be toggled as complete or not. Clicking on a might show more
-							info?
+							can be toggled as complete or not. Clicking on a row might show
+							more info?
 						</p>
 						<TableContainer component={Paper}>
-							<Table size={"small"}>
-								<TableHead>
-									<TableRow>
-										<TableCell></TableCell>
-										<TableCell>Task Name</TableCell>
-										<TableCell>Short Description</TableCell>
-										<TableCell>POC Name</TableCell>
-										<TableCell>POC Phone</TableCell>
-										<TableCell>POC Email</TableCell>
-										<TableCell>Last Updated</TableCell>
-										<TableCell>Owner</TableCell>
-										<TableCell></TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{data.map(entry => (
-										<TableRow hover={true} key={entry.id}>
-											<TableCell>
-												<Switch />
-											</TableCell>
-											<TableCell>{entry.title}</TableCell>
-											<TableCell>{entry.description}</TableCell>
-											<TableCell>{entry.approver}</TableCell>
-											<TableCell>Not in Current ERD</TableCell>
-											<TableCell>Not in Current ERD</TableCell>
-											<TableCell>
-												{`${
-													entry.updated_at.getUTCMonth() + 1
-												} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
-											</TableCell>
-											<TableCell>{entry.owner}</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
-							</Table>
+							<UserTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
 						</TableContainer>
 					</TabPanel>
 
@@ -123,44 +97,17 @@ const Dashboard = () => {
 							This should show as a table view, where each row has a status and
 							can be toggled as complete or not. Clicking on a might show more
 							info?{" "}
-							<strong>
-								Did not update the table below to be reflective of mockUserData
-								as the Inprocessing tab{" "}
-							</strong>
 						</p>
 						<TableContainer component={Paper}>
-							<Table size={"small"}>
-								<TableHead>
-									<TableRow>
-										<TableCell>Checkbox</TableCell>
-										<TableCell>Task Name</TableCell>
-										<TableCell>Short Description</TableCell>
-										<TableCell>POC Name</TableCell>
-										<TableCell>POC Phone</TableCell>
-										<TableCell>POC Email</TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									<TableRow hover={true}>
-										<TableCell>CB Icon Here</TableCell>
-										<TableCell>Form 55</TableCell>
-										<TableCell>
-											Send your current form 55 to Safety Rep.
-										</TableCell>
-										<TableCell>Capt Safety Pants</TableCell>
-										<TableCell>(123) 456-7899</TableCell>
-										<TableCell>safety.pants@email.com</TableCell>
-									</TableRow>
-									<TableRow hover={true}>
-										<TableCell>CB Icon Here</TableCell>
-										<TableCell>GTC Activation</TableCell>
-										<TableCell>Go see Sally Sue to activate GTC</TableCell>
-										<TableCell>Ms. Sally Sue</TableCell>
-										<TableCell>(123) 456-7899</TableCell>
-										<TableCell>sally.sue@email.com</TableCell>
-									</TableRow>
-								</TableBody>
-							</Table>
+							<UserTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
 						</TableContainer>
 					</TabPanel>
 				</TabContext>
@@ -172,8 +119,6 @@ const Dashboard = () => {
 	if (role === "admin") {
 		return (
 			<>
-				<h1>Admin Dashboard</h1>
-
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
@@ -190,6 +135,17 @@ const Dashboard = () => {
 							should allow for Delete, Row-wise Entry Patches, or adding a new
 							row to the bottom.
 						</p>
+						<TableContainer component={Paper}>
+							<AdminTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
+						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="2">
@@ -202,6 +158,17 @@ const Dashboard = () => {
 							should allow for Delete, Row-wise Entry Patches, or adding a new
 							row to the bottom.
 						</p>{" "}
+						<TableContainer component={Paper}>
+							<AdminTable
+								data={
+									tabValue === "1"
+										? data.filter(tasker => tasker.task_type === "Inprocessing")
+										: data.filter(
+												tasker => tasker.task_type === "Outprocessing"
+										  )
+								}
+							/>
+						</TableContainer>
 					</TabPanel>
 				</TabContext>
 			</>
