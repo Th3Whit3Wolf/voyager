@@ -1,4 +1,5 @@
 import { createRequire } from "module";
+// eslint-disable-next-line import/no-cycle
 import { log, statusUpdate } from "./utils";
 
 const require = createRequire(import.meta.url);
