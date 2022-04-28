@@ -28,17 +28,19 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Start containers
-        run: docker-compose -f "docker-compose.yml" up -d --build
+        run: docker-compose up -d
 
       - name: Migrate database
-        run: npm --prefix backend run db:reset -- --skip-generate --force
+        working-directory: ./backend
+        run: npm run db:reset -- --skip-generate --force
 
       - name: Run tests
-        run: npm --prefix backend run test
+        working-directory: ./backend
+        run: npm run test
 
       - name: Stop containers
         if: always()
-        run: docker-compose -f "docker-compose.yml" down
+        run: docker-compose down
 
   # This workflow kicks off the linter for your Backend.
   lint:
