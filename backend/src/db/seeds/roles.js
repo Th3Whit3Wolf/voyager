@@ -1,5 +1,7 @@
 import { createRequire } from "module";
+// eslint-disable-next-line import/no-cycle
 import { statusUpdate } from "./utils";
+// eslint-disable-next-line import/no-cycle
 import { getUnit } from "./units";
 
 const require = createRequire(import.meta.url);
