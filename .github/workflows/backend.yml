@@ -24,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Get Node 16
+      - name: Get Node 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: "npm"
           cache-dependency-path: backend/package-lock.json
       - run: npm --prefix backend install
@@ -37,10 +37,7 @@ jobs:
 
       - name: Migrate database
         working-directory: ./backend
-        run: |
-          pwd
-          npm install
-          npm run db:reset -- --skip-generate --force
+        run: docker compose run capstone-api npm run test
 
       - name: Run tests
         working-directory: ./backend
