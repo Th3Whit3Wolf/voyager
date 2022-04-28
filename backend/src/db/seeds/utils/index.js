@@ -1,5 +1,10 @@
 import { Console } from "console";
 import { Transform } from "stream";
+// eslint-disable-next-line import/no-cycle
+import { areRolesUp } from "../roles";
+// eslint-disable-next-line import/no-cycle
+import { areUnitsUp } from "../units";
+import { randomDSN, randomName, randomOfficeSymbol } from "./random";
 
 const PG_USER = process.env.PG_USER || "postgres";
 const PG_PASSWORD = process.env.PG_PASSWORD || "docker";
@@ -50,4 +55,28 @@ const statusUpdate = (schemaName, data) => {
 	);
 };
 
-export { log, statusUpdate, URI };
+const isSchemaSeeded = async (prisma, tableName) => {
+	switch (tableName) {
+		case "Unit":
+			return areUnitsUp(prisma);
+		case "Role":
+			return areRolesUp(prisma);
+		default:
+			throw new Error(
+				`[UTILS]::isSchemaSeeded => Invalid table name. Expected one of ${[
+					"Unit",
+					"Roles"
+				].join(", ")}, found ${tableName}`
+			);
+	}
+};
+
+export {
+	log,
+	randomDSN,
+	randomName,
+	randomOfficeSymbol,
+	statusUpdate,
+	URI,
+	isSchemaSeeded
+};
