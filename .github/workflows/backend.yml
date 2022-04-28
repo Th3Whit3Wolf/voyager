@@ -53,11 +53,13 @@ jobs:
         run: npm --prefix backend run db:reset -- --skip-generate --force
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
+          NODE_OPTIONS: "--experimental-vm-modules --experimental-specifier-resolution=node"
 
       - name: Run tests
         run: npm --prefix backend run test
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
+          NODE_OPTIONS: "--experimental-vm-modules --experimental-specifier-resolution=node"
 
   # This workflow kicks off the linter for your Backend.
   lint:
