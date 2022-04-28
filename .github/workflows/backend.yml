@@ -51,19 +51,16 @@ jobs:
           -t capstone-api \
           ./backend
       - name: Migrate Database
+        working-directory: backend
         run: |
           pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
-          cd backend
+          node -v
           export DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres"
-          npm run db:reset -- --skip-generate --force
+          export NODE_OPTIONS="--experimental-vm-modules --experimental-specifier-resolution=node"
+          npm run db:testMigration
+
       - name: Test Backend
         run: |
-          pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
-          docker run \
-          -e CI=true \
-          -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
-          capstone-api npm run db:reset -- --skip-generate --force
-
           docker run \
           -e CI=true \
           -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
