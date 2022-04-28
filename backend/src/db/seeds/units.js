@@ -1,4 +1,5 @@
 import { createRequire } from "module";
+// eslint-disable-next-line import/no-cycle
 import { log, statusUpdate } from "./utils";
 
 const require = createRequire(import.meta.url);
@@ -314,21 +315,38 @@ const checkUnitStatus = async prisma => {
 			Expected: commands.length
 		},
 		{
-			Name: "Commands",
+			Name: "Installations",
 			Current: dbInstallations.length,
 			Expected: installations.length
 		},
 		{
-			Name: "Commands",
+			Name: "Deltas",
 			Current: dbDeltas.length,
 			Expected: deltas.length
 		},
 		{
-			Name: "Commands",
+			Name: "Squadrons",
 			Current: dbSquadrons.length,
 			Expected: squadrons.length
 		}
 	]);
 };
 
-export { mkUnits, checkUnitStatus, getUnit };
+const areUnitsUp = async prisma => {
+	try {
+		const dbCommands = await getUnit.Command(prisma);
+		const dbInstallations = await getUnit.Installation(prisma);
+		const dbDeltas = await getUnit.Delta(prisma);
+		const dbSquadrons = await getUnit.Squadron(prisma);
+		return (
+			dbCommands.length === commands.length &&
+			dbInstallations.length === installations.length &&
+			dbDeltas.length === deltas.length &&
+			dbSquadrons.length === squadrons.length
+		);
+	} catch (_) {
+		return false;
+	}
+};
+
+export { mkUnits, checkUnitStatus, getUnit, areUnitsUp };

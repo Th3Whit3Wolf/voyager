@@ -1,5 +1,7 @@
 import { createRequire } from "module";
+// eslint-disable-next-line import/no-cycle
 import { statusUpdate } from "./utils";
+// eslint-disable-next-line import/no-cycle
 import { getUnit } from "./units";
 
 const require = createRequire(import.meta.url);
@@ -9,6 +11,45 @@ const deltas = require("./data/deltas.json");
 const squadrons = require("./data/squadrons.json");
 
 const debug = process.env.DEBUG;
+
+const getRole = {
+	User: async prisma => {
+		const q = await prisma.Role.findMany({
+			where: { kind: "USER" }
+		});
+		return q;
+	},
+	Site: async prisma => {
+		const q = await prisma.Role.findMany({
+			where: { kind: "SITE_ADMIN" }
+		});
+		return q;
+	},
+	Command: async prisma => {
+		const q = await prisma.Role.findMany({
+			where: { kind: "COMMAND_ADMIN" }
+		});
+		return q;
+	},
+	Installation: async prisma => {
+		const q = await prisma.Role.findMany({
+			where: { kind: "INSTALLATION_ADMIN" }
+		});
+		return q;
+	},
+	Delta: async prisma => {
+		const q = await prisma.Role.findMany({
+			where: { kind: "DELTA_ADMIN" }
+		});
+		return q;
+	},
+	Squadron: async prisma => {
+		const q = await prisma.Role.findMany({
+			where: { kind: "SQUADRON_ADMIN" }
+		});
+		return q;
+	}
+};
 
 const checkRequirements = async prisma => {
 	try {
@@ -192,56 +233,17 @@ const mkRoles = async prisma => {
 	}
 };
 
-const getRoles = {
-	User: async prisma => {
-		const q = await prisma.Role.findMany({
-			where: { kind: "USER" }
-		});
-		return q;
-	},
-	Site: async prisma => {
-		const q = await prisma.Role.findMany({
-			where: { kind: "SITE_ADMIN" }
-		});
-		return q;
-	},
-	Command: async prisma => {
-		const q = await prisma.Role.findMany({
-			where: { kind: "COMMAND_ADMIN" }
-		});
-		return q;
-	},
-	Installation: async prisma => {
-		const q = await prisma.Role.findMany({
-			where: { kind: "INSTALLATION_ADMIN" }
-		});
-		return q;
-	},
-	Delta: async prisma => {
-		const q = await prisma.Role.findMany({
-			where: { kind: "DELTA_ADMIN" }
-		});
-		return q;
-	},
-	Squadron: async prisma => {
-		const q = await prisma.Role.findMany({
-			where: { kind: "SQUADRON_ADMIN" }
-		});
-		return q;
-	}
-};
-
 const checkRoleStatus = async prisma => {
 	const dbCommands = await getUnit.Command(prisma);
 	const dbInstallations = await getUnit.Installation(prisma);
 	const dbDeltas = await getUnit.Delta(prisma);
 	const dbSquadrons = await getUnit.Squadron(prisma);
-	const dbUsers = await getRoles.User(prisma);
-	const dbSiteAdmins = await getRoles.Site(prisma);
-	const dbCommandAdmins = await getRoles.Command(prisma);
-	const dbInstallationAdmin = await getRoles.Installation(prisma);
-	const dbDeltaAdmin = await getRoles.Delta(prisma);
-	const dbSquadronAdmin = await getRoles.Squadron(prisma);
+	const dbUsers = await getRole.User(prisma);
+	const dbSiteAdmins = await getRole.Site(prisma);
+	const dbCommandAdmins = await getRole.Command(prisma);
+	const dbInstallationAdmin = await getRole.Installation(prisma);
+	const dbDeltaAdmin = await getRole.Delta(prisma);
+	const dbSquadronAdmin = await getRole.Squadron(prisma);
 
 	statusUpdate("Role", [
 		{ Name: "Users", Current: dbUsers.length, Expected: 1 },
@@ -273,4 +275,29 @@ const checkRoleStatus = async prisma => {
 	]);
 };
 
-export { getRoles, mkRoles, checkRoleStatus };
+const areRolesUp = async prisma => {
+	try {
+		const dbCommands = await getUnit.Command(prisma);
+		const dbInstallations = await getUnit.Installation(prisma);
+		const dbDeltas = await getUnit.Delta(prisma);
+		const dbSquadrons = await getUnit.Squadron(prisma);
+		const dbUsers = await getRole.User(prisma);
+		const dbSiteAdmins = await getRole.Site(prisma);
+		const dbCommandAdmins = await getRole.Command(prisma);
+		const dbInstallationAdmin = await getRole.Installation(prisma);
+		const dbDeltaAdmin = await getRole.Delta(prisma);
+		const dbSquadronAdmin = await getRole.Squadron(prisma);
+		return (
+			dbUsers.length === 1 &&
+			dbSiteAdmins.length === 1 &&
+			dbCommandAdmins.length === dbCommands.length &&
+			dbInstallationAdmin.length === dbInstallations.length &&
+			dbDeltaAdmin.length === dbDeltas.length &&
+			dbSquadronAdmin.length === dbSquadrons.length
+		);
+	} catch (_) {
+		return false;
+	}
+};
+
+export { getRole, mkRoles, checkRoleStatus, areRolesUp };
