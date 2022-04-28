@@ -22,14 +22,50 @@ jobs:
   build-and-test:
     name: Build and Test Backend
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        # Health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+          cache-dependency-path: backend/package-lock.json
+      - run: npm --prefix backend install
       - name: Build Backend
         run: |
-          docker build -t capstone-api ./backend
+          docker build \
+          -t capstone-api \
+          ./backend
+      - name: Migrate Database
+        working-directory: backend
+        run: |
+          pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
+          node -v
+          export DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres"
+          export NODE_OPTIONS="--experimental-vm-modules --experimental-specifier-resolution=node"
+          npm run db:testMigration
+          npm run db:seed
+
       - name: Test Backend
         run: |
-          docker run -e CI=true capstone-api npm run test
+          docker run \
+          -e CI=true \
+          -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
+          capstone-api npm run test
 
   # This workflow kicks off the linter for your Backend.
   lint:
