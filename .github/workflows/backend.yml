@@ -50,7 +50,7 @@ jobs:
         run: npm install
 
       - name: Migrate database
-        run: npm --prefix backend run db:reset
+        run: npm --prefix backend run db:reset -- --skip-generate --force
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
 
