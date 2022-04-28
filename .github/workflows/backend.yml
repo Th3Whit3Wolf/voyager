@@ -36,6 +36,8 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+    env:
+      POSTGRES_HOST: postgres
     steps:
       - uses: actions/checkout@v3
       - name: Build Backend
@@ -47,11 +49,11 @@ jobs:
         run: |
           docker run \
             -e CI=true \
-            -e DATABASE_URL="postgresql://localUser:localPassword@localhost:5432/test" \
+            -e DATABASE_URL="postgresql://localUser:localPassword@${POSTGRES_HOST}:5432/test" \
             capstone-api npm run db:reset -- --skip-generate --force
           docker run \
             -e CI=true \
-            -e DATABASE_URL="postgresql://localUser:localPassword@localhost:5432/test" \
+            -e DATABASE_URL="postgresql://localUser:localPassword@${POSTGRES_HOST}:5432/test" \
             capstone-api npm run test
 
   # This workflow kicks off the linter for your Backend.
