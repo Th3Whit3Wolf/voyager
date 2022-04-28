@@ -41,7 +41,7 @@ jobs:
       - name: Build Backend
         run: |
           docker build \
-            -e DATABASE_URL:="postgresql://localUser:localPassword@localhost:5432/test"
+            -e DATABASE_URL:="postgresql://localUser:localPassword@localhost:5432/test" \
             -t capstone-api \
             ./backend
       - name: Test Backend
