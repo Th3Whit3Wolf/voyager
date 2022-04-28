@@ -25,7 +25,8 @@ describe("GET Tests", () => {
 			id: 37,
 			check: { label: "name", value: "328th Weapons Squadron" }
 		},
-		roles: { id: 2, check: { label: "kind", value: "COMMAND_ADMIN" } }
+		roles: { id: 2, check: { label: "kind", value: "COMMAND_ADMIN" } },
+		users: { id: 1 }
 	};
 
 	/// Read all exported routes and use them
