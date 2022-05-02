@@ -6,8 +6,6 @@
     "kind": "COMMAND",
     "function": "Space, cyber, and intelligence operations, and combat support",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -19,8 +17,6 @@
     "kind": "COMMAND",
     "function": "Space training, test and evaluation, and doctrine development",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -32,8 +28,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Aurora, Colorado",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -45,8 +39,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "El Segundo, California",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -58,8 +50,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Brevard County, Florida",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -71,8 +61,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Colorado Springs, Colorado",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -84,8 +72,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Colorado Springs, Colorado",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -97,8 +83,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Santa Barbara County, California",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -110,8 +94,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Cape Canaveral, Florida",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -123,8 +105,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Bourne, Massachusetts",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -136,8 +116,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Cavalier, North Dakota",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -149,8 +127,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Colorado Springs, Colorado",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -162,8 +138,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Clear, Alaska",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -175,8 +149,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Honolulu County, Hawaii",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -188,8 +160,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "New Boston, New Hampshire",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -201,8 +171,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Qaanaaq, Greenland",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -214,8 +182,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Albuquerque, New Mexico",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -227,8 +193,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Dayton, Ohio",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -240,8 +204,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Eglin AFB, Florida",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -253,8 +215,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Montgomery, Alabama",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -266,8 +226,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Marysville, California",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -279,8 +237,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Colorado Springs, Colorado",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -292,8 +248,6 @@
     "kind": "INSTALLATION",
     "function": null,
     "location": "Nellis AFB, Nevada",
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": null,
     "grandParentID": null,
     "installationID": null
@@ -305,8 +259,6 @@
     "kind": "DELTA",
     "function": "Space training",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 2,
     "grandParentID": null,
     "installationID": null
@@ -318,8 +270,6 @@
     "kind": "DELTA",
     "function": "Space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -331,8 +281,6 @@
     "kind": "DELTA",
     "function": "Space electronic warfare",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -344,8 +292,6 @@
     "kind": "DELTA",
     "function": "Missile warning",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -357,8 +303,6 @@
     "kind": "DELTA",
     "function": "Command and control",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -370,8 +314,6 @@
     "kind": "DELTA",
     "function": "Cyberspace operations",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -383,8 +325,6 @@
     "kind": "DELTA",
     "function": "Intelligence, surveillance, and reconnaissance",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -396,8 +336,6 @@
     "kind": "DELTA",
     "function": "Satellite communication and navigation warfare",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -409,8 +347,6 @@
     "kind": "DELTA",
     "function": "Orbital warfare",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 1,
     "grandParentID": null,
     "installationID": null
@@ -422,8 +358,6 @@
     "kind": "DELTA",
     "function": "Space doctrine and wargaming",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 2,
     "grandParentID": null,
     "installationID": null
@@ -435,8 +369,6 @@
     "kind": "DELTA",
     "function": "Space range and aggressor",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 2,
     "grandParentID": null,
     "installationID": null
@@ -448,8 +380,6 @@
     "kind": "DELTA",
     "function": "Space test and evaluation",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 2,
     "grandParentID": null,
     "installationID": null
@@ -461,8 +391,6 @@
     "kind": "DELTA",
     "function": "Space education",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 2,
     "grandParentID": null,
     "installationID": null
@@ -474,8 +402,6 @@
     "kind": "SQUADRON",
     "function": "Delta staff and squadron management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 24,
     "grandParentID": 2,
     "installationID": 8
@@ -487,8 +413,6 @@
     "kind": "SQUADRON",
     "function": "Advanced space operations training",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 24,
     "grandParentID": 2,
     "installationID": 6
@@ -500,8 +424,6 @@
     "kind": "SQUADRON",
     "function": "Space Force Weapons School",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 24,
     "grandParentID": 2,
     "installationID": 23
@@ -513,8 +435,6 @@
     "kind": "SQUADRON",
     "function": "Military simulations and exercises",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 24,
     "grandParentID": 2,
     "installationID": 7
@@ -526,8 +446,6 @@
     "kind": "SQUADRON",
     "function": "Undergraduate space training",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 24,
     "grandParentID": 2,
     "installationID": 8
@@ -539,8 +457,6 @@
     "kind": "SQUADRON",
     "function": "Operational training and certification, tactics development, engineering support, and crew force management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 25,
     "grandParentID": 1,
     "installationID": 6
@@ -552,8 +468,6 @@
     "kind": "SQUADRON",
     "function": "Space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 25,
     "grandParentID": 1,
     "installationID": 6
@@ -565,8 +479,6 @@
     "kind": "SQUADRON",
     "function": "Space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 25,
     "grandParentID": 1,
     "installationID": 19
@@ -578,8 +490,6 @@
     "kind": "SQUADRON",
     "function": "Space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 25,
     "grandParentID": 1,
     "installationID": 17
@@ -591,8 +501,6 @@
     "kind": "SQUADRON",
     "function": "Operational training and certification, tactics development, engineering support, and crew force management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 26,
     "grandParentID": 1,
     "installationID": 6
@@ -604,8 +512,6 @@
     "kind": "SQUADRON",
     "function": "Space electronic warfare",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 26,
     "grandParentID": 1,
     "installationID": 6
@@ -617,8 +523,6 @@
     "kind": "SQUADRON",
     "function": "Space electronic warfare",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 26,
     "grandParentID": 1,
     "installationID": 6
@@ -630,8 +534,6 @@
     "kind": "SQUADRON",
     "function": "Space electronic warfare",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 26,
     "grandParentID": 1,
     "installationID": 6
@@ -643,8 +545,6 @@
     "kind": "SQUADRON",
     "function": "Operational training and certification, tactics development, engineering support, and crew force management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 3
@@ -656,8 +556,6 @@
     "kind": "SQUADRON",
     "function": "Missile warning, missile defense, battlespace awareness, and technical intelligence",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 3
@@ -669,8 +567,6 @@
     "kind": "SQUADRON",
     "function": "Missile warning and space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 10
@@ -682,8 +578,6 @@
     "kind": "SQUADRON",
     "function": "Missile Defense and space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 21
@@ -695,8 +589,6 @@
     "kind": "SQUADRON",
     "function": "Missile warning and space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 11
@@ -708,8 +600,6 @@
     "kind": "SQUADRON",
     "function": "Missile warning, missile defense, battlespace awareness, and technical intelligence",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 3
@@ -721,8 +611,6 @@
     "kind": "SQUADRON",
     "function": "Missile warning and space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 16
@@ -734,8 +622,6 @@
     "kind": "SQUADRON",
     "function": "Missile warning, missile defense, and space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 13
@@ -747,8 +633,6 @@
     "kind": "SQUADRON",
     "function": "Military communications",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 3
@@ -760,8 +644,6 @@
     "kind": "SQUADRON",
     "function": "Operations training and evaluation, and military exercise execution",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 8
@@ -773,8 +655,6 @@
     "kind": "SQUADRON",
     "function": "Air Force reserve component",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 27,
     "grandParentID": 1,
     "installationID": 8
@@ -786,8 +666,6 @@
     "kind": "SQUADRON",
     "function": "Pacific Satellite Control Network operations, Global Positioning System ground infrastructure, Western Range launch support, and defensive cyber operations",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 29,
     "grandParentID": 1,
     "installationID": 8
@@ -799,8 +677,6 @@
     "kind": "SQUADRON",
     "function": "Satellite Control Network command and control[",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 29,
     "grandParentID": 1,
     "installationID": 7
@@ -812,8 +688,6 @@
     "kind": "SQUADRON",
     "function": "Atlantic Satellite Control Network operations, Global Positioning System ground infrastructure, and Eastern Range launch support",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 29,
     "grandParentID": 1,
     "installationID": 15
@@ -825,8 +699,6 @@
     "kind": "SQUADRON",
     "function": "Defensive cyber operations",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 29,
     "grandParentID": 1,
     "installationID": 7
@@ -838,8 +710,6 @@
     "kind": "SQUADRON",
     "function": "Defensive cyber operations",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 29,
     "grandParentID": 1,
     "installationID": 3
@@ -851,8 +721,6 @@
     "kind": "SQUADRON",
     "function": "Military communications",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 29,
     "grandParentID": 1,
     "installationID": 8
@@ -864,8 +732,6 @@
     "kind": "SQUADRON",
     "function": "Intelligence, surveillance, and reconnaissance support to space mission deltas",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 30,
     "grandParentID": 1,
     "installationID": 6
@@ -877,8 +743,6 @@
     "kind": "SQUADRON",
     "function": "Intelligence, surveillance, and reconnaissance",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 30,
     "grandParentID": 1,
     "installationID": 6
@@ -890,8 +754,6 @@
     "kind": "SQUADRON",
     "function": "Global ISR operations to support the research, development and acquisition of future space capabilities",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 30,
     "grandParentID": 1,
     "installationID": 18
@@ -903,8 +765,6 @@
     "kind": "SQUADRON",
     "function": "Operational training and certification, tactics development, engineering support, and crew force management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 31,
     "grandParentID": 1,
     "installationID": 7
@@ -916,8 +776,6 @@
     "kind": "SQUADRON",
     "function": "Navigation warfare",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 31,
     "grandParentID": 1,
     "installationID": 7
@@ -929,8 +787,6 @@
     "kind": "SQUADRON",
     "function": "Satellite communication",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 31,
     "grandParentID": 1,
     "installationID": 7
@@ -942,8 +798,6 @@
     "kind": "SQUADRON",
     "function": "Operational training and certification, tactics development, engineering support, and crew force management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 32,
     "grandParentID": 1,
     "installationID": 7
@@ -955,8 +809,6 @@
     "kind": "SQUADRON",
     "function": "Space domain awareness",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 32,
     "grandParentID": 1,
     "installationID": 7
@@ -968,8 +820,6 @@
     "kind": "SQUADRON",
     "function": "Space defense",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 32,
     "grandParentID": 1,
     "installationID": 7
@@ -981,8 +831,6 @@
     "kind": "SQUADRON",
     "function": "Technology demonstration",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 32,
     "grandParentID": 1,
     "installationID": 7
@@ -994,8 +842,6 @@
     "kind": "SQUADRON",
     "function": "Operations support",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 33,
     "grandParentID": 2,
     "installationID": 22
@@ -1007,8 +853,6 @@
     "kind": "SQUADRON",
     "function": "Doctrine and tactics",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 33,
     "grandParentID": 2,
     "installationID": 22
@@ -1020,8 +864,6 @@
     "kind": "SQUADRON",
     "function": "Wargames",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 33,
     "grandParentID": 2,
     "installationID": 22
@@ -1033,8 +875,6 @@
     "kind": "SQUADRON",
     "function": "Delta staff and squadron management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 34,
     "grandParentID": 2,
     "installationID": 7
@@ -1046,8 +886,6 @@
     "kind": "SQUADRON",
     "function": "Space Test and Training Range management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 34,
     "grandParentID": 2,
     "installationID": 7
@@ -1059,8 +897,6 @@
     "kind": "SQUADRON",
     "function": "Aggressor squadron",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 34,
     "grandParentID": 2,
     "installationID": 7
@@ -1072,8 +908,6 @@
     "kind": "SQUADRON",
     "function": "Delta staff and squadron management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 35,
     "grandParentID": 2,
     "installationID": 7
@@ -1085,8 +919,6 @@
     "kind": "SQUADRON",
     "function": "Space command and control capabilities testing",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 35,
     "grandParentID": 2,
     "installationID": 7
@@ -1098,8 +930,6 @@
     "kind": "SQUADRON",
     "function": "Orbital warfare capabilities testing",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 35,
     "grandParentID": 2,
     "installationID": 7
@@ -1111,8 +941,6 @@
     "kind": "SQUADRON",
     "function": "Electromagnetic spectrum capabilities testing",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 35,
     "grandParentID": 2,
     "installationID": 7
@@ -1124,8 +952,6 @@
     "kind": "SQUADRON",
     "function": "Missile warning and space domain awareness capabilities testing",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 35,
     "grandParentID": 2,
     "installationID": 7
@@ -1137,8 +963,6 @@
     "kind": "SQUADRON",
     "function": "Delta staff and squadron management",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 36,
     "grandParentID": 2,
     "installationID": 20
@@ -1150,8 +974,6 @@
     "kind": "SQUADRON",
     "function": "Military space education",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 36,
     "grandParentID": 2,
     "installationID": 6
@@ -1163,8 +985,6 @@
     "kind": "SQUADRON",
     "function": "Enlisted professional military education",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 36,
     "grandParentID": 2,
     "installationID": 6
@@ -1176,8 +996,6 @@
     "kind": "SQUADRON",
     "function": "Space Force liaison to U.S. Air Force Academy",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 36,
     "grandParentID": 2,
     "installationID": 22
@@ -1189,8 +1007,6 @@
     "kind": "SQUADRON",
     "function": "Space Force liaison to Air University",
     "location": null,
-    "createdAt": "2022-04-21T00:0:0.497Z",
-    "updatedAt": "2022-04-21T00:0:0.497Z",
     "parentID": 36,
     "grandParentID": 2,
     "installationID": 20
