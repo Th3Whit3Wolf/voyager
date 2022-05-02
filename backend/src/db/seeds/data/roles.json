@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "kind": "SITE_ADMIN",
+    "createdAt": "2022-04-30T18:21:40.390Z",
+    "updatedAt": "2022-04-30T18:21:40.390Z"
+  },
+  {
+    "id": 2,
+    "kind": "COMMAND_ADMIN",
+    "createdAt": "2022-04-30T18:21:40.390Z",
+    "updatedAt": "2022-04-30T18:21:40.390Z"
+  },
+  {
+    "id": 3,
+    "kind": "DELTA_ADMIN",
+    "createdAt": "2022-04-30T18:21:40.390Z",
+    "updatedAt": "2022-04-30T18:21:40.390Z"
+  },
+  {
+    "id": 4,
+    "kind": "INSTALLATION_ADMIN",
+    "createdAt": "2022-04-30T18:21:40.390Z",
+    "updatedAt": "2022-04-30T18:21:40.390Z"
+  },
+  {
+    "id": 5,
+    "kind": "SQUADRON_ADMIN",
+    "createdAt": "2022-04-30T18:21:40.390Z",
+    "updatedAt": "2022-04-30T18:21:40.390Z"
+  },
+  {
+    "id": 6,
+    "kind": "TASK_APPROVER",
+    "createdAt": "2022-04-30T18:21:40.390Z",
+    "updatedAt": "2022-04-30T18:21:40.390Z"
+  },
+  {
+    "id": 7,
+    "kind": "USER",
+    "createdAt": "2022-04-30T18:21:40.390Z",
+    "updatedAt": "2022-04-30T18:21:40.390Z"
+  }
+]
