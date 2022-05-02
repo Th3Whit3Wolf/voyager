@@ -34,7 +34,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7339,
     "unitID": 3
@@ -44,7 +44,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7340,
     "unitID": 3
@@ -54,7 +54,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7341,
     "unitID": 3
@@ -64,7 +64,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7342,
     "unitID": 3
@@ -74,7 +74,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7343,
     "unitID": 3
@@ -84,7 +84,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7344,
     "unitID": 3
@@ -124,7 +124,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7348,
     "unitID": 4
@@ -134,7 +134,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7349,
     "unitID": 4
@@ -144,7 +144,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7350,
     "unitID": 4
@@ -154,7 +154,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7351,
     "unitID": 4
@@ -164,7 +164,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7352,
     "unitID": 4
@@ -174,7 +174,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7353,
     "unitID": 4
@@ -214,7 +214,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7357,
     "unitID": 5
@@ -224,7 +224,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7358,
     "unitID": 5
@@ -234,7 +234,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7359,
     "unitID": 5
@@ -244,7 +244,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7360,
     "unitID": 5
@@ -254,7 +254,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7361,
     "unitID": 5
@@ -264,7 +264,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7362,
     "unitID": 5
@@ -304,7 +304,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7366,
     "unitID": 6
@@ -314,7 +314,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7367,
     "unitID": 6
@@ -324,7 +324,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7368,
     "unitID": 6
@@ -334,7 +334,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7369,
     "unitID": 6
@@ -344,7 +344,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7370,
     "unitID": 6
@@ -354,7 +354,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7371,
     "unitID": 6
@@ -394,7 +394,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7375,
     "unitID": 7
@@ -404,7 +404,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7376,
     "unitID": 7
@@ -414,7 +414,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7377,
     "unitID": 7
@@ -424,7 +424,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7378,
     "unitID": 7
@@ -434,7 +434,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7379,
     "unitID": 7
@@ -444,7 +444,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7380,
     "unitID": 7
@@ -484,7 +484,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7384,
     "unitID": 8
@@ -494,7 +494,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7385,
     "unitID": 8
@@ -504,7 +504,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7386,
     "unitID": 8
@@ -514,7 +514,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7387,
     "unitID": 8
@@ -524,7 +524,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7388,
     "unitID": 8
@@ -534,7 +534,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7389,
     "unitID": 8
@@ -574,7 +574,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7393,
     "unitID": 9
@@ -584,7 +584,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7394,
     "unitID": 9
@@ -594,7 +594,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7395,
     "unitID": 9
@@ -604,7 +604,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7396,
     "unitID": 9
@@ -614,7 +614,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7397,
     "unitID": 9
@@ -624,7 +624,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7398,
     "unitID": 9
@@ -664,7 +664,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7402,
     "unitID": 10
@@ -674,7 +674,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7403,
     "unitID": 10
@@ -684,7 +684,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7404,
     "unitID": 10
@@ -694,7 +694,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7405,
     "unitID": 10
@@ -704,7 +704,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7406,
     "unitID": 10
@@ -714,7 +714,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7407,
     "unitID": 10
@@ -754,7 +754,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7411,
     "unitID": 11
@@ -764,7 +764,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7412,
     "unitID": 11
@@ -774,7 +774,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7413,
     "unitID": 11
@@ -784,7 +784,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7414,
     "unitID": 11
@@ -794,7 +794,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7415,
     "unitID": 11
@@ -804,7 +804,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7416,
     "unitID": 11
@@ -844,7 +844,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7420,
     "unitID": 12
@@ -854,7 +854,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7421,
     "unitID": 12
@@ -864,7 +864,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7422,
     "unitID": 12
@@ -874,7 +874,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7423,
     "unitID": 12
@@ -884,7 +884,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7424,
     "unitID": 12
@@ -894,7 +894,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7425,
     "unitID": 12
@@ -934,7 +934,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7429,
     "unitID": 13
@@ -944,7 +944,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7430,
     "unitID": 13
@@ -954,7 +954,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7431,
     "unitID": 13
@@ -964,7 +964,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7432,
     "unitID": 13
@@ -974,7 +974,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7433,
     "unitID": 13
@@ -984,7 +984,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7434,
     "unitID": 13
@@ -1024,7 +1024,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7438,
     "unitID": 14
@@ -1034,7 +1034,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7439,
     "unitID": 14
@@ -1044,7 +1044,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7440,
     "unitID": 14
@@ -1054,7 +1054,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7441,
     "unitID": 14
@@ -1064,7 +1064,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7442,
     "unitID": 14
@@ -1074,7 +1074,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7443,
     "unitID": 14
@@ -1114,7 +1114,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7447,
     "unitID": 15
@@ -1124,7 +1124,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7448,
     "unitID": 15
@@ -1134,7 +1134,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7449,
     "unitID": 15
@@ -1144,7 +1144,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7450,
     "unitID": 15
@@ -1154,7 +1154,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7451,
     "unitID": 15
@@ -1164,7 +1164,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7452,
     "unitID": 15
@@ -1204,7 +1204,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7456,
     "unitID": 16
@@ -1214,7 +1214,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7457,
     "unitID": 16
@@ -1224,7 +1224,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7458,
     "unitID": 16
@@ -1234,7 +1234,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7459,
     "unitID": 16
@@ -1244,7 +1244,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7460,
     "unitID": 16
@@ -1254,7 +1254,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7461,
     "unitID": 16
@@ -1294,7 +1294,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7465,
     "unitID": 17
@@ -1304,7 +1304,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7466,
     "unitID": 17
@@ -1314,7 +1314,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7467,
     "unitID": 17
@@ -1324,7 +1324,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7468,
     "unitID": 17
@@ -1334,7 +1334,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7469,
     "unitID": 17
@@ -1344,7 +1344,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7470,
     "unitID": 17
@@ -1384,7 +1384,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7474,
     "unitID": 18
@@ -1394,7 +1394,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7475,
     "unitID": 18
@@ -1404,7 +1404,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7476,
     "unitID": 18
@@ -1414,7 +1414,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7477,
     "unitID": 18
@@ -1424,7 +1424,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7478,
     "unitID": 18
@@ -1434,7 +1434,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7479,
     "unitID": 18
@@ -1474,7 +1474,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7483,
     "unitID": 19
@@ -1484,7 +1484,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7484,
     "unitID": 19
@@ -1494,7 +1494,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7485,
     "unitID": 19
@@ -1504,7 +1504,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7486,
     "unitID": 19
@@ -1514,7 +1514,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7487,
     "unitID": 19
@@ -1524,7 +1524,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7488,
     "unitID": 19
@@ -1564,7 +1564,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7492,
     "unitID": 20
@@ -1574,7 +1574,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7493,
     "unitID": 20
@@ -1584,7 +1584,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7494,
     "unitID": 20
@@ -1594,7 +1594,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7495,
     "unitID": 20
@@ -1604,7 +1604,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7496,
     "unitID": 20
@@ -1614,7 +1614,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7497,
     "unitID": 20
@@ -1654,7 +1654,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7501,
     "unitID": 21
@@ -1664,7 +1664,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7502,
     "unitID": 21
@@ -1674,7 +1674,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7503,
     "unitID": 21
@@ -1684,7 +1684,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7504,
     "unitID": 21
@@ -1694,7 +1694,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7505,
     "unitID": 21
@@ -1704,7 +1704,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7506,
     "unitID": 21
@@ -1744,7 +1744,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7510,
     "unitID": 22
@@ -1754,7 +1754,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7511,
     "unitID": 22
@@ -1764,7 +1764,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7512,
     "unitID": 22
@@ -1774,7 +1774,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7513,
     "unitID": 22
@@ -1784,7 +1784,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7514,
     "unitID": 22
@@ -1794,7 +1794,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7515,
     "unitID": 22
@@ -1834,7 +1834,7 @@
     "title": "Finance",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7519,
     "unitID": 23
@@ -1844,7 +1844,7 @@
     "title": "Medical",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7520,
     "unitID": 23
@@ -1854,7 +1854,7 @@
     "title": "Dental",
     "description": "Email POC with your orders.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7521,
     "unitID": 23
@@ -1864,7 +1864,7 @@
     "title": "Base Final-Out",
     "description": "Schedule appointment with POC with your orders and _INSERT_LIST_HERE_ .",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7522,
     "unitID": 23
@@ -1874,7 +1874,7 @@
     "title": "TMO",
     "description": "Contact POC to establish moving property to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7523,
     "unitID": 23
@@ -1884,7 +1884,7 @@
     "title": "SATO",
     "description": "Email POC with orders so that they may get plane tickets to next base.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 66,
     "approverID": 7524,
     "unitID": 23
@@ -2034,7 +2034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7539,
     "unitID": 37
@@ -2044,7 +2044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7540,
     "unitID": 37
@@ -2054,7 +2054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7541,
     "unitID": 37
@@ -2064,7 +2064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7542,
     "unitID": 37
@@ -2074,7 +2074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7543,
     "unitID": 37
@@ -2084,7 +2084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7544,
     "unitID": 37
@@ -2234,7 +2234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7559,
     "unitID": 38
@@ -2244,7 +2244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7560,
     "unitID": 38
@@ -2254,7 +2254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7561,
     "unitID": 38
@@ -2264,7 +2264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7562,
     "unitID": 38
@@ -2274,7 +2274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7563,
     "unitID": 38
@@ -2284,7 +2284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7564,
     "unitID": 38
@@ -2434,7 +2434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7579,
     "unitID": 39
@@ -2444,7 +2444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7580,
     "unitID": 39
@@ -2454,7 +2454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7581,
     "unitID": 39
@@ -2464,7 +2464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7582,
     "unitID": 39
@@ -2474,7 +2474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7583,
     "unitID": 39
@@ -2484,7 +2484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7584,
     "unitID": 39
@@ -2634,7 +2634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7599,
     "unitID": 40
@@ -2644,7 +2644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7600,
     "unitID": 40
@@ -2654,7 +2654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7601,
     "unitID": 40
@@ -2664,7 +2664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7602,
     "unitID": 40
@@ -2674,7 +2674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7603,
     "unitID": 40
@@ -2684,7 +2684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7604,
     "unitID": 40
@@ -2834,7 +2834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7619,
     "unitID": 41
@@ -2844,7 +2844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7620,
     "unitID": 41
@@ -2854,7 +2854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7621,
     "unitID": 41
@@ -2864,7 +2864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7622,
     "unitID": 41
@@ -2874,7 +2874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7623,
     "unitID": 41
@@ -2884,7 +2884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7624,
     "unitID": 41
@@ -3034,7 +3034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7639,
     "unitID": 42
@@ -3044,7 +3044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7640,
     "unitID": 42
@@ -3054,7 +3054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7641,
     "unitID": 42
@@ -3064,7 +3064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7642,
     "unitID": 42
@@ -3074,7 +3074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7643,
     "unitID": 42
@@ -3084,7 +3084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7644,
     "unitID": 42
@@ -3234,7 +3234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7659,
     "unitID": 43
@@ -3244,7 +3244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7660,
     "unitID": 43
@@ -3254,7 +3254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7661,
     "unitID": 43
@@ -3264,7 +3264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7662,
     "unitID": 43
@@ -3274,7 +3274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7663,
     "unitID": 43
@@ -3284,7 +3284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7664,
     "unitID": 43
@@ -3434,7 +3434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7679,
     "unitID": 44
@@ -3444,7 +3444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7680,
     "unitID": 44
@@ -3454,7 +3454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7681,
     "unitID": 44
@@ -3464,7 +3464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7682,
     "unitID": 44
@@ -3474,7 +3474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7683,
     "unitID": 44
@@ -3484,7 +3484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7684,
     "unitID": 44
@@ -3634,7 +3634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7699,
     "unitID": 45
@@ -3644,7 +3644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7700,
     "unitID": 45
@@ -3654,7 +3654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7701,
     "unitID": 45
@@ -3664,7 +3664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7702,
     "unitID": 45
@@ -3674,7 +3674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7703,
     "unitID": 45
@@ -3684,7 +3684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7704,
     "unitID": 45
@@ -3834,7 +3834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7719,
     "unitID": 46
@@ -3844,7 +3844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7720,
     "unitID": 46
@@ -3854,7 +3854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7721,
     "unitID": 46
@@ -3864,7 +3864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7722,
     "unitID": 46
@@ -3874,7 +3874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7723,
     "unitID": 46
@@ -3884,7 +3884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7724,
     "unitID": 46
@@ -4034,7 +4034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7739,
     "unitID": 47
@@ -4044,7 +4044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7740,
     "unitID": 47
@@ -4054,7 +4054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7741,
     "unitID": 47
@@ -4064,7 +4064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7742,
     "unitID": 47
@@ -4074,7 +4074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7743,
     "unitID": 47
@@ -4084,7 +4084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7744,
     "unitID": 47
@@ -4234,7 +4234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7759,
     "unitID": 48
@@ -4244,7 +4244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7760,
     "unitID": 48
@@ -4254,7 +4254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7761,
     "unitID": 48
@@ -4264,7 +4264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7762,
     "unitID": 48
@@ -4274,7 +4274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7763,
     "unitID": 48
@@ -4284,7 +4284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7764,
     "unitID": 48
@@ -4434,7 +4434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7779,
     "unitID": 49
@@ -4444,7 +4444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7780,
     "unitID": 49
@@ -4454,7 +4454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7781,
     "unitID": 49
@@ -4464,7 +4464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7782,
     "unitID": 49
@@ -4474,7 +4474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7783,
     "unitID": 49
@@ -4484,7 +4484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7784,
     "unitID": 49
@@ -4634,7 +4634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7799,
     "unitID": 50
@@ -4644,7 +4644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7800,
     "unitID": 50
@@ -4654,7 +4654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7801,
     "unitID": 50
@@ -4664,7 +4664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7802,
     "unitID": 50
@@ -4674,7 +4674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7803,
     "unitID": 50
@@ -4684,7 +4684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7804,
     "unitID": 50
@@ -4834,7 +4834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7819,
     "unitID": 51
@@ -4844,7 +4844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7820,
     "unitID": 51
@@ -4854,7 +4854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7821,
     "unitID": 51
@@ -4864,7 +4864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7822,
     "unitID": 51
@@ -4874,7 +4874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7823,
     "unitID": 51
@@ -4884,7 +4884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7824,
     "unitID": 51
@@ -5034,7 +5034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7839,
     "unitID": 52
@@ -5044,7 +5044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7840,
     "unitID": 52
@@ -5054,7 +5054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7841,
     "unitID": 52
@@ -5064,7 +5064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7842,
     "unitID": 52
@@ -5074,7 +5074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7843,
     "unitID": 52
@@ -5084,7 +5084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7844,
     "unitID": 52
@@ -5234,7 +5234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7859,
     "unitID": 53
@@ -5244,7 +5244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7860,
     "unitID": 53
@@ -5254,7 +5254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7861,
     "unitID": 53
@@ -5264,7 +5264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7862,
     "unitID": 53
@@ -5274,7 +5274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7863,
     "unitID": 53
@@ -5284,7 +5284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7864,
     "unitID": 53
@@ -5434,7 +5434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7879,
     "unitID": 54
@@ -5444,7 +5444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7880,
     "unitID": 54
@@ -5454,7 +5454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7881,
     "unitID": 54
@@ -5464,7 +5464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7882,
     "unitID": 54
@@ -5474,7 +5474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7883,
     "unitID": 54
@@ -5484,7 +5484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7884,
     "unitID": 54
@@ -5634,7 +5634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7899,
     "unitID": 55
@@ -5644,7 +5644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7900,
     "unitID": 55
@@ -5654,7 +5654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7901,
     "unitID": 55
@@ -5664,7 +5664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7902,
     "unitID": 55
@@ -5674,7 +5674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7903,
     "unitID": 55
@@ -5684,7 +5684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7904,
     "unitID": 55
@@ -5834,7 +5834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7919,
     "unitID": 56
@@ -5844,7 +5844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7920,
     "unitID": 56
@@ -5854,7 +5854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7921,
     "unitID": 56
@@ -5864,7 +5864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7922,
     "unitID": 56
@@ -5874,7 +5874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7923,
     "unitID": 56
@@ -5884,7 +5884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7924,
     "unitID": 56
@@ -6034,7 +6034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7939,
     "unitID": 57
@@ -6044,7 +6044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7940,
     "unitID": 57
@@ -6054,7 +6054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7941,
     "unitID": 57
@@ -6064,7 +6064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7942,
     "unitID": 57
@@ -6074,7 +6074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7943,
     "unitID": 57
@@ -6084,7 +6084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7944,
     "unitID": 57
@@ -6234,7 +6234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7959,
     "unitID": 58
@@ -6244,7 +6244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7960,
     "unitID": 58
@@ -6254,7 +6254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7961,
     "unitID": 58
@@ -6264,7 +6264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7962,
     "unitID": 58
@@ -6274,7 +6274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7963,
     "unitID": 58
@@ -6284,7 +6284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7964,
     "unitID": 58
@@ -6434,7 +6434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7979,
     "unitID": 59
@@ -6444,7 +6444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7980,
     "unitID": 59
@@ -6454,7 +6454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7981,
     "unitID": 59
@@ -6464,7 +6464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7982,
     "unitID": 59
@@ -6474,7 +6474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7983,
     "unitID": 59
@@ -6484,7 +6484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7984,
     "unitID": 59
@@ -6634,7 +6634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 7999,
     "unitID": 60
@@ -6644,7 +6644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8000,
     "unitID": 60
@@ -6654,7 +6654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8001,
     "unitID": 60
@@ -6664,7 +6664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8002,
     "unitID": 60
@@ -6674,7 +6674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8003,
     "unitID": 60
@@ -6684,7 +6684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8004,
     "unitID": 60
@@ -6834,7 +6834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8019,
     "unitID": 61
@@ -6844,7 +6844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8020,
     "unitID": 61
@@ -6854,7 +6854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8021,
     "unitID": 61
@@ -6864,7 +6864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8022,
     "unitID": 61
@@ -6874,7 +6874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8023,
     "unitID": 61
@@ -6884,7 +6884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8024,
     "unitID": 61
@@ -7034,7 +7034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8039,
     "unitID": 62
@@ -7044,7 +7044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8040,
     "unitID": 62
@@ -7054,7 +7054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8041,
     "unitID": 62
@@ -7064,7 +7064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8042,
     "unitID": 62
@@ -7074,7 +7074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8043,
     "unitID": 62
@@ -7084,7 +7084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8044,
     "unitID": 62
@@ -7234,7 +7234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8059,
     "unitID": 63
@@ -7244,7 +7244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8060,
     "unitID": 63
@@ -7254,7 +7254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8061,
     "unitID": 63
@@ -7264,7 +7264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8062,
     "unitID": 63
@@ -7274,7 +7274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8063,
     "unitID": 63
@@ -7284,7 +7284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8064,
     "unitID": 63
@@ -7434,7 +7434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8079,
     "unitID": 64
@@ -7444,7 +7444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8080,
     "unitID": 64
@@ -7454,7 +7454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8081,
     "unitID": 64
@@ -7464,7 +7464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8082,
     "unitID": 64
@@ -7474,7 +7474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8083,
     "unitID": 64
@@ -7484,7 +7484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8084,
     "unitID": 64
@@ -7634,7 +7634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8099,
     "unitID": 65
@@ -7644,7 +7644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8100,
     "unitID": 65
@@ -7654,7 +7654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8101,
     "unitID": 65
@@ -7664,7 +7664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8102,
     "unitID": 65
@@ -7674,7 +7674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8103,
     "unitID": 65
@@ -7684,7 +7684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8104,
     "unitID": 65
@@ -7834,7 +7834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8119,
     "unitID": 66
@@ -7844,7 +7844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8120,
     "unitID": 66
@@ -7854,7 +7854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8121,
     "unitID": 66
@@ -7864,7 +7864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8122,
     "unitID": 66
@@ -7874,7 +7874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8123,
     "unitID": 66
@@ -7884,7 +7884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8124,
     "unitID": 66
@@ -8034,7 +8034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8139,
     "unitID": 67
@@ -8044,7 +8044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8140,
     "unitID": 67
@@ -8054,7 +8054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8141,
     "unitID": 67
@@ -8064,7 +8064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8142,
     "unitID": 67
@@ -8074,7 +8074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8143,
     "unitID": 67
@@ -8084,7 +8084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8144,
     "unitID": 67
@@ -8234,7 +8234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8159,
     "unitID": 68
@@ -8244,7 +8244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8160,
     "unitID": 68
@@ -8254,7 +8254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8161,
     "unitID": 68
@@ -8264,7 +8264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8162,
     "unitID": 68
@@ -8274,7 +8274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8163,
     "unitID": 68
@@ -8284,7 +8284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8164,
     "unitID": 68
@@ -8434,7 +8434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8179,
     "unitID": 69
@@ -8444,7 +8444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8180,
     "unitID": 69
@@ -8454,7 +8454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8181,
     "unitID": 69
@@ -8464,7 +8464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8182,
     "unitID": 69
@@ -8474,7 +8474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8183,
     "unitID": 69
@@ -8484,7 +8484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8184,
     "unitID": 69
@@ -8634,7 +8634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8199,
     "unitID": 70
@@ -8644,7 +8644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8200,
     "unitID": 70
@@ -8654,7 +8654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8201,
     "unitID": 70
@@ -8664,7 +8664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8202,
     "unitID": 70
@@ -8674,7 +8674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8203,
     "unitID": 70
@@ -8684,7 +8684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8204,
     "unitID": 70
@@ -8834,7 +8834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8219,
     "unitID": 71
@@ -8844,7 +8844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8220,
     "unitID": 71
@@ -8854,7 +8854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8221,
     "unitID": 71
@@ -8864,7 +8864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8222,
     "unitID": 71
@@ -8874,7 +8874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8223,
     "unitID": 71
@@ -8884,7 +8884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8224,
     "unitID": 71
@@ -9034,7 +9034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8239,
     "unitID": 72
@@ -9044,7 +9044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8240,
     "unitID": 72
@@ -9054,7 +9054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8241,
     "unitID": 72
@@ -9064,7 +9064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8242,
     "unitID": 72
@@ -9074,7 +9074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8243,
     "unitID": 72
@@ -9084,7 +9084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8244,
     "unitID": 72
@@ -9234,7 +9234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8259,
     "unitID": 73
@@ -9244,7 +9244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8260,
     "unitID": 73
@@ -9254,7 +9254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8261,
     "unitID": 73
@@ -9264,7 +9264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8262,
     "unitID": 73
@@ -9274,7 +9274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8263,
     "unitID": 73
@@ -9284,7 +9284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8264,
     "unitID": 73
@@ -9434,7 +9434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8279,
     "unitID": 74
@@ -9444,7 +9444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8280,
     "unitID": 74
@@ -9454,7 +9454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8281,
     "unitID": 74
@@ -9464,7 +9464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8282,
     "unitID": 74
@@ -9474,7 +9474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8283,
     "unitID": 74
@@ -9484,7 +9484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8284,
     "unitID": 74
@@ -9634,7 +9634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8299,
     "unitID": 75
@@ -9644,7 +9644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8300,
     "unitID": 75
@@ -9654,7 +9654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8301,
     "unitID": 75
@@ -9664,7 +9664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8302,
     "unitID": 75
@@ -9674,7 +9674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8303,
     "unitID": 75
@@ -9684,7 +9684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8304,
     "unitID": 75
@@ -9834,7 +9834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8319,
     "unitID": 76
@@ -9844,7 +9844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8320,
     "unitID": 76
@@ -9854,7 +9854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8321,
     "unitID": 76
@@ -9864,7 +9864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8322,
     "unitID": 76
@@ -9874,7 +9874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8323,
     "unitID": 76
@@ -9884,7 +9884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8324,
     "unitID": 76
@@ -10034,7 +10034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8339,
     "unitID": 77
@@ -10044,7 +10044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8340,
     "unitID": 77
@@ -10054,7 +10054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8341,
     "unitID": 77
@@ -10064,7 +10064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8342,
     "unitID": 77
@@ -10074,7 +10074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8343,
     "unitID": 77
@@ -10084,7 +10084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8344,
     "unitID": 77
@@ -10234,7 +10234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8359,
     "unitID": 78
@@ -10244,7 +10244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8360,
     "unitID": 78
@@ -10254,7 +10254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8361,
     "unitID": 78
@@ -10264,7 +10264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8362,
     "unitID": 78
@@ -10274,7 +10274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8363,
     "unitID": 78
@@ -10284,7 +10284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8364,
     "unitID": 78
@@ -10434,7 +10434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8379,
     "unitID": 79
@@ -10444,7 +10444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8380,
     "unitID": 79
@@ -10454,7 +10454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8381,
     "unitID": 79
@@ -10464,7 +10464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8382,
     "unitID": 79
@@ -10474,7 +10474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8383,
     "unitID": 79
@@ -10484,7 +10484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8384,
     "unitID": 79
@@ -10634,7 +10634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8399,
     "unitID": 80
@@ -10644,7 +10644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8400,
     "unitID": 80
@@ -10654,7 +10654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8401,
     "unitID": 80
@@ -10664,7 +10664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8402,
     "unitID": 80
@@ -10674,7 +10674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8403,
     "unitID": 80
@@ -10684,7 +10684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8404,
     "unitID": 80
@@ -10834,7 +10834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8419,
     "unitID": 81
@@ -10844,7 +10844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8420,
     "unitID": 81
@@ -10854,7 +10854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8421,
     "unitID": 81
@@ -10864,7 +10864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8422,
     "unitID": 81
@@ -10874,7 +10874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8423,
     "unitID": 81
@@ -10884,7 +10884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8424,
     "unitID": 81
@@ -11034,7 +11034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8439,
     "unitID": 82
@@ -11044,7 +11044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8440,
     "unitID": 82
@@ -11054,7 +11054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8441,
     "unitID": 82
@@ -11064,7 +11064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8442,
     "unitID": 82
@@ -11074,7 +11074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8443,
     "unitID": 82
@@ -11084,7 +11084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8444,
     "unitID": 82
@@ -11234,7 +11234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8459,
     "unitID": 83
@@ -11244,7 +11244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8460,
     "unitID": 83
@@ -11254,7 +11254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8461,
     "unitID": 83
@@ -11264,7 +11264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8462,
     "unitID": 83
@@ -11274,7 +11274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8463,
     "unitID": 83
@@ -11284,7 +11284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8464,
     "unitID": 83
@@ -11434,7 +11434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8479,
     "unitID": 84
@@ -11444,7 +11444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8480,
     "unitID": 84
@@ -11454,7 +11454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8481,
     "unitID": 84
@@ -11464,7 +11464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8482,
     "unitID": 84
@@ -11474,7 +11474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8483,
     "unitID": 84
@@ -11484,7 +11484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8484,
     "unitID": 84
@@ -11634,7 +11634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8499,
     "unitID": 85
@@ -11644,7 +11644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8500,
     "unitID": 85
@@ -11654,7 +11654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8501,
     "unitID": 85
@@ -11664,7 +11664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8502,
     "unitID": 85
@@ -11674,7 +11674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8503,
     "unitID": 85
@@ -11684,7 +11684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8504,
     "unitID": 85
@@ -11834,7 +11834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8519,
     "unitID": 86
@@ -11844,7 +11844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8520,
     "unitID": 86
@@ -11854,7 +11854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8521,
     "unitID": 86
@@ -11864,7 +11864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8522,
     "unitID": 86
@@ -11874,7 +11874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8523,
     "unitID": 86
@@ -11884,7 +11884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8524,
     "unitID": 86
@@ -12034,7 +12034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8539,
     "unitID": 87
@@ -12044,7 +12044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8540,
     "unitID": 87
@@ -12054,7 +12054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8541,
     "unitID": 87
@@ -12064,7 +12064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8542,
     "unitID": 87
@@ -12074,7 +12074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8543,
     "unitID": 87
@@ -12084,7 +12084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8544,
     "unitID": 87
@@ -12234,7 +12234,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8559,
     "unitID": 88
@@ -12244,7 +12244,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8560,
     "unitID": 88
@@ -12254,7 +12254,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8561,
     "unitID": 88
@@ -12264,7 +12264,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8562,
     "unitID": 88
@@ -12274,7 +12274,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8563,
     "unitID": 88
@@ -12284,7 +12284,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8564,
     "unitID": 88
@@ -12434,7 +12434,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8579,
     "unitID": 89
@@ -12444,7 +12444,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8580,
     "unitID": 89
@@ -12454,7 +12454,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8581,
     "unitID": 89
@@ -12464,7 +12464,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8582,
     "unitID": 89
@@ -12474,7 +12474,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8583,
     "unitID": 89
@@ -12484,7 +12484,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8584,
     "unitID": 89
@@ -12634,7 +12634,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8599,
     "unitID": 90
@@ -12644,7 +12644,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8600,
     "unitID": 90
@@ -12654,7 +12654,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8601,
     "unitID": 90
@@ -12664,7 +12664,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8602,
     "unitID": 90
@@ -12674,7 +12674,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8603,
     "unitID": 90
@@ -12684,7 +12684,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8604,
     "unitID": 90
@@ -12834,7 +12834,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8619,
     "unitID": 91
@@ -12844,7 +12844,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8620,
     "unitID": 91
@@ -12854,7 +12854,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8621,
     "unitID": 91
@@ -12864,7 +12864,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8622,
     "unitID": 91
@@ -12874,7 +12874,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8623,
     "unitID": 91
@@ -12884,7 +12884,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8624,
     "unitID": 91
@@ -13034,7 +13034,7 @@
     "title": "Squadron Final-Out",
     "description": "Meet with squadron leadership to introduce yourself and become aquainted with leadership.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8639,
     "unitID": 92
@@ -13044,7 +13044,7 @@
     "title": "Safety",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8640,
     "unitID": 92
@@ -13054,7 +13054,7 @@
     "title": "Houseing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8641,
     "unitID": 92
@@ -13064,7 +13064,7 @@
     "title": "Facility Manager",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8642,
     "unitID": 92
@@ -13074,7 +13074,7 @@
     "title": "Government Travel Card (GTC)",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8643,
     "unitID": 92
@@ -13084,7 +13084,7 @@
     "title": "Anti-Terrorism Briefing",
     "description": "Contact POC to complete task.",
     "isActive": true,
-    "kind": "IN_PROCESSING",
+    "kind": "OUT_PROCESSING",
     "assignerID": 1624,
     "approverID": 8644,
     "unitID": 92
