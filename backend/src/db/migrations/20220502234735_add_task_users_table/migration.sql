@@ -62,7 +62,7 @@ CREATE TABLE "tasks" (
 -- CreateTable
 CREATE TABLE "task_users" (
     "id" SERIAL NOT NULL,
-    "completed_at" TIMESTAMP(3) NOT NULL,
+    "completed_at" TIMESTAMP(3),
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "task_id" INTEGER NOT NULL,
