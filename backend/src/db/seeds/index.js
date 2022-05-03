@@ -130,6 +130,7 @@ const seedTaskUsers = async prisma => {
 	await genData(prisma, "TaskUser", arr, "id", []);
 };
 
+/*
 const setAutoincrementIDs = async prisma => {
 	await prisma.$queryRaw`ALTER TABLE units AUTO_INCREMENT = 1`;
 	await prisma.$queryRaw`ALTER TABLE roles AUTO_INCREMENT = 1`;
@@ -137,6 +138,7 @@ const setAutoincrementIDs = async prisma => {
 	await prisma.$queryRaw`ALTER TABLE tasks AUTO_INCREMENT = 1`;
 	await prisma.$queryRaw`ALTER TABLE task_users AUTO_INCREMENT = 1`;
 };
+*/
 
 const main = async prisma => {
 	const seeds = [
@@ -144,8 +146,8 @@ const main = async prisma => {
 		seedRoles,
 		seedUsers,
 		seedTasks,
-		seedTaskUsers,
-		setAutoincrementIDs
+		seedTaskUsers
+		// setAutoincrementIDs
 	];
 	// eslint-disable-next-line no-restricted-syntax
 	for (const seed of seeds) {
