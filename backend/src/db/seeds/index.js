@@ -131,10 +131,11 @@ const seedTaskUsers = async prisma => {
 };
 
 const setAutoincrementIDs = async prisma => {
-	const tables = ["units", "roles", "users", "tasks", "task_users"];
-	tables.forEach(async table => {
-		await prisma.$queryRaw`ALTER TABLE ${table} AUTO_INCREMENT = 1`;
-	});
+	await prisma.$queryRaw`ALTER TABLE units AUTO_INCREMENT = 1`;
+	await prisma.$queryRaw`ALTER TABLE roles AUTO_INCREMENT = 1`;
+	await prisma.$queryRaw`ALTER TABLE users AUTO_INCREMENT = 1`;
+	await prisma.$queryRaw`ALTER TABLE tasks AUTO_INCREMENT = 1`;
+	await prisma.$queryRaw`ALTER TABLE task_users AUTO_INCREMENT = 1`;
 };
 
 const main = async prisma => {
