@@ -13,15 +13,7 @@ const prisma = new PrismaClient({
 
 const select = {
 	id: true,
-	kind: true,
-	unit: {
-		select: {
-			id: true,
-			name: true,
-			abbrev: true,
-			function: true
-		}
-	}
+	kind: true
 };
 
 const Roles = {
@@ -29,7 +21,7 @@ const Roles = {
 		const { roleID } = req.params;
 		const id = parseInt(roleID);
 		try {
-			const query = await prisma.Role.findMany({
+			const query = await prisma.Role.findFirst({
 				where: { id },
 				select
 			});
