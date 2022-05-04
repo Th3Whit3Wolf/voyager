@@ -11,9 +11,20 @@ const Header = () => {
 	const context = useContext(UserContext);
 	console.log(context);
 
+	const handleClick = () => {
+		// Do some stuff
+		// :-D
+		// navigate
+		navigate("/");
+	};
+
 	return (
 		<header className={styles.header__container}>
-			<a href="https://voyager.jpl.nasa.gov/mission/status/">
+			<a
+				href="https://voyager.jpl.nasa.gov/mission/status/"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<img src={logo} alt="Space Force Logo" />
 			</a>
 			<h1>
@@ -28,7 +39,7 @@ const Header = () => {
 				}}
 			>
 				{context.role ? (
-					<Button variant="contained" onClick={() => navigate("/")}>
+					<Button variant="contained" onClick={handleClick}>
 						Logout
 					</Button>
 				) : null}
