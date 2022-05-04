@@ -12,13 +12,27 @@ import { MemoryRouter as Router } from "react-router-dom";
 // from code hardening tools such as SonarCube on
 // previous software projects. --Tony
 
-const setup = () =>
+const setup = rt =>
 	render(
 		<Router>
-			<TestViews />
+			<TestViews rt={rt} />
 		</Router>
 	);
 
 test("renders a TestViews component successfully", () => {
 	setup();
+});
+
+test("TestViews can render a Specific User when a Specific User is fetched", async () => {
+	setup("/users/1");
+
+	const firstName = await screen.findByText(/rick/i);
+	const lastName = await screen.findByText(/sanchez/i);
+	const email = await screen.findByText(/rick.sanchez@spaceforce.mil/i);
+	const dsn = await screen.findByText(/(312) 867-5309/i);
+
+	expect(firstName).toBeInTheDocument();
+	expect(lastName).toBeInTheDocument();
+	expect(email).toBeInTheDocument();
+	expect(dsn).toBeInTheDocument();
 });
