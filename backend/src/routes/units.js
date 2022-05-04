@@ -5,6 +5,6 @@ const router = Router();
 
 router.route("/units").get(UnitController.list).post(UnitController.create);
 
-router.route("/units/:id").get(UnitController.get);
+router.route("/units/:id").get(UnitController.get).put(UnitController.update);
 
 export default router;
