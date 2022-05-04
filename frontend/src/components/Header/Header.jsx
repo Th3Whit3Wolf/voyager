@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import styles from "./Header.module.css";
 import logo from "../../space-force-logo.png";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "../../context";
+
 import { Button, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 // Also need a small title shows USER or ADMIN
@@ -39,7 +40,7 @@ const Header = () => {
 			>
 				{context.user.role ? (
 					<div className={styles.header__title3}>
-						<p>Welcome, {context.user.firstName}!</p>
+						<p>Welcome, {context.user.firstName}! </p>
 						<Button variant="contained" onClick={handleClick}>
 							Logout
 						</Button>
