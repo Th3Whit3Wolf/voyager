@@ -4,6 +4,10 @@ import { RoleController } from "../controllers";
 const router = Router();
 
 router.route("/roles").get(RoleController.list).post(RoleController.create);
-router.route("/roles/:id").get(RoleController.get).put(RoleController.update);
+router
+	.route("/roles/:id")
+	.get(RoleController.get)
+	.put(RoleController.update)
+	.delete(RoleController.delete);
 
 export default router;
