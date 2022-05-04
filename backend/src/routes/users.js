@@ -4,7 +4,11 @@ import { UserController, TaskUserController } from "../controllers";
 const router = Router();
 
 router.route("/users").get(UserController.list).post(UserController.create);
-router.route("/users/:id").get(UserController.get).put(UserController.update);
+router
+	.route("/users/:id")
+	.get(UserController.get)
+	.put(UserController.update)
+	.delete(UserController.delete);
 
 router
 	.route("/users/tasks")
