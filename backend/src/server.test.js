@@ -63,8 +63,29 @@ describe("Backend Tests", () => {
 			expect(res.statusCode).toBe(200);
 			expect(body.data.id).toBe(1);
 			Object.entries(firstID[route]).forEach(([k, v]) => {
-				if (body.data[k] === undefined) {
-					console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
+				if (
+					typeof v === "object" &&
+					Array.isArray(v) === false &&
+					v !== null
+				) {
+					Object.entries(v).forEach(([k2, v2]) => {
+						if (body.data[k2] === undefined) {
+							console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
+Body: ${body}
+Body JSON: ${JSON.stringify(body)}
+Data ${body.data}
+Data JSON: ${JSON.stringify(body.data)}
+Field: ${k2}
+Value: ${v2}
+Expected: Data.${k2} to exist
+					`);
+							console.log({ body });
+						}
+						expect(body.data[k2]).toBe(v2);
+					});
+				} else {
+					if (body.data[k] === undefined) {
+						console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
 Body: ${body}
 Body JSON: ${JSON.stringify(body)}
 Data ${body.data}
@@ -73,9 +94,10 @@ Field: ${k}
 Value: ${v}
 Expected: Data.${k} to exist
 					`);
-					console.log({ body });
+						console.log({ body });
+					}
+					expect(body.data[k]).toBe(v);
 				}
-				expect(body.data[k]).toBe(v);
 			});
 		});
 	});
