@@ -10,7 +10,7 @@ const TestViews = ({ rt }) => {
 	return (
 		<div>
 			<h1>Test Views Rendered</h1>
-			{endpoint}
+			<input type="text" placeholder="users/1" />
 		</div>
 	);
 };
