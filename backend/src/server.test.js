@@ -114,11 +114,11 @@ describe("Backend Tests", () => {
 		const routeRegular = `/api/v1/${route}`;
 		const routeByID = `/api/v1/${route}/1`;
 		describe(`Route ${routeRegular}`, () => {
-			test(`GET ${route}`, async () => {
+			test(`GET request returns 200`, async () => {
 				const res = await response.get(`${routeRegular}`);
 				expect(res.statusCode).toBe(200);
 			});
-			test(`POST ${route}`, async () => {
+			test(`POST request returns 201`, async () => {
 				const res = await response
 					.post(`${routeRegular}`)
 					.send(post[route])
@@ -127,7 +127,7 @@ describe("Backend Tests", () => {
 			});
 		});
 		describe(`Route ${routeByID}`, () => {
-			test(`GET ${route}`, async () => {
+			test(`GET request returns 200`, async () => {
 				const res = await response.get(`${routeByID}`);
 				const { body } = res;
 
@@ -147,12 +147,16 @@ describe("Backend Tests", () => {
 					}
 				});
 			});
-			test(`PUT ${routeByID}`, async () => {
+			test(`PUT request returns 202`, async () => {
 				const res = await response
 					.put(`${routeByID}`)
 					.send(putID[route])
 					.set("Accept", "application/json");
 				expect(res.statusCode).toBe(202);
+			});
+			test(`DELETE request returns 204`, async () => {
+				const res = await response.delete(`${routeByID}`);
+				expect(res.statusCode).toBe(204);
 			});
 		});
 	});
