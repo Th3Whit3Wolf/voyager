@@ -1,30 +1,23 @@
 [
   {
-    "id": 1,
     "kind": "SITE_ADMIN"
   },
   {
-    "id": 2,
     "kind": "COMMAND_ADMIN"
   },
   {
-    "id": 3,
     "kind": "DELTA_ADMIN"
   },
   {
-    "id": 4,
     "kind": "INSTALLATION_ADMIN"
   },
   {
-    "id": 5,
     "kind": "SQUADRON_ADMIN"
   },
   {
-    "id": 6,
     "kind": "TASK_APPROVER"
   },
   {
-    "id": 7,
     "kind": "USER"
   }
 ]
