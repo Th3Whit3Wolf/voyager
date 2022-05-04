@@ -1,9 +1,8 @@
 // Our Components
 import Header from "./components/Header/Header";
 import { Login, Dashboard, PageNotFound, TestViews } from "./pages";
+import { UserContext } from "./context";
 import getDesignTokens from "./theme.js";
-
-import UserContext from "./context/UserContext";
 
 // Third Party Components
 import { createContext, useMemo, useState } from "react";
