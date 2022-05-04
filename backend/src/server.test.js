@@ -26,7 +26,6 @@ const firstID = {
 		lastName: "Sanchez",
 		email: "rick.sanchez@spaceforce.mil",
 		dsn: "(312) 867-5309",
-		auth: "",
 		status: "STATIONARY",
 		assignedUnit: {
 			id: 1
