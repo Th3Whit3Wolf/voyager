@@ -28,12 +28,18 @@ const firstID = {
 		dsn: "(312) 867-5309",
 		auth: "",
 		status: "STATIONARY",
-		assignedUnitID: 1,
+		assignedUnitID: {
+			id: 1
+		},
 		assignedOfficeSymbol: "MSOS"
 	},
 	"users/tasks": {
-		taskID: 1,
-		userID: 68,
+		task: {
+			id: 1
+		},
+		user: {
+			id: 1
+		},
 		progress: "NOT_STARTED"
 	}
 };
