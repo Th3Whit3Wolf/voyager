@@ -1,8 +1,6 @@
-import Commands from "./command";
-import Deltas from "./delta";
-import Installations from "./installation";
 import Roles from "./roles";
-import Squadrons from "./squadrons";
 import Users from "./users";
+import Units from "./units";
+import Tasks from "./tasks";
 
-export { Commands, Deltas, Installations, Roles, Squadrons, Users };
+export { Roles, Tasks, Units, Users };

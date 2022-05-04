@@ -1,15 +1,11 @@
-import commands from "./commands";
-import deltas from "./deltas";
-import installations from "./installations";
 import roles from "./roles";
-import squadrons from "./squadrons";
+import units from "./units";
 import users from "./users";
+import tasks from "./tasks";
 
 export default {
-	commands,
-	deltas,
-	installations,
 	roles,
-	squadrons,
+	tasks,
+	units,
 	users
 };

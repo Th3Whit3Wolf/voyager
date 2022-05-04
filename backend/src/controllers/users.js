@@ -83,7 +83,7 @@ const Users = {
 		const { userID } = req.params;
 		const id = parseInt(userID);
 		try {
-			const query = await prisma.User.findMany({
+			const query = await prisma.User.findFirst({
 				where: { id },
 				select
 			});

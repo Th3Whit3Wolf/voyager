@@ -12,21 +12,16 @@ describe("GET Tests", () => {
 	});
 
 	const idPairs = {
-		commands: {
+		roles: { id: 1, check: { label: "kind", value: "SITE_ADMIN" } },
+		tasks: { id: 1, check: { label: "title", value: "Finance" } },
+		units: {
 			id: 1,
 			check: { label: "name", value: "Space Operations Command" }
 		},
-		deltas: { id: 24, check: { label: "name", value: "Space Delta 3" } },
-		installations: {
-			id: 3,
-			check: { label: "name", value: "Peterson Space Force Base" }
-		},
-		squadrons: {
-			id: 37,
-			check: { label: "name", value: "328th Weapons Squadron" }
-		},
-		roles: { id: 2, check: { label: "kind", value: "COMMAND_ADMIN" } },
-		users: { id: 1 }
+		users: {
+			id: 1,
+			check: { label: "email", value: "rick.sanchez@spaceforce.mil" }
+		}
 	};
 
 	/// Read all exported routes and use them

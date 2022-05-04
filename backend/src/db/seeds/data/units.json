@@ -1,0 +1,922 @@
+[
+  {
+    "name": "Space Operations Command",
+    "abbrev": "SpOC",
+    "kind": "COMMAND",
+    "function": "Space, cyber, and intelligence operations, and combat support",
+    "location": null,
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Training and Readiness Command",
+    "abbrev": "STAR Command",
+    "kind": "COMMAND",
+    "function": "Space training, test and evaluation, and doctrine development",
+    "location": null,
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Buckley Space Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Aurora, Colorado",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Los Angeles Air Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "El Segundo, California",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Patrick Space Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Brevard County, Florida",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Peterson Space Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Colorado Springs, Colorado",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Schriever Space Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Colorado Springs, Colorado",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Vandenberg Space Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Santa Barbara County, California",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Cape Canaveral Space Force Station",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Cape Canaveral, Florida",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Cape Cod Space Force Station",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Bourne, Massachusetts",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Cavalier Space Force Station",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Cavalier, North Dakota",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Cheyenne Mountain Space Force Station",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Colorado Springs, Colorado",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Clear Space Force Station",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Clear, Alaska",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Kaena Point Space Force Station",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Honolulu County, Hawaii",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "New Boston Space Force Station",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "New Boston, New Hampshire",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Thule Air Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Qaanaaq, Greenland",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Kirtland Air Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Albuquerque, New Mexico",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Wright-Patterson Air Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Dayton, Ohio",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Eglin Air Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Eglin AFB, Florida",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Maxwell Air Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Montgomery, Alabama",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Beale Air Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Marysville, California",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "United States Air Force Academy",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Colorado Springs, Colorado",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Nellis Air Force Base",
+    "abbrev": null,
+    "kind": "INSTALLATION",
+    "function": null,
+    "location": "Nellis AFB, Nevada",
+    "parentID": null,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 1",
+    "abbrev": "DEL 1",
+    "kind": "DELTA",
+    "function": "Space training",
+    "location": null,
+    "parentID": 2,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 2",
+    "abbrev": "DEL 2",
+    "kind": "DELTA",
+    "function": "Space domain awareness",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 3",
+    "abbrev": "DEL 3",
+    "kind": "DELTA",
+    "function": "Space electronic warfare",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 4",
+    "abbrev": "DEL 4",
+    "kind": "DELTA",
+    "function": "Missile warning",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 5",
+    "abbrev": "DEL 5",
+    "kind": "DELTA",
+    "function": "Command and control",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 6",
+    "abbrev": "DEL 6",
+    "kind": "DELTA",
+    "function": "Cyberspace operations",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 7",
+    "abbrev": "DEL 7",
+    "kind": "DELTA",
+    "function": "Intelligence, surveillance, and reconnaissance",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 8",
+    "abbrev": "DEL 8",
+    "kind": "DELTA",
+    "function": "Satellite communication and navigation warfare",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 9",
+    "abbrev": "DEL 9",
+    "kind": "DELTA",
+    "function": "Orbital warfare",
+    "location": null,
+    "parentID": 1,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 10",
+    "abbrev": "DEL 10",
+    "kind": "DELTA",
+    "function": "Space doctrine and wargaming",
+    "location": null,
+    "parentID": 2,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 11",
+    "abbrev": "DEL 11",
+    "kind": "DELTA",
+    "function": "Space range and aggressor",
+    "location": null,
+    "parentID": 2,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 12",
+    "abbrev": "DEL 12",
+    "kind": "DELTA",
+    "function": "Space test and evaluation",
+    "location": null,
+    "parentID": 2,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "Space Delta 13",
+    "abbrev": "DEL 13",
+    "kind": "DELTA",
+    "function": "Space education",
+    "location": null,
+    "parentID": 2,
+    "grandParentID": null,
+    "installationID": null
+  },
+  {
+    "name": "1st Delta Operations Squadron",
+    "abbrev": "1 DOS",
+    "kind": "SQUADRON",
+    "function": "Delta staff and squadron management",
+    "location": null,
+    "parentID": 24,
+    "grandParentID": 2,
+    "installationID": 8
+  },
+  {
+    "name": "319th Combat Training Squadron",
+    "abbrev": "319 CTS",
+    "kind": "SQUADRON",
+    "function": "Advanced space operations training",
+    "location": null,
+    "parentID": 24,
+    "grandParentID": 2,
+    "installationID": 6
+  },
+  {
+    "name": "328th Weapons Squadron",
+    "abbrev": "328 WPS",
+    "kind": "SQUADRON",
+    "function": "Space Force Weapons School",
+    "location": null,
+    "parentID": 24,
+    "grandParentID": 2,
+    "installationID": 23
+  },
+  {
+    "name": "392nd Combat Training Squadron",
+    "abbrev": "392 CTS",
+    "kind": "SQUADRON",
+    "function": "Military simulations and exercises",
+    "location": null,
+    "parentID": 24,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "533rd Training Squadron",
+    "abbrev": "533 TRS",
+    "kind": "SQUADRON",
+    "function": "Undergraduate space training",
+    "location": null,
+    "parentID": 24,
+    "grandParentID": 2,
+    "installationID": 8
+  },
+  {
+    "name": "21st Operations Support Squadron",
+    "abbrev": "21 OSS",
+    "kind": "SQUADRON",
+    "function": "Operational training and certification, tactics development, engineering support, and crew force management",
+    "location": null,
+    "parentID": 25,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "18th Space Control Squadron",
+    "abbrev": "18 SPCS",
+    "kind": "SQUADRON",
+    "function": "Space domain awareness",
+    "location": null,
+    "parentID": 25,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "20th Space Surveillance Squadron",
+    "abbrev": "20 SPSS",
+    "kind": "SQUADRON",
+    "function": "Space domain awareness",
+    "location": null,
+    "parentID": 25,
+    "grandParentID": 1,
+    "installationID": 19
+  },
+  {
+    "name": "Space Delta 2 Detachment 2",
+    "abbrev": "DEL 2 DET 2",
+    "kind": "SQUADRON",
+    "function": "Space domain awareness",
+    "location": null,
+    "parentID": 25,
+    "grandParentID": 1,
+    "installationID": 17
+  },
+  {
+    "name": "3rd Combat Training Squadron",
+    "abbrev": "3 CTS",
+    "kind": "SQUADRON",
+    "function": "Operational training and certification, tactics development, engineering support, and crew force management",
+    "location": null,
+    "parentID": 26,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "4th Electromagnetic Warfare Squadron",
+    "abbrev": "4 EWS",
+    "kind": "SQUADRON",
+    "function": "Space electronic warfare",
+    "location": null,
+    "parentID": 26,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "5th Electromagnetic Warfare Squadron ",
+    "abbrev": "5 EWS",
+    "kind": "SQUADRON",
+    "function": "Space electronic warfare",
+    "location": null,
+    "parentID": 26,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "16th Electromagnetic Warfare Squadron",
+    "abbrev": "16 EWS",
+    "kind": "SQUADRON",
+    "function": "Space electronic warfare",
+    "location": null,
+    "parentID": 26,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "460th Operations Support Squadron",
+    "abbrev": "460 OSS",
+    "kind": "SQUADRON",
+    "function": "Operational training and certification, tactics development, engineering support, and crew force management",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 3
+  },
+  {
+    "name": "2nd Space Warning Squadron",
+    "abbrev": "2 SWS",
+    "kind": "SQUADRON",
+    "function": "Missile warning, missile defense, battlespace awareness, and technical intelligence",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 3
+  },
+  {
+    "name": "6th Space Warning Squadron",
+    "abbrev": "6 SWS",
+    "kind": "SQUADRON",
+    "function": "Missile warning and space domain awareness",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 10
+  },
+  {
+    "name": "7th Space Warning Squadron",
+    "abbrev": "7 SWS",
+    "kind": "SQUADRON",
+    "function": "Missile Defense and space domain awareness",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 21
+  },
+  {
+    "name": "10th Space Warning Squadron",
+    "abbrev": "10 SWS",
+    "kind": "SQUADRON",
+    "function": "Missile warning and space domain awareness",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 11
+  },
+  {
+    "name": "11th Space Warning Squadron",
+    "abbrev": "11 SWS",
+    "kind": "SQUADRON",
+    "function": "Missile warning, missile defense, battlespace awareness, and technical intelligence",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 3
+  },
+  {
+    "name": "12th Space Warning Squadron",
+    "abbrev": "12 SWS",
+    "kind": "SQUADRON",
+    "function": "Missile warning and space domain awareness",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 16
+  },
+  {
+    "name": "13th Space Warning Squadron",
+    "abbrev": "13 SWS",
+    "kind": "SQUADRON",
+    "function": "Missile warning, missile defense, and space domain awareness",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 13
+  },
+  {
+    "name": "Space Delta 4 Detachment 1",
+    "abbrev": "DEL 4 DET 1",
+    "kind": "SQUADRON",
+    "function": "Military communications",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 3
+  },
+  {
+    "name": "55th Combat Training Squadron",
+    "abbrev": "55 CTS",
+    "kind": "SQUADRON",
+    "function": "Operations training and evaluation, and military exercise execution",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 8
+  },
+  {
+    "name": "9th Combat Operations Squadron",
+    "abbrev": "9 COS",
+    "kind": "SQUADRON",
+    "function": "Air Force reserve component",
+    "location": null,
+    "parentID": 27,
+    "grandParentID": 1,
+    "installationID": 8
+  },
+  {
+    "name": "21st Space Operations Squadron",
+    "abbrev": "21 SOPS",
+    "kind": "SQUADRON",
+    "function": "Pacific Satellite Control Network operations, Global Positioning System ground infrastructure, Western Range launch support, and defensive cyber operations",
+    "location": null,
+    "parentID": 29,
+    "grandParentID": 1,
+    "installationID": 8
+  },
+  {
+    "name": "22nd Space Operations Squadron",
+    "abbrev": "22 SOPS",
+    "kind": "SQUADRON",
+    "function": "Satellite Control Network command and control[",
+    "location": null,
+    "parentID": 29,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "23rd Space Operations Squadron",
+    "abbrev": "23 SOPS",
+    "kind": "SQUADRON",
+    "function": "Atlantic Satellite Control Network operations, Global Positioning System ground infrastructure, and Eastern Range launch support",
+    "location": null,
+    "parentID": 29,
+    "grandParentID": 1,
+    "installationID": 15
+  },
+  {
+    "name": "61st Cyber Squadron",
+    "abbrev": "61 CYS",
+    "kind": "SQUADRON",
+    "function": "Defensive cyber operations",
+    "location": null,
+    "parentID": 29,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "62nd Cyber Squadron",
+    "abbrev": "62 CYS",
+    "kind": "SQUADRON",
+    "function": "Defensive cyber operations",
+    "location": null,
+    "parentID": 29,
+    "grandParentID": 1,
+    "installationID": 3
+  },
+  {
+    "name": "65th Cyber Squadron",
+    "abbrev": "65 CYS",
+    "kind": "SQUADRON",
+    "function": "Military communications",
+    "location": null,
+    "parentID": 29,
+    "grandParentID": 1,
+    "installationID": 8
+  },
+  {
+    "name": "71st Intelligence, Surveillance, and Reconnaissance Squadron",
+    "abbrev": "71 ISRS",
+    "kind": "SQUADRON",
+    "function": "Intelligence, surveillance, and reconnaissance support to space mission deltas",
+    "location": null,
+    "parentID": 30,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "72nd Intelligence, Surveillance, and Reconnaissance Squadron",
+    "abbrev": "72 ISRS",
+    "kind": "SQUADRON",
+    "function": "Intelligence, surveillance, and reconnaissance",
+    "location": null,
+    "parentID": 30,
+    "grandParentID": 1,
+    "installationID": 6
+  },
+  {
+    "name": "73rd Intelligence, Surveillance, and Reconnaissance Squadron",
+    "abbrev": "73 ISRS",
+    "kind": "SQUADRON",
+    "function": "Global ISR operations to support the research, development and acquisition of future space capabilities",
+    "location": null,
+    "parentID": 30,
+    "grandParentID": 1,
+    "installationID": 18
+  },
+  {
+    "name": "8th Combat Training Squadron",
+    "abbrev": "8 CTS",
+    "kind": "SQUADRON",
+    "function": "Operational training and certification, tactics development, engineering support, and crew force management",
+    "location": null,
+    "parentID": 31,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "2nd Space Operations Squadron",
+    "abbrev": "2 SOPS",
+    "kind": "SQUADRON",
+    "function": "Navigation warfare",
+    "location": null,
+    "parentID": 31,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "4th Space Operations Squadron",
+    "abbrev": "4 SOPS",
+    "kind": "SQUADRON",
+    "function": "Satellite communication",
+    "location": null,
+    "parentID": 31,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "9th Combat Training Squadron",
+    "abbrev": "9 CTS",
+    "kind": "SQUADRON",
+    "function": "Operational training and certification, tactics development, engineering support, and crew force management",
+    "location": null,
+    "parentID": 32,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "1st Space Operations Squadron",
+    "abbrev": "1 SOPS",
+    "kind": "SQUADRON",
+    "function": "Space domain awareness",
+    "location": null,
+    "parentID": 32,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "3rd Space Operations Squadron",
+    "abbrev": "3 SOPS",
+    "kind": "SQUADRON",
+    "function": "Space defense",
+    "location": null,
+    "parentID": 32,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "Space Delta 9 Detachment 1",
+    "abbrev": "DEL 9 DET 1",
+    "kind": "SQUADRON",
+    "function": "Technology demonstration",
+    "location": null,
+    "parentID": 32,
+    "grandParentID": 1,
+    "installationID": 7
+  },
+  {
+    "name": "10th Delta Operations Squadron",
+    "abbrev": "10 DOS",
+    "kind": "SQUADRON",
+    "function": "Operations support",
+    "location": null,
+    "parentID": 33,
+    "grandParentID": 2,
+    "installationID": 22
+  },
+  {
+    "name": "10th Doctrine and Tactics Squadron",
+    "abbrev": "10 DTS",
+    "kind": "SQUADRON",
+    "function": "Doctrine and tactics",
+    "location": null,
+    "parentID": 33,
+    "grandParentID": 2,
+    "installationID": 22
+  },
+  {
+    "name": "10th Wargaming Squadron",
+    "abbrev": "10 WGS",
+    "kind": "SQUADRON",
+    "function": "Wargames",
+    "location": null,
+    "parentID": 33,
+    "grandParentID": 2,
+    "installationID": 22
+  },
+  {
+    "name": "11th Delta Operations Squadron",
+    "abbrev": "11 DOS",
+    "kind": "SQUADRON",
+    "function": "Delta staff and squadron management",
+    "location": null,
+    "parentID": 34,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "25th Space Range Squadron",
+    "abbrev": "25 SRS",
+    "kind": "SQUADRON",
+    "function": "Space Test and Training Range management",
+    "location": null,
+    "parentID": 34,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "527th Space Aggressor Squadron",
+    "abbrev": "257 SAS",
+    "kind": "SQUADRON",
+    "function": "Aggressor squadron",
+    "location": null,
+    "parentID": 34,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "12th Delta Operations Squadron",
+    "abbrev": "12 DOS",
+    "kind": "SQUADRON",
+    "function": "Delta staff and squadron management",
+    "location": null,
+    "parentID": 35,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "1st Test and Evaluation Squadron ",
+    "abbrev": "1 TES",
+    "kind": "SQUADRON",
+    "function": "Space command and control capabilities testing",
+    "location": null,
+    "parentID": 35,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "3rd Test and Evaluation Squadron ",
+    "abbrev": "3 TES",
+    "kind": "SQUADRON",
+    "function": "Orbital warfare capabilities testing",
+    "location": null,
+    "parentID": 35,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "4th Test and Evaluation Squadron ",
+    "abbrev": "4 TES",
+    "kind": "SQUADRON",
+    "function": "Electromagnetic spectrum capabilities testing",
+    "location": null,
+    "parentID": 35,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "17th Test and Evaluation Squadron ",
+    "abbrev": "17 TES",
+    "kind": "SQUADRON",
+    "function": "Missile warning and space domain awareness capabilities testing",
+    "location": null,
+    "parentID": 35,
+    "grandParentID": 2,
+    "installationID": 7
+  },
+  {
+    "name": "13th Delta Operations Squadron",
+    "abbrev": "13 DOS",
+    "kind": "SQUADRON",
+    "function": "Delta staff and squadron management",
+    "location": null,
+    "parentID": 36,
+    "grandParentID": 2,
+    "installationID": 20
+  },
+  {
+    "name": "National Security Space Institute",
+    "abbrev": "NSSI",
+    "kind": "SQUADRON",
+    "function": "Military space education",
+    "location": null,
+    "parentID": 36,
+    "grandParentID": 2,
+    "installationID": 6
+  },
+  {
+    "name": "Forrest L. Vosler Noncommissioned Officer Academy",
+    "abbrev": "Vossler NCOA",
+    "kind": "SQUADRON",
+    "function": "Enlisted professional military education",
+    "location": null,
+    "parentID": 36,
+    "grandParentID": 2,
+    "installationID": 6
+  },
+  {
+    "name": "Space Delta 13 Detachment 1",
+    "abbrev": "DEL 13 DET 1",
+    "kind": "SQUADRON",
+    "function": "Space Force liaison to U.S. Air Force Academy",
+    "location": null,
+    "parentID": 36,
+    "grandParentID": 2,
+    "installationID": 22
+  },
+  {
+    "name": "Space Delta 13 Detachment 2",
+    "abbrev": "DEL 13 DET 2",
+    "kind": "SQUADRON",
+    "function": "Space Force liaison to Air University",
+    "location": null,
+    "parentID": 36,
+    "grandParentID": 2,
+    "installationID": 20
+  }
+]
