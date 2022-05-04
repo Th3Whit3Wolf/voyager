@@ -42,7 +42,6 @@ const getID = {
 		progress: "NOT_STARTED"
 	}
 };
-
 const post = {
 	roles: {
 		kind: "USER"
@@ -87,6 +86,23 @@ const post = {
 		completedAt: null
 	}
 };
+const putID = {
+	roles: {
+		kind: "TASK_APPROVER"
+	},
+	tasks: {
+		title: "La Finance"
+	},
+	units: {
+		function: "Space Ranger headquarters"
+	},
+	users: {
+		dsn: "(312) 555-5555"
+	},
+	"users/tasks": {
+		progress: "COMPLETED"
+	}
+};
 
 describe("Backend Tests", () => {
 	test("GET /status", async () => {
@@ -110,7 +126,7 @@ describe("Backend Tests", () => {
 				expect(res.statusCode).toBe(201);
 			});
 		});
-		describe(`Route /api/v1/${routeByID}`, () => {
+		describe(`Route ${routeByID}`, () => {
 			test(`GET ${route}`, async () => {
 				const res = await response.get(`${routeByID}`);
 				const { body } = res;
@@ -130,6 +146,13 @@ describe("Backend Tests", () => {
 						expect(body.data[k]).toBe(v);
 					}
 				});
+			});
+			test(`PUT ${routeByID}`, async () => {
+				const res = await response
+					.put(`${routeByID}`)
+					.send(putID[route])
+					.set("Accept", "application/json");
+				expect(res.statusCode).toBe(202);
 			});
 		});
 	});
