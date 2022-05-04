@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   capstone-db:
-    image: postgres
+    image: postgres:14-alpine
     restart: always
     environment:
       - DATABASE_HOST=${PG_HOST:-127.0.0.1}
@@ -25,7 +25,18 @@ services:
       capstone-db:
         condition: service_healthy
     ports:
-      - '8081:8081'
+      - "8080:8082"
+    entrypoint:
+      [
+        "npm",
+        "run",
+        "db:reset",
+        "--",
+        "--skip-generate",
+        "--force",
+        "&&",
+        "$$1",
+      ]
     environment:
       - NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node'
       - NODE_ENV=development

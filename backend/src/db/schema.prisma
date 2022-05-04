@@ -30,12 +30,14 @@ enum UnitKind {
 }
 
 model Unit {
-  id       Int      @id @default(autoincrement())
-  name     String   @unique
-  abbrev   String?  @db.VarChar(50)
-  kind     UnitKind
-  function String?  @db.Text
-  location String?  @db.Text
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  abbrev    String?  @db.VarChar(64)
+  kind      UnitKind
+  function  String?  @db.Text
+  location  String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   /// Define possible relationship with parent Unit
   /// Rename collumn to conform to SQL naming conventions
@@ -52,12 +54,13 @@ model Unit {
   installationID Int?  @map("installation_id")
   installation   Unit? @relation("InstallationUnit", fields: [installationID], references: [id])
 
-  children             Unit[]   @relation("ParentUnit")
-  grandChildren        Unit[]   @relation("GrandParentUnit")
-  installationChildren Unit[]   @relation("InstallationUnit")
-  Role                 Role[]   @relation("Admin Of Unit")
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @default(now()) @updatedAt
+  /// One-to-Many Relationships
+  children             Unit[] @relation("ParentUnit")
+  grandChildren        Unit[] @relation("GrandParentUnit")
+  installationChildren Unit[] @relation("InstallationUnit")
+  Role                 Role[] @relation("Admin Of Unit")
+  assignedUsers        User[] @relation("Current unit of user")
+  gainingUsers         User[] @relation("Gaining unit of user")
 
   /// Rename table to units to conform to
   /// SQL naming conventions
@@ -66,9 +69,9 @@ model Unit {
 
 enum ProcessingStatus {
   IN_PROCESSING
-  IN_PROCESSING_WITH_ORDERS
   IN_TRANSIT
   OUT_PROCESSING
+  OUT_PROCESSING_WITH_ORDERS
   STATIONARY
 }
 
@@ -93,12 +96,56 @@ model Role {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  /// Define possible relationship with installation Unit
+  /// Define possible relationship with Unit
   /// Rename collumn to conform to SQL naming conventions
   unitID Int?  @map("unit_id")
   unit   Unit? @relation("Admin Of Unit", fields: [unitID], references: [id])
 
-  /// Rename table to units to conform to
+  /// One-to-Many relationships
+  users User[] @relation("Role of user")
+
+  /// Rename table to roles to conform to
   /// SQL naming conventions
   @@map("roles")
+}
+
+model User {
+  id            Int              @id @default(autoincrement())
+  firstName     String           @db.VarChar(64)
+  lastName      String           @db.VarChar(64)
+  email         String           @unique @db.VarChar(128)
+  dsn           String?          @db.VarChar(32)
+  auth          String
+  officeSymbol  String           @db.VarChar(64)
+  status        ProcessingStatus
+  sperationDate DateTime         @default(dbgenerated("NOW() + interval '4 year'")) @map("seperation_date")
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @default(now()) @updatedAt
+
+  /// Define possible relationship with Unit
+  /// Rename collumn to conform to SQL naming conventions
+  assignedUnitID Int  @map("assigned_unit_id")
+  assignedUnit   Unit @relation("Current unit of user", fields: [assignedUnitID], references: [id])
+
+  /// Define possible relationship with Unit
+  /// Rename collumn to conform to SQL naming conventions
+  gainingUnitID Int?  @map("gaining_unit_id")
+  gainingUnit   Unit? @relation("Gaining unit of user", fields: [gainingUnitID], references: [id])
+
+  /// Define possible relationship with Role
+  /// Rename collumn to conform to SQL naming conventions
+  roleID Int?  @map("role_id")
+  role   Role? @relation("Role of user", fields: [roleID], references: [id])
+
+  /// Define possible relationship with User
+  /// Rename collumn to conform to SQL naming conventions
+  supervisorID Int?  @map("supervisor_id")
+  supervisor   User? @relation("Supervisor of user", fields: [supervisorID], references: [id])
+
+  /// One-to-Many relationships
+  subordinates User[] @relation("Supervisor of user")
+
+  /// Rename table to units to conform to
+  /// SQL naming conventions
+  @@map("users")
 }

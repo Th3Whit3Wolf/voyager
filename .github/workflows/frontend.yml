@@ -87,12 +87,6 @@ jobs:
           git add frontend/dist/*
           git commit -m "Chore: Build frontend for distribution"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-
       - name: Deploy Frontend
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
