@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:up": "docker-compose up -d",
+    "docker:up": "docker-compose up -d && npm --prefix backend run db:testMigration && npm --prefix backend run db:seed",
     "docker:down": "docker-compose down",
     "install": "npm --prefix frontend install && npm --prefix backend install",
     "lint": "npm --prefix frontend run lint && npm --prefix backend run lint",
