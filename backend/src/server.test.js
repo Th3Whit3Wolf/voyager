@@ -38,10 +38,9 @@ const firstID = {
 	}
 };
 
-describe("GET Tests", () => {
-	test("/status should be good", async () => {
+describe("Backend Tests", () => {
+	test("GET /status", async () => {
 		const res = await response.get("/status");
-
 		expect(res.statusCode).toBe(200);
 	});
 
@@ -60,14 +59,15 @@ describe("GET Tests", () => {
 			Object.entries(firstID[route]).forEach(([k, v]) => {
 				if (body.data[k] === undefined) {
 					console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
-Data: ${JSON.stringify(body.data)}
+Body: ${body}
+Body JSON: ${JSON.stringify(body)}
+Data ${body.data}
+Data JSON: ${JSON.stringify(body.data)}
+Field: ${k}
+Value: ${v}
 Expected: Data.${k} to exist
 					`);
-				} else if (body.data[k] !== v) {
-					console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
-Data: ${JSON.stringify(body.data)}
-Expected: ${body.data[k]} to equal ${v}
-					`);
+					console.log({ body });
 				}
 				expect(body.data[k]).toBe(v);
 			});
