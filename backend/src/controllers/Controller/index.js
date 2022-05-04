@@ -212,9 +212,10 @@ class Controller {
 	 * @memberof Controller
 	 */
 	async delete(req, res) {
-		const { id } = req.params;
+		const { id: idStr } = req.params;
 
 		try {
+			const id = parseInt(idStr);
 			await this.dbResource.delete({
 				where: { id },
 				...this.queryOptions.delete
