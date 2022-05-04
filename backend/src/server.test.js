@@ -58,6 +58,12 @@ describe("GET Tests", () => {
 			expect(res.statusCode).toBe(200);
 			expect(body.data.id).toBe(1);
 			Object.entries(firstID[route]).forEach(([k, v]) => {
+				if (body.data[k] !== v) {
+					console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
+Data: ${body.data}
+Expected: ${body.data[k]} to equal ${v}
+					`);
+				}
 				expect(body.data[k]).toBe(v);
 			});
 		});
