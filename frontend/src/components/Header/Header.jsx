@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
 	const navigate = useNavigate();
 	const context = useContext(UserContext);
-	console.log(context);
 
 	const handleClick = () => {
 		// Do some stuff
@@ -39,9 +38,12 @@ const Header = () => {
 				}}
 			>
 				{context.role ? (
-					<Button variant="contained" onClick={handleClick}>
-						Logout
-					</Button>
+					<div className={styles.header__title3}>
+						Logged in as {context.role}
+						<Button variant="contained" marginLeft="10px" onClick={handleClick}>
+							Logout
+						</Button>
+					</div>
 				) : null}
 			</Grid>
 		</header>

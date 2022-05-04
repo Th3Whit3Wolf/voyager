@@ -21,6 +21,12 @@ h1 {
 	font-size: 30px;
 }
 
+.header__title3 {
+	font-size: 15px;
+	color: #f0f8ff;
+	padding-right: 5%;
+}
+
 .navbar__links__container {
 	display: flex;
 	gap: 50px;
