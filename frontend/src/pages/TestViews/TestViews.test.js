@@ -25,7 +25,7 @@ test("renders a TestViews component successfully", () => {
 
 test("TestViews has an input field which can take a string to change fetch endpoints", async () => {
 	setup();
-	const urlInputField = await screen.findByRole(/input/i);
+	const urlInputField = await screen.findByRole("textbox");
 	expect(urlInputField).toBeInTheDocument();
 });
 
