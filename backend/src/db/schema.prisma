@@ -145,12 +145,12 @@ model User {
   supervisor   User? @relation("Supervisor of user", fields: [supervisorID], references: [id])
 
   /// One-to-Many relationships
-  subordinates   User[] @relation("Supervisor of user")
-  TasksAssigners Task[] @relation("Task assigner")
-  TasksApprovers Task[] @relation("Task approver")
+  subordinates      User[] @relation("Supervisor of user")
+  tasksAssigned     Task[] @relation("Task assigner")
+  taskApproverTasks Task[] @relation("Task approver")
 
   /// Many-to-Many relationships
-  Tasks TaskUser[] @relation("TaskUsers userID")
+  tasks TaskUser[] @relation("TaskUsers userID")
 
   /// Rename table to users to conform to
   /// SQL naming conventions
