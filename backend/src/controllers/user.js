@@ -15,14 +15,44 @@ const UserController = new Controller("User", {
 				dsn: true,
 				status: true,
 				sperationDate: true,
-				assignedUnit: true,
+				assignedUnit: {
+					select: {
+						id: true,
+						kind: true,
+						name: true,
+						abbrev: true,
+						function: true,
+						assignedUsers: {
+							select: {
+								firstName: true,
+								lastName: true,
+								email: true,
+								dsn: true,
+								status: true,
+								role: true,
+								tasks: true
+							}
+						}
+					}
+				},
 				assignedOfficeSymbol: true,
 				gainingUnitID: true,
 				gainingOfficeSymbol: true,
 				role: true,
 				supervisor: true,
 				subordinates: true,
-				tasksAssigned: true,
+				tasksAssigned: {
+					select: {
+						id: true,
+						title: true,
+						description: true,
+						isActive: true,
+						kind: true,
+						approver: true,
+						createdAt: true,
+						updatedAt: true
+					}
+				},
 				taskApproverTasks: true,
 				tasks: true
 			}
