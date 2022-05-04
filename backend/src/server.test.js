@@ -156,6 +156,7 @@ describe("Backend Tests", () => {
 			});
 			test(`DELETE request returns 204`, async () => {
 				const res = await response.delete(`${routeByID}`);
+				console.log("Body: ", JSON.stringify(res.body));
 				expect(res.statusCode).toBe(204);
 			});
 		});
