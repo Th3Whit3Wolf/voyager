@@ -20,9 +20,9 @@ const UserController = new Controller("User", {
 				role: true,
 				supervisor: true,
 				subordinates: true,
-				TasksAssigners: true,
-				TasksApprovers: true,
-				Tasks: true
+				tasksAssigned: true,
+				taskApproverTasks: true,
+				tasks: true
 			}
 		}
 	},
