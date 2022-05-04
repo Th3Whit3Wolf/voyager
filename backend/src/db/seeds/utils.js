@@ -64,21 +64,27 @@ const statusUpdate = (schemaName, data) => {
 // let wheres = [{ display: "", fieldName: "", fieldVal: val }];
 const genData = async (prisma, schemaName, datum, compare, wheres) => {
 	let currentPrismaData = await prisma[schemaName].findMany();
-	// eslint-disable-next-line no-restricted-syntax
-	for (const data of datum) {
-		const findCurr = currentPrismaData.filter(
-			cur => cur[compare] === data[compare]
-		);
-		if (findCurr.length < 1) {
-			try {
-				// eslint-disable-next-line no-await-in-loop
-				await prisma[schemaName].create({
-					data
-				});
-			} catch (err) {
-				console.error(
-					`Error occured while adding ${data[compare]} to ${schemaName}: ${err}`
-				);
+
+	if (currentPrismaData.length !== datum.length) {
+		if (currentPrismaData.length > 1) {
+			await prisma[schemaName].deleteMany({});
+		}
+		// eslint-disable-next-line no-restricted-syntax
+		for (const data of datum) {
+			const findCurr = currentPrismaData.filter(
+				cur => cur[compare] === data[compare]
+			);
+			if (findCurr.length < 1) {
+				try {
+					// eslint-disable-next-line no-await-in-loop
+					await prisma[schemaName].create({
+						data
+					});
+				} catch (err) {
+					console.error(
+						`Error occured while adding ${data[compare]} to ${schemaName}: ${err}`
+					);
+				}
 			}
 		}
 	}
