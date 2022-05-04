@@ -168,9 +168,9 @@ describe("Backend Tests", () => {
 
 			test(`DELETE request returns 204`, async () => {
 				const delRoute = `/api/v1/${deleteID[route]}`;
-				const res = await response.delete(`${routeByID}`);
+				const res = await response.delete(`${delRoute}`);
 				console.log(
-					`Route: ${routeByID}`,
+					`Route: ${delRoute}`,
 					"Body: ",
 					JSON.stringify(res.body)
 				);
