@@ -13,7 +13,6 @@ const Login = () => {
 	// STATE
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [userObj, setUserObj] = useState({});
 
 	const [splashOff, setSplashOff] = useState(false);
 
@@ -41,13 +40,12 @@ const Login = () => {
 		} else {
 			fetch("http://localhost:8081/api/v1/users")
 				.then(response => response.json())
-				.then(userList => userList.filter(user => user.email === username))
-				.then(user => setUserObj(user))
-				.then(() => (context.role = "admin"))
-				.then(() => (context.user = userObj))
-				.then(result =>
-					navigate("/dashboard", { state: { role: "admin", user: result } })
-				);
+				.then(userList => userList.filter(user => user.email === username)[0])
+				.then(user => {
+					context.role = "admin";
+					context.user = user;
+				})
+				.then(() => navigate("/dashboard"));
 		}
 	};
 
