@@ -5,9 +5,12 @@ const UserSettings = ({ settings }) => {
 		<div>
 			<h1>User Settings</h1>
 			<ul>
-				<li> First Name: {settings.firstName}</li>
-				<li> Last Name: {settings.lastName}</li>
+				<li>
+					{" "}
+					{settings.firstName} {settings.lastName}
+				</li>
 				<li> Email: {settings.email}</li>
+				<li> DSN: {settings.dsn}</li>
 			</ul>
 		</div>
 	);
