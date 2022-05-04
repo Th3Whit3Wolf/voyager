@@ -61,7 +61,7 @@ describe("Backend Tests", () => {
 			const { body } = res;
 
 			expect(res.statusCode).toBe(200);
-			if (body.id === undefined) {
+			if (body.data.id === undefined) {
 				console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
 Body: ${body}
 Body JSON: ${JSON.stringify(body)}
