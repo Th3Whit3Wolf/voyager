@@ -58,9 +58,14 @@ describe("GET Tests", () => {
 			expect(res.statusCode).toBe(200);
 			expect(body.data.id).toBe(1);
 			Object.entries(firstID[route]).forEach(([k, v]) => {
-				if (body.data[k] !== v) {
+				if (body.data[k] === undefined) {
 					console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
-Data: ${body.data}
+Data: ${JSON.stringify(body.data)}
+Expected: Data.${k} to exist
+					`);
+				} else if (body.data[k] !== v) {
+					console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
+Data: ${JSON.stringify(body.data)}
 Expected: ${body.data[k]} to equal ${v}
 					`);
 				}
