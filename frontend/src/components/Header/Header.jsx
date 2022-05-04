@@ -9,11 +9,10 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
 	const navigate = useNavigate();
 	const context = useContext(UserContext);
-	console.log(context.user);
 
 	const handleClick = () => {
 		// Do some stuff
-		// :-D
+		context.user = {};
 		// navigate
 		navigate("/");
 	};
@@ -38,7 +37,7 @@ const Header = () => {
 					justifyContent: "flex-end"
 				}}
 			>
-				{context.role ? (
+				{context.user.role ? (
 					<div className={styles.header__title3}>
 						<p>Welcome, {context.user.firstName}!</p>
 						<Button variant="contained" onClick={handleClick}>

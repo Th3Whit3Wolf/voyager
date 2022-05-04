@@ -41,16 +41,11 @@ const Login = () => {
 			alert("Password Required");
 		} else {
 			setIsLoading(true);
-			fetch("http://localhost:8081/api/v1/users?limit=9999")
+			fetch(`http://localhost:8081/api/v1/users?email=${username}`)
 				.then(response => response.json())
-				.then(
-					userList => userList.data.filter(user => user.email === username)[0]
-				)
-				.then(user => {
-					context.user = user;
-				})
-				.then(setIsLoading(false))
-				.then(() => navigate("/dashboard"));
+				.then(d => (context.user = d.data[0]))
+				.then(() => navigate("/dashboard"))
+				.finally(setIsLoading(false));
 		}
 	};
 
