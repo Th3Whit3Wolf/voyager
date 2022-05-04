@@ -159,7 +159,6 @@ main(prisma)
 		process.exit(1);
 	})
 	.finally(async () => {
-		console.log(seedUnits.name);
 		console.log("Successfully seeded database. Closing connection.");
 		notifier.notify({
 			title: "Database Seeding Success",
