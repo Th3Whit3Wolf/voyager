@@ -30,9 +30,9 @@ import Loading from "../../components/Loading/Loading";
 
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
-	//const [data, setData] = setData(null);
+	//const [data, setData] = useState([]);
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
-
+	//const [isLoading, setIsLoading] = useState(false);
 	const context = useContext(UserContext);
 
 	console.log(context.role, context.user);
@@ -43,13 +43,19 @@ const Dashboard = () => {
 		500
 	); // only created data for User , not Admin yet, Admin gives a console log
 
-	useFetch(`http://localhost:8081/api/v1/tasks`);
-
+	//	var { data, error, isLoading };
 	//console.log(`second fetch: ${data2}`);
 	// useEffect(() => {
-	// 	var newData = unfiltereddata.filter(task => task.assignerID == 66);
+	// 	//{ data, error, isLoading } = useFetch(`http://localhost:8081/api/v1/tasks`);
+	// 	var newData;
+	// 	fetch("http://localhost:8081/api/v1/tasks")
+	// 		.then(response => response.json())
+	// 		.then(filter_value =>
+	// 			filter_value.filter(v => v.assignerID == context.user.id)
+	// 		)
+	// 		.then(d => (newData = d));
 	// 	setData(newData);
-	// }, [unfiltereddata]);
+	// }, []);
 
 	// useEffect(() => {
 	// 	console.log(data, error, isLoading);
@@ -89,8 +95,10 @@ const Dashboard = () => {
 							<UserTable
 								data={
 									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
+										? data?.filter(
+												tasker => tasker.task_type === "Inprocessing"
+										  )
+										: data?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}
@@ -109,8 +117,10 @@ const Dashboard = () => {
 							<UserTable
 								data={
 									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
+										? data?.filter(
+												tasker => tasker.task_type === "Inprocessing"
+										  )
+										: data?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}
@@ -147,8 +157,10 @@ const Dashboard = () => {
 							<AdminTable
 								data={
 									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
+										? data?.filter(
+												tasker => tasker.task_type === "Inprocessing"
+										  )
+										: data?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}
@@ -170,8 +182,10 @@ const Dashboard = () => {
 							<AdminTable
 								data={
 									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
+										? data?.filter(
+												tasker => tasker.task_type === "Inprocessing"
+										  )
+										: data?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}

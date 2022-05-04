@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
 	const navigate = useNavigate();
 	const context = useContext(UserContext);
+	console.log(context.user);
 
 	const handleClick = () => {
 		// Do some stuff
@@ -20,7 +21,7 @@ const Header = () => {
 	return (
 		<header className={styles.header__container}>
 			<a
-				href="https://voyager.jpl.nasa.gov/mission/status/"
+				href="https://voyager.jpl.nasa.gov/mission/status/" // <- love it
 				target="_blank"
 				rel="noopener noreferrer"
 			>
@@ -39,8 +40,8 @@ const Header = () => {
 			>
 				{context.role ? (
 					<div className={styles.header__title3}>
-						Logged in as {context.role}
-						<Button variant="contained" marginLeft="10px" onClick={handleClick}>
+						<p>Welcome, {context.user.firstName}!</p>
+						<Button variant="contained" onClick={handleClick}>
 							Logout
 						</Button>
 					</div>

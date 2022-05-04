@@ -42,7 +42,8 @@ const Login = () => {
 				.then(response => response.json())
 				.then(userList => userList.filter(user => user.email === username)[0])
 				.then(user => {
-					context.role = "admin";
+					if (user.id === 1) context.role = "user";
+					if (user.id === 66) context.role = "admin";
 					context.user = user;
 				})
 				.then(() => navigate("/dashboard"));
@@ -112,6 +113,19 @@ const Login = () => {
 				}}
 			>
 				<Button
+					color="secondary"
+					variant="contained"
+					onClick={() => {
+						setUsername("rick.sanchez@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate USER 1 (Rick Sanchez) Username and Password
+				</Button>
+
+				<br />
+
+				<Button
 					color="warning"
 					variant="contained"
 					onClick={() => {
@@ -119,25 +133,7 @@ const Login = () => {
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate ADMIN 66 Username and Password
-				</Button>
-				<br />
-				<br />
-				<p>Delete all this and below once the Backend and Auth are Set Up</p>
-				<Button
-					color="error"
-					variant="contained"
-					onClick={() => navigate("/dashboard", { state: { role: "user" } })}
-				>
-					USER: Demo Dashboard
-				</Button>
-				<br />
-				<Button
-					color="error"
-					variant="contained"
-					onClick={() => navigate("/dashboard", { state: { role: "admin" } })}
-				>
-					ADMIN: Demo Dashboard
+					Click to Auto Populate ADMIN 66 (Morris Hirthe) Username and Password
 				</Button>
 			</Stack>
 		</>
