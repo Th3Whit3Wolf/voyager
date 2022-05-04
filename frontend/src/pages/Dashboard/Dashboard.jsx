@@ -12,8 +12,7 @@ import useFetch from "../../hooks/useFetch";
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import UserTable from "../../components/Tables/UserTable/UserTable";
-import AdminTable from "../../components/Tables/AdminTable/AdminTable";
+import { UserTable, AdminTable, UserSettings } from "../../components";
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
@@ -37,9 +36,9 @@ const Dashboard = () => {
 
 	const userData = context.user.Tasks;
 
-	const adminData = context.user.TasksAssigner;
-	console.log(`userData: ${userData}`);
-	console.log(`adminData: ${adminData}`);
+	const data = context.user.TasksAssigners;
+	//console.log(`userData: ${userData}`);
+	//console.log(`data: ${data}`);
 	// Setting up Different Views Based on Role
 	// There are many ways to do conditional views, but with
 	// so many possible concurrent views, early returns might be the best
@@ -56,6 +55,7 @@ const Dashboard = () => {
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
 						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab label="User Settings" value="3" />
 					</TabList>
 
 					<TabPanel value="1">
@@ -70,10 +70,10 @@ const Dashboard = () => {
 								data={
 									tabValue === "1"
 										? userData?.filter(
-												tasker => tasker.task_type === "Inprocessing"
+												tasker => tasker.kind === "IN_PROCESSING"
 										  )
 										: userData?.filter(
-												tasker => tasker.task_type === "Outprocessing"
+												tasker => tasker.kind === "Outprocessing"
 										  )
 								}
 							/>
@@ -92,14 +92,20 @@ const Dashboard = () => {
 								data={
 									tabValue === "1"
 										? userData?.filter(
-												tasker => tasker.task_type === "Inprocessing"
+												tasker => tasker.kind === "IN_PROCESSING"
 										  )
 										: userData?.filter(
-												tasker => tasker.task_type === "Outprocessing"
+												tasker => tasker.kind === "Outprocessing"
 										  )
 								}
 							/>
 						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="3">
+						<h3>User Settings</h3>
+						First Name: {context.user.firstName}
+						Last Name: {context.user.lastName}
 					</TabPanel>
 				</TabContext>
 			</>
@@ -131,12 +137,8 @@ const Dashboard = () => {
 							<AdminTable
 								data={
 									tabValue === "1"
-										? adminData?.filter(
-												tasker => tasker.task_type === "Inprocessing"
-										  )
-										: adminData?.filter(
-												tasker => tasker.task_type === "Outprocessing"
-										  )
+										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
+										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
 								}
 							/>
 						</TableContainer>
@@ -156,12 +158,8 @@ const Dashboard = () => {
 							<AdminTable
 								data={
 									tabValue === "1"
-										? adminData?.filter(
-												tasker => tasker.task_type === "Inprocessing"
-										  )
-										: adminData?.filter(
-												tasker => tasker.task_type === "Outprocessing"
-										  )
+										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
+										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
 								}
 							/>
 						</TableContainer>
@@ -174,6 +172,15 @@ const Dashboard = () => {
 							can be toggled as complete or not. Clicking on a row might show
 							more info?
 						</p>
+						<TableContainer component={Paper}>
+							<AdminTable
+								data={
+									tabValue === "1"
+										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
+										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
+								}
+							/>
+						</TableContainer>
 					</TabPanel>
 				</TabContext>
 			</>
