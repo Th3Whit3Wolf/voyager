@@ -11,7 +11,6 @@ const prisma = new PrismaClient({
 	}
 });
 
-const kind = "COMMAND";
 const select = {
 	id: true,
 	name: true,
@@ -35,13 +34,13 @@ const select = {
 	}
 };
 
-const Commands = {
+const Units = {
 	getByID: async (req, res, next) => {
-		const { commandID } = req.params;
-		const id = parseInt(commandID);
+		const { unitID } = req.params;
+		const id = parseInt(unitID);
 		try {
-			const query = await prisma.Unit.findMany({
-				where: { kind, id },
+			const query = await prisma.Unit.findFirst({
+				where: { id },
 				select
 			});
 			return res.status(200).json(query);
@@ -53,7 +52,6 @@ const Commands = {
 	getAll: async (req, res, next) => {
 		try {
 			const query = await prisma.Unit.findMany({
-				where: { kind },
 				select
 			});
 			res.status(200).json(query);
@@ -63,4 +61,4 @@ const Commands = {
 	}
 };
 
-export default Commands;
+export default Units;
