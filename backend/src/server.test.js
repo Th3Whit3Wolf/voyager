@@ -1,10 +1,11 @@
 import request from "supertest";
 import app from "./server";
-import routes from "./routes";
+// import routes from "./routes";
 
 const response = request(app);
 
 const getRoutes = ["roles", "tasks", "units", "users", "users/tasks"];
+/*
 const firstID = {
 	roles: {
 		kind: "SITE_ADMIN"
@@ -39,6 +40,7 @@ const firstID = {
 		progress: "NOT_STARTED"
 	}
 };
+*/
 describe("GET Tests", () => {
 	test("/status should be good", async () => {
 		const res = await response.get("/status");
