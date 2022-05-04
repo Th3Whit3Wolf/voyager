@@ -15,29 +15,23 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import UserTable from "../../components/Tables/UserTable/UserTable";
 import AdminTable from "../../components/Tables/AdminTable/AdminTable";
 
-//import AdminTable from "../../components/Tables/AdminTable/AdminTable";
-// NOTE: Currently Dashboard is taking a prop called
-// role. This is coming from Login.jsx where the Fake
-// User and Admin navigations pass it in order to
-// emulate a type of role since the Firebase Store
-// and the backend API need to be set up. I suspect
-// all of this will be refactored a lot in the future
-// but I just wanted to have something to attach
-// Dasboard too in the Routes of App.jsx
-// Please refactor and delete all this as necessary,
-// This comment is just to help other developers
-// read this more easily. --Tony
+// There is no longer a useNavigate state prop called role.
+// There is now, instead, a UserContext object being provided
+//   to all of App. In general, UserContext has two entities
+//   a role with a string as a key which should be role, admin, or nothing
+//   a user which containers the User object returned from the API after logging in
+//   As an example, below, there is a context variable from UserContext and it
+//   has a context.role and a context.User . You will see these also used in the
+//   Header component. Generally, the logout button (in the Header) should
+//   obliterate UserContext. This is one big refactor forward toward Firebase
+//   integration and being able to track User auth --Tony
 
-import { useLocation } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
 	//const [data, setData] = setData(null);
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
-	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
-	// const role = location.state.role;
-	// const userObj = location.state.userObj;
 
 	const context = useContext(UserContext);
 
@@ -49,9 +43,7 @@ const Dashboard = () => {
 		500
 	); // only created data for User , not Admin yet, Admin gives a console log
 
-	// const { data2, error2, isLoading2 } = useFetch(
-	// 	`http://localhost:8081/api/v1/tasks`
-	// );
+	useFetch(`http://localhost:8081/api/v1/tasks`);
 
 	//console.log(`second fetch: ${data2}`);
 	// useEffect(() => {

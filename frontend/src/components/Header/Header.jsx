@@ -13,7 +13,9 @@ const Header = () => {
 
 	return (
 		<header className={styles.header__container}>
-			<img src={logo} alt="Space Force Logo" />
+			<a href="https://voyager.jpl.nasa.gov/mission/status/">
+				<img src={logo} alt="Space Force Logo" />
+			</a>
 			<h1>
 				<span className={styles.header__title2}>Voyager</span>
 			</h1>

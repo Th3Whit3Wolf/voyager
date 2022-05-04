@@ -7,12 +7,12 @@ const useFetch = ({ url }) => {
 	useEffect(() => {
 		fetch(url)
 			.then(response => response.json())
-			.then(d => setData(d))
+			.then(d => console.log(d))
 			.catch(e => setError(e));
 
 		setIsLoading(false);
-	});
-	return { data, error, isLoading };
+	}, []);
+	//return { data, error, isLoading };
 };
 
 export default useFetch;
