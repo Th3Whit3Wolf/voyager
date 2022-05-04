@@ -17,6 +17,7 @@ const select = {
 	lastName: true,
 	email: true,
 	dsn: true
+
 	/*
 	officeSymbol: true,
 	status: true,

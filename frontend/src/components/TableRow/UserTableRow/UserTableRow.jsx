@@ -27,7 +27,7 @@ const UserTableRow = ({ entry }) => {
 					</DialogContentText>
 				</DialogContent>
 			</Dialog>
-			<TableRow onClick={() => handleClickOpen()}>
+			<TableRow hover={true} onClick={() => handleClickOpen()}>
 				<TableCell>
 					<Checkbox
 						onChange={() => console.log(`Update Checkbox of id ${entry.id}`)}

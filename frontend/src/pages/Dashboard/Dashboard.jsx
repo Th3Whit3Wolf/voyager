@@ -2,8 +2,12 @@
 // This is a demo dashboard as a placeholder
 // when actual dashboards are built up, switch to TDD
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import UserContext from "../../context/UserContext";
+
 import useFetchMock from "../../hooks/useFetchMock";
+
+import useFetch from "../../hooks/useFetch";
 
 // Third Party Components and Utilities
 import {
@@ -20,6 +24,7 @@ import {
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import UserTable from "../../components/Tables/UserTable/UserTable";
 import AdminTable from "../../components/Tables/AdminTable/AdminTable";
+
 //import AdminTable from "../../components/Tables/AdminTable/AdminTable";
 // NOTE: Currently Dashboard is taking a prop called
 // role. This is coming from Login.jsx where the Fake
@@ -38,11 +43,29 @@ import Loading from "../../components/Loading/Loading";
 
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
-
+	//const [data, setData] = setData(null);
 	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
 	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
-	const role = location.state.role;
-	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 500); // only created data for User , not Admin yet, Admin gives a console log
+	// const role = location.state.role;
+	// const userObj = location.state.userObj;
+
+	const context = useContext(UserContext);
+
+	console.log(context.role, context.user);
+
+	const { data, error, isLoading } = useFetchMock(
+		`/api/mock/${context.role}`,
+		0,
+		500
+	); // only created data for User , not Admin yet, Admin gives a console log
+
+	//const { data2, error2, isLoading2 } = useFetch(`localhost:8081/api/v1/tasks`);
+
+	//console.log(`second fetch: ${data2}`);
+	// useEffect(() => {
+	// 	var newData = unfiltereddata.filter(task => task.assignerID == 66);
+	// 	setData(newData);
+	// }, [unfiltereddata]);
 
 	// useEffect(() => {
 	// 	console.log(data, error, isLoading);
@@ -62,7 +85,7 @@ const Dashboard = () => {
 	// is easier to see all in one page. But I can see someone taking it down to User, Site Admin, Base Admin, etc
 	// then the conditional early returns will turn this Dashboard.jsx into like 5 lines of code down below, and different
 	// people can work on different sections without stepping on each others toes. --Tony
-	if (role === "user") {
+	if (context.role === "user") {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -116,7 +139,7 @@ const Dashboard = () => {
 	}
 
 	// Generic Admin View ... this conditional compares to role from location, should be changed to AUTH obj later
-	if (role === "admin") {
+	if (context.role === "admin") {
 		return (
 			<>
 				<TabContext value={tabValue}>

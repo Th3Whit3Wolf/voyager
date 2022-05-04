@@ -15,7 +15,7 @@ import { MemoryRouter as Router } from "react-router-dom";
 const setup = rt =>
 	render(
 		<Router>
-			<TestViews rt={rt} />
+			<TestViews />
 		</Router>
 	);
 
@@ -30,7 +30,7 @@ test("TestViews has an input field which can take a string to change fetch endpo
 });
 
 test("TestViews can render a Specific User when a Specific User is fetched", async () => {
-	setup("/users/1");
+	setup();
 
 	const firstName = await screen.findByText(/rick/i);
 	const lastName = await screen.findByText(/sanchez/i);

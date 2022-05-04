@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
-// Our Components
+// Our Components and Hooks
 import SplashScreen from "../../components/SplashScreen/SplashScreen";
+import useLogin from "../../hooks/useLogin";
+import UserContext from "../../context/UserContext";
 
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
@@ -11,7 +13,11 @@ const Login = () => {
 	// STATE
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [userObj, setUserObj] = useState({});
+
 	const [splashOff, setSplashOff] = useState(false);
+
+	const context = useContext(UserContext);
 
 	const navigate = useNavigate();
 
@@ -33,11 +39,15 @@ const Login = () => {
 			setPassword("");
 			alert("Password Required");
 		} else {
-			setUsername("");
-			setPassword("");
-			alert(
-				`Entered User: ${username} with Pass: ${password}\n\nDavid would like to handle the Firebase Config file.\n\nUpdate this functionality for auth. after that is complete. Recommend its own Context.`
-			);
+			fetch("http://localhost:8081/api/v1/users")
+				.then(response => response.json())
+				.then(userList => userList.filter(user => user.email === username))
+				.then(user => setUserObj(user))
+				.then(() => (context.role = "admin"))
+				.then(() => (context.user = userObj))
+				.then(result =>
+					navigate("/dashboard", { state: { role: "admin", user: result } })
+				);
 		}
 	};
 
@@ -65,9 +75,9 @@ const Login = () => {
 				>
 					<TextField
 						id="username"
-						label="Username"
+						label="Email"
 						variant="standard"
-						placeholder="Enter Username"
+						placeholder="Enter Email"
 						value={username}
 						onChange={e => setUsername(e.target.value)}
 						sx={{ minWidth: "300px" }}
@@ -103,6 +113,16 @@ const Login = () => {
 					alignSelf: "center"
 				}}
 			>
+				<Button
+					color="warning"
+					variant="contained"
+					onClick={() => {
+						setUsername("morris.hirthe@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate ADMIN 66 Username and Password
+				</Button>
 				<br />
 				<br />
 				<p>Delete all this and below once the Backend and Auth are Set Up</p>
