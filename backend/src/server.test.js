@@ -104,6 +104,14 @@ const putID = {
 	}
 };
 
+const deleteID = {
+	roles: 7,
+	tasks: 1309,
+	units: 92,
+	users: 8644,
+	"users/tasks": 68692
+};
+
 describe("Backend Tests", () => {
 	test("GET /status", async () => {
 		const res = await response.get("/status");
@@ -118,6 +126,7 @@ describe("Backend Tests", () => {
 				const res = await response.get(`${routeRegular}`);
 				expect(res.statusCode).toBe(200);
 			});
+
 			test(`POST request returns 201`, async () => {
 				const res = await response
 					.post(`${routeRegular}`)
@@ -126,6 +135,7 @@ describe("Backend Tests", () => {
 				expect(res.statusCode).toBe(201);
 			});
 		});
+
 		describe(`Route ${routeByID}`, () => {
 			test(`GET request returns 200`, async () => {
 				const res = await response.get(`${routeByID}`);
@@ -147,6 +157,7 @@ describe("Backend Tests", () => {
 					}
 				});
 			});
+
 			test(`PUT request returns 202`, async () => {
 				const res = await response
 					.put(`${routeByID}`)
@@ -154,9 +165,15 @@ describe("Backend Tests", () => {
 					.set("Accept", "application/json");
 				expect(res.statusCode).toBe(202);
 			});
+
 			test(`DELETE request returns 204`, async () => {
+				const delRoute = `/api/v1/${deleteID[route]}`;
 				const res = await response.delete(`${routeByID}`);
-				console.log("Body: ", JSON.stringify(res.body));
+				console.log(
+					`Route: ${routeByID}`,
+					"Body: ",
+					JSON.stringify(res.body)
+				);
 				expect(res.statusCode).toBe(204);
 			});
 		});
