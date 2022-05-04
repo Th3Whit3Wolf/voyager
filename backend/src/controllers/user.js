@@ -16,13 +16,15 @@ const UserController = new Controller("User", {
 				status: true,
 				sperationDate: true,
 				assignedUnit: true,
+				assignedOfficeSymbol: true,
 				gainingUnitID: true,
+				gainingOfficeSymbol: true,
 				role: true,
 				supervisor: true,
 				subordinates: true,
-				TasksAssigners: true,
-				TasksApprovers: true,
-				Tasks: true
+				tasksAssigned: true,
+				taskApproverTasks: true,
+				tasks: true
 			}
 		}
 	},
