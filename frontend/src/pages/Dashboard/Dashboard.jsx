@@ -26,8 +26,6 @@ import AdminTable from "../../components/Tables/AdminTable/AdminTable";
 //   obliterate UserContext. This is one big refactor forward toward Firebase
 //   integration and being able to track User auth --Tony
 
-import Loading from "../../components/Loading/Loading";
-
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
 	//const [data, setData] = useState([]);
@@ -35,31 +33,9 @@ const Dashboard = () => {
 	//const [isLoading, setIsLoading] = useState(false);
 	const context = useContext(UserContext);
 
-	console.log(context.role, context.user);
+	console.log(context.user);
 
-	const { data, error, isLoading } = useFetchMock(
-		`/api/mock/${context.role}`,
-		0,
-		500
-	); // only created data for User , not Admin yet, Admin gives a console log
-
-	//	var { data, error, isLoading };
-	//console.log(`second fetch: ${data2}`);
-	// useEffect(() => {
-	// 	//{ data, error, isLoading } = useFetch(`http://localhost:8081/api/v1/tasks`);
-	// 	var newData;
-	// 	fetch("http://localhost:8081/api/v1/tasks")
-	// 		.then(response => response.json())
-	// 		.then(filter_value =>
-	// 			filter_value.filter(v => v.assignerID == context.user.id)
-	// 		)
-	// 		.then(d => (newData = d));
-	// 	setData(newData);
-	// }, []);
-
-	// useEffect(() => {
-	// 	console.log(data, error, isLoading);
-	// }, [data, error, isLoading]);
+	const data = context.user.Tasks;
 
 	// Setting up Different Views Based on Role
 	// There are many ways to do conditional views, but with
@@ -67,15 +43,10 @@ const Dashboard = () => {
 	// way with a final return that always shows in the event all other
 	// conditionals do not trigger
 
-	if (isLoading) return <Loading />;
+	//if (isLoading) return <Loading />;
 	// User View ... this conditional compares to role from location, should be changed to AUTH obj later
 
-	// Note, this should be turned into components. I would almost never keep a component looking like this,
-	// but for sake of communicating with other Devs in the project, I have it in long form here so the logic
-	// is easier to see all in one page. But I can see someone taking it down to User, Site Admin, Base Admin, etc
-	// then the conditional early returns will turn this Dashboard.jsx into like 5 lines of code down below, and different
-	// people can work on different sections without stepping on each others toes. --Tony
-	if (context.role === "user") {
+	if (context.user.role.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -133,7 +104,7 @@ const Dashboard = () => {
 	}
 
 	// Generic Admin View ... this conditional compares to role from location, should be changed to AUTH obj later
-	if (context.role === "admin") {
+	if (context.user.role.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import SplashScreen from "../../components/SplashScreen/SplashScreen";
 import useLogin from "../../hooks/useLogin";
 import UserContext from "../../context/UserContext";
+import Loading from "../../components/Loading/Loading";
 
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
@@ -13,6 +14,7 @@ const Login = () => {
 	// STATE
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [splashOff, setSplashOff] = useState(false);
 
@@ -38,14 +40,16 @@ const Login = () => {
 			setPassword("");
 			alert("Password Required");
 		} else {
-			fetch("http://localhost:8081/api/v1/users")
+			setIsLoading(true);
+			fetch("http://localhost:8081/api/v1/users?limit=9999")
 				.then(response => response.json())
-				.then(userList => userList.filter(user => user.email === username)[0])
+				.then(
+					userList => userList.data.filter(user => user.email === username)[0]
+				)
 				.then(user => {
-					if (user.id === 1) context.role = "user";
-					if (user.id === 66) context.role = "admin";
 					context.user = user;
 				})
+				.then(setIsLoading(false))
 				.then(() => navigate("/dashboard"));
 		}
 	};
@@ -57,6 +61,8 @@ const Login = () => {
 	};
 
 	//if (splashOff === false) return <SplashScreen />;
+
+	if (isLoading) return <Loading />;
 
 	return (
 		<>
@@ -116,11 +122,11 @@ const Login = () => {
 					color="secondary"
 					variant="contained"
 					onClick={() => {
-						setUsername("rick.sanchez@spaceforce.mil");
+						setUsername("bridget.smitham@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate USER 1 (Rick Sanchez) Username and Password
+					Click to Auto Populate USER 68 (Bridget Smitham) Username and Password
 				</Button>
 
 				<br />
