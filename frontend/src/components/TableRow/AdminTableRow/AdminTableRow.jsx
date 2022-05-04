@@ -9,7 +9,9 @@ import {
 	TextField,
 	IconButton,
 	Dialog,
+	DialogTitle,
 	DialogContent,
+	DialogActions,
 	DialogContentText
 } from "@mui/material";
 
@@ -18,7 +20,7 @@ import { useState } from "react";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 const AdminTableRow = ({ entry }) => {
 	const [open, setOpen] = useState(false);
-	const dialogDetails = { open, setOpen };
+
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
@@ -26,17 +28,17 @@ const AdminTableRow = ({ entry }) => {
 	const handleClose = () => {
 		setOpen(false);
 	};
-
+	const dialogDetails = { open, handleClose };
 	return (
 		<>
-			<DeleteDialog />
-			<Dialog open={open} onClose={handleClose}>
+			<DeleteDialog dialogDetails={dialogDetails} />
+			{/* <Dialog open={open} onClose={handleClose}>
 				<DialogContent>
 					<DialogContentText id="alert-dialog-description">
 						More Info Coming
 					</DialogContentText>
 				</DialogContent>
-			</Dialog>
+			</Dialog> */}
 			<TableRow>
 				<TableCell>
 					<Switch
