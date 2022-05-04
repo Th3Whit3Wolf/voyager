@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { Users } from "../controllers";
+import { UserController, TaskUserController } from "../controllers";
 
 const router = Router();
 
-router.get("/users", Users.getAll);
-router.get("/users/:userID", Users.getByID);
+router.get("/users", UserController.list);
+router.get("/users/tasks", TaskUserController.list);
+router.get("/users/tasks/:id", TaskUserController.get);
+router.get("/users/:id", UserController.get);
 
 export default router;

@@ -1,6 +1,13 @@
-import Roles from "./roles";
-import Users from "./users";
-import Units from "./units";
-import Tasks from "./tasks";
+import RoleController from "./role";
+import UserController from "./user";
+import UnitController from "./unit";
+import TaskController from "./task";
+import TaskUserController from "./task_user";
 
-export { Roles, Tasks, Units, Users };
+export {
+	RoleController,
+	TaskController,
+	TaskUserController,
+	UnitController,
+	UserController
+};
