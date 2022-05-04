@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { Units } from "../controllers";
+import { UnitController } from "../controllers";
 
 const router = Router();
 
-router.get("/units", Units.getAll);
-router.get("/units/:unitID", Units.getByID);
+router.get("/units", UnitController.list);
+router.get("/units/:id", UnitController.get);
 
 export default router;
