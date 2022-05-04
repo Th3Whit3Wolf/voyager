@@ -10,17 +10,7 @@ import useFetchMock from "../../hooks/useFetchMock";
 import useFetch from "../../hooks/useFetch";
 
 // Third Party Components and Utilities
-import {
-	Paper,
-	Tab,
-	TableContainer,
-	Table as MuiTable,
-	TableHead,
-	TableBody,
-	TableRow,
-	TableCell,
-	Switch
-} from "@mui/material";
+import { Paper, Tab, TableContainer } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import UserTable from "../../components/Tables/UserTable/UserTable";
 import AdminTable from "../../components/Tables/AdminTable/AdminTable";
