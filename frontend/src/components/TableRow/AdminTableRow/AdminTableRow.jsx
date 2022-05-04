@@ -20,25 +20,77 @@ import { useState } from "react";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 const AdminTableRow = ({ entry }) => {
 	const [open, setOpen] = useState(false);
-
-	const handleClickOpen = () => {
-		setOpen(true);
+	const [delete_open, delete_setOpen] = useState(false);
+	const [info_open, info_setOpen] = useState(false);
+	const delete_handleClickOpen = () => {
+		delete_setOpen(true);
 	};
 
 	const handleClose = () => {
-		setOpen(false);
+		delete_setOpen(false);
+		info_setOpen(false);
 	};
+
+	const info_handleClickOpen = () => {
+		info_setOpen(true);
+	};
+
 	const dialogDetails = { open, handleClose };
 	return (
 		<>
-			<DeleteDialog dialogDetails={dialogDetails} />
-			{/* <Dialog open={open} onClose={handleClose}>
-				<DialogContent>
-					<DialogContentText id="alert-dialog-description">
-						More Info Coming
-					</DialogContentText>
-				</DialogContent>
-			</Dialog> */}
+			{/* <DeleteDialog dialogDetails={dialogDetails} /> */}
+			<Dialog open={delete_open} onClose={handleClose}>
+				<DialogTitle id="delete-modal">
+					{`Are you sure you want to delete ${entry.title}`}
+				</DialogTitle>
+				<DialogContentText id="delete-dialog-description">
+					You will not be able to reset this deletion
+				</DialogContentText>
+				<DialogActions>
+					<Button onClick={handleClose}>Cancel</Button>
+					<Button onClick={handleClose} autoFocus>
+						Delete
+					</Button>
+				</DialogActions>
+			</Dialog>
+			<Dialog open={info_open} onClose={handleClose}>
+				<DialogTitle id="more-info-modal">{`${entry.title}`}</DialogTitle>
+				<DialogContentText id="info-dialog-description-task-type">
+					{`${entry.task_type}`}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-Space">
+					{
+						"------------------------------------------------------------------------------------------"
+					}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-POC-Owner">
+					{`POC: ${entry.approver}------Unit Owner: ${entry.owner}
+					`}
+					{""}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-Space">
+					{
+						"------------------------------------------------------------------------------------------"
+					}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-description-">
+					{`${entry.description}`}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-Space">
+					{
+						"------------------------------------------------------------------------------------------"
+					}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-date">
+					{`${
+						entry.updated_at.getUTCMonth() + 1
+					} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
+				</DialogContentText>
+
+				<DialogActions>
+					<Button onClick={handleClose}>Exit</Button>
+				</DialogActions>
+			</Dialog>
 			<TableRow>
 				<TableCell>
 					<Switch
@@ -99,7 +151,7 @@ const AdminTableRow = ({ entry }) => {
 					<IconButton
 						aria-label="info"
 						onClick={() => {
-							handleClickOpen();
+							info_handleClickOpen();
 							console.log(`Info Request id ${entry.id}`);
 						}}
 					>
@@ -110,7 +162,7 @@ const AdminTableRow = ({ entry }) => {
 					<IconButton
 						aria-label="delete"
 						onClick={() => {
-							handleClickOpen();
+							delete_handleClickOpen();
 							console.log(`Item Deleted id ${entry.id}`);
 						}}
 					>

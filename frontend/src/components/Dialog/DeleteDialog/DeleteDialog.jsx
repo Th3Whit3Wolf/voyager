@@ -7,7 +7,7 @@ import {
 	Button
 } from "@mui/material";
 
-const DeleteDialog = ({ open, handleClose() }) => {
+const DeleteDialog = ({ open, handleClose }) => {
 	return (
 		<Dialog open={open} onClose={handleClose}>
 			<DialogTitle id="delete-modal">

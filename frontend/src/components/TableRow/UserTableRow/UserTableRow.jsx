@@ -2,8 +2,11 @@ import {
 	TableRow,
 	TableCell,
 	Checkbox,
+	Button,
 	Dialog,
+	DialogTitle,
 	DialogContent,
+	DialogActions,
 	DialogContentText
 } from "@mui/material";
 import { useState } from "react";
@@ -21,11 +24,42 @@ const UserTableRow = ({ entry }) => {
 	return (
 		<>
 			<Dialog open={open} onClose={handleClose}>
-				<DialogContent>
-					<DialogContentText id="alert-dialog-description">
-						More Info Coming
-					</DialogContentText>
-				</DialogContent>
+				<DialogTitle id="more-info-modal">{`${entry.title}`}</DialogTitle>
+				<DialogContentText id="info-dialog-description-task-type">
+					{`${entry.task_type}`}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-Space">
+					{
+						"------------------------------------------------------------------------------------------"
+					}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-POC-Owner">
+					{`POC: ${entry.approver}------Unit Owner: ${entry.owner}
+					`}
+					{""}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-Space">
+					{
+						"------------------------------------------------------------------------------------------"
+					}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-description-">
+					{`${entry.description}`}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-Space">
+					{
+						"------------------------------------------------------------------------------------------"
+					}
+				</DialogContentText>
+				<DialogContentText id="info-dialog-date">
+					{`${
+						entry.updated_at.getUTCMonth() + 1
+					} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
+				</DialogContentText>
+
+				<DialogActions>
+					<Button onClick={handleClose}>Exit</Button>
+				</DialogActions>
 			</Dialog>
 			<TableRow onClick={() => handleClickOpen()}>
 				<TableCell>
