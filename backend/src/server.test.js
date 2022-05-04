@@ -61,6 +61,17 @@ describe("Backend Tests", () => {
 			const { body } = res;
 
 			expect(res.statusCode).toBe(200);
+			if (body.id === undefined) {
+				console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
+Body: ${body}
+Body JSON: ${JSON.stringify(body)}
+Data ${body.data}
+Data JSON: ${JSON.stringify(body.data)}
+Field: id
+Value: 1
+Expected: Data.id to exist
+					`);
+			}
 			expect(body.data.id).toBe(1);
 			Object.entries(firstID[route]).forEach(([k, v]) => {
 				if (
