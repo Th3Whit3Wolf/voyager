@@ -61,6 +61,7 @@ model Unit {
   assignedUsers        User[] @relation("Current unit of user")
   gainingUsers         User[] @relation("Gaining unit of user")
   tasks                Task[] @relation("Unit Task")
+
   /// Rename table to units to conform to
   /// SQL naming conventions
   @@map("units")
@@ -189,10 +190,11 @@ model Task {
 }
 
 model TaskUser {
-  id          Int       @id @default(autoincrement())
-  completedAt DateTime? @map("completed_at")
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  id          Int        @id @default(autoincrement())
+  progress    TaskStatus
+  completedAt DateTime?  @map("completed_at")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @default(now()) @updatedAt @map("updated_at")
 
   /// Define relationship with Task
   /// Rename collumn to conform to SQL naming conventions
