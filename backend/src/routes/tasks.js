@@ -3,7 +3,7 @@ import { TaskController } from "../controllers";
 
 const router = Router();
 
-router.get("/tasks", TaskController.list);
-router.get("/tasks/:id", TaskController.get);
+router.route("/tasks").get(TaskController.list).post(TaskController.create);
+router.route("/tasks/:id").get(TaskController.get);
 
 export default router;

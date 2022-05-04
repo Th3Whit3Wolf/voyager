@@ -3,7 +3,7 @@ import { RoleController } from "../controllers";
 
 const router = Router();
 
-router.get("/roles", RoleController.list);
-router.get("/roles/:id", RoleController.get);
+router.route("/roles").get(RoleController.list).post(RoleController.create);
+router.route("/roles/:id").get(RoleController.get);
 
 export default router;
