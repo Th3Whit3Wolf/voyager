@@ -1,6 +1,7 @@
 import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import TestViews from "./pages/TestViews/TestViews";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import getDesignTokens from "./theme.js";
 
@@ -40,7 +41,7 @@ export default function App() {
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/dashboard" element={<Dashboard />} />
-						<Route path="/test/fetch" element={null} />
+						<Route path="/tests/fetch" element={<TestViews />} />
 						<Route path="*" element={<PageNotFound />} />
 					</Routes>
 				</Container>

@@ -23,6 +23,12 @@ test("renders a TestViews component successfully", () => {
 	setup();
 });
 
+test("TestViews has an input field which can take a string to change fetch endpoints", () => {
+	setup();
+    const urlInputField = await screen.findByRole(/input/i);
+    expect(urlInputField).toBeInTheDocument();
+});
+
 test("TestViews can render a Specific User when a Specific User is fetched", async () => {
 	setup("/users/1");
 
