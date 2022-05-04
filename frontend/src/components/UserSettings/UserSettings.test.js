@@ -12,15 +12,25 @@ import { MemoryRouter as Router } from "react-router-dom";
 // from code hardening tools such as SonarCube on
 // previous software projects. --Tony
 
-const setup = () =>
+const setup = (settings = {}) =>
 	render(
 		<Router>
-			<UserSettings />
+			<UserSettings settings={settings} />
 		</Router>
 	);
 
 test("renders a UserSettings component successfully", () => {
 	setup();
+});
+
+test("renders a first name successfully", async () => {
+	const stgs = {
+		id: "68",
+		firstName: "Bridget"
+	};
+	setup(stgs);
+	const firstName = await screen.findByText(/bridget/i);
+	expect(firstName).toBeInTheDocument();
 });
 
 // test("issue44: Login displays a username input field that ...", async () => {
