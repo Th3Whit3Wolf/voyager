@@ -35,8 +35,11 @@ const Dashboard = () => {
 
 	console.log(context.user);
 
-	const data = context.user.Tasks;
+	const userData = context.user.Tasks;
 
+	const adminData = context.user.TasksAssigner;
+	console.log(`userData: ${userData}`);
+	console.log(`adminData: ${adminData}`);
 	// Setting up Different Views Based on Role
 	// There are many ways to do conditional views, but with
 	// so many possible concurrent views, early returns might be the best
@@ -66,10 +69,10 @@ const Dashboard = () => {
 							<UserTable
 								data={
 									tabValue === "1"
-										? data?.filter(
+										? userData?.filter(
 												tasker => tasker.task_type === "Inprocessing"
 										  )
-										: data?.filter(
+										: userData?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}
@@ -88,10 +91,10 @@ const Dashboard = () => {
 							<UserTable
 								data={
 									tabValue === "1"
-										? data?.filter(
+										? userData?.filter(
 												tasker => tasker.task_type === "Inprocessing"
 										  )
-										: data?.filter(
+										: userData?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}
@@ -104,7 +107,7 @@ const Dashboard = () => {
 	}
 
 	// Generic Admin View ... this conditional compares to role from location, should be changed to AUTH obj later
-	if (context.user.role.kind === "USER") {
+	if (context.user.role.kind.includes("ADMIN")) {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -128,10 +131,10 @@ const Dashboard = () => {
 							<AdminTable
 								data={
 									tabValue === "1"
-										? data?.filter(
+										? adminData?.filter(
 												tasker => tasker.task_type === "Inprocessing"
 										  )
-										: data?.filter(
+										: adminData?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}
@@ -153,10 +156,10 @@ const Dashboard = () => {
 							<AdminTable
 								data={
 									tabValue === "1"
-										? data?.filter(
+										? adminData?.filter(
 												tasker => tasker.task_type === "Inprocessing"
 										  )
-										: data?.filter(
+										: adminData?.filter(
 												tasker => tasker.task_type === "Outprocessing"
 										  )
 								}

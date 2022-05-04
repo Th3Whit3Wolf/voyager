@@ -1,9 +1,6 @@
 // Our Components
 import Header from "./components/Header/Header";
-import Login from "./pages/Login/Login";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import TestViews from "./pages/TestViews/TestViews";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import { Login, Dashboard, PageNotFound, TestViews } from "./pages";
 import getDesignTokens from "./theme.js";
 
 import UserContext from "./context/UserContext";
