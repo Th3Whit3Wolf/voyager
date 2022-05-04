@@ -43,3 +43,15 @@ test("renders a last name successfully", async () => {
 	const lastName = await screen.findByText(/smitham/i);
 	expect(lastName).toBeInTheDocument();
 });
+
+test("renders email successfully", async () => {
+	const stgs = {
+		id: "68",
+		firstName: "Bridget",
+		lastName: "Smitham",
+		email: "bridget.smitham@spaceforce.mil"
+	};
+	setup(stgs);
+	const email = await screen.findByText(/bridget.smitham@spaceforce.mil/i);
+	expect(email).toBeInTheDocument();
+});
