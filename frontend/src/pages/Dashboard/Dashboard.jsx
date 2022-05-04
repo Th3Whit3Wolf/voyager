@@ -49,7 +49,9 @@ const Dashboard = () => {
 		500
 	); // only created data for User , not Admin yet, Admin gives a console log
 
-	//const { data2, error2, isLoading2 } = useFetch(`localhost:8081/api/v1/tasks`);
+	// const { data2, error2, isLoading2 } = useFetch(
+	// 	`http://localhost:8081/api/v1/tasks`
+	// );
 
 	//console.log(`second fetch: ${data2}`);
 	// useEffect(() => {
@@ -136,6 +138,7 @@ const Dashboard = () => {
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
 						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab label="Modify Admins" value="3" />
 					</TabList>
 
 					<TabPanel value="1">
@@ -182,6 +185,15 @@ const Dashboard = () => {
 								}
 							/>
 						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="3">
+						This is where I modify Admins.
+						<p>
+							This should show as a table view, where each row has a status and
+							can be toggled as complete or not. Clicking on a row might show
+							more info?
+						</p>
 					</TabPanel>
 				</TabContext>
 			</>
