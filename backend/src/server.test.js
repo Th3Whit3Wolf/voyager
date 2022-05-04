@@ -2,8 +2,8 @@ import request from "supertest";
 import app from "./server";
 
 const response = request(app);
-const getRoutes = ["roles", "tasks", "units", "users", "users/tasks"];
-const firstID = {
+const routes = ["roles", "tasks", "units", "users", "users/tasks"];
+const getID = {
 	roles: {
 		kind: "SITE_ADMIN"
 	},
@@ -43,71 +43,93 @@ const firstID = {
 	}
 };
 
+const post = {
+	roles: {
+		kind: "USER"
+	},
+	tasks: {
+		title: "New task",
+		description: "Task created for test.",
+		isActive: true,
+		kind: "OUT_PROCESSING",
+		assignerID: 66,
+		approverID: 7497,
+		unitID: 20
+	},
+	units: {
+		name: "Space Delta 13 Detachment 3",
+		abbrev: "DEL 13 DET 3",
+		kind: "SQUADRON",
+		function: "To be made up",
+		location: null,
+		parentID: 36,
+		grandParentID: 2,
+		installationID: 20
+	},
+	users: {
+		firstName: "Tom",
+		lastName: "Anderson",
+		email: "tom.anderson@myspace.com",
+		dsn: "(312) 867-5309",
+		auth: "",
+		status: "STATIONARY",
+		assignedUnitID: 1,
+		assignedOfficeSymbol: "MSOS",
+		gainingUnitID: null,
+		gainingOfficeSymbol: null,
+		roleID: 7,
+		supervisorID: null
+	},
+	"users/tasks": {
+		taskID: 162,
+		userID: 7335,
+		progress: "NOT_STARTED",
+		completedAt: null
+	}
+};
+
 describe("Backend Tests", () => {
 	test("GET /status", async () => {
 		const res = await response.get("/status");
 		expect(res.statusCode).toBe(200);
 	});
 
-	getRoutes.forEach(route => {
-		test(`GET /api/v1/${route}`, async () => {
-			const res = await response.get(`/api/v1/${route}`);
-			expect(res.statusCode).toBe(200);
+	routes.forEach(route => {
+		const routeRegular = `/api/v1/${route}`;
+		const routeByID = `/api/v1/${route}/1`;
+		describe(`Route ${routeRegular}`, () => {
+			test(`GET ${route}`, async () => {
+				const res = await response.get(`${routeRegular}`);
+				expect(res.statusCode).toBe(200);
+			});
+			test(`POST ${route}`, async () => {
+				const res = await response
+					.post(`${routeRegular}`)
+					.send(post[route])
+					.set("Accept", "application/json");
+				expect(res.statusCode).toBe(201);
+			});
 		});
+		describe(`Route /api/v1/${routeByID}`, () => {
+			test(`GET ${route}`, async () => {
+				const res = await response.get(`${routeByID}`);
+				const { body } = res;
 
-		test(`GET /api/v1/${route}/1`, async () => {
-			const res = await response.get(`/api/v1/${route}/1`);
-			const { body } = res;
-
-			expect(res.statusCode).toBe(200);
-			if (body.data.id === undefined) {
-				console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
-Body: ${body}
-Body JSON: ${JSON.stringify(body)}
-Data ${body.data}
-Data JSON: ${JSON.stringify(body.data)}
-Field: id
-Value: 1
-Expected: Data.id to exist
-					`);
-			}
-			expect(body.data.id).toBe(1);
-			Object.entries(firstID[route]).forEach(([k, v]) => {
-				if (
-					typeof v === "object" &&
-					Array.isArray(v) === false &&
-					v !== null
-				) {
-					Object.entries(v).forEach(([k2, v2]) => {
-						if (body.data[k2] === undefined) {
-							console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
-Body: ${body}
-Body JSON: ${JSON.stringify(body)}
-Data ${body.data}
-Data JSON: ${JSON.stringify(body.data)}
-Field: ${k2}
-Value: ${v2}
-Expected: Data.${k2} to exist
-					`);
-							console.log({ body });
-						}
-						expect(body.data[k2]).toBe(v2);
-					});
-				} else {
-					if (body.data[k] === undefined) {
-						console.log(`[TEST]::(GET /api/v1/${route}/1) Failed
-Body: ${body}
-Body JSON: ${JSON.stringify(body)}
-Data ${body.data}
-Data JSON: ${JSON.stringify(body.data)}
-Field: ${k}
-Value: ${v}
-Expected: Data.${k} to exist
-					`);
-						console.log({ body });
+				expect(res.statusCode).toBe(200);
+				expect(body.data.id).toBe(1);
+				Object.entries(getID[route]).forEach(([k, v]) => {
+					if (
+						typeof v === "object" &&
+						Array.isArray(v) === false &&
+						v !== null
+					) {
+						Object.entries(v).forEach(([k2, v2]) => {
+							expect(body.data[k2]).toBe(v2);
+						});
+					} else {
+						expect(body.data[k]).toBe(v);
 					}
-					expect(body.data[k]).toBe(v);
-				}
+				});
 			});
 		});
 	});
