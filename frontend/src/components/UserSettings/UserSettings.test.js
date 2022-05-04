@@ -55,3 +55,16 @@ test("renders email successfully", async () => {
 	const email = await screen.findByText(/bridget.smitham@spaceforce.mil/i);
 	expect(email).toBeInTheDocument();
 });
+
+test("renders DSN successfully", async () => {
+	const stgs = {
+		id: "68",
+		firstName: "Bridget",
+		lastName: "Smitham",
+		email: "bridget.smitham@spaceforce.mil",
+		dsn: "(312) 311-6637"
+	};
+	setup(stgs);
+	const dsn = await screen.findByText(/(312) 311-6637/i);
+	expect(dsn).toBeInTheDocument();
+});
