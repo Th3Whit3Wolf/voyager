@@ -14,6 +14,8 @@ Table units {
   kind UnitKind [not null]
   function String
   location String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
   parentID Int [note: 'Define possible relationship with parent Unit
 Rename collumn to conform to SQL naming conventions']
   parent Unit
@@ -23,12 +25,12 @@ Rename collumn to conform to SQL naming conventions']
   installationID Int [note: 'Define possible relationship with installation Unit
 Rename collumn to conform to SQL naming conventions']
   installation Unit
-  children Unit [not null]
+  children Unit [not null, note: 'One-to-Many Relationships']
   grandChildren Unit [not null]
   installationChildren Unit [not null]
-  Role Role [not null]
-  createdAt DateTime [default: `now()`, not null]
-  updatedAt DateTime [default: `now()`, not null]
+  assignedUsers User [not null]
+  gainingUsers User [not null]
+  tasks Task [not null]
 }
 
 Table roles {
@@ -36,9 +38,72 @@ Table roles {
   kind RoleKind [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  unitID Int [note: 'Define possible relationship with installation Unit
+  users User [not null, note: 'One-to-Many relationships']
+}
+
+Table users {
+  id Int [pk, increment]
+  firstName String [not null]
+  lastName String [not null]
+  email String [unique, not null]
+  dsn String
+  auth String [not null]
+  assignedOfficeSymbol String [not null]
+  gainingOfficeSymbol String
+  status ProcessingStatus [not null]
+  sperationDate DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  assignedUnitID Int [not null, note: 'Define possible relationship with Unit
 Rename collumn to conform to SQL naming conventions']
-  unit Unit
+  assignedUnit Unit [not null]
+  gainingUnitID Int [note: 'Define possible relationship with Unit
+Rename collumn to conform to SQL naming conventions']
+  gainingUnit Unit
+  roleID Int [not null, note: 'Define possible relationship with Role
+Rename collumn to conform to SQL naming conventions']
+  role Role [not null]
+  supervisorID Int [note: 'Define possible relationship with User
+Rename collumn to conform to SQL naming conventions']
+  supervisor User
+  subordinates User [not null, note: 'One-to-Many relationships']
+  TasksAssigners Task [not null]
+  TasksApprovers Task [not null]
+  Tasks TaskUser [not null, note: 'Many-to-Many relationships']
+}
+
+Table tasks {
+  id Int [pk, increment]
+  title String [not null]
+  description String [not null]
+  isActive Boolean [not null]
+  kind TaskProcessingKind [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  assignerID Int [note: 'Define possible relationship with User
+Rename collumn to conform to SQL naming conventions']
+  assigner User
+  approverID Int [note: 'Define possible relationship with User
+Rename collumn to conform to SQL naming conventions']
+  approver User
+  unitID Int [not null, note: 'Define possible relationship with User
+Rename collumn to conform to SQL naming conventions']
+  unit Unit [not null]
+  assignedTasks TaskUser [not null, note: 'Many-to-Many relationships']
+}
+
+Table task_users {
+  id Int [pk, increment]
+  progress TaskStatus [not null]
+  completedAt DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  taskID Int [not null, note: 'Define relationship with Task
+Rename collumn to conform to SQL naming conventions']
+  task Task [not null]
+  userID Int [not null, note: 'Define relationship with User
+Rename collumn to conform to SQL naming conventions']
+  user User [not null]
 }
 
 Enum UnitKind {
@@ -50,14 +115,15 @@ Enum UnitKind {
 
 Enum ProcessingStatus {
   IN_PROCESSING
-  IN_PROCESSING_WITH_ORDERS
   IN_TRANSIT
   OUT_PROCESSING
+  OUT_PROCESSING_WITH_ORDERS
   STATIONARY
 }
 
 Enum RoleKind {
   USER
+  TASK_APPROVER
   SITE_ADMIN
   COMMAND_ADMIN
   INSTALLATION_ADMIN
@@ -71,10 +137,31 @@ Enum TaskStatus {
   COMPLETED
 }
 
+Enum TaskProcessingKind {
+  IN_PROCESSING
+  OUT_PROCESSING
+}
+
 Ref: Unit.parentID - Unit.id
 
 Ref: Unit.grandParentID - Unit.id
 
 Ref: Unit.installationID - Unit.id
 
-Ref: Role.unitID > Unit.id
+Ref: User.assignedUnitID > Unit.id
+
+Ref: User.gainingUnitID > Unit.id
+
+Ref: User.roleID > Role.id
+
+Ref: User.supervisorID - User.id
+
+Ref: Task.assignerID > User.id
+
+Ref: Task.approverID > User.id
+
+Ref: Task.unitID > Unit.id
+
+Ref: TaskUser.taskID > Task.id
+
+Ref: TaskUser.userID > User.id
