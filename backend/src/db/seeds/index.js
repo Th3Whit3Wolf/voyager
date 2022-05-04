@@ -1,5 +1,6 @@
 import Prisma from "@prisma/client";
 import { createRequire } from "module";
+import notifier from "node-notifier";
 import { URI, genData } from "./utils";
 
 const require = createRequire(import.meta.url);
@@ -147,11 +148,23 @@ const prisma = new PrismaClient({
 });
 
 main(prisma)
-	.catch(e => {
-		console.error(`There was an error while seeding: ${e}`);
+	.catch(err => {
+		console.error(`There was an error while seeding: ${err}`);
+		notifier.notify({
+			title: "Database Seeding Failed",
+			message: `Database seeding ${err}!`,
+			sound: true, // Only Notification Center or Windows Toasters
+			wait: true // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+		});
 		process.exit(1);
 	})
 	.finally(async () => {
 		console.log("Successfully seeded database. Closing connection.");
+		notifier.notify({
+			title: "Database Seeding Success",
+			message: "Successful seeded units, roles, users, & tasks!",
+			sound: true, // Only Notification Center or Windows Toasters
+			wait: true // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+		});
 		await prisma.$disconnect();
 	});
