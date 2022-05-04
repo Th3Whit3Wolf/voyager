@@ -11,9 +11,9 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
+import ModifyAdminRow from "../../TableRow/ModifyAdminRow/ModifyAdminRow";
 
-const AdminTable = ({ data }) => {
+const ModifyAdminTable = ({ data }) => {
 	const [adminData, setAdminData] = useState([]);
 
 	useEffect(() => {
@@ -43,21 +43,15 @@ const AdminTable = ({ data }) => {
 			<MuiTable size={"small"}>
 				<TableHead>
 					<TableRow>
-						<TableCell>Active Task</TableCell>
-						<TableCell>Task Name</TableCell>
-						<TableCell>Short Description</TableCell>
-						<TableCell>POC Name</TableCell>
-						<TableCell>POC Phone</TableCell>
-						<TableCell>POC Email</TableCell>
-						<TableCell>Last Updated</TableCell>
-						<TableCell>Owner</TableCell>
-						<TableCell>More Info</TableCell>
-						<TableCell>Delete Task</TableCell>
+						<TableCell>User Type</TableCell>
+						<TableCell>Name</TableCell>
+						<TableCell>Phone</TableCell>
+						<TableCell>Email</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{adminData.map(entry => (
-						<AdminTableRow hover={true} key={entry.id} entry={entry} />
+						<ModifyAdminRow hover={true} key={entry.id} entry={entry} />
 					))}
 				</TableBody>
 			</MuiTable>
@@ -72,4 +66,4 @@ const AdminTable = ({ data }) => {
 		</>
 	);
 };
-export default AdminTable;
+export default ModifyAdminTable;

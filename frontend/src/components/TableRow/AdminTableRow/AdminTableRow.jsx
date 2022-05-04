@@ -24,10 +24,19 @@ const AdminTableRow = ({ entry }) => {
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);
 	const [info_open, info_setOpen] = useState(false);
+
+	//For switch to change
+	const [checked, setChecked] = useState(entry.isActive);
+
+	const handleChange = event => {
+		console.log(`Switch has been changed id ${entry.id}`);
+		setChecked(event.target.checked);
+	};
+	//end of switch code
 	const delete_handleClickOpen = () => {
 		delete_setOpen(true);
 	};
-
+	//console.log(typeof entry.updatedAt);
 	const handleClose = () => {
 		delete_setOpen(false);
 		info_setOpen(false);
@@ -37,6 +46,7 @@ const AdminTableRow = ({ entry }) => {
 	const info_handleClickOpen = () => {
 		info_setOpen(true);
 	};
+	var updatedAt = new Date(entry.updatedAt);
 	//const DeleteDialogProps = { delete_open, handleClose, entry };
 	//const InfoDialogProps = { info_open, handleClose, entry };
 	return (
@@ -87,8 +97,8 @@ const AdminTableRow = ({ entry }) => {
 				</DialogContentText>
 				<DialogContentText id="info-dialog-date">
 					{`${
-						entry.updated_at.getUTCMonth() + 1
-					} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
+						updatedAt.getUTCMonth() + 1
+					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
 				</DialogContentText>
 
 				<DialogActions>
@@ -104,11 +114,7 @@ const AdminTableRow = ({ entry }) => {
 			</Dialog> */}
 			<TableRow>
 				<TableCell>
-					<Switch
-						onChange={() =>
-							console.log(`Switch has been changed id ${entry.id}`)
-						}
-					/>
+					<Switch checked={checked} onChange={handleChange} />
 				</TableCell>
 				<TableCell>
 					<TextField
@@ -147,8 +153,8 @@ const AdminTableRow = ({ entry }) => {
 				</TableCell>
 				<TableCell>
 					{`${
-						entry.updated_at.getUTCMonth() + 1
-					} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
+						updatedAt.getUTCMonth() + 1
+					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
 				</TableCell>
 				<TableCell>
 					<TextField

@@ -12,7 +12,12 @@ import useFetch from "../../hooks/useFetch";
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { UserTable, AdminTable, UserSettings } from "../../components";
+import {
+	UserTable,
+	AdminTable,
+	UserSettings,
+	ModifyAdminTable
+} from "../../components";
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
@@ -33,9 +38,9 @@ const Dashboard = () => {
 	const context = useContext(UserContext);
 
 	console.log(context.user);
-
+	//const userData = context.user.tasksAssigned;// when used with most up to date version of BackEnd
 	const userData = context.user.Tasks;
-
+	console.log(userData);
 	const data = context.user.TasksAssigners;
 	//console.log(`userData: ${userData}`);
 	//console.log(`data: ${data}`);
@@ -67,14 +72,15 @@ const Dashboard = () => {
 						</p>
 						<TableContainer component={Paper}>
 							<UserTable
-								data={
-									tabValue === "1"
-										? userData?.filter(
-												tasker => tasker.kind === "IN_PROCESSING"
-										  )
-										: userData?.filter(
-												tasker => tasker.kind === "Outprocessing"
-										  )
+								alldata={
+									userData
+									// tabValue === "1"
+									// 	? userData?.filter(
+									// 			tasker => tasker.kind === "IN_PROCESSING"
+									// 	  )
+									// 	: userData?.filter(
+									// 			tasker => tasker.kind === "Outprocessing"
+									// 	  )
 								}
 							/>
 						</TableContainer>
@@ -89,23 +95,22 @@ const Dashboard = () => {
 						</p>
 						<TableContainer component={Paper}>
 							<UserTable
-								data={
-									tabValue === "1"
-										? userData?.filter(
-												tasker => tasker.kind === "IN_PROCESSING"
-										  )
-										: userData?.filter(
-												tasker => tasker.kind === "Outprocessing"
-										  )
+								alldata={
+									userData
+									// tabValue === "1"
+									// 	? userData?.filter(
+									// 			tasker => tasker.kind === "IN_PROCESSING"
+									// 	  )
+									// 	: userData?.filter(
+									// 			tasker => tasker.kind === "Outprocessing"
+									// 	  )
 								}
 							/>
 						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="3">
-						<h3>User Settings</h3>
-						First Name: {context.user.firstName}
-						Last Name: {context.user.lastName}
+						<UserSettings settings={context.user} />
 					</TabPanel>
 				</TabContext>
 			</>
@@ -173,9 +178,9 @@ const Dashboard = () => {
 							more info?
 						</p>
 						<TableContainer component={Paper}>
-							<AdminTable
+							<ModifyAdminTable
 								data={
-									tabValue === "1"
+									tabValue === "3"
 										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
 										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
 								}

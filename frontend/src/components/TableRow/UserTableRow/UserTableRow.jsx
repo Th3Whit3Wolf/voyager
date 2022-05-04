@@ -18,6 +18,7 @@ const UserTableRow = ({ entry }) => {
 		setOpen(false);
 	};
 
+	var updatedAt = new Date(entry.updatedAt);
 	return (
 		<>
 			<Dialog open={open} onClose={handleClose}>
@@ -40,8 +41,8 @@ const UserTableRow = ({ entry }) => {
 				<TableCell>Not in Current ERD</TableCell>
 				<TableCell>
 					{`${
-						entry.updated_at.getUTCMonth() + 1
-					} - ${entry.updated_at.getUTCDate()} - ${entry.updated_at.getUTCFullYear()}`}
+						updatedAt.getUTCMonth() + 1
+					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
 				</TableCell>
 				<TableCell>{entry.owner}</TableCell>
 			</TableRow>

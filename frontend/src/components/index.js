@@ -11,6 +11,7 @@ import UserTableRow from "./TableRow/UserTableRow/UserTableRow";
 
 import AdminTable from "./Tables/AdminTable/AdminTable";
 import UserTable from "./Tables/UserTable/UserTable";
+import ModifyAdminTable from "./Tables/AdminTable/ModifyAdminTable";
 
 import UserSettings from "./UserSettings/UserSettings";
 
@@ -23,5 +24,6 @@ export {
 	UserTableRow,
 	AdminTable,
 	UserTable,
+	ModifyAdminTable,
 	UserSettings
 };
