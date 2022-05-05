@@ -21,9 +21,7 @@ const statusUpdate = (schemaName, data) => {
 	});
 
 	const dataItemNames = data.map(iota => iota.Name);
-	const sortedNames = dataItemNames.sort((a, b) => {
-		return b.length - a.length;
-	});
+	const sortedNames = dataItemNames.sort((a, b) => b.length - a.length);
 	const maxNameLen = sortedNames[0].length;
 
 	const dataFmt = data.map(row => {

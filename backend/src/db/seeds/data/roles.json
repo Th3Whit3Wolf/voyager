@@ -1,23 +1,23 @@
 [
-  {
-    "kind": "SITE_ADMIN"
-  },
-  {
-    "kind": "COMMAND_ADMIN"
-  },
-  {
-    "kind": "DELTA_ADMIN"
-  },
-  {
-    "kind": "INSTALLATION_ADMIN"
-  },
-  {
-    "kind": "SQUADRON_ADMIN"
-  },
-  {
-    "kind": "TASK_APPROVER"
-  },
-  {
-    "kind": "USER"
-  }
+	{
+		"kind": "SITE_ADMIN"
+	},
+	{
+		"kind": "COMMAND_ADMIN"
+	},
+	{
+		"kind": "DELTA_ADMIN"
+	},
+	{
+		"kind": "INSTALLATION_ADMIN"
+	},
+	{
+		"kind": "SQUADRON_ADMIN"
+	},
+	{
+		"kind": "TASK_APPROVER"
+	},
+	{
+		"kind": "USER"
+	}
 ]
