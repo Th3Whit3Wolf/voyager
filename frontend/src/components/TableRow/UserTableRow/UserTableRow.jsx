@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import {
 	TableRow,
 	TableCell,
@@ -6,8 +8,10 @@ import {
 	DialogContent,
 	DialogContentText
 } from "@mui/material";
-import { useState } from "react";
+
 const UserTableRow = ({ entry }) => {
+	// STATE for USER TASKS
+
 	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
