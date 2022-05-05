@@ -9,17 +9,9 @@ import {
 	Checkbox
 } from "@mui/material";
 import UserTableRow from "../../TableRow/UserTableRow/UserTableRow";
-//import { useEffect } from "react";
+
 const UserTable = ({ alldata }) => {
-	var data = [];
 	console.log(alldata);
-	for (var x in alldata) {
-		fetch(`http://localhost:8081/api/v1/tasks/${alldata[x].id}`)
-			.then(response => response.json())
-			.then(newfetch => (data[x] = newfetch));
-		console.log(x);
-	}
-	console.log(data);
 
 	return (
 		<>
@@ -39,7 +31,7 @@ const UserTable = ({ alldata }) => {
 				</TableHead>
 				<TableBody>
 					{/* may require editting to fit new tasker formats into the table */}
-					{data.map(entry => (
+					{alldata.map(entry => (
 						<UserTableRow hover={true} key={entry.id} entry={entry} />
 					))}
 				</TableBody>
