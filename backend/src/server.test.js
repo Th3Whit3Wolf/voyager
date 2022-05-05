@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import request from "supertest";
 import app from "./server";
 
@@ -11,7 +12,8 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
 						kind: "SITE_ADMIN"
 					}
 				}
@@ -20,7 +22,8 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
 						title: "Finance",
 						description:
 							"Schedule appointment for Finance in-process brief to complete PCS/PCS Travel voucher.",
@@ -33,7 +36,8 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
 						name: "Space Operations Command",
 						abbrev: "SpOC",
 						kind: "COMMAND",
@@ -46,7 +50,8 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
 						firstName: "Rick",
 						lastName: "Sanchez",
 						email: "rick.sanchez@spaceforce.mil",
@@ -63,7 +68,8 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
 						task: {
 							id: 1
 						},
@@ -181,7 +187,13 @@ const mkTest = async (method, data, status, endpointName) => {
 		data.id !== undefined ? `/${data.id}` : ""
 	}`;
 	test(`${method} ${route}`, async () => {
-		const res = await response[method.toLowerCase()](route);
+		const res =
+			method === "GET" || method === "DELETE"
+				? await response[method.toLowerCase()](route)
+				: await response[method.toLowerCase()](route)
+						.send(data)
+						.set("Accept", "application/json");
+
 		const { body } = res;
 		if (method !== "GET") {
 			console.log(
@@ -197,8 +209,11 @@ const mkTest = async (method, data, status, endpointName) => {
 
 		expect(res.statusCode).toBe(status);
 
-		if (Object.keys(data).length > 0) {
-			Object.entries(data.data).forEach(([property, value]) => {
+		if (
+			data.validate !== undefined &&
+			Object.keys(data.validate).length > 0
+		) {
+			Object.entries(data.validate).forEach(([property, value]) => {
 				if (
 					typeof value === "object" &&
 					Array.isArray(value) === false &&
