@@ -28,13 +28,43 @@ const UserTableRow = ({ entry }) => {
 
 	const handleOnChange = e => {
 		if (e.target.value === "false") {
-			console.log("PUT request now!");
-			console.log(`Updating task ${entry.id} with ${new Date()}`);
+			let myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+			let raw = JSON.stringify({
+				completedAt: "2022-05-23T14:39:08.109Z"
+			});
+			const requestOptions = {
+				method: "PUT",
+				headers: myHeaders,
+				body: raw
+			};
+			fetch(
+				`http://localhost:8081/api/v1/users/tasks/${entry.id}`,
+				requestOptions
+			)
+				.then(response => response.json())
+				.then(result => console.log(result))
+				.catch(error => console.log("error", error));
 			setTaskChecked(true);
 		}
 		if (e.target.value === "true") {
-			console.log("PUT request now!");
-			console.log(`Updating task ${entry.id} with null`);
+			let myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+			let raw = JSON.stringify({
+				completedAt: null
+			});
+			const requestOptions = {
+				method: "PUT",
+				headers: myHeaders,
+				body: raw
+			};
+			fetch(
+				`http://localhost:8081/api/v1/users/tasks/${entry.id}`,
+				requestOptions
+			)
+				.then(response => response.json())
+				.then(result => console.log(result))
+				.catch(error => console.log("error", error));
 			setTaskChecked(false);
 		}
 	};

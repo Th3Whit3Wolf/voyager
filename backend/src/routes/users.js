@@ -17,8 +17,8 @@ router
 router
 	.route("/users/tasks/:id")
 	.get(TaskUserController.get)
-	.put(TaskUserController.update)
-	.delete(TaskUserController.delete);
+	.delete(TaskUserController.delete)
+	.put(TaskUserController.update);
 
 // router.put("/users/tasks/:id", TaskUserController.update);
 
