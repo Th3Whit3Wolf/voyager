@@ -34,8 +34,8 @@
 		"@prisma/client": "3.13.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.3",
-		"nodemon": "^2.0.15",
-		"node-notifier": "^10.0.1"
+		"node-notifier": "^10.0.1",
+		"nodemon": "^2.0.15"
 	},
 	"devDependencies": {
 		"eslint": "^8.13.0",
@@ -45,10 +45,18 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"jest": "^27.5.1",
 		"prettier": "^2.6.2",
+		"prettier-eslint": "^14.0.2",
 		"prisma": "3.13.0",
 		"prisma-dbml-generator": "^0.9.0",
 		"prisma-docs-generator": "^0.5.0",
 		"supertest": "^6.2.2"
+	},
+	"jest": {
+		"coveragePathIgnorePatterns": [
+			"/node_modules/",
+			"src/db"
+		],
+		"testEnvironment": "node"
 	},
 	"eslintConfig": {
 		"env": {
@@ -58,7 +66,7 @@
 		},
 		"extends": [
 			"airbnb-base",
-			"plugin:prettier/recommended"
+			"prettier"
 		],
 		"parserOptions": {
 			"ecmaVersion": "latest",
@@ -68,16 +76,26 @@
 			"prettier"
 		],
 		"rules": {
+			"prettier/prettier": [
+				"warn"
+			],
 			"indent": [
 				2,
 				"tab",
 				{
 					"SwitchCase": 1,
-					"VariableDeclarator": "first"
+					"VariableDeclarator": 2,
+					"offsetTernaryExpressions": true,
+					"CallExpression": {
+						"arguments": "first"
+					},
+					"ObjectExpression": 1,
+					"flatTernaryExpressions": false
 				}
 			],
-			"prettier/prettier": [
-				"error"
+			"multiline-ternary": [
+				2,
+				"always-multiline"
 			],
 			"radix": [
 				"error",

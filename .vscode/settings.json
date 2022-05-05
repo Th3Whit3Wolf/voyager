@@ -10,7 +10,8 @@
   "editor.formatOnSave": true, // format code when you hit save
   "editor.tabSize": 4,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
   },
   "files.trimTrailingWhitespace": true, // remove trailing white spaces from all lines
   "files.trimFinalNewlines": true, // Ensures there's only one blank line at the end of the file
