@@ -14,6 +14,7 @@ const testData = {
 					id: 1,
 					data: {},
 					validate: {
+						id: 1,
 						kind: "SITE_ADMIN"
 					}
 				}
@@ -24,6 +25,7 @@ const testData = {
 					id: 1,
 					data: {},
 					validate: {
+						id: 1,
 						title: "Finance",
 						description:
 							"Schedule appointment for Finance in-process brief to complete PCS/PCS Travel voucher.",
@@ -38,6 +40,7 @@ const testData = {
 					id: 1,
 					data: {},
 					validate: {
+						id: 1,
 						name: "Space Operations Command",
 						abbrev: "SpOC",
 						kind: "COMMAND",
@@ -52,6 +55,7 @@ const testData = {
 					id: 1,
 					data: {},
 					validate: {
+						id: 1,
 						firstName: "Rick",
 						lastName: "Sanchez",
 						email: "rick.sanchez@spaceforce.mil",
@@ -70,6 +74,7 @@ const testData = {
 					id: 1,
 					data: {},
 					validate: {
+						id: 1,
 						task: {
 							id: 1
 						},
@@ -168,20 +173,26 @@ const testData = {
 	},
 	DELETE: {
 		status: 204,
-		data: {}
+		data: {
+			roles: {
+				id: 7
+			},
+			tasks: {
+				id: 1309
+			},
+			units: {
+				id: 92
+			},
+			users: {
+				id: 8644
+			},
+			"users/tasks": {
+				id: 68692
+			}
+		}
 	}
 };
 
-/*
-
-const deleteID = {
-	roles: 7,
-	tasks: 1309,
-	units: 92,
-	users: 8644,
-	"users/tasks": 68692
-};
-*/
 const mkTest = async (method, data, status, endpointName) => {
 	const route = `${routePrefix}/${endpointName}${
 		data.id !== undefined ? `/${data.id}` : ""
@@ -196,15 +207,11 @@ const mkTest = async (method, data, status, endpointName) => {
 
 		const { body } = res;
 		if (method !== "GET") {
-			console.log(
-				`Route: ${method} ${routePrefix}/${endpointName}
-			res = ${JSON.stringify(res)}
-			Body: ${JSON.stringify(body)}`
-			);
-		}
-
-		if (data.id !== undefined) {
-			expect(body.data.id).toBe(data.id);
+			console.log(`
+			Route: ${method} ${routePrefix}/${endpointName}
+			Data(sent): ${JSON.stringify(data)}
+			Data(received): ${JSON.stringify(body.data)}
+			`);
 		}
 
 		expect(res.statusCode).toBe(status);
