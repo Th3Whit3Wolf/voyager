@@ -31,7 +31,6 @@ const UserTable = ({ alldata }) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{/* may require editting to fit new tasker formats into the table */}
 					{alldata.map(entry => (
 						<UserTableRow hover={true} key={entry.id} entry={entry} />
 					))}

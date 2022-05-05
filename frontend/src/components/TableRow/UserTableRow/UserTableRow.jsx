@@ -58,7 +58,9 @@ const UserTableRow = ({ entry }) => {
 						updatedAt.getUTCMonth() + 1
 					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
 				</TableCell>
-				<TableCell>{entry.owner}</TableCell>
+				<TableCell>
+					{entry.task.assigner.firstName} {entry.task.assigner.lastName}
+				</TableCell>
 				<TableCell onClick={() => handleClickOpen()}>*</TableCell>
 			</TableRow>
 		</>

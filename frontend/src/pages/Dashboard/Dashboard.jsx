@@ -132,24 +132,12 @@ const Dashboard = () => {
 					</TabList>
 
 					<TabPanel value="1">
-						This is where my in-processing task list shows up.
-						<p>
-							This should show as a table view, where each row has a status and
-							can be toggled as complete or not. Clicking on a row might show
-							more info?
-						</p>
 						<TableContainer component={Paper}>
 							{userData.length > 0 && <UserTable alldata={userInData} />}
 						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="2">
-						These is where my out-processing task list shows up
-						<p>
-							This should show as a table view, where each row has a status and
-							can be toggled as complete or not. Clicking on a might show more
-							info?{" "}
-						</p>
 						<TableContainer component={Paper}>
 							{userData.length > 0 && <UserTable alldata={userOutData} />}
 						</TableContainer>
