@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
 	TableRow,
@@ -11,9 +11,18 @@ import {
 
 const UserTableRow = ({ entry }) => {
 	// STATE for USER TASKS
-	const [taskCompleted, setTaskCompleted] = useState(entry.completedAt);
+	const [taskCompletedAt, setTaskCompletedAt] = useState(entry.completedAt);
+	const [taskChecked, setTaskChecked] = useState(false);
 
 	const [open, setOpen] = useState(false);
+
+	// STATE handlers
+
+	useEffect(() => {
+		if (taskCompletedAt !== null) {
+			setTaskChecked(true);
+		}
+	}, [taskCompletedAt]);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -35,13 +44,15 @@ const UserTableRow = ({ entry }) => {
 			</Dialog>
 			<TableRow hover={true}>
 				<TableCell>
-					<Checkbox value={taskCompleted} />
+					<Checkbox value={taskChecked} />
 				</TableCell>
-				<TableCell>{entry.title}</TableCell>
-				<TableCell>{entry.description}</TableCell>
-				<TableCell>{entry.approver}</TableCell>
-				<TableCell>Not in Current ERD</TableCell>
-				<TableCell>Not in Current ERD</TableCell>
+				<TableCell>{entry.task.title}</TableCell>
+				<TableCell>{entry.task.description}</TableCell>
+				<TableCell>
+					{entry.task.approver.firstName} {entry.task.approver.lastName}
+				</TableCell>
+				<TableCell>{entry.task.approver.dsn}</TableCell>
+				<TableCell>{entry.task.approver.email}</TableCell>
 				<TableCell>
 					{`${
 						updatedAt.getUTCMonth() + 1
