@@ -2,7 +2,7 @@
 // This is a demo dashboard as a placeholder
 // when actual dashboards are built up, switch to TDD
 
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/UserContext";
 
 // Third Party Components and Utilities
@@ -29,7 +29,7 @@ import {
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
 	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(10);
+	const [end, setEnd] = useState(20);
 	const [revision, setRevision] = useState(0);
 
 	const [dataForAdminIn, setDataForAdminIn] = useState([]);
@@ -44,12 +44,12 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		setDataForAdminIn(
-			context.user.TasksAssigners.filter(
+			context.user.tasksAssigned.filter(
 				tasker => tasker.kind === "IN_PROCESSING"
 			)
 		);
 		setDataForAdminOut(
-			context.user.TasksAssigners.filter(
+			context.user.tasksAssigned.filter(
 				tasker => tasker.kind === "OUT_PROCESSING"
 			)
 		);
@@ -76,11 +76,6 @@ const Dashboard = () => {
 	const userData = context.user.Tasks;
 
 	const data = context.user.TasksAssigners;
-
-	const dataOutprocessing = useMemo(
-		() => data.filter(tasker => tasker.kind === "OUT_PROCESSING"),
-		[data]
-	);
 
 	const changeInprocessPage = e => {
 		console.log(e.target.value);
