@@ -218,7 +218,7 @@ describe("Backend Tests", () => {
 			Object.entries(metadata.data).forEach(
 				async ([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
-						endpointData.forEach(data => {
+						endpointData.forEach(async data => {
 							await mkTest(method, data, metadata.status, endpointName);
 						});
 					} else {
