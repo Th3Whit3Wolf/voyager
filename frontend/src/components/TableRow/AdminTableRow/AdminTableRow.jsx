@@ -26,6 +26,8 @@ const AdminTableRow = ({ entry }) => {
 
 	//AdminTableRow State
 	const [checked, setChecked] = useState(entry.isActive);
+	const [taskTitle, setTaskTitle] = useState(entry.title);
+	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [pocName, setPocName] = useState(
 		`${entry.approver.firstName} ${entry.approver.lastName}`
 	);
@@ -121,18 +123,10 @@ const AdminTableRow = ({ entry }) => {
 					<Switch checked={checked} onChange={handleChange} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={entry.title}
-						sx={{ width: "20ch" }}
-					/>
+					<TextField size="small" value={taskTitle} sx={{ width: "20ch" }} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						value={entry.description}
-						sx={{ width: "45ch" }}
-					/>
+					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocName} sx={{ width: "25ch" }} />
