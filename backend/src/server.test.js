@@ -202,13 +202,13 @@ const mkTest = async (method, data, status, endpointName) => {
 			method === "GET" || method === "DELETE"
 				? await response[method.toLowerCase()](route)
 				: await response[method.toLowerCase()](route)
-						.send(data)
+						.send(data.data)
 						.set("Accept", "application/json");
 
 		const { body } = res;
 		if (method !== "GET") {
 			console.log(`
-			Route: ${method} ${routePrefix}/${endpointName}
+			Route: ${route}
 			Data(sent): ${JSON.stringify(data)}
 			Data(received): ${JSON.stringify(body.data)}
 			`);
