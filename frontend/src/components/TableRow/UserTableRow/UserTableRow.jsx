@@ -11,6 +11,7 @@ import {
 
 const UserTableRow = ({ entry }) => {
 	// STATE for USER TASKS
+	const [taskCompleted, setTaskCompleted] = useState(entry.completedAt);
 
 	const [open, setOpen] = useState(false);
 
@@ -32,11 +33,9 @@ const UserTableRow = ({ entry }) => {
 					</DialogContentText>
 				</DialogContent>
 			</Dialog>
-			<TableRow hover={true} onClick={() => handleClickOpen()}>
+			<TableRow hover={true}>
 				<TableCell>
-					<Checkbox
-						onChange={() => console.log(`Update Checkbox of id ${entry.id}`)}
-					/>
+					<Checkbox value={taskCompleted} />
 				</TableCell>
 				<TableCell>{entry.title}</TableCell>
 				<TableCell>{entry.description}</TableCell>
@@ -49,6 +48,7 @@ const UserTableRow = ({ entry }) => {
 					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
 				</TableCell>
 				<TableCell>{entry.owner}</TableCell>
+				<TableCell onClick={() => handleClickOpen()}>*</TableCell>
 			</TableRow>
 		</>
 	);
