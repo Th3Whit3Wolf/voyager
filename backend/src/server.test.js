@@ -176,13 +176,17 @@ const deleteID = {
 };
 */
 const mkTest = async (method, data, status, endpointName) => {
-	test(`${method} ${routePrefix}/${endpointName}`, async () => {
-		const res = response[method.toLowerCase()](
-			`${routePrefix}/${endpointName}${
-				data.id !== undefined ? `/${data.id}` : ""
-			}`
-		);
+	const route = `${routePrefix}/${endpointName}${
+		data.id !== undefined ? `/${data.id}` : ""
+	}`;
+	test(`${method} ${route}`, async () => {
+		const res = await response[method.toLowerCase()](route);
 		const { body } = res;
+		console.log(
+			`Route: ${method} ${routePrefix}/${endpointName}
+			res = await response[${method.toLowerCase()}](${route})
+			Body: ${JSON.stringify(body)}`
+		);
 		if (data.id !== undefined) {
 			expect(body.data.id).toBe(data.id);
 		}
@@ -215,11 +219,17 @@ describe("Backend Tests", () => {
 
 	Object.entries(testData).forEach(([method, metadata]) => {
 		describe(`METHOD ${method}`, () => {
+			console.log({ method });
 			Object.entries(metadata.data).forEach(
 				async ([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
 						endpointData.forEach(async data => {
-							await mkTest(method, data, metadata.status, endpointName);
+							await mkTest(
+								method,
+								data,
+								metadata.status,
+								endpointName
+							);
 						});
 					} else {
 						await mkTest(
