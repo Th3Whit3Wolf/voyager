@@ -27,9 +27,13 @@ const Header = () => {
 			>
 				<img src={logo} alt="Space Force Logo" />
 			</a>
-			<h1>
-				<span className={styles.header__title2}>Voyager</span>
-			</h1>
+			<div>
+				<h1 style={context?.user?.role && { marginBottom: "-20px" }}>
+					<span className={styles.header__title2}>Voyager</span>
+				</h1>
+				{context?.user?.role && <h4>{context.user.role.kind} VIEW</h4>}
+			</div>
+
 			<Grid
 				className={styles.header__button}
 				sx={{
