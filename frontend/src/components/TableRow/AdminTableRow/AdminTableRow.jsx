@@ -24,8 +24,13 @@ const AdminTableRow = ({ entry }) => {
 
 	console.log(entry);
 
-	//For switch to change
+	//AdminTableRow State
 	const [checked, setChecked] = useState(entry.isActive);
+	const [pocName, setPocName] = useState(
+		`${entry.approver.firstName} ${entry.approver.lastName}`
+	);
+	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
+	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
@@ -113,7 +118,7 @@ const AdminTableRow = ({ entry }) => {
 			</Dialog> */}
 			<TableRow>
 				<TableCell>
-					<Switch checked={entry.isActive} onChange={handleChange} />
+					<Switch checked={checked} onChange={handleChange} />
 				</TableCell>
 				<TableCell>
 					<TextField
@@ -130,38 +135,18 @@ const AdminTableRow = ({ entry }) => {
 					/>
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={entry.approver}
-						sx={{ width: "25ch" }}
-					/>
+					<TextField size="small" value={pocName} sx={{ width: "25ch" }} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={"Not in Current ERD"}
-						sx={{ width: "25ch" }}
-					/>
+					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={`Not in Current ERD`}
-						sx={{ width: "25ch" }}
-					/>
+					<TextField size="small" value={pocEmail} sx={{ width: "25ch" }} />
 				</TableCell>
 				<TableCell>
 					{`${
 						updatedAt.getUTCMonth() + 1
 					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
-				</TableCell>
-				<TableCell>
-					<TextField
-						size="small"
-						placeholder={entry.owner}
-						sx={{ width: "10ch" }}
-					/>
-					{/* should be a drop down once able to pull all the base names */}
 				</TableCell>
 				<TableCell>
 					<IconButton
