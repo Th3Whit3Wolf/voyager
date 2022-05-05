@@ -11,20 +11,17 @@ import {
 
 const UserTableRow = ({ entry }) => {
 	// STATE for USER TASKS
-	const [taskCompletedAt, setTaskCompletedAt] = useState(null);
-	const [taskChecked, setTaskChecked] = useState(false);
+	const [taskCompletedAt, setTaskCompletedAt] = useState(
+		entry.completedAt === null ? false : new Date(entry.completedAt)
+	);
+	const [taskChecked, setTaskChecked] = useState(
+		entry.completedAt === null ? false : true
+	);
 	const [taskUpdated, setTaskUpdated] = useState(new Date(entry.updatedAt));
 
 	const [open, setOpen] = useState(false);
 
 	// STATE handlers
-
-	useEffect(() => {
-		if (entry.completedAt !== null) {
-			setTaskCompletedAt(new Date(entry.completedAt));
-			setTaskChecked(true);
-		}
-	}, []);
 
 	const handleOnChange = e => {
 		if (e.target.value === "false") {
@@ -46,6 +43,7 @@ const UserTableRow = ({ entry }) => {
 				.then(result => console.log(result))
 				.catch(error => console.log("error", error));
 			setTaskChecked(true);
+			setTaskCompletedAt(new Date());
 		}
 		if (e.target.value === "true") {
 			let myHeaders = new Headers();
@@ -66,13 +64,9 @@ const UserTableRow = ({ entry }) => {
 				.then(result => console.log(result))
 				.catch(error => console.log("error", error));
 			setTaskChecked(false);
+			setTaskCompletedAt(null);
 		}
 	};
-
-	useEffect(() => {
-		if (taskChecked === true) setTaskCompletedAt(new Date());
-		if (taskChecked === false) setTaskCompletedAt(null);
-	}, [taskChecked]);
 
 	const handleClickOpen = () => {
 		setOpen(true);
