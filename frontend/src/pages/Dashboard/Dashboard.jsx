@@ -72,10 +72,8 @@ const Dashboard = () => {
 		setAdminOutForLoop(idxs);
 	}, [totalAdminOutPages]);
 
-	//const userData = context.user.tasksAssigned;// when used with most up to date version of BackEnd
-	const userData = context.user.Tasks;
-
-	const data = context.user.TasksAssigners;
+	const userData = context.user.tasks;
+	const data = context.user.tasksAssigned;
 
 	const changeInprocessPage = e => {
 		console.log(e.target.value);
