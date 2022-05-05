@@ -50,7 +50,6 @@ const AdminTable = ({ data, start, end }) => {
 						<TableCell>POC Phone</TableCell>
 						<TableCell>POC Email</TableCell>
 						<TableCell>Last Updated</TableCell>
-						<TableCell>Owner</TableCell>
 						<TableCell>More Info</TableCell>
 						<TableCell>Delete Task</TableCell>
 					</TableRow>
