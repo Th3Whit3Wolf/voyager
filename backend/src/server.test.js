@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import request from "supertest";
 import app from "./server";
 
@@ -10,7 +11,10 @@ const testData = {
 			roles: [
 				{},
 				{
-					data: {
+					id: 1,
+					data: {},
+					validate: {
+						id: 1,
 						kind: "SITE_ADMIN"
 					}
 				}
@@ -19,7 +23,9 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
+						id: 1,
 						title: "Finance",
 						description:
 							"Schedule appointment for Finance in-process brief to complete PCS/PCS Travel voucher.",
@@ -32,7 +38,9 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
+						id: 1,
 						name: "Space Operations Command",
 						abbrev: "SpOC",
 						kind: "COMMAND",
@@ -45,7 +53,9 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
+						id: 1,
 						firstName: "Rick",
 						lastName: "Sanchez",
 						email: "rick.sanchez@spaceforce.mil",
@@ -62,7 +72,9 @@ const testData = {
 				{},
 				{
 					id: 1,
-					data: {
+					data: {},
+					validate: {
+						id: 1,
 						task: {
 							id: 1
 						},
@@ -161,36 +173,54 @@ const testData = {
 	},
 	DELETE: {
 		status: 204,
-		data: {}
+		data: {
+			roles: {
+				id: 7
+			},
+			tasks: {
+				id: 1309
+			},
+			units: {
+				id: 92
+			},
+			users: {
+				id: 8644
+			},
+			"users/tasks": {
+				id: 68692
+			}
+		}
 	}
 };
 
-/*
-
-const deleteID = {
-	roles: 7,
-	tasks: 1309,
-	units: 92,
-	users: 8644,
-	"users/tasks": 68692
-};
-*/
 const mkTest = async (method, data, status, endpointName) => {
-	test(`${method} ${routePrefix}/${endpointName}`, async () => {
-		const res = response[method.toLowerCase()](
-			`${routePrefix}/${endpointName}${
-				data.id !== undefined ? `/${data.id}` : ""
-			}`
-		);
+	const route = `${routePrefix}/${endpointName}${
+		data.id !== undefined ? `/${data.id}` : ""
+	}`;
+	test(`${method} ${route}`, async () => {
+		const res =
+			method === "GET" || method === "DELETE"
+				? await response[method.toLowerCase()](route)
+				: await response[method.toLowerCase()](route)
+						.send(data.data)
+						.set("Accept", "application/json");
+
 		const { body } = res;
-		if (data.id !== undefined) {
-			expect(body.data.id).toBe(data.id);
+		if (method !== "GET") {
+			console.log(`
+			Route: ${route}
+			Data(sent): ${JSON.stringify(data)}
+			Data(received): ${JSON.stringify(body.data)}
+			`);
 		}
 
 		expect(res.statusCode).toBe(status);
 
-		if (Object.keys(data).length > 0) {
-			Object.entries(data.data).forEach(([property, value]) => {
+		if (
+			data.validate !== undefined &&
+			Object.keys(data.validate).length > 0
+		) {
+			Object.entries(data.validate).forEach(([property, value]) => {
 				if (
 					typeof value === "object" &&
 					Array.isArray(value) === false &&
@@ -215,11 +245,17 @@ describe("Backend Tests", () => {
 
 	Object.entries(testData).forEach(([method, metadata]) => {
 		describe(`METHOD ${method}`, () => {
+			console.log({ method });
 			Object.entries(metadata.data).forEach(
 				async ([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
 						endpointData.forEach(async data => {
-							await mkTest(method, data, metadata.status, endpointName);
+							await mkTest(
+								method,
+								data,
+								metadata.status,
+								endpointName
+							);
 						});
 					} else {
 						await mkTest(
