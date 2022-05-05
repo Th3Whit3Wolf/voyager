@@ -1,7 +1,7 @@
+// Our Components
 import Header from "./components/Header/Header";
-import Login from "./pages/Login/Login";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import { Login, Dashboard, PageNotFound, TestViews } from "./pages";
+import { UserContext } from "./context";
 import getDesignTokens from "./theme.js";
 
 // Third Party Components
@@ -29,21 +29,24 @@ export default function App() {
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 	return (
 		<ColorModeContext.Provider value={colorMode}>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<Header />
-				<Container
-					maxWidth="fixed"
-					sx={{ maxWidth: "auto" }}
-					disableGutters={false}
-				>
-					<Routes>
-						<Route path="/" element={<Login />} />
-						<Route path="/dashboard" element={<Dashboard />} />
-						<Route path="*" element={<PageNotFound />} />
-					</Routes>
-				</Container>
-			</ThemeProvider>
+			<UserContext.Provider value={{ role: "", user: {} }}>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<Header />
+					<Container
+						maxWidth="fixed"
+						sx={{ maxWidth: "auto" }}
+						disableGutters={false}
+					>
+						<Routes>
+							<Route path="/" element={<Login />} />
+							<Route path="/dashboard" element={<Dashboard />} />
+							<Route path="/tests/fetch" element={<TestViews />} />
+							<Route path="*" element={<PageNotFound />} />
+						</Routes>
+					</Container>
+				</ThemeProvider>
+			</UserContext.Provider>
 		</ColorModeContext.Provider>
 	);
 }

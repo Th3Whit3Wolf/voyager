@@ -25,8 +25,8 @@ test("renders a Login component successfully", () => {
 
 test("issue44: Login displays a username input field that ...", async () => {
 	setup();
-	const usernameLabel = await screen.findByLabelText(/username/i);
-	const usernameInput = await screen.findByPlaceholderText(/enter username/i);
+	const usernameLabel = await screen.findByLabelText(/email/i);
+	const usernameInput = await screen.findByPlaceholderText(/enter email/i);
 	expect(usernameLabel).toBeInTheDocument();
 	expect(usernameInput).toBeInTheDocument();
 });

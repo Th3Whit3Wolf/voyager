@@ -2,73 +2,108 @@
 // This is a demo dashboard as a placeholder
 // when actual dashboards are built up, switch to TDD
 
-import React, { useState, useEffect } from "react";
-import useFetchMock from "../../hooks/useFetchMock";
+import React, { useState, useEffect, useContext, useMemo } from "react";
+import UserContext from "../../context/UserContext";
 
 // Third Party Components and Utilities
-import {
-	Paper,
-	Tab,
-	TableContainer,
-	Table as MuiTable,
-	TableHead,
-	TableBody,
-	TableRow,
-	TableCell,
-	Switch
-} from "@mui/material";
+import { Paper, Tab, TableContainer, Button } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import UserTable from "../../components/Tables/UserTable/UserTable";
-import AdminTable from "../../components/Tables/AdminTable/AdminTable";
-//import AdminTable from "../../components/Tables/AdminTable/AdminTable";
-// NOTE: Currently Dashboard is taking a prop called
-// role. This is coming from Login.jsx where the Fake
-// User and Admin navigations pass it in order to
-// emulate a type of role since the Firebase Store
-// and the backend API need to be set up. I suspect
-// all of this will be refactored a lot in the future
-// but I just wanted to have something to attach
-// Dasboard too in the Routes of App.jsx
-// Please refactor and delete all this as necessary,
-// This comment is just to help other developers
-// read this more easily. --Tony
+import {
+	UserTable,
+	AdminTable,
+	UserSettings,
+	ModifyAdminTable
+} from "../../components";
 
-import { useLocation } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
+// There is no longer a useNavigate state prop called role.
+// There is now, instead, a UserContext object being provided
+//   to all of App. In general, UserContext has two entities
+//   a role with a string as a key which should be role, admin, or nothing
+//   a user which containers the User object returned from the API after logging in
+//   As an example, below, there is a context variable from UserContext and it
+//   has a context.role and a context.User . You will see these also used in the
+//   Header component. Generally, the logout button (in the Header) should
+//   obliterate UserContext. This is one big refactor forward toward Firebase
+//   integration and being able to track User auth --Tony
 
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
+	const [start, setStart] = useState(0);
+	const [end, setEnd] = useState(10);
+	const [revision, setRevision] = useState(0);
 
-	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
-	const location = useLocation(); // props are being passed with navigate, so I need useLocation go grab them
-	const role = location.state.role;
-	const { data, error, isLoading } = useFetchMock(`/api/mock/${role}`, 0, 500); // only created data for User , not Admin yet, Admin gives a console log
+	const [dataForAdminIn, setDataForAdminIn] = useState([]);
+	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
+	const [adminInForLoop, setAdminInForLoop] = useState([]);
 
-	// useEffect(() => {
-	// 	console.log(data, error, isLoading);
-	// }, [data, error, isLoading]);
+	const [dataForAdminOut, setDataForAdminOut] = useState([]);
+	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
+	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
 
-	// Setting up Different Views Based on Role
-	// There are many ways to do conditional views, but with
-	// so many possible concurrent views, early returns might be the best
-	// way with a final return that always shows in the event all other
-	// conditionals do not trigger
+	const context = useContext(UserContext);
 
-	if (isLoading) return <Loading />;
-	// User View ... this conditional compares to role from location, should be changed to AUTH obj later
+	useEffect(() => {
+		setDataForAdminIn(
+			context.user.TasksAssigners.filter(
+				tasker => tasker.kind === "IN_PROCESSING"
+			)
+		);
+		setDataForAdminOut(
+			context.user.TasksAssigners.filter(
+				tasker => tasker.kind === "OUT_PROCESSING"
+			)
+		);
+	}, []);
 
-	// Note, this should be turned into components. I would almost never keep a component looking like this,
-	// but for sake of communicating with other Devs in the project, I have it in long form here so the logic
-	// is easier to see all in one page. But I can see someone taking it down to User, Site Admin, Base Admin, etc
-	// then the conditional early returns will turn this Dashboard.jsx into like 5 lines of code down below, and different
-	// people can work on different sections without stepping on each others toes. --Tony
-	if (role === "user") {
+	useEffect(() => {
+		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
+		setTotalAdminOutPages(parseInt(dataForAdminOut.length / (end - start)) + 1);
+	}, [dataForAdminIn, setTotalAdminOutPages, start, end]);
+
+	useEffect(() => {
+		let idxs = [];
+		for (let i = 0; i < totalAdminInPages; i++) idxs.push(i);
+		setAdminInForLoop(idxs);
+	}, [totalAdminInPages]);
+
+	useEffect(() => {
+		let idxs = [];
+		for (let i = 0; i < totalAdminOutPages; i++) idxs.push(i);
+		setAdminOutForLoop(idxs);
+	}, [totalAdminOutPages]);
+
+	//const userData = context.user.tasksAssigned;// when used with most up to date version of BackEnd
+	const userData = context.user.Tasks;
+
+	const data = context.user.TasksAssigners;
+
+	const dataOutprocessing = useMemo(
+		() => data.filter(tasker => tasker.kind === "OUT_PROCESSING"),
+		[data]
+	);
+
+	const changeInprocessPage = e => {
+		console.log(e.target.value);
+		setStart((parseInt(e.target.value) - 1) * (end - start));
+		setEnd(parseInt(e.target.value) * (end - start));
+		setRevision(revision + 1);
+	};
+
+	const changeOutprocessPage = e => {
+		console.log(e.target.value);
+		setStart((parseInt(e.target.value) - 1) * (end - start));
+		setEnd(parseInt(e.target.value) * (end - start));
+		setRevision(revision + 1);
+	};
+
+	if (context.user.role.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
 						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab label="User Settings" value="3" />
 					</TabList>
 
 					<TabPanel value="1">
@@ -79,15 +114,7 @@ const Dashboard = () => {
 							more info?
 						</p>
 						<TableContainer component={Paper}>
-							<UserTable
-								data={
-									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
-												tasker => tasker.task_type === "Outprocessing"
-										  )
-								}
-							/>
+							<UserTable alldata={userData} />
 						</TableContainer>
 					</TabPanel>
 
@@ -100,72 +127,107 @@ const Dashboard = () => {
 						</p>
 						<TableContainer component={Paper}>
 							<UserTable
-								data={
-									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
-												tasker => tasker.task_type === "Outprocessing"
-										  )
+								alldata={
+									userData
+									// tabValue === "1"
+									// 	? userData?.filter(
+									// 			tasker => tasker.kind === "IN_PROCESSING"
+									// 	  )
+									// 	: userData?.filter(
+									// 			tasker => tasker.kind === "Outprocessing"
+									// 	  )
 								}
 							/>
 						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="3">
+						<UserSettings settings={context.user} />
 					</TabPanel>
 				</TabContext>
 			</>
 		);
 	}
 
-	// Generic Admin View ... this conditional compares to role from location, should be changed to AUTH obj later
-	if (role === "admin") {
+	if (context.user.role.kind.includes("ADMIN")) {
 		return (
 			<>
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
 						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab label="Modify Admins" value="3" />
 					</TabList>
 
 					<TabPanel value="1">
 						<p>
-							These is where all the admin in-processing tasks should show up as
-							a table view.
+							Displaying {dataForAdminIn.slice(start, end).length} of{" "}
+							{dataForAdminIn.length} Inprocessing Tasks.
 						</p>
-						<p>
-							Each row in a Table that matches the Role of the logged in Admin
-							should allow for Delete, Row-wise Entry Patches, or adding a new
-							row to the bottom.
-						</p>
+						{adminInForLoop.map(idx => (
+							<Button
+								sx={{ minWidth: "10px" }}
+								key={idx}
+								onClick={changeInprocessPage}
+								value={idx + 1}
+							>
+								{idx + 1}
+							</Button>
+						))}
 						<TableContainer component={Paper}>
-							<AdminTable
-								data={
-									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
-												tasker => tasker.task_type === "Outprocessing"
-										  )
-								}
-							/>
+							{dataForAdminIn.length > 0 && (
+								<AdminTable
+									key={revision}
+									data={dataForAdminIn}
+									start={start}
+									end={end}
+									revision={revision}
+								/>
+							)}
 						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="2">
 						<p>
-							These is where all the admin out-processing tasks should show up
-							as a table view.
+							Displaying {dataForAdminOut.slice(start, end).length} of{" "}
+							{dataForAdminOut.length} Outprocessing Tasks.
 						</p>
-						<p>
-							Each row in a Table that matches the Role of the logged in Admin
-							should allow for Delete, Row-wise Entry Patches, or adding a new
-							row to the bottom.
-						</p>{" "}
+						{adminOutForLoop.map(idx => (
+							<Button
+								sx={{ minWidth: "10px" }}
+								key={idx}
+								onClick={changeOutprocessPage}
+								value={idx + 1}
+							>
+								{idx + 1}
+							</Button>
+						))}
 						<TableContainer component={Paper}>
-							<AdminTable
+							{dataForAdminIn.length > 0 && (
+								<AdminTable
+									key={revision}
+									data={dataForAdminOut}
+									start={start}
+									end={end}
+									revision={revision}
+								/>
+							)}
+						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="3">
+						This is where I modify Admins.
+						<p>
+							This should show as a table view, where each row has a status and
+							can be toggled as complete or not. Clicking on a row might show
+							more info?
+						</p>
+						<TableContainer component={Paper}>
+							<ModifyAdminTable
 								data={
-									tabValue === "1"
-										? data.filter(tasker => tasker.task_type === "Inprocessing")
-										: data.filter(
-												tasker => tasker.task_type === "Outprocessing"
-										  )
+									tabValue === "3"
+										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
+										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
 								}
 							/>
 						</TableContainer>
@@ -174,10 +236,6 @@ const Dashboard = () => {
 			</>
 		);
 	}
-
-	// Installation Admin View
-
-	// Site Admin View
 
 	// Generic View to Show if All Else Fails
 	return (
