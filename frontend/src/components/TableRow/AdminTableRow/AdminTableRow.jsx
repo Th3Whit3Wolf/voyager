@@ -22,8 +22,6 @@ const AdminTableRow = ({ entry }) => {
 	const [delete_open, delete_setOpen] = useState(false);
 	const [info_open, info_setOpen] = useState(false);
 
-	console.log(entry);
-
 	//AdminTableRow State
 	const [checked, setChecked] = useState(entry.isActive);
 	const [taskTitle, setTaskTitle] = useState(entry.title);

@@ -44,6 +44,8 @@ const Dashboard = () => {
 	const userData = context.user.tasks;
 	const data = context.user.tasksAssigned;
 
+	console.log(userData);
+
 	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 47 to 98
 
 	// This useEffect is mostly for Admin View
