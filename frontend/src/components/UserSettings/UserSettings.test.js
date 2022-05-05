@@ -65,6 +65,6 @@ test("renders DSN successfully", async () => {
 		dsn: "(312) 311-6637"
 	};
 	setup(stgs);
-	const dsn = await screen.findByText(/(312) 311-6637/i);
+	const dsn = await screen.findByText(/311-6637/i);
 	expect(dsn).toBeInTheDocument();
 });
