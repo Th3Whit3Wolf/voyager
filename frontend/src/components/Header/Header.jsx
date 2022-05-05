@@ -44,7 +44,9 @@ const Header = () => {
 			>
 				{context?.user?.firstName ? (
 					<div className={styles.header__title3}>
-						<p>Welcome, {context.user.firstName}! </p>
+						<p style={{ marginRight: "2rem" }}>
+							Welcome, {context.user.firstName}!
+						</p>{" "}
 						<Button variant="contained" onClick={handleClick}>
 							Logout
 						</Button>
