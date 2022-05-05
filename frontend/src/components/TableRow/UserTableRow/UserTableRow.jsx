@@ -13,16 +13,24 @@ const UserTableRow = ({ entry }) => {
 	// STATE for USER TASKS
 	const [taskCompletedAt, setTaskCompletedAt] = useState(entry.completedAt);
 	const [taskChecked, setTaskChecked] = useState(false);
+	const [taskUpdated, setTaskUpdated] = useState(new Date(entry.updatedAt));
 
 	const [open, setOpen] = useState(false);
 
 	// STATE handlers
 
 	useEffect(() => {
-		if (taskCompletedAt !== null) {
-			setTaskChecked(true);
+		if (taskChecked === true) {
+			setTaskCompletedAt(new Date());
+		} else {
+			setTaskCompletedAt(null);
 		}
-	}, [taskCompletedAt]);
+	}, [taskChecked]);
+
+	const handleOnChange = e => {
+		setTaskChecked(!taskChecked);
+		console.log("Changing from value: ", e.target.value);
+	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -32,7 +40,6 @@ const UserTableRow = ({ entry }) => {
 		setOpen(false);
 	};
 
-	var updatedAt = new Date(entry.updatedAt);
 	return (
 		<>
 			<Dialog open={open} onClose={handleClose}>
@@ -46,20 +53,37 @@ const UserTableRow = ({ entry }) => {
 				<TableCell>
 					<Checkbox
 						value={taskChecked}
-						sx={taskChecked === false && { color: "red" }}
+						sx={!taskChecked ? { color: "red" } : null}
+						onChange={handleOnChange}
 					/>
 				</TableCell>
 				<TableCell>{entry.task.title}</TableCell>
 				<TableCell>{entry.task.description}</TableCell>
+				<TableCell>
+					<div>
+						{taskCompletedAt
+							? `${
+									taskCompletedAt.getUTCMonth() + 1
+							  } - ${taskCompletedAt.getUTCDate()} - ${taskCompletedAt.getUTCFullYear()}`
+							: null}
+					</div>
+					<div>
+						{taskCompletedAt
+							? `${taskCompletedAt.getHours()}:${taskCompletedAt.getMinutes()}`
+							: null}
+					</div>
+				</TableCell>
 				<TableCell>
 					{entry.task.approver.firstName} {entry.task.approver.lastName}
 				</TableCell>
 				<TableCell>{entry.task.approver.dsn}</TableCell>
 				<TableCell>{entry.task.approver.email}</TableCell>
 				<TableCell>
-					{`${
-						updatedAt.getUTCMonth() + 1
-					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
+					{taskUpdated
+						? `${
+								taskUpdated.getUTCMonth() + 1
+						  } - ${taskUpdated.getUTCDate()} - ${taskUpdated.getUTCFullYear()}`
+						: null}
 				</TableCell>
 				<TableCell>
 					{entry.task.assigner.firstName} {entry.task.assigner.lastName}

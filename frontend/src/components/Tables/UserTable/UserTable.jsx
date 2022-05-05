@@ -22,10 +22,11 @@ const UserTable = ({ alldata }) => {
 						<TableCell>Complete?</TableCell>
 						<TableCell>Task Name</TableCell>
 						<TableCell>Short Description</TableCell>
+						<TableCell>Task Completion Date</TableCell>
 						<TableCell>POC Name</TableCell>
 						<TableCell>POC Phone</TableCell>
 						<TableCell>POC Email</TableCell>
-						<TableCell>Last Updated</TableCell>
+						<TableCell>Last POC Updated</TableCell>
 						<TableCell>Owner</TableCell>
 						<TableCell>More Info</TableCell>
 					</TableRow>
