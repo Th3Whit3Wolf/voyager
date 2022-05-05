@@ -13,13 +13,13 @@ import { AddCircle } from "@mui/icons-material";
 
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
 
-const AdminTable = ({ data }) => {
+const AdminTable = ({ data, start, end }) => {
 	const [adminData, setAdminData] = useState([]);
 
 	useEffect(() => {
-		setAdminData(data);
+		setAdminData(data.slice(start, end));
 	}, []);
-	console.log(data);
+
 	const handleAddRow = () => {
 		setAdminData([
 			...adminData,

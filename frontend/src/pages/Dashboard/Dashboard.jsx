@@ -2,11 +2,11 @@
 // This is a demo dashboard as a placeholder
 // when actual dashboards are built up, switch to TDD
 
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import UserContext from "../../context/UserContext";
 
 // Third Party Components and Utilities
-import { Paper, Tab, TableContainer } from "@mui/material";
+import { Paper, Tab, TableContainer, Button } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import {
 	UserTable,
@@ -28,26 +28,73 @@ import {
 
 const Dashboard = () => {
 	const [tabValue, setTabValue] = useState("1");
-	//const [data, setData] = useState([]);
-	// These variables likely will vanish once the backend is up and working (or be reformed into say a typical useFetch)
-	//const [isLoading, setIsLoading] = useState(false);
+	const [start, setStart] = useState(0);
+	const [end, setEnd] = useState(10);
+	const [revision, setRevision] = useState(0);
+
+	const [dataForAdminIn, setDataForAdminIn] = useState([]);
+	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
+	const [adminInForLoop, setAdminInForLoop] = useState([]);
+
+	const [dataForAdminOut, setDataForAdminOut] = useState([]);
+	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
+	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
+
 	const context = useContext(UserContext);
 
-	console.log(context.user);
+	useEffect(() => {
+		setDataForAdminIn(
+			context.user.TasksAssigners.filter(
+				tasker => tasker.kind === "IN_PROCESSING"
+			)
+		);
+		setDataForAdminOut(
+			context.user.TasksAssigners.filter(
+				tasker => tasker.kind === "OUT_PROCESSING"
+			)
+		);
+	}, []);
+
+	useEffect(() => {
+		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
+		setTotalAdminOutPages(parseInt(dataForAdminOut.length / (end - start)) + 1);
+	}, [dataForAdminIn, setTotalAdminOutPages, start, end]);
+
+	useEffect(() => {
+		let idxs = [];
+		for (let i = 0; i < totalAdminInPages; i++) idxs.push(i);
+		setAdminInForLoop(idxs);
+	}, [totalAdminInPages]);
+
+	useEffect(() => {
+		let idxs = [];
+		for (let i = 0; i < totalAdminOutPages; i++) idxs.push(i);
+		setAdminOutForLoop(idxs);
+	}, [totalAdminOutPages]);
+
 	//const userData = context.user.tasksAssigned;// when used with most up to date version of BackEnd
 	const userData = context.user.Tasks;
-	console.log(userData);
-	const data = context.user.TasksAssigners;
-	//console.log(`userData: ${userData}`);
-	//console.log(`data: ${data}`);
-	// Setting up Different Views Based on Role
-	// There are many ways to do conditional views, but with
-	// so many possible concurrent views, early returns might be the best
-	// way with a final return that always shows in the event all other
-	// conditionals do not trigger
 
-	//if (isLoading) return <Loading />;
-	// User View ... this conditional compares to role from location, should be changed to AUTH obj later
+	const data = context.user.TasksAssigners;
+
+	const dataOutprocessing = useMemo(
+		() => data.filter(tasker => tasker.kind === "OUT_PROCESSING"),
+		[data]
+	);
+
+	const changeInprocessPage = e => {
+		console.log(e.target.value);
+		setStart((parseInt(e.target.value) - 1) * (end - start));
+		setEnd(parseInt(e.target.value) * (end - start));
+		setRevision(revision + 1);
+	};
+
+	const changeOutprocessPage = e => {
+		console.log(e.target.value);
+		setStart((parseInt(e.target.value) - 1) * (end - start));
+		setEnd(parseInt(e.target.value) * (end - start));
+		setRevision(revision + 1);
+	};
 
 	if (context.user.role.kind === "USER") {
 		return (
@@ -67,18 +114,7 @@ const Dashboard = () => {
 							more info?
 						</p>
 						<TableContainer component={Paper}>
-							<UserTable
-								alldata={
-									userData
-									// tabValue === "1"
-									// 	? userData?.filter(
-									// 			tasker => tasker.kind === "IN_PROCESSING"
-									// 	  )
-									// 	: userData?.filter(
-									// 			tasker => tasker.kind === "Outprocessing"
-									// 	  )
-								}
-							/>
+							<UserTable alldata={userData} />
 						</TableContainer>
 					</TabPanel>
 
@@ -113,7 +149,6 @@ const Dashboard = () => {
 		);
 	}
 
-	// Generic Admin View ... this conditional compares to role from location, should be changed to AUTH obj later
 	if (context.user.role.kind.includes("ADMIN")) {
 		return (
 			<>
@@ -126,43 +161,57 @@ const Dashboard = () => {
 
 					<TabPanel value="1">
 						<p>
-							These is where all the admin in-processing tasks should show up as
-							a table view.
+							Displaying {dataForAdminIn.slice(start, end).length} of{" "}
+							{dataForAdminIn.length} Inprocessing Tasks.
 						</p>
-						<p>
-							Each row in a Table that matches the Role of the logged in Admin
-							should allow for Delete, Row-wise Entry Patches, or adding a new
-							row to the bottom.
-						</p>
+						{adminInForLoop.map(idx => (
+							<Button
+								sx={{ minWidth: "10px" }}
+								key={idx}
+								onClick={changeInprocessPage}
+								value={idx + 1}
+							>
+								{idx + 1}
+							</Button>
+						))}
 						<TableContainer component={Paper}>
-							<AdminTable
-								data={
-									tabValue === "1"
-										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
-										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
-								}
-							/>
+							{dataForAdminIn.length > 0 && (
+								<AdminTable
+									key={revision}
+									data={dataForAdminIn}
+									start={start}
+									end={end}
+									revision={revision}
+								/>
+							)}
 						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="2">
 						<p>
-							These is where all the admin out-processing tasks should show up
-							as a table view.
+							Displaying {dataForAdminOut.slice(start, end).length} of{" "}
+							{dataForAdminOut.length} Outprocessing Tasks.
 						</p>
-						<p>
-							Each row in a Table that matches the Role of the logged in Admin
-							should allow for Delete, Row-wise Entry Patches, or adding a new
-							row to the bottom.
-						</p>{" "}
+						{adminOutForLoop.map(idx => (
+							<Button
+								sx={{ minWidth: "10px" }}
+								key={idx}
+								onClick={changeOutprocessPage}
+								value={idx + 1}
+							>
+								{idx + 1}
+							</Button>
+						))}
 						<TableContainer component={Paper}>
-							<AdminTable
-								data={
-									tabValue === "1"
-										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
-										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
-								}
-							/>
+							{dataForAdminIn.length > 0 && (
+								<AdminTable
+									key={revision}
+									data={dataForAdminOut}
+									start={start}
+									end={end}
+									revision={revision}
+								/>
+							)}
 						</TableContainer>
 					</TabPanel>
 
@@ -187,10 +236,6 @@ const Dashboard = () => {
 			</>
 		);
 	}
-
-	// Installation Admin View
-
-	// Site Admin View
 
 	// Generic View to Show if All Else Fails
 	return (
