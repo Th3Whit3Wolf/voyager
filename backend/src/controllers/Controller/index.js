@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import Prisma from "@prisma/client";
 import parsedQuery from "./parsedQuery";
 import { handleDatabaseWrite, handleDatabaseRead } from "./store";
@@ -100,13 +101,17 @@ class Controller {
 	async create(req, res) {
 		const { body } = req;
 
-		const data = await handleDatabaseWrite(
-			this.dbResource.create({ data: body })
-		);
+		try {
+			const data = await handleDatabaseWrite(
+				this.dbResource.create({ data: body })
+			);
 
-		return data
-			? res.status(201).send({ data })
-			: res.status(500).send({ message: this.errorMessages.create });
+			return data
+				? res.status(201).send({ data })
+				: res.status(500).send({ message: this.errorMessages.create });
+		} catch (err) {
+			return res.status(400).send({ message: err });
+		}
 	}
 
 	/**
@@ -155,20 +160,27 @@ class Controller {
 	 */
 	async get(req, res) {
 		const { id: idStr } = req.params;
+
 		try {
 			const id = parseInt(idStr);
-			const data = await handleDatabaseRead(
-				this.dbResource.findUnique({
-					where: { id },
-					...this.queryOptions.read,
-					...this.queryOptions.get
-				})
-			);
-			return data
-				? res.status(200).send({ data })
-				: res.status(404).send({ message: this.errorMessages.get });
+			try {
+				const data = await handleDatabaseRead(
+					this.dbResource.findUnique({
+						where: { id },
+						...this.queryOptions.read,
+						...this.queryOptions.get
+					})
+				);
+				return data
+					? res.status(200).send({ data })
+					: res.status(404).send({ message: this.errorMessages.get });
+			} catch (err) {
+				return res
+					.status(500)
+					.send({ message: this.errorMessages.delete });
+			}
 		} catch (err) {
-			return res.status(404).send({ message: this.errorMessages.get });
+			return res.status(400).send({ message: "Unable parse ID" });
 		}
 	}
 
@@ -187,18 +199,27 @@ class Controller {
 
 		try {
 			const id = parseInt(idStr);
-			const data = await handleDatabaseWrite(
-				this.dbResource.update({
-					where: { id },
-					data: body,
-					...this.queryOptions.update
-				})
-			);
-			return data
-				? res.status(202).send({ data })
-				: res.status(500).send({ message: this.errorMessages.update });
+			try {
+				const data = await handleDatabaseWrite(
+					this.dbResource.update({
+						where: { id },
+						data: body,
+						...this.queryOptions.update
+					})
+				);
+
+				return data
+					? res.status(202).send({ data })
+					: res
+							.status(500)
+							.send({ message: this.errorMessages.update });
+			} catch (err) {
+				return res
+					.status(500)
+					.send({ message: this.errorMessages.delete });
+			}
 		} catch (err) {
-			return res.status(500).send({ message: this.errorMessages.update });
+			return res.status(400).send({ message: "Unable parse ID" });
 		}
 	}
 
@@ -212,19 +233,26 @@ class Controller {
 	 * @memberof Controller
 	 */
 	async delete(req, res) {
-		const { id } = req.params;
+		const { id: idStr } = req.params;
 
 		try {
-			await this.dbResource.delete({
-				where: { id },
-				...this.queryOptions.delete
-			});
+			const id = parseInt(idStr);
+			try {
+				await this.dbResource.delete({
+					where: { id },
+					...this.queryOptions.delete
+				});
 
-			return res.status(204).send();
+				return res.status(204).send();
+			} catch (err) {
+				return res
+					.status(500)
+					.send({ message: this.errorMessages.delete });
+			}
 		} catch (err) {
-			return res.status(500).send({ message: this.errorMessages.delete });
+			return res.status(400).send({ message: "Unable parse ID" });
 		}
 	}
 }
 
-export default Controller;
+export { Controller, db, handleDatabaseWrite, handleDatabaseRead, parsedQuery };
