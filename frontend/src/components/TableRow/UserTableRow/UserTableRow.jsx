@@ -11,7 +11,7 @@ import {
 
 const UserTableRow = ({ entry }) => {
 	// STATE for USER TASKS
-	const [taskCompletedAt, setTaskCompletedAt] = useState(entry.completedAt);
+	const [taskCompletedAt, setTaskCompletedAt] = useState(null);
 	const [taskChecked, setTaskChecked] = useState(false);
 	const [taskUpdated, setTaskUpdated] = useState(new Date(entry.updatedAt));
 
@@ -20,16 +20,20 @@ const UserTableRow = ({ entry }) => {
 	// STATE handlers
 
 	useEffect(() => {
-		if (taskChecked === true) {
-			setTaskCompletedAt(new Date());
-		} else {
-			setTaskCompletedAt(null);
-		}
-	}, [taskChecked]);
+		setTaskCompletedAt(new Date(entry.completedAt));
+		console.log(taskCompletedAt);
+	}, []);
 
 	const handleOnChange = e => {
-		setTaskChecked(!taskChecked);
-		console.log("Changing from value: ", e.target.value);
+		console.log("Click", e.target.value);
+		if (e.target.value === false) {
+			setTaskCompletedAt(new Date());
+			setTaskChecked(true);
+		}
+		if (e.target.value === true) {
+			setTaskCompletedAt(null);
+			setTaskChecked(false);
+		}
 	};
 
 	const handleClickOpen = () => {
