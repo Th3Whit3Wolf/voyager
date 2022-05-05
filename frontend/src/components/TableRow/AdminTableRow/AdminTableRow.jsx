@@ -1,7 +1,4 @@
 import {
-	Table as MuiTable,
-	TableHead,
-	TableBody,
 	TableRow,
 	TableCell,
 	Switch,
@@ -36,7 +33,7 @@ const AdminTableRow = ({ entry }) => {
 	const delete_handleClickOpen = () => {
 		delete_setOpen(true);
 	};
-	//console.log(typeof entry.updatedAt);
+
 	const handleClose = () => {
 		delete_setOpen(false);
 		info_setOpen(false);
