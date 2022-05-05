@@ -75,6 +75,15 @@ const Dashboard = () => {
 	// to the Admin view and pagination isn't needed.
 
 	useEffect(() => {
+		console.log(context?.user?.assignedUnit.name);
+		fetch(
+			`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${context.user.assignedUnit.id}&limit=50`
+		)
+			.then(response => response.json())
+			.then(taskapprovers => setAdminTaskApprovers(taskapprovers));
+	}, []);
+
+	useEffect(() => {
 		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
 		setTotalAdminOutPages(parseInt(dataForAdminOut.length / (end - start)) + 1);
 	}, [dataForAdminIn, setTotalAdminOutPages, start, end]);
