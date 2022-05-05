@@ -38,7 +38,7 @@ const Header = () => {
 					justifyContent: "flex-end"
 				}}
 			>
-				{context.user.role ? (
+				{context?.user ? (
 					<div className={styles.header__title3}>
 						<p>Welcome, {context.user.firstName}! </p>
 						<Button variant="contained" onClick={handleClick}>
