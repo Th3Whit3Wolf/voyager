@@ -2,8 +2,6 @@ import request from "supertest";
 import app from "./server";
 
 const response = request(app);
-const routes = ["roles", "tasks", "units", "users", "users/tasks"];
-
 const routePrefix = "/api/v1";
 const testData = {
 	GET: {
@@ -123,14 +121,6 @@ const testData = {
 					roleID: 7,
 					supervisorID: null
 				}
-			},
-			"users/tasks": {
-				data: {
-					taskID: 162,
-					userID: 7335,
-					progress: "NOT_STARTED",
-					completedAt: null
-				}
 			}
 		}
 	},
@@ -185,9 +175,9 @@ const deleteID = {
 	"users/tasks": 68692
 };
 */
-const mkTest = async (data, status, endpointName) => {
-	test(`GET ${routePrefix}/${endpointName}`, async () => {
-		const res = response.get(
+const mkTest = async (method, data, status, endpointName) => {
+	test(`${method} ${routePrefix}/${endpointName}`, async () => {
+		const res = response[method.toLowerCase()](
 			`${routePrefix}/${endpointName}${
 				data.id !== undefined ? `/${data.id}` : ""
 			}`
@@ -229,10 +219,15 @@ describe("Backend Tests", () => {
 				([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
 						endpointData.forEach(data => {
-							mkTest(data, metadata.status, endpointName);
+							mkTest(method, data, metadata.status, endpointName);
 						});
 					} else {
-						mkTest(endpointData, metadata.status, endpointName);
+						mkTest(
+							method,
+							endpointData,
+							metadata.status,
+							endpointName
+						);
 					}
 				}
 			);
