@@ -43,7 +43,10 @@ const Login = () => {
 			setIsLoading(true);
 			fetch(`http://localhost:8081/api/v1/users?email=${username}`)
 				.then(response => response.json())
-				.then(d => (context.user = d.data[0]))
+				.then(d => {
+					console.log(d);
+					context.user = d.data[0];
+				})
 				.then(() => navigate("/dashboard"))
 				.finally(setIsLoading(false));
 		}

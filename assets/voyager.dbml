@@ -67,9 +67,9 @@ Rename collumn to conform to SQL naming conventions']
 Rename collumn to conform to SQL naming conventions']
   supervisor User
   subordinates User [not null, note: 'One-to-Many relationships']
-  TasksAssigners Task [not null]
-  TasksApprovers Task [not null]
-  Tasks TaskUser [not null, note: 'Many-to-Many relationships']
+  tasksAssigned Task [not null]
+  taskApproverTasks Task [not null]
+  tasks TaskUser [not null, note: 'Many-to-Many relationships']
 }
 
 Table tasks {
