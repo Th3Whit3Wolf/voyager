@@ -15,7 +15,7 @@ class APIQueryBuilder {
 		this.validQueryParameters = validQueryParameters;
 	}
 
-	addQueryParameter(parameter) {
+	addQueryParameter = parameter => {
 		if (this.validQueryParameters[parameter.name] !== undefined) {
 			switch (this.validQueryParameters[parameter.name].type) {
 				case "boolean":
@@ -119,23 +119,51 @@ class APIQueryBuilder {
 				parameter.name
 			);
 		}
-	}
+	};
 
-	toURL() {
+	toURL = () => {
 		return `${baseURL}/${this.endpoint}${
 			this.#queryParameters.length > 0
 				? "?" + [...this.#queryParameters].join("&")
 				: ""
 		}`;
-	}
+	};
 
-	fetchData() {
-		return fetch(this.toURL(), {
-			mode: "cors",
+	baseURL = () => {
+		return `${baseURL}/${this.endpoint}`;
+	};
+
+	create = async body => {
+		return fetch(this.baseURL(), {
+			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
-			}
+			},
+			body
 		});
-	}
+	};
+
+	delete = async id => {
+		return fetch(`${this.baseURL()}/${id}`, {
+			method: "DELETE"
+		});
+	};
+
+	get = async () => {
+		return fetch(this.toURL(), {
+			method: "GET",
+			headers: {}
+		});
+	};
+
+	update = async (id, body) => {
+		return fetch(`${this.baseURL()}/${id}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body
+		});
+	};
 }
 export { APIQueryBuilder };
