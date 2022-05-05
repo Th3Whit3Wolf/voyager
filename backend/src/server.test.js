@@ -10,6 +10,7 @@ const testData = {
 			roles: [
 				{},
 				{
+					id: 1,
 					data: {
 						kind: "SITE_ADMIN"
 					}
@@ -182,11 +183,14 @@ const mkTest = async (method, data, status, endpointName) => {
 	test(`${method} ${route}`, async () => {
 		const res = await response[method.toLowerCase()](route);
 		const { body } = res;
-		console.log(
-			`Route: ${method} ${routePrefix}/${endpointName}
-			res = await response[${method.toLowerCase()}](${route})
+		if (method !== "GET") {
+			console.log(
+				`Route: ${method} ${routePrefix}/${endpointName}
+			res = ${JSON.stringify(res)}
 			Body: ${JSON.stringify(body)}`
-		);
+			);
+		}
+
 		if (data.id !== undefined) {
 			expect(body.data.id).toBe(data.id);
 		}
