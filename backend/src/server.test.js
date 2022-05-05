@@ -214,9 +214,9 @@ describe("Backend Tests", () => {
 	});
 
 	Object.entries(testData).forEach(([method, metadata]) => {
-		describe(`METHOD ${method}`, async () => {
+		describe(`METHOD ${method}`, () => {
 			Object.entries(metadata.data).forEach(
-				([endpointName, endpointData]) => {
+				async ([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
 						endpointData.forEach(data => {
 							await mkTest(method, data, metadata.status, endpointName);
