@@ -178,8 +178,8 @@ model Task {
 
   /// Define possible relationship with User
   /// Rename collumn to conform to SQL naming conventions
-  unitID Int  @map("unit_id")
-  unit   Unit @relation("Unit Task", fields: [unitID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  unitID Int?  @map("unit_id")
+  unit   Unit? @relation("Unit Task", fields: [unitID], references: [id], onDelete: SetNull, onUpdate: Cascade)
 
   /// Many-to-Many relationships
   assignedTasks TaskUser[] @relation("TaskUsers taskID")
