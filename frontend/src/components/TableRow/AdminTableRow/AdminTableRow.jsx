@@ -9,7 +9,9 @@ import {
 	DialogContent,
 	DialogActions,
 	DialogTitle,
-	DialogContentText
+	DialogContentText,
+	Select,
+	MenuItem
 } from "@mui/material";
 
 import { Delete, Star } from "@mui/icons-material";
@@ -17,7 +19,10 @@ import { useState } from "react";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
-const AdminTableRow = ({ entry }) => {
+const AdminTableRow = ({ entry, approverList }) => {
+	console.log(approverList);
+	console.log(entry);
+
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);
 	const [info_open, info_setOpen] = useState(false);
@@ -29,6 +34,7 @@ const AdminTableRow = ({ entry }) => {
 	const [pocName, setPocName] = useState(
 		`${entry.approver.firstName} ${entry.approver.lastName}`
 	);
+	const [pocID, setPocID] = useState(entry.approver.id);
 	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
 	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
 
@@ -128,6 +134,14 @@ const AdminTableRow = ({ entry }) => {
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocName} sx={{ width: "25ch" }} />
+					<Select value={pocID}>
+						{approverList.length > 0 &&
+							approverList.map((approver, idx) => (
+								<MenuItem key={idx} value={approver.id}>
+									{approver.firstName} {approver.lastName}
+								</MenuItem>
+							))}
+					</Select>
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />

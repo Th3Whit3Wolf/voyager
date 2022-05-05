@@ -80,7 +80,7 @@ const Dashboard = () => {
 			`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${context.user.assignedUnit.id}&limit=50`
 		)
 			.then(response => response.json())
-			.then(taskapprovers => setAdminTaskApprovers(taskapprovers));
+			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data));
 	}, []);
 
 	useEffect(() => {
@@ -179,6 +179,7 @@ const Dashboard = () => {
 									start={start}
 									end={end}
 									revision={revision}
+									approverList={adminTaskApprovers}
 								/>
 							)}
 						</TableContainer>
@@ -207,6 +208,7 @@ const Dashboard = () => {
 									start={start}
 									end={end}
 									revision={revision}
+									approverList={adminTaskApprovers}
 								/>
 							)}
 						</TableContainer>

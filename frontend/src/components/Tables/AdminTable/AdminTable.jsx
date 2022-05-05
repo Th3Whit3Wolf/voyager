@@ -13,7 +13,7 @@ import { AddCircle } from "@mui/icons-material";
 
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
 
-const AdminTable = ({ data, start, end }) => {
+const AdminTable = ({ data, start, end, approverList }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
 
 	// When the Admin Table is Built
@@ -61,7 +61,12 @@ const AdminTable = ({ data, start, end }) => {
 				</TableHead>
 				<TableBody>
 					{adminData.map(entry => (
-						<AdminTableRow hover={true} key={entry.id} entry={entry} />
+						<AdminTableRow
+							hover={true}
+							key={entry.id}
+							entry={entry}
+							approverList={approverList}
+						/>
 					))}
 				</TableBody>
 			</MuiTable>
