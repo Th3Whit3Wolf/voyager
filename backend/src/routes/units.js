@@ -3,7 +3,12 @@ import { UnitController } from "../controllers";
 
 const router = Router();
 
-router.get("/units", UnitController.list);
-router.get("/units/:id", UnitController.get);
+router.route("/units").get(UnitController.list).post(UnitController.create);
+
+router
+	.route("/units/:id")
+	.get(UnitController.get)
+	.put(UnitController.update)
+	.delete(UnitController.delete);
 
 export default router;
