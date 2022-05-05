@@ -7,6 +7,9 @@ const queryBuilderThrow = (fnName, errorKind, expected, received) => {
 	throw `\n[API QueryBuilder::${fnName}] Error(${errorKind}):\nExpected: ${expected}.\nReceived: ${received}\n`;
 };
 
+const jsonHeaders = new Headers();
+
+jsonHeaders.append("Content-Type", "application/json");
 class APIQueryBuilder {
 	#queryParameters = [];
 
@@ -133,12 +136,11 @@ class APIQueryBuilder {
 		return `${baseURL}/${this.endpoint}`;
 	};
 
-	create = async body => {
+	create = async data => {
+		const body = JSON.stringify(data);
 		return fetch(this.baseURL(), {
 			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
+			headers: jsonHeaders,
 			body
 		});
 	};
@@ -156,12 +158,11 @@ class APIQueryBuilder {
 		});
 	};
 
-	update = async (id, body) => {
+	update = async (id, data) => {
+		const body = JSON.stringify(data);
 		return fetch(`${this.baseURL()}/${id}`, {
 			method: "PUT",
-			headers: {
-				"Content-Type": "application/json"
-			},
+			headers: jsonHeaders,
 			body
 		});
 	};
