@@ -219,10 +219,10 @@ describe("Backend Tests", () => {
 				([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
 						endpointData.forEach(data => {
-							mkTest(method, data, metadata.status, endpointName);
+							await mkTest(method, data, metadata.status, endpointName);
 						});
 					} else {
-						mkTest(
+						await mkTest(
 							method,
 							endpointData,
 							metadata.status,
