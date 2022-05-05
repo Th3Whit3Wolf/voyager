@@ -41,6 +41,15 @@ const Dashboard = () => {
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
 
 	const context = useContext(UserContext);
+	const userData = context.user.tasks;
+	const data = context.user.tasksAssigned;
+
+	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 47 to 98
+
+	// This useEffect is mostly for Admin View
+	// I wouldn't worry about builing it out for Users
+	// since the Users view has so few tasks compared
+	// to the Admin view and pagination isn't needed.
 
 	useEffect(() => {
 		setDataForAdminIn(
@@ -72,9 +81,6 @@ const Dashboard = () => {
 		setAdminOutForLoop(idxs);
 	}, [totalAdminOutPages]);
 
-	const userData = context.user.tasks;
-	const data = context.user.tasksAssigned;
-
 	const changeInprocessPage = e => {
 		console.log(e.target.value);
 		setStart((parseInt(e.target.value) - 1) * (end - start));
@@ -88,6 +94,8 @@ const Dashboard = () => {
 		setEnd(parseInt(e.target.value) * (end - start));
 		setRevision(revision + 1);
 	};
+
+	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 50 to 98
 
 	if (context.user.role.kind === "USER") {
 		return (
