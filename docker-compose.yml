@@ -26,6 +26,8 @@ services:
         condition: service_healthy
     ports:
       - "8081:8081"
+    entrypoint:
+      ["npm", "run", "db:testMigration", "npm", "run", "db:seed", "&&", "$$1"]
     environment:
       - NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node'
       - NODE_ENV=development
