@@ -27,7 +27,18 @@ import {
 //   integration and being able to track User auth --Tony
 
 const Dashboard = () => {
+	const context = useContext(UserContext);
+	const data = context.user.tasksAssigned;
+
+	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
+
+	// State for Users
+	const [userData, setUserData] = useState(context.user.tasks);
+	const [userInData, setUserInData] = useState([]);
+	const [userOutData, setUserOutData] = useState([]);
+
+	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
 	const [end, setEnd] = useState(20);
 	const [revision, setRevision] = useState(0);
@@ -40,11 +51,22 @@ const Dashboard = () => {
 	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
 
-	const context = useContext(UserContext);
-	const userData = context.user.tasks;
-	const data = context.user.tasksAssigned;
+	// START OF FUNCTIONS FOR USER VIEW
 
-	console.log(userData);
+	useEffect(() => {
+		setUserData(context.user.tasks);
+	}, []);
+
+	useEffect(() => {
+		if (userData.length > 0) {
+			setUserInData(
+				userData.filter(entry => entry.task.kind === "IN_PROCESSING")
+			);
+			setUserOutData(
+				userData.filter(entry => entry.task.kind === "OUT_PROCESSING")
+			);
+		}
+	}, [userData]);
 
 	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 47 to 98
 
@@ -117,7 +139,7 @@ const Dashboard = () => {
 							more info?
 						</p>
 						<TableContainer component={Paper}>
-							<UserTable alldata={userData} />
+							{userData.length > 0 && <UserTable alldata={userInData} />}
 						</TableContainer>
 					</TabPanel>
 
@@ -129,18 +151,7 @@ const Dashboard = () => {
 							info?{" "}
 						</p>
 						<TableContainer component={Paper}>
-							<UserTable
-								alldata={
-									userData
-									// tabValue === "1"
-									// 	? userData?.filter(
-									// 			tasker => tasker.kind === "IN_PROCESSING"
-									// 	  )
-									// 	: userData?.filter(
-									// 			tasker => tasker.kind === "Outprocessing"
-									// 	  )
-								}
-							/>
+							{userData.length > 0 && <UserTable alldata={userOutData} />}
 						</TableContainer>
 					</TabPanel>
 

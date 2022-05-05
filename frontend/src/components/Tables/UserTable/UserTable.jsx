@@ -5,12 +5,13 @@ import {
 	TableHead,
 	TableBody,
 	TableRow,
-	TableCell,
-	Checkbox
+	TableCell
 } from "@mui/material";
 import UserTableRow from "../../TableRow/UserTableRow/UserTableRow";
 
 const UserTable = ({ alldata }) => {
+	const [data, setData] = useState();
+
 	console.log(alldata);
 
 	return (
