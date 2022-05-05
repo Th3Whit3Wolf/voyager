@@ -14,12 +14,17 @@ import { AddCircle } from "@mui/icons-material";
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
 
 const AdminTable = ({ data, start, end }) => {
-	const [adminData, setAdminData] = useState([]);
+	const [adminData, setAdminData] = useState(data.slice(start, end));
+
+	// When the Admin Table is Built
+	//   make a fetch request to figure out who has the role TASK APPROVER at your BASE
+	//   this set of individuals is who can be rendered to a drop down for POC name choice
 
 	useEffect(() => {
-		setAdminData(data.slice(start, end));
+		console.log(adminData);
 	}, []);
 
+	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
 		setAdminData([
 			...adminData,
@@ -60,6 +65,8 @@ const AdminTable = ({ data, start, end }) => {
 					))}
 				</TableBody>
 			</MuiTable>
+
+			{/* THIS NEEDS TO BE REVECTORED FOR CREATE */}
 			<IconButton
 				color="primary"
 				size="large"

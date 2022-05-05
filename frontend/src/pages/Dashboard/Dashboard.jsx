@@ -35,58 +35,44 @@ const Dashboard = () => {
 
 	// State for Users
 	const [userData, setUserData] = useState(context.user.tasks);
-	const [userInData, setUserInData] = useState([]);
-	const [userOutData, setUserOutData] = useState([]);
+	const [userInData, setUserInData] = useState(
+		context.user.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
+	);
+	const [userOutData, setUserOutData] = useState(
+		context.user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
+	);
 
 	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(20);
+	const [end, setEnd] = useState(10);
 	const [revision, setRevision] = useState(0);
 
-	const [dataForAdminIn, setDataForAdminIn] = useState([]);
+	const [dataForAdminIn, setDataForAdminIn] = useState(
+		context.user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+	);
 	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
 	const [adminInForLoop, setAdminInForLoop] = useState([]);
 
-	const [dataForAdminOut, setDataForAdminOut] = useState([]);
+	const [dataForAdminOut, setDataForAdminOut] = useState(
+		context.user.tasksAssigned.filter(
+			tasker => tasker.kind === "OUT_PROCESSING"
+		)
+	);
 	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
 
+	const [adminTaskApprovers, setAdminTaskApprovers] = useState([]);
+
 	// START OF FUNCTIONS FOR USER VIEW
 
-	useEffect(() => {
-		setUserData(context.user.tasks);
-	}, []);
+	// none at this time
 
-	useEffect(() => {
-		if (userData.length > 0) {
-			setUserInData(
-				userData.filter(entry => entry.task.kind === "IN_PROCESSING")
-			);
-			setUserOutData(
-				userData.filter(entry => entry.task.kind === "OUT_PROCESSING")
-			);
-		}
-	}, [userData]);
-
-	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 47 to 98
+	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 67 to 118
 
 	// This useEffect is mostly for Admin View
 	// I wouldn't worry about builing it out for Users
 	// since the Users view has so few tasks compared
 	// to the Admin view and pagination isn't needed.
-
-	useEffect(() => {
-		setDataForAdminIn(
-			context.user.tasksAssigned.filter(
-				tasker => tasker.kind === "IN_PROCESSING"
-			)
-		);
-		setDataForAdminOut(
-			context.user.tasksAssigned.filter(
-				tasker => tasker.kind === "OUT_PROCESSING"
-			)
-		);
-	}, []);
 
 	useEffect(() => {
 		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
