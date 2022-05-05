@@ -22,6 +22,8 @@ const AdminTableRow = ({ entry }) => {
 	const [delete_open, delete_setOpen] = useState(false);
 	const [info_open, info_setOpen] = useState(false);
 
+	console.log(entry);
+
 	//For switch to change
 	const [checked, setChecked] = useState(entry.isActive);
 
@@ -111,7 +113,7 @@ const AdminTableRow = ({ entry }) => {
 			</Dialog> */}
 			<TableRow>
 				<TableCell>
-					<Switch checked={checked} onChange={handleChange} />
+					<Switch checked={entry.isActive} onChange={handleChange} />
 				</TableCell>
 				<TableCell>
 					<TextField
