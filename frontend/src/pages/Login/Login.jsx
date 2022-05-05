@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
-// Our Components
+// Our Components and Hooks
 import SplashScreen from "../../components/SplashScreen/SplashScreen";
+import useLogin from "../../hooks/useLogin";
+import UserContext from "../../context/UserContext";
+import Loading from "../../components/Loading/Loading";
 
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
@@ -11,7 +14,11 @@ const Login = () => {
 	// STATE
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+
 	const [splashOff, setSplashOff] = useState(false);
+
+	const context = useContext(UserContext);
 
 	const navigate = useNavigate();
 
@@ -33,11 +40,15 @@ const Login = () => {
 			setPassword("");
 			alert("Password Required");
 		} else {
-			setUsername("");
-			setPassword("");
-			alert(
-				`Entered User: ${username} with Pass: ${password}\n\nDavid would like to handle the Firebase Config file.\n\nUpdate this functionality for auth. after that is complete. Recommend its own Context.`
-			);
+			setIsLoading(true);
+			fetch(`http://localhost:8081/api/v1/users?email=${username}`)
+				.then(response => response.json())
+				.then(d => {
+					console.log(d);
+					context.user = d.data[0];
+				})
+				.then(() => navigate("/dashboard"))
+				.finally(setIsLoading(false));
 		}
 	};
 
@@ -48,6 +59,8 @@ const Login = () => {
 	};
 
 	//if (splashOff === false) return <SplashScreen />;
+
+	if (isLoading) return <Loading />;
 
 	return (
 		<>
@@ -65,9 +78,9 @@ const Login = () => {
 				>
 					<TextField
 						id="username"
-						label="Username"
+						label="Email"
 						variant="standard"
-						placeholder="Enter Username"
+						placeholder="Enter Email"
 						value={username}
 						onChange={e => setUsername(e.target.value)}
 						sx={{ minWidth: "300px" }}
@@ -103,23 +116,28 @@ const Login = () => {
 					alignSelf: "center"
 				}}
 			>
-				<br />
-				<br />
-				<p>Delete all this and below once the Backend and Auth are Set Up</p>
 				<Button
-					color="error"
+					color="secondary"
 					variant="contained"
-					onClick={() => navigate("/dashboard", { state: { role: "user" } })}
+					onClick={() => {
+						setUsername("bridget.smitham@spaceforce.mil");
+						setPassword("123456789");
+					}}
 				>
-					USER: Demo Dashboard
+					Click to Auto Populate USER 68 (Bridget Smitham) Username and Password
 				</Button>
+
 				<br />
+
 				<Button
-					color="error"
+					color="warning"
 					variant="contained"
-					onClick={() => navigate("/dashboard", { state: { role: "admin" } })}
+					onClick={() => {
+						setUsername("morris.hirthe@spaceforce.mil");
+						setPassword("123456789");
+					}}
 				>
-					ADMIN: Demo Dashboard
+					Click to Auto Populate ADMIN 66 (Morris Hirthe) Username and Password
 				</Button>
 			</Stack>
 		</>
