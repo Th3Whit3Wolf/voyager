@@ -11,18 +11,15 @@ import {
 
 const UserTableRow = ({ entry }) => {
 	// STATE for USER TASKS
-	const [taskCompletedAt, setTaskCompletedAt] = useState(null);
+	const [taskCompletedAt, setTaskCompletedAt] = useState(
+		new Date(entry.completedAt)
+	);
 	const [taskChecked, setTaskChecked] = useState(false);
 	const [taskUpdated, setTaskUpdated] = useState(new Date(entry.updatedAt));
 
 	const [open, setOpen] = useState(false);
 
 	// STATE handlers
-
-	useEffect(() => {
-		setTaskCompletedAt(new Date(entry.completedAt));
-		console.log(taskCompletedAt);
-	}, []);
 
 	const handleOnChange = e => {
 		console.log("Click", e.target.value);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
 	Table as MuiTable,
@@ -10,10 +10,6 @@ import {
 import UserTableRow from "../../TableRow/UserTableRow/UserTableRow";
 
 const UserTable = ({ alldata }) => {
-	const [data, setData] = useState();
-
-	console.log(alldata);
-
 	return (
 		<>
 			<MuiTable size={"small"}>
