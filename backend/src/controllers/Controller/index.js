@@ -101,13 +101,17 @@ class Controller {
 	async create(req, res) {
 		const { body } = req;
 
-		const data = await handleDatabaseWrite(
-			this.dbResource.create({ data: body })
-		);
+		try {
+			const data = await handleDatabaseWrite(
+				this.dbResource.create({ data: body })
+			);
 
-		return data
-			? res.status(201).send({ data })
-			: res.status(500).send({ message: this.errorMessages.create });
+			return data
+				? res.status(201).send({ data })
+				: res.status(500).send({ message: this.errorMessages.create });
+		} catch (err) {
+			return res.status(400).send({ message: err });
+		}
 	}
 
 	/**
@@ -251,4 +255,4 @@ class Controller {
 	}
 }
 
-export default Controller;
+export { Controller, db, handleDatabaseWrite, handleDatabaseRead, parsedQuery };

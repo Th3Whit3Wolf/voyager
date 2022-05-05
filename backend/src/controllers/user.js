@@ -1,4 +1,4 @@
-import Controller from "./Controller";
+import { Controller } from "./Controller";
 
 const UserController = new Controller("User", {
 	searchAttributes: {
@@ -54,7 +54,45 @@ const UserController = new Controller("User", {
 					}
 				},
 				taskApproverTasks: true,
-				tasks: true
+				tasks: {
+					select: {
+						id: true,
+						progress: true,
+						task: {
+							select: {
+								id: true,
+								title: true,
+								description: true,
+								isActive: true,
+								kind: true,
+								approver: {
+									select: {
+										firstName: true,
+										lastName: true,
+										email: true,
+										dsn: true
+									}
+								},
+								assigner: {
+									select: {
+										firstName: true,
+										lastName: true,
+										email: true,
+										dsn: true,
+										role: {
+											select: {
+												kind: true
+											}
+										}
+									}
+								}
+							}
+						},
+						createdAt: true,
+						updatedAt: true,
+						completedAt: true
+					}
+				}
 			}
 		}
 	},
