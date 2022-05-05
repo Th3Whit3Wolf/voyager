@@ -11,9 +11,7 @@ import {
 
 const UserTableRow = ({ entry }) => {
 	// STATE for USER TASKS
-	const [taskCompletedAt, setTaskCompletedAt] = useState(
-		new Date(entry.completedAt)
-	);
+	const [taskCompletedAt, setTaskCompletedAt] = useState(null);
 	const [taskChecked, setTaskChecked] = useState(false);
 	const [taskUpdated, setTaskUpdated] = useState(new Date(entry.updatedAt));
 
@@ -21,16 +19,21 @@ const UserTableRow = ({ entry }) => {
 
 	// STATE handlers
 
-	const handleOnChange = e => {
-		console.log("Click", e.target.value);
-		if (e.target.value === false) {
-			setTaskCompletedAt(new Date());
+	useEffect(() => {
+		if (entry.completedAt !== null) {
+			setTaskCompletedAt(new Date(entry.completedAt));
 			setTaskChecked(true);
 		}
-		if (e.target.value === true) {
-			setTaskCompletedAt(null);
-			setTaskChecked(false);
-		}
+	}, []);
+
+	useEffect(() => {
+		if (taskChecked === true) setTaskCompletedAt(new Date());
+		if (taskChecked === false) setTaskCompletedAt(null);
+	}, [taskChecked]);
+
+	const handleOnChange = e => {
+		if (e.target.value === "false") setTaskChecked(true);
+		if (e.target.value === "true") setTaskChecked(false);
 	};
 
 	const handleClickOpen = () => {
@@ -56,6 +59,7 @@ const UserTableRow = ({ entry }) => {
 						value={taskChecked}
 						sx={!taskChecked ? { color: "red" } : null}
 						onChange={handleOnChange}
+						checked={taskChecked}
 					/>
 				</TableCell>
 				<TableCell>{entry.task.title}</TableCell>
