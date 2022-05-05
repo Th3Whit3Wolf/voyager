@@ -19,7 +19,7 @@ const UserTable = ({ alldata }) => {
 			<MuiTable size={"small"}>
 				<TableHead>
 					<TableRow>
-						<TableCell>Checkbox</TableCell>
+						<TableCell>Complete?</TableCell>
 						<TableCell>Task Name</TableCell>
 						<TableCell>Short Description</TableCell>
 						<TableCell>POC Name</TableCell>

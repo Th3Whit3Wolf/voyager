@@ -44,7 +44,10 @@ const UserTableRow = ({ entry }) => {
 			</Dialog>
 			<TableRow hover={true}>
 				<TableCell>
-					<Checkbox value={taskChecked} />
+					<Checkbox
+						value={taskChecked}
+						sx={taskChecked === false && { color: "red" }}
+					/>
 				</TableCell>
 				<TableCell>{entry.task.title}</TableCell>
 				<TableCell>{entry.task.description}</TableCell>
