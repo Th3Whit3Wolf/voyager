@@ -2,12 +2,8 @@
 // This is a demo dashboard as a placeholder
 // when actual dashboards are built up, switch to TDD
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import UserContext from "../../context/UserContext";
-
-import useFetchMock from "../../hooks/useFetchMock";
-
-import useFetch from "../../hooks/useFetch";
 
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer } from "@mui/material";
