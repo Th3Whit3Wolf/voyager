@@ -26,15 +26,23 @@ const UserTableRow = ({ entry }) => {
 		}
 	}, []);
 
+	const handleOnChange = e => {
+		if (e.target.value === "false") {
+			console.log("PUT request now!");
+			console.log(`Updating task ${entry.id} with ${new Date()}`);
+			setTaskChecked(true);
+		}
+		if (e.target.value === "true") {
+			console.log("PUT request now!");
+			console.log(`Updating task ${entry.id} with null`);
+			setTaskChecked(false);
+		}
+	};
+
 	useEffect(() => {
 		if (taskChecked === true) setTaskCompletedAt(new Date());
 		if (taskChecked === false) setTaskCompletedAt(null);
 	}, [taskChecked]);
-
-	const handleOnChange = e => {
-		if (e.target.value === "false") setTaskChecked(true);
-		if (e.target.value === "true") setTaskChecked(false);
-	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
