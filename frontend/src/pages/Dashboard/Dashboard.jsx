@@ -1,7 +1,3 @@
-// No tests yet, since there is no real dashboard.
-// This is a demo dashboard as a placeholder
-// when actual dashboards are built up, switch to TDD
-
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/UserContext";
 
@@ -17,13 +13,10 @@ import {
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
-//   to all of App. In general, UserContext has two entities
-//   a role with a string as a key which should be role, admin, or nothing
-//   a user which containers the User object returned from the API after logging in
-//   As an example, below, there is a context variable from UserContext and it
-//   has a context.role and a context.User . You will see these also used in the
-//   Header component. Generally, the logout button (in the Header) should
-//   obliterate UserContext. This is one big refactor forward toward Firebase
+//   to all of App. I have performed some trickery to make
+//   this UserContext stateful!! You can import the user object
+//   and its setting function using const {user, setUser} = useContext(UserContext)
+// This is one big refactor forward toward Firebase
 //   integration and being able to track User auth --Tony
 
 const Dashboard = () => {
