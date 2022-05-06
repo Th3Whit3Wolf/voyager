@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/UserContext";
 
+// Our Components and Utilities
+import { UserAPI } from "../../services/api/UserAPI";
+
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer, Button } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
@@ -67,11 +70,15 @@ const Dashboard = () => {
 	// to the Admin view and pagination isn't needed.
 
 	useEffect(() => {
-		fetch(
-			`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${user.assignedUnit.id}&limit=50`
-		)
+		const taskApproversApi = new UserAPI();
+		taskApproversApi
+			.roleID(6)
+			.assignedUnitID(user.assignedUnit.id)
+			.limit(100)
+			.get()
 			.then(response => response.json())
-			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data));
+			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data))
+			.catch(err => console.log(err));
 	}, []);
 
 	useEffect(() => {
