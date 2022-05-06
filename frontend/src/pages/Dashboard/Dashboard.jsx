@@ -44,7 +44,7 @@ const Dashboard = () => {
 
 	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(10);
+	const [end, setEnd] = useState(7);
 	const [revision, setRevision] = useState(0);
 
 	const [dataForAdminIn, setDataForAdminIn] = useState(
