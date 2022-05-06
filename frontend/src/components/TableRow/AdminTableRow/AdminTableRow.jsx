@@ -20,8 +20,8 @@ import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
 const AdminTableRow = ({ entry, approverList }) => {
-	console.log(approverList);
-	console.log(entry);
+	//console.log(approverList);
+	//console.log(entry);
 
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);
@@ -134,14 +134,14 @@ const AdminTableRow = ({ entry, approverList }) => {
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocName} sx={{ width: "25ch" }} />
-					<Select value={pocID}>
+					{/* <Select value={pocID}>
 						{approverList.length > 0 &&
 							approverList.map((approver, idx) => (
 								<MenuItem key={idx} value={approver.id}>
 									{approver.firstName} {approver.lastName}
 								</MenuItem>
 							))}
-					</Select>
+					</Select> */}
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />

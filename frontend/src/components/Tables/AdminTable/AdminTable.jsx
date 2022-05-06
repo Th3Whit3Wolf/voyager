@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 
+// Our Components and Utilities
+import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
+import { TaskAPI } from "../../../services/api/TaskAPI";
+import { UserContext } from "../../../context";
+
+// Third Party Imports
 import {
 	Table as MuiTable,
 	TableHead,
@@ -11,21 +17,29 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
-
 const AdminTable = ({ data, start, end, approverList }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
-
-	// When the Admin Table is Built
-	//   make a fetch request to figure out who has the role TASK APPROVER at your BASE
-	//   this set of individuals is who can be rendered to a drop down for POC name choice
-
-	useEffect(() => {
-		console.log(adminData);
-	}, []);
+	const { user, setUser } = useContext(UserContext);
+	console.log(user);
+	console.log(adminData);
 
 	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
+		const addTask = new TaskAPI();
+		const body = {
+			title: "New Title",
+			description: "New Description",
+			isActive: true,
+			kind: "IN_PROCESSING",
+			assignerID: user.id,
+			approverID: user.tasksAssigned[0].approver.id,
+			unitID: user.assignedUnit.id
+		};
+		addTask
+			.create(body)
+			.then(response => response.json())
+			.then(d => console.log(d));
+
 		setAdminData([
 			...adminData,
 			{
@@ -40,7 +54,6 @@ const AdminTable = ({ data, start, end, approverList }) => {
 				checked: false
 			}
 		]);
-		console.log(adminData);
 	};
 
 	return (
