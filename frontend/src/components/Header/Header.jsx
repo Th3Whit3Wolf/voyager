@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
 	const navigate = useNavigate();
-	const context = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 
 	const handleClick = () => {
 		// Do some stuff
-		context.user = {};
+		setUser({});
 		// navigate
 		navigate("/");
 	};
@@ -28,10 +28,10 @@ const Header = () => {
 				<img src={logo} alt="Space Force Logo" />
 			</a>
 			<div>
-				<h1 style={context?.user?.role && { marginBottom: "-20px" }}>
+				<h1 style={user?.role && { marginBottom: "-20px" }}>
 					<span className={styles.header__title2}>Voyager</span>
 				</h1>
-				{context?.user?.role && <h4>{context.user.role.kind} VIEW</h4>}
+				{user?.role && <h4>{user.role.kind} VIEW</h4>}
 			</div>
 
 			<Grid
@@ -42,11 +42,9 @@ const Header = () => {
 					justifyContent: "flex-end"
 				}}
 			>
-				{context?.user?.firstName ? (
+				{user?.firstName ? (
 					<div className={styles.header__title3}>
-						<p style={{ marginRight: "2rem" }}>
-							Welcome, {context.user.firstName}!
-						</p>{" "}
+						<p style={{ marginRight: "2rem" }}>Welcome, {user.firstName}!</p>{" "}
 						<Button variant="contained" onClick={handleClick}>
 							Logout
 						</Button>
