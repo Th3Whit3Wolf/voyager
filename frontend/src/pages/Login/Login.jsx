@@ -6,9 +6,13 @@ import useLogin from "../../hooks/useLogin";
 import UserContext from "../../context/UserContext";
 import Loading from "../../components/Loading/Loading";
 
+import { UserAPI } from "../../services/api/UserAPI";
+import { TaskAPI } from "../../services/api/TaskAPI";
+
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony
 
 const Login = () => {
 	// STATE
@@ -22,6 +26,19 @@ const Login = () => {
 
 	const navigate = useNavigate();
 
+	// const taskapi = new TaskAPI();
+	// taskapi
+	// 	.limit(10)
+	// 	.get()
+	// 	.then(response => response.json().then(d => console.log(d.data)));
+
+	const api = new UserAPI();
+	console.log(api);
+	api
+		.email("bridget.smitham@spaceforce.mil")
+		.get()
+		.then(response => response.json())
+		.then(d => console.log(d.data));
 	// EFFECTS
 
 	useEffect(() => {
@@ -41,12 +58,13 @@ const Login = () => {
 			alert("Password Required");
 		} else {
 			setIsLoading(true);
-			fetch(`http://localhost:8081/api/v1/users?email=${username}`)
+			const userapi = new UserAPI();
+			userapi
+				.email(`${username}`)
+				.get()
 				.then(response => response.json())
-				.then(d => {
-					console.log(d);
-					context.user = d.data[0];
-				})
+				.then(d => (context.user = d.data[0]))
+				.catch(err => console.log(err))
 				.then(() => navigate("/dashboard"))
 				.finally(setIsLoading(false));
 		}

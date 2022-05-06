@@ -29,7 +29,7 @@ export default function App() {
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 	return (
 		<ColorModeContext.Provider value={colorMode}>
-			<UserContext.Provider value={{ role: "", user: {} }}>
+			<UserContext.Provider value={{ user: {} }}>
 				<ThemeProvider theme={theme}>
 					<CssBaseline />
 					<Header />
