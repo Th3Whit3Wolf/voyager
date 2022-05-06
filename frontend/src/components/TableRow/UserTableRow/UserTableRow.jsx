@@ -28,7 +28,7 @@ const UserTableRow = ({ entry }) => {
 			let myHeaders = new Headers();
 			myHeaders.append("Content-Type", "application/json");
 			let raw = JSON.stringify({
-				completedAt: "2022-05-23T14:39:08.109Z"
+				completedAt: new Date()
 			});
 			const requestOptions = {
 				method: "PUT",
