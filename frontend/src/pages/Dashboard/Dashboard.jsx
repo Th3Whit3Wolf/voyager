@@ -28,18 +28,20 @@ import {
 
 const Dashboard = () => {
 	const context = useContext(UserContext);
-	const data = context.user.tasksAssigned;
+	const { user, setUser } = useContext(UserContext);
+
+	const data = user.tasksAssigned;
 
 	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
 
 	// State for Users
-	const [userData, setUserData] = useState(context.user.tasks);
+	const [userData, setUserData] = useState(user.tasks);
 	const [userInData, setUserInData] = useState(
-		context.user.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
+		user.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
 	);
 	const [userOutData, setUserOutData] = useState(
-		context.user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
+		user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
 	);
 
 	// State for Admin and Admin Pagination
@@ -48,15 +50,13 @@ const Dashboard = () => {
 	const [revision, setRevision] = useState(0);
 
 	const [dataForAdminIn, setDataForAdminIn] = useState(
-		context.user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+		user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
 	);
 	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
 	const [adminInForLoop, setAdminInForLoop] = useState([]);
 
 	const [dataForAdminOut, setDataForAdminOut] = useState(
-		context.user.tasksAssigned.filter(
-			tasker => tasker.kind === "OUT_PROCESSING"
-		)
+		user.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
 	);
 	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
@@ -75,9 +75,9 @@ const Dashboard = () => {
 	// to the Admin view and pagination isn't needed.
 
 	useEffect(() => {
-		console.log(context?.user?.assignedUnit.name);
+		console.log(user?.assignedUnit.name);
 		fetch(
-			`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${context.user.assignedUnit.id}&limit=50`
+			`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${user.assignedUnit.id}&limit=50`
 		)
 			.then(response => response.json())
 			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data));
@@ -116,7 +116,7 @@ const Dashboard = () => {
 
 	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 50 to 98
 
-	if (context.user.role.kind === "USER") {
+	if (user.role.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -139,14 +139,14 @@ const Dashboard = () => {
 					</TabPanel>
 
 					<TabPanel value="3">
-						<UserSettings settings={context.user} />
+						<UserSettings settings={user} />
 					</TabPanel>
 				</TabContext>
 			</>
 		);
 	}
 
-	if (context.user.role.kind.includes("ADMIN")) {
+	if (user.role.kind.includes("ADMIN")) {
 		return (
 			<>
 				<TabContext value={tabValue}>
