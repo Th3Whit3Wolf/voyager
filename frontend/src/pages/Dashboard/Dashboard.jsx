@@ -1,9 +1,8 @@
-// No tests yet, since there is no real dashboard.
-// This is a demo dashboard as a placeholder
-// when actual dashboards are built up, switch to TDD
-
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/UserContext";
+
+// Our Components and Utilities
+import { UserAPI } from "../../services/api/UserAPI";
 
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer, Button } from "@mui/material";
@@ -17,42 +16,69 @@ import {
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
-//   to all of App. In general, UserContext has two entities
-//   a role with a string as a key which should be role, admin, or nothing
-//   a user which containers the User object returned from the API after logging in
-//   As an example, below, there is a context variable from UserContext and it
-//   has a context.role and a context.User . You will see these also used in the
-//   Header component. Generally, the logout button (in the Header) should
-//   obliterate UserContext. This is one big refactor forward toward Firebase
+//   to all of App. I have performed some trickery to make
+//   this UserContext stateful!! You can import the user object
+//   and its setting function using const {user, setUser} = useContext(UserContext)
+// This is one big refactor forward toward Firebase
 //   integration and being able to track User auth --Tony
 
 const Dashboard = () => {
+	const { user, setUser } = useContext(UserContext);
+
+	const data = user.tasksAssigned;
+
+	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
+
+	// State for Users
+	const [userData, setUserData] = useState(user.tasks);
+	const [userInData, setUserInData] = useState(
+		user.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
+	);
+	const [userOutData, setUserOutData] = useState(
+		user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
+	);
+
+	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(20);
+	const [end, setEnd] = useState(7);
 	const [revision, setRevision] = useState(0);
 
-	const [dataForAdminIn, setDataForAdminIn] = useState([]);
+	const [dataForAdminIn, setDataForAdminIn] = useState(
+		user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+	);
 	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
 	const [adminInForLoop, setAdminInForLoop] = useState([]);
 
-	const [dataForAdminOut, setDataForAdminOut] = useState([]);
+	const [dataForAdminOut, setDataForAdminOut] = useState(
+		user.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
+	);
 	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
 
-	const context = useContext(UserContext);
+	const [adminTaskApprovers, setAdminTaskApprovers] = useState([]);
+
+	// START OF FUNCTIONS FOR USER VIEW
+
+	// none at this time
+
+	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
+
+	// This useEffect is mostly for Admin View
+	// I wouldn't worry about builing it out for Users
+	// since the Users view has so few tasks compared
+	// to the Admin view and pagination isn't needed.
 
 	useEffect(() => {
-		setDataForAdminIn(
-			context.user.tasksAssigned.filter(
-				tasker => tasker.kind === "IN_PROCESSING"
-			)
-		);
-		setDataForAdminOut(
-			context.user.tasksAssigned.filter(
-				tasker => tasker.kind === "OUT_PROCESSING"
-			)
-		);
+		const taskApproversApi = new UserAPI();
+		taskApproversApi
+			.roleID(6)
+			.assignedUnitID(user.assignedUnit.id)
+			.limit(100)
+			.get()
+			.then(response => response.json())
+			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data))
+			.catch(err => console.log(err));
 	}, []);
 
 	useEffect(() => {
@@ -72,11 +98,6 @@ const Dashboard = () => {
 		setAdminOutForLoop(idxs);
 	}, [totalAdminOutPages]);
 
-	//const userData = context.user.tasksAssigned;// when used with most up to date version of BackEnd
-	const userData = context.user.Tasks;
-
-	const data = context.user.TasksAssigners;
-
 	const changeInprocessPage = e => {
 		console.log(e.target.value);
 		setStart((parseInt(e.target.value) - 1) * (end - start));
@@ -91,7 +112,9 @@ const Dashboard = () => {
 		setRevision(revision + 1);
 	};
 
-	if (context.user.role.kind === "USER") {
+	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
+
+	if (user.role.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -102,49 +125,26 @@ const Dashboard = () => {
 					</TabList>
 
 					<TabPanel value="1">
-						This is where my in-processing task list shows up.
-						<p>
-							This should show as a table view, where each row has a status and
-							can be toggled as complete or not. Clicking on a row might show
-							more info?
-						</p>
 						<TableContainer component={Paper}>
-							<UserTable alldata={userData} />
+							{userData.length > 0 && <UserTable alldata={userInData} />}
 						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="2">
-						These is where my out-processing task list shows up
-						<p>
-							This should show as a table view, where each row has a status and
-							can be toggled as complete or not. Clicking on a might show more
-							info?{" "}
-						</p>
 						<TableContainer component={Paper}>
-							<UserTable
-								alldata={
-									userData
-									// tabValue === "1"
-									// 	? userData?.filter(
-									// 			tasker => tasker.kind === "IN_PROCESSING"
-									// 	  )
-									// 	: userData?.filter(
-									// 			tasker => tasker.kind === "Outprocessing"
-									// 	  )
-								}
-							/>
+							{userData.length > 0 && <UserTable alldata={userOutData} />}
 						</TableContainer>
 					</TabPanel>
 
 					<TabPanel value="3">
-						<UserSettings settings={context.user} />
+						<UserSettings settings={user} />
 					</TabPanel>
 				</TabContext>
 			</>
 		);
 	}
 
-	if (context.user.role.kind.includes("ADMIN")) {
+	if (user.role.kind.includes("ADMIN")) {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -177,6 +177,8 @@ const Dashboard = () => {
 									start={start}
 									end={end}
 									revision={revision}
+									approverList={adminTaskApprovers}
+									kind={"IN_PROCESSING"}
 								/>
 							)}
 						</TableContainer>
@@ -205,6 +207,8 @@ const Dashboard = () => {
 									start={start}
 									end={end}
 									revision={revision}
+									approverList={adminTaskApprovers}
+									kind={"OUT_PROCESSING"}
 								/>
 							)}
 						</TableContainer>

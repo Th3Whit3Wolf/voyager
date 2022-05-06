@@ -1,14 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 
 // Our Components and Hooks
 import SplashScreen from "../../components/SplashScreen/SplashScreen";
-import useLogin from "../../hooks/useLogin";
 import UserContext from "../../context/UserContext";
 import Loading from "../../components/Loading/Loading";
+
+import { UserAPI } from "../../services/api/UserAPI";
 
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony
 
 const Login = () => {
 	// STATE
@@ -18,7 +20,11 @@ const Login = () => {
 
 	const [splashOff, setSplashOff] = useState(false);
 
-	const context = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
+
+	useEffect(() => {
+		console.log(user);
+	}, [user]);
 
 	const navigate = useNavigate();
 
@@ -41,12 +47,13 @@ const Login = () => {
 			alert("Password Required");
 		} else {
 			setIsLoading(true);
-			fetch(`http://localhost:8081/api/v1/users?email=${username}`)
+			const userapi = new UserAPI();
+			userapi
+				.email(`${username}`)
+				.get()
 				.then(response => response.json())
-				.then(d => {
-					console.log(d);
-					context.user = d.data[0];
-				})
+				.then(d => setUser(d.data[0]))
+				.catch(err => console.log(err))
 				.then(() => navigate("/dashboard"))
 				.finally(setIsLoading(false));
 		}

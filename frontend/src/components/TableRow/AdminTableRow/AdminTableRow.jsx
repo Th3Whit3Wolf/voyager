@@ -1,7 +1,4 @@
 import {
-	Table as MuiTable,
-	TableHead,
-	TableBody,
 	TableRow,
 	TableCell,
 	Switch,
@@ -12,7 +9,9 @@ import {
 	DialogContent,
 	DialogActions,
 	DialogTitle,
-	DialogContentText
+	DialogContentText,
+	Select,
+	MenuItem
 } from "@mui/material";
 
 import { Delete, Star } from "@mui/icons-material";
@@ -20,13 +19,24 @@ import { useState } from "react";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
-const AdminTableRow = ({ entry }) => {
+const AdminTableRow = ({ entry, approverList }) => {
+	//console.log(approverList);
+	//console.log(entry);
+
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);
 	const [info_open, info_setOpen] = useState(false);
 
-	//For switch to change
+	//AdminTableRow State
 	const [checked, setChecked] = useState(entry.isActive);
+	const [taskTitle, setTaskTitle] = useState(entry.title);
+	const [taskDesc, setTaskDesc] = useState(entry.description);
+	const [pocName, setPocName] = useState(
+		`${entry?.approver?.firstName} ${entry?.approver?.lastName}`
+	);
+	const [pocID, setPocID] = useState(entry?.approver?.id);
+	const [pocPhone, setPocPhone] = useState(`${entry?.approver?.dsn}`);
+	const [pocEmail, setPocEmail] = useState(`${entry?.approver?.email}`);
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
@@ -36,7 +46,7 @@ const AdminTableRow = ({ entry }) => {
 	const delete_handleClickOpen = () => {
 		delete_setOpen(true);
 	};
-	//console.log(typeof entry.updatedAt);
+
 	const handleClose = () => {
 		delete_setOpen(false);
 		info_setOpen(false);
@@ -117,52 +127,32 @@ const AdminTableRow = ({ entry }) => {
 					<Switch checked={checked} onChange={handleChange} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={entry.title}
-						sx={{ width: "20ch" }}
-					/>
+					<TextField size="small" value={taskTitle} sx={{ width: "30ch" }} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						value={entry.description}
-						sx={{ width: "45ch" }}
-					/>
+					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={entry.approver}
-						sx={{ width: "25ch" }}
-					/>
+					<TextField size="small" value={pocName} sx={{ width: "25ch" }} />
+					{/* <Select value={pocID}>
+						{approverList.length > 0 &&
+							approverList.map((approver, idx) => (
+								<MenuItem key={idx} value={approver.id}>
+									{approver.firstName} {approver.lastName}
+								</MenuItem>
+							))}
+					</Select> */}
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={"Not in Current ERD"}
-						sx={{ width: "25ch" }}
-					/>
+					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />
 				</TableCell>
 				<TableCell>
-					<TextField
-						size="small"
-						placeholder={`Not in Current ERD`}
-						sx={{ width: "25ch" }}
-					/>
+					<TextField size="small" value={pocEmail} sx={{ width: "25ch" }} />
 				</TableCell>
 				<TableCell>
 					{`${
 						updatedAt.getUTCMonth() + 1
 					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
-				</TableCell>
-				<TableCell>
-					<TextField
-						size="small"
-						placeholder={entry.owner}
-						sx={{ width: "10ch" }}
-					/>
-					{/* should be a drop down once able to pull all the base names */}
 				</TableCell>
 				<TableCell>
 					<IconButton
