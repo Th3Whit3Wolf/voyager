@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 
 // Our Components and Hooks
 import SplashScreen from "../../components/SplashScreen/SplashScreen";
@@ -22,23 +22,14 @@ const Login = () => {
 
 	const [splashOff, setSplashOff] = useState(false);
 
-	const context = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
+
+	useEffect(() => {
+		console.log(user);
+	}, [user]);
 
 	const navigate = useNavigate();
 
-	// const taskapi = new TaskAPI();
-	// taskapi
-	// 	.limit(10)
-	// 	.get()
-	// 	.then(response => response.json().then(d => console.log(d.data)));
-
-	const api = new UserAPI();
-	console.log(api);
-	api
-		.email("bridget.smitham@spaceforce.mil")
-		.get()
-		.then(response => response.json())
-		.then(d => console.log(d.data));
 	// EFFECTS
 
 	useEffect(() => {
@@ -63,7 +54,7 @@ const Login = () => {
 				.email(`${username}`)
 				.get()
 				.then(response => response.json())
-				.then(d => (context.user = d.data[0]))
+				.then(d => setUser(d.data[0]))
 				.catch(err => console.log(err))
 				.then(() => navigate("/dashboard"))
 				.finally(setIsLoading(false));
