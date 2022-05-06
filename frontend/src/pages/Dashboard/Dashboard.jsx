@@ -27,7 +27,6 @@ import {
 //   integration and being able to track User auth --Tony
 
 const Dashboard = () => {
-	const context = useContext(UserContext);
 	const { user, setUser } = useContext(UserContext);
 
 	const data = user.tasksAssigned;
