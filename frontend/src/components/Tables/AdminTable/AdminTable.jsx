@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 // Our Components and Utilities
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
 import { TaskAPI } from "../../../services/api/TaskAPI";
+import { UserAPI } from "../../../services/api/UserAPI";
 import { UserContext } from "../../../context";
 
 // Third Party Imports
@@ -17,20 +18,20 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-const AdminTable = ({ data, start, end, approverList }) => {
+const AdminTable = ({ data, start, end, approverList, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
 	const { user, setUser } = useContext(UserContext);
-	console.log(user);
-	console.log(adminData);
 
 	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
 		const addTask = new TaskAPI();
+		const newApprover = new UserAPI();
+
 		const body = {
 			title: "New Title",
 			description: "New Description",
 			isActive: true,
-			kind: "IN_PROCESSING",
+			kind: kind,
 			assignerID: user.id,
 			approverID: user.tasksAssigned[0].approver.id,
 			unitID: user.assignedUnit.id
@@ -38,22 +39,18 @@ const AdminTable = ({ data, start, end, approverList }) => {
 		addTask
 			.create(body)
 			.then(response => response.json())
-			.then(d => console.log(d));
-
-		setAdminData([
-			...adminData,
-			{
-				id: adminData.length + 1,
-				title: "Task Title",
-				description: "Task Description",
-				task_type: "Outprocessing",
-				approver: "Task Approver",
-				createdAt: new Date(),
-				updatedAt: new Date(),
-				owner: "Owner",
-				checked: false
-			}
-		]);
+			.then(d =>
+				newApprover
+					.id(user.tasksAssigned[0].approver.id)
+					.get()
+					.then(response => response.json())
+					.then(approver => (d.data.approver = approver.data[0]))
+					.then(console.log("MADE NEW TASK", d.data))
+					.then(console.log("OLD DATA", adminData))
+					.then(setAdminData([...adminData, d.data]))
+					.catch(err => console.log(err))
+			)
+			.catch(err => console.log(err));
 	};
 
 	return (
@@ -73,10 +70,10 @@ const AdminTable = ({ data, start, end, approverList }) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{adminData.map(entry => (
+					{adminData.map((entry, idx) => (
 						<AdminTableRow
 							hover={true}
-							key={entry.id}
+							key={idx}
 							entry={entry}
 							approverList={approverList}
 						/>

@@ -178,6 +178,7 @@ const Dashboard = () => {
 									end={end}
 									revision={revision}
 									approverList={adminTaskApprovers}
+									kind={"IN_PROCESSING"}
 								/>
 							)}
 						</TableContainer>
@@ -207,6 +208,7 @@ const Dashboard = () => {
 									end={end}
 									revision={revision}
 									approverList={adminTaskApprovers}
+									kind={"OUT_PROCESSING"}
 								/>
 							)}
 						</TableContainer>

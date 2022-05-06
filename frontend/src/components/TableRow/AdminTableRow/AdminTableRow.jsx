@@ -32,11 +32,11 @@ const AdminTableRow = ({ entry, approverList }) => {
 	const [taskTitle, setTaskTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [pocName, setPocName] = useState(
-		`${entry.approver.firstName} ${entry.approver.lastName}`
+		`${entry?.approver?.firstName} ${entry?.approver?.lastName}`
 	);
-	const [pocID, setPocID] = useState(entry.approver.id);
-	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
-	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
+	const [pocID, setPocID] = useState(entry?.approver?.id);
+	const [pocPhone, setPocPhone] = useState(`${entry?.approver?.dsn}`);
+	const [pocEmail, setPocEmail] = useState(`${entry?.approver?.email}`);
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
@@ -127,7 +127,7 @@ const AdminTableRow = ({ entry, approverList }) => {
 					<Switch checked={checked} onChange={handleChange} />
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={taskTitle} sx={{ width: "20ch" }} />
+					<TextField size="small" value={taskTitle} sx={{ width: "30ch" }} />
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
