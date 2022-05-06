@@ -59,7 +59,7 @@ const Dashboard = () => {
 
 	// none at this time
 
-	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 67 to 118
+	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
 
 	// This useEffect is mostly for Admin View
 	// I wouldn't worry about builing it out for Users
@@ -67,7 +67,6 @@ const Dashboard = () => {
 	// to the Admin view and pagination isn't needed.
 
 	useEffect(() => {
-		console.log(user?.assignedUnit.name);
 		fetch(
 			`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${user.assignedUnit.id}&limit=50`
 		)
@@ -106,7 +105,7 @@ const Dashboard = () => {
 		setRevision(revision + 1);
 	};
 
-	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 50 to 98
+	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
 
 	if (user.role.kind === "USER") {
 		return (
