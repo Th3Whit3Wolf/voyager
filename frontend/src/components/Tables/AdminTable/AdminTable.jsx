@@ -22,7 +22,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
 	const [postedNewTask, setPostedNewTask] = useState(0);
 	const [json, setJson] = useState({});
-	const [messageToUser, setMessageToUser] = useState("");
+	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
 
 	// Process Flow for Re-Rendering the View Correctly After Posting New Row
@@ -50,9 +50,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 			.then(d => {
 				setJson(d);
 			})
-			// 			setMessageToUser(
-			// 	`Created Task Number ID: ${json.data.id} successfully!`
-			// );
+			//
 			// console.log(json);
 			// .then(
 			// 	getUserTasksAssigned
@@ -68,6 +66,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 
 	useEffect(() => {
 		console.log(json);
+		if (json?.data) setMessage(`Created Task Number ID: ${json.data.id}!`);
 	}, [json]);
 
 	return (
@@ -108,7 +107,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 				<AddCircle />
 			</IconButton>
 
-			<div>{messageToUser}</div>
+			<div>{message}</div>
 		</>
 	);
 };
