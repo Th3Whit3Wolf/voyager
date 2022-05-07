@@ -1,3 +1,7 @@
+import React, { useState, useContext } from "react";
+
+import { UserContext } from "../../../context";
+
 import {
 	TableRow,
 	TableCell,
@@ -15,7 +19,6 @@ import {
 } from "@mui/material";
 
 import { Delete, Star } from "@mui/icons-material";
-import { useState } from "react";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
@@ -23,6 +26,8 @@ const AdminTableRow = ({ entry }) => {
 	// console.log("Entry", entry);
 	// console.log("Entry.kind", entry.kind);
 	// console.log("Entry.Approver", entry.approver);
+
+	const { user, setUser } = useContext(UserContext);
 
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);

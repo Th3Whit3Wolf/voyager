@@ -20,7 +20,6 @@ import { AddCircle } from "@mui/icons-material";
 
 const AdminTable = ({ data, start, end, approverList, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
-	const [postedNewTask, setPostedNewTask] = useState(0);
 	const [json, setJson] = useState({});
 	const [modJson, setModJson] = useState({});
 	const [approvers, setApprovers] = useState({});
