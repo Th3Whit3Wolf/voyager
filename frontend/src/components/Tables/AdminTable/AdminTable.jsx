@@ -22,6 +22,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
 	const [postedNewTask, setPostedNewTask] = useState(0);
 	const [json, setJson] = useState({});
+	const [approvers, setApprovers] = useState({});
 	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
 
@@ -33,7 +34,6 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
 		const addTask = new TaskAPI();
-		const getUserTasksAssigned = new UserAPI();
 
 		const body = {
 			title: "New Title",
@@ -65,9 +65,23 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 	};
 
 	useEffect(() => {
+		const defaultApprover = new UserAPI();
 		console.log(json);
 		if (json?.data) setMessage(`Created Task Number ID: ${json.data.id}!`);
-	}, [json]);
+		if (json?.data) {
+			defaultApprover
+				.assignedUnitID(user.assignedUnit.id)
+				.roleID(6)
+				.limit(100)
+				.get()
+				.then(response => response.json())
+				.then(d => setApprovers(d.data));
+		}
+	}, [json, user.assignedUnit.id]);
+
+	useEffect(() => {
+		console.log(adminData);
+	}, [approvers]);
 
 	return (
 		<>
@@ -107,7 +121,9 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 				<AddCircle />
 			</IconButton>
 
-			<div>{message}</div>
+			<div>
+				<h3>{message}</h3>
+			</div>
 		</>
 	);
 };
