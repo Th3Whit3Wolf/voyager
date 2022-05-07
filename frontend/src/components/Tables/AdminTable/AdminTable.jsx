@@ -18,24 +18,11 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-const AdminTable = ({ data, start, end, approverList, kind }) => {
+const AdminTable = ({ data, start, end, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
-	const [json, setJson] = useState({});
-	const [modJson, setModJson] = useState({});
-	const [approvers, setApprovers] = useState({});
 	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
 
-	// Process Flow for Re-Rendering the View Correctly After Posting New Row
-	//		1. Clicking on the AddCircle button component executes handleRow function
-	//		2. HandleRow function makes the post and then captures the JSON into the state
-	//			I do this for further processing, but I also need certain data to for sure exist, such as the task.
-	//      3. Once JSON is found, a list of default approvers is achieved
-	//      4. The JSON response is modified with an approver off the list as ModJson
-	//      5. The adminData view is then appended with the new information.
-	// I might change all of this logic just to refetch the User! Then the pages and Task count should auto update
-
-	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
 		const addTask = new TaskAPI();
 
@@ -51,36 +38,17 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 		addTask
 			.create(body)
 			.then(response => response.json())
-			.then(d => setJson(d.data))
+			.then(json => setMessage(`Created Task Number ID: ${json.id}!`))
+			.then(() => {
+				const refreshUser = new UserAPI();
+				refreshUser
+					.email(user.email)
+					.get()
+					.then(response => response.json())
+					.then(d => setUser(d.data[0]));
+			})
 			.catch(err => console.log(err));
 	};
-
-	useEffect(() => {
-		const defaultApprover = new UserAPI();
-		console.log(json);
-		if (Object.keys(json).length > 0)
-			setMessage(`Created Task Number ID: ${json.id}!`);
-		if (Object.keys(json).length > 0) {
-			defaultApprover
-				.assignedUnitID(user.assignedUnit.id)
-				.roleID(6)
-				.limit(100)
-				.get()
-				.then(response => response.json())
-				.then(d => setApprovers(d.data))
-				.catch(err => console.log(err));
-		}
-	}, [json, user.assignedUnit.id]);
-
-	useEffect(() => {
-		console.log(approvers);
-		if (Object.keys(approvers).length > 0)
-			setModJson({ ...json, approver: approvers[0] });
-	}, [approvers]);
-
-	useEffect(() => {
-		if (Object.keys(modJson).length > 0) setAdminData([...adminData, modJson]);
-	}, [modJson]);
 
 	console.log(adminData);
 	return (
@@ -105,14 +73,12 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 							hover={true}
 							key={idx}
 							entry={entry}
-							approverList={approverList}
 							setMessage={setMessage}
 						/>
 					))}
 				</TableBody>
 			</MuiTable>
 
-			{/* THIS NEEDS TO BE REVECTORED FOR CREATE */}
 			<IconButton
 				color="primary"
 				size="large"
