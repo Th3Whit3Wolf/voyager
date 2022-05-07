@@ -22,6 +22,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
 	const [postedNewTask, setPostedNewTask] = useState(0);
 	const [json, setJson] = useState({});
+	const [modJson, setModJson] = useState({});
 	const [approvers, setApprovers] = useState({});
 	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
@@ -80,7 +81,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 	}, [json, user.assignedUnit.id]);
 
 	useEffect(() => {
-		console.log(adminData);
+		setModJson({ ...json, approver: approvers[0] });
 	}, [approvers]);
 
 	return (
