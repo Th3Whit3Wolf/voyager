@@ -31,6 +31,10 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 	//		1. Clicking on the AddCircle button component executes handleRow function
 	//		2. HandleRow function makes the post and then captures the JSON into the state
 	//			I do this for further processing, but I also need certain data to for sure exist, such as the task.
+	//      3. Once JSON is found, a list of default approvers is achieved
+	//      4. The JSON response is modified with an approver off the list as ModJson
+	//      5. The adminData view is then appended with the new information.
+	// I might change all of this logic just to refetch the User! Then the pages and Task count should auto update
 
 	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
