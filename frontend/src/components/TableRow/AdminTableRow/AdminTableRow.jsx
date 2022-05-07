@@ -1,7 +1,12 @@
+// React Base Functionality
 import React, { useState, useContext } from "react";
 
+// Our Components and Services
 import { UserContext } from "../../../context";
+import { TaskAPI } from "../../../services/api/TaskAPI";
+import { UserAPI } from "../../../services/api/UserAPI";
 
+// MUI Components
 import {
 	TableRow,
 	TableCell,
@@ -21,6 +26,8 @@ import {
 import { Delete, Star } from "@mui/icons-material";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
+
+// Start of the AdminTableRow React Hook
 
 const AdminTableRow = ({ entry }) => {
 	// console.log("Entry", entry);
@@ -65,6 +72,16 @@ const AdminTableRow = ({ entry }) => {
 	var updatedAt = new Date(entry.updatedAt);
 	//const DeleteDialogProps = { delete_open, handleClose, entry };
 	//const InfoDialogProps = { info_open, handleClose, entry };
+
+	const handleDelete = value => {
+		console.log(parseInt(value));
+		const deleteTask = new TaskAPI();
+		deleteTask
+			.delete(parseInt(value))
+			.then(response => console.log(response))
+			.catch(err => console.log(err));
+	};
+
 	return (
 		<>
 			{/* <DeleteDialog dialogDetails={dialogDetails} /> */}
@@ -174,9 +191,9 @@ const AdminTableRow = ({ entry }) => {
 				<TableCell>
 					<IconButton
 						aria-label="delete"
-						onClick={() => {
-							delete_handleClickOpen();
-							console.log(`Item Deleted id ${entry.id}`);
+						onClick={e => {
+							//delete_handleClickOpen();
+							handleDelete(entry.id);
 						}}
 					>
 						<Delete />

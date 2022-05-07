@@ -106,6 +106,7 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 							key={idx}
 							entry={entry}
 							approverList={approverList}
+							setMessage={setMessage}
 						/>
 					))}
 				</TableBody>
