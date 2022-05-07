@@ -1,3 +1,12 @@
+// React Base Functionality
+import React, { useState, useContext } from "react";
+
+// Our Components and Services
+import { UserContext } from "../../../context";
+import { TaskAPI } from "../../../services/api/TaskAPI";
+import { UserAPI } from "../../../services/api/UserAPI";
+
+// MUI Components
 import {
 	TableRow,
 	TableCell,
@@ -15,13 +24,17 @@ import {
 } from "@mui/material";
 
 import { Delete, Star } from "@mui/icons-material";
-import { useState } from "react";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
-const AdminTableRow = ({ entry, approverList }) => {
-	//console.log(approverList);
-	//console.log(entry);
+// Start of the AdminTableRow React Hook
+
+const AdminTableRow = ({ entry, setMessage }) => {
+	// console.log("Entry", entry);
+	// console.log("Entry.kind", entry.kind);
+	// console.log("Entry.Approver", entry.approver);
+
+	const { user, setUser } = useContext(UserContext);
 
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);
@@ -32,11 +45,11 @@ const AdminTableRow = ({ entry, approverList }) => {
 	const [taskTitle, setTaskTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [pocName, setPocName] = useState(
-		`${entry?.approver?.firstName} ${entry?.approver?.lastName}`
+		`${entry.approver.firstName} ${entry.approver.lastName}`
 	);
-	const [pocID, setPocID] = useState(entry?.approver?.id);
-	const [pocPhone, setPocPhone] = useState(`${entry?.approver?.dsn}`);
-	const [pocEmail, setPocEmail] = useState(`${entry?.approver?.email}`);
+	const [pocID, setPocID] = useState(entry.approver.id);
+	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
+	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
@@ -59,6 +72,25 @@ const AdminTableRow = ({ entry, approverList }) => {
 	var updatedAt = new Date(entry.updatedAt);
 	//const DeleteDialogProps = { delete_open, handleClose, entry };
 	//const InfoDialogProps = { info_open, handleClose, entry };
+
+	const handleDelete = value => {
+		console.log(parseInt(value));
+		const deleteTask = new TaskAPI();
+		deleteTask
+			.delete(parseInt(value))
+			.then(response => console.log(response))
+			.then(setMessage(`Deleted Task Number ID: ${value}!`))
+			.then(() => {
+				const refreshUser = new UserAPI();
+				refreshUser
+					.email(user.email)
+					.get()
+					.then(response => response.json())
+					.then(d => setUser(d.data[0]));
+			})
+			.catch(err => console.log(err));
+	};
+
 	return (
 		<>
 			{/* <DeleteDialog dialogDetails={dialogDetails} /> */}
@@ -168,9 +200,9 @@ const AdminTableRow = ({ entry, approverList }) => {
 				<TableCell>
 					<IconButton
 						aria-label="delete"
-						onClick={() => {
-							delete_handleClickOpen();
-							console.log(`Item Deleted id ${entry.id}`);
+						onClick={e => {
+							//delete_handleClickOpen();
+							handleDelete(entry.id);
 						}}
 					>
 						<Delete />

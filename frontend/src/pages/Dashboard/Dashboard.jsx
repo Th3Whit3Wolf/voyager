@@ -25,7 +25,7 @@ import {
 const Dashboard = () => {
 	const { user, setUser } = useContext(UserContext);
 
-	const data = user.tasksAssigned;
+	console.log(user);
 
 	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
@@ -43,6 +43,8 @@ const Dashboard = () => {
 	const [start, setStart] = useState(0);
 	const [end, setEnd] = useState(7);
 	const [revision, setRevision] = useState(0);
+
+	const [data, setData] = useState(user.tasksAssigned);
 
 	const [dataForAdminIn, setDataForAdminIn] = useState(
 		user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
@@ -84,19 +86,30 @@ const Dashboard = () => {
 	useEffect(() => {
 		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
 		setTotalAdminOutPages(parseInt(dataForAdminOut.length / (end - start)) + 1);
-	}, [dataForAdminIn, setTotalAdminOutPages, start, end]);
+	}, [user, dataForAdminIn, dataForAdminOut, start, end]);
 
 	useEffect(() => {
 		let idxs = [];
 		for (let i = 0; i < totalAdminInPages; i++) idxs.push(i);
 		setAdminInForLoop(idxs);
-	}, [totalAdminInPages]);
+	}, [user, totalAdminInPages]);
 
 	useEffect(() => {
 		let idxs = [];
 		for (let i = 0; i < totalAdminOutPages; i++) idxs.push(i);
 		setAdminOutForLoop(idxs);
-	}, [totalAdminOutPages]);
+	}, [user, totalAdminOutPages]);
+
+	useEffect(() => {
+		setDataForAdminIn(
+			user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+		);
+		setDataForAdminOut(
+			user.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
+		);
+		setData(user.tasksAssigned);
+		setRevision(revision + 1);
+	}, [user]);
 
 	const changeInprocessPage = e => {
 		console.log(e.target.value);

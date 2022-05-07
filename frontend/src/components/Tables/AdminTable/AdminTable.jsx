@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Utilities
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
@@ -18,14 +18,13 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-const AdminTable = ({ data, start, end, approverList, kind }) => {
+const AdminTable = ({ data, start, end, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
+	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
 
-	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
 		const addTask = new TaskAPI();
-		const newApprover = new UserAPI();
 
 		const body = {
 			title: "New Title",
@@ -39,20 +38,19 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 		addTask
 			.create(body)
 			.then(response => response.json())
-			.then(d =>
-				newApprover
-					.id(user.tasksAssigned[0].approver.id)
+			.then(json => setMessage(`Created Task Number ID: ${json.id}!`))
+			.then(() => {
+				const refreshUser = new UserAPI();
+				refreshUser
+					.email(user.email)
 					.get()
 					.then(response => response.json())
-					.then(approver => (d.data.approver = approver.data[0]))
-					.then(console.log("MADE NEW TASK", d.data))
-					.then(console.log("OLD DATA", adminData))
-					.then(setAdminData([...adminData, d.data]))
-					.catch(err => console.log(err))
-			)
+					.then(d => setUser(d.data[0]));
+			})
 			.catch(err => console.log(err));
 	};
 
+	console.log(adminData);
 	return (
 		<>
 			<MuiTable size={"small"}>
@@ -75,13 +73,12 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 							hover={true}
 							key={idx}
 							entry={entry}
-							approverList={approverList}
+							setMessage={setMessage}
 						/>
 					))}
 				</TableBody>
 			</MuiTable>
 
-			{/* THIS NEEDS TO BE REVECTORED FOR CREATE */}
 			<IconButton
 				color="primary"
 				size="large"
@@ -90,6 +87,10 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 			>
 				<AddCircle />
 			</IconButton>
+
+			<div>
+				<h3>{message}</h3>
+			</div>
 		</>
 	);
 };
