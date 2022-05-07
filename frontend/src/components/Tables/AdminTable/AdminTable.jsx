@@ -48,42 +48,38 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 		addTask
 			.create(body)
 			.then(response => response.json())
-			.then(d => {
-				setJson(d);
-			})
-			//
-			// console.log(json);
-			// .then(
-			// 	getUserTasksAssigned
-			// 		.email(`${user.email}`)
-			// 		.get()
-			// 		.then(response => response.json())
-			// 		.then(d => console.log(d.data[0].tasksAssigned.slice(start, end)))
-			// 		//.then(d => setAdminData(d.data[0].tasksAssigned))
-			// 		.catch(err => console.log(err))
-			// )
+			.then(d => setJson(d.data))
 			.catch(err => console.log(err));
 	};
 
 	useEffect(() => {
 		const defaultApprover = new UserAPI();
 		console.log(json);
-		if (json?.data) setMessage(`Created Task Number ID: ${json.data.id}!`);
-		if (json?.data) {
+		if (Object.keys(json).length > 0)
+			setMessage(`Created Task Number ID: ${json.id}!`);
+		if (Object.keys(json).length > 0) {
 			defaultApprover
 				.assignedUnitID(user.assignedUnit.id)
 				.roleID(6)
 				.limit(100)
 				.get()
 				.then(response => response.json())
-				.then(d => setApprovers(d.data));
+				.then(d => setApprovers(d.data))
+				.catch(err => console.log(err));
 		}
 	}, [json, user.assignedUnit.id]);
 
 	useEffect(() => {
-		setModJson({ ...json, approver: approvers[0] });
+		console.log(approvers);
+		if (Object.keys(approvers).length > 0)
+			setModJson({ ...json, approver: approvers[0] });
 	}, [approvers]);
 
+	useEffect(() => {
+		if (Object.keys(modJson).length > 0) setAdminData([...adminData, modJson]);
+	}, [modJson]);
+
+	console.log(adminData);
 	return (
 		<>
 			<MuiTable size={"small"}>
