@@ -29,7 +29,7 @@ import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
 // Start of the AdminTableRow React Hook
 
-const AdminTableRow = ({ entry }) => {
+const AdminTableRow = ({ entry, setMessage }) => {
 	// console.log("Entry", entry);
 	// console.log("Entry.kind", entry.kind);
 	// console.log("Entry.Approver", entry.approver);
@@ -79,6 +79,15 @@ const AdminTableRow = ({ entry }) => {
 		deleteTask
 			.delete(parseInt(value))
 			.then(response => console.log(response))
+			.then(setMessage(`Deleted Task Number ID: ${value}!`))
+			.then(() => {
+				const refreshUser = new UserAPI();
+				refreshUser
+					.email(user.email)
+					.get()
+					.then(response => response.json())
+					.then(d => setUser(d.data[0]));
+			})
 			.catch(err => console.log(err));
 	};
 
