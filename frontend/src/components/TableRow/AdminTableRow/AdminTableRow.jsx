@@ -19,9 +19,10 @@ import { useState } from "react";
 import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
 import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
-const AdminTableRow = ({ entry, approverList }) => {
-	//console.log(approverList);
-	//console.log(entry);
+const AdminTableRow = ({ entry }) => {
+	// console.log("Entry", entry);
+	// console.log("Entry.kind", entry.kind);
+	// console.log("Entry.Approver", entry.approver);
 
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);
@@ -32,11 +33,11 @@ const AdminTableRow = ({ entry, approverList }) => {
 	const [taskTitle, setTaskTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [pocName, setPocName] = useState(
-		`${entry?.approver?.firstName} ${entry?.approver?.lastName}`
+		`${entry.approver.firstName} ${entry.approver.lastName}`
 	);
-	const [pocID, setPocID] = useState(entry?.approver?.id);
-	const [pocPhone, setPocPhone] = useState(`${entry?.approver?.dsn}`);
-	const [pocEmail, setPocEmail] = useState(`${entry?.approver?.email}`);
+	const [pocID, setPocID] = useState(entry.approver.id);
+	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
+	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);

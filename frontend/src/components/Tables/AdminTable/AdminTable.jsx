@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Utilities
 import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
@@ -20,12 +20,20 @@ import { AddCircle } from "@mui/icons-material";
 
 const AdminTable = ({ data, start, end, approverList, kind }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
+	const [postedNewTask, setPostedNewTask] = useState(0);
+	const [json, setJson] = useState({});
+	const [messageToUser, setMessageToUser] = useState("");
 	const { user, setUser } = useContext(UserContext);
+
+	// Process Flow for Re-Rendering the View Correctly After Posting New Row
+	//		1. Clicking on the AddCircle button component executes handleRow function
+	//		2. HandleRow function makes the post and then captures the JSON into the state
+	//			I do this for further processing, but I also need certain data to for sure exist, such as the task.
 
 	//HANDLE ROW NEEDS TO BE REVECTORED FOR CREATE
 	const handleAddRow = () => {
 		const addTask = new TaskAPI();
-		const newApprover = new UserAPI();
+		const getUserTasksAssigned = new UserAPI();
 
 		const body = {
 			title: "New Title",
@@ -39,19 +47,28 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 		addTask
 			.create(body)
 			.then(response => response.json())
-			.then(d =>
-				newApprover
-					.id(user.tasksAssigned[0].approver.id)
-					.get()
-					.then(response => response.json())
-					.then(approver => (d.data.approver = approver.data[0]))
-					.then(console.log("MADE NEW TASK", d.data))
-					.then(console.log("OLD DATA", adminData))
-					.then(setAdminData([...adminData, d.data]))
-					.catch(err => console.log(err))
-			)
+			.then(d => {
+				setJson(d);
+			})
+			// 			setMessageToUser(
+			// 	`Created Task Number ID: ${json.data.id} successfully!`
+			// );
+			// console.log(json);
+			// .then(
+			// 	getUserTasksAssigned
+			// 		.email(`${user.email}`)
+			// 		.get()
+			// 		.then(response => response.json())
+			// 		.then(d => console.log(d.data[0].tasksAssigned.slice(start, end)))
+			// 		//.then(d => setAdminData(d.data[0].tasksAssigned))
+			// 		.catch(err => console.log(err))
+			// )
 			.catch(err => console.log(err));
 	};
+
+	useEffect(() => {
+		console.log(json);
+	}, [json]);
 
 	return (
 		<>
@@ -90,6 +107,8 @@ const AdminTable = ({ data, start, end, approverList, kind }) => {
 			>
 				<AddCircle />
 			</IconButton>
+
+			<div>{messageToUser}</div>
 		</>
 	);
 };
