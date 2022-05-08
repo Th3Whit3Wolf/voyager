@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import UserContext from "../../context/UserContext";
 
 // Our Components and Utilities
@@ -24,8 +24,6 @@ import {
 
 const Dashboard = () => {
 	const { user, setUser } = useContext(UserContext);
-
-	console.log(user);
 
 	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
@@ -64,14 +62,14 @@ const Dashboard = () => {
 
 	// none at this time
 
-	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
+	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
 
 	// This useEffect is mostly for Admin View
 	// I wouldn't worry about builing it out for Users
 	// since the Users view has so few tasks compared
 	// to the Admin view and pagination isn't needed.
 
-	useEffect(() => {
+	const retrieveTaskApproversThatShareAdminUnitID = () => {
 		const taskApproversApi = new UserAPI();
 		taskApproversApi
 			.roleID(6)
@@ -81,12 +79,22 @@ const Dashboard = () => {
 			.then(response => response.json())
 			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data))
 			.catch(err => console.log(err));
-	}, []);
+	};
 
-	useEffect(() => {
+	const calculateTotalPaginationPages = () => {
 		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
 		setTotalAdminOutPages(parseInt(dataForAdminOut.length / (end - start)) + 1);
-	}, [user, dataForAdminIn, dataForAdminOut, start, end]);
+	};
+
+	useEffect(retrieveTaskApproversThatShareAdminUnitID, []);
+
+	useEffect(calculateTotalPaginationPages, [
+		user,
+		dataForAdminIn,
+		dataForAdminOut,
+		start,
+		end
+	]);
 
 	useEffect(() => {
 		let idxs = [];
@@ -125,7 +133,9 @@ const Dashboard = () => {
 		setRevision(revision + 1);
 	};
 
-	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
+	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
+
+	// Analytics
 
 	if (user.role.kind === "USER") {
 		return (
