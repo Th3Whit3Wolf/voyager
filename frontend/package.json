@@ -189,6 +189,10 @@
 			"text",
 			"lcov"
 		],
-		"verbose": true
+		"verbose": true,
+		"transformIgnorePatterns": [
+			"<rootDir>/node_modules/d3/",
+			"<rootDir>/node_modules/d3-array/"
+		]
 	}
 }
