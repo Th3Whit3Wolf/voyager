@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import UserContext from "../../context/UserContext";
 
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+
 // Our Components and Utilities
 import { UserAPI } from "../../services/api/UserAPI";
 
@@ -28,6 +31,39 @@ const Dashboard = () => {
 	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
 
+	// Analytics
+
+	ChartJS.register(ArcElement, Tooltip, Legend);
+
+	const donutData = {
+		labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+		datasets: [
+			{
+				label: "# of Votes",
+				data: [12, 19, 3, 5, 2, 3],
+				backgroundColor: [
+					"rgba(255, 99, 132, 0.2)",
+					"rgba(54, 162, 235, 0.2)",
+					"rgba(255, 206, 86, 0.2)",
+					"rgba(75, 192, 192, 0.2)",
+					"rgba(153, 102, 255, 0.2)",
+					"rgba(255, 159, 64, 0.2)"
+				],
+				borderColor: [
+					"rgba(255, 99, 132, 1)",
+					"rgba(54, 162, 235, 1)",
+					"rgba(255, 206, 86, 1)",
+					"rgba(75, 192, 192, 1)",
+					"rgba(153, 102, 255, 1)",
+					"rgba(255, 159, 64, 1)"
+				],
+				borderWidth: 1
+			}
+		]
+	};
+
+	////////////////////////////////////////// USER VIEW ////////////////////////////////////
+
 	// State for Users
 	const [userData, setUserData] = useState(user.tasks);
 	const [userInData, setUserInData] = useState(
@@ -36,6 +72,39 @@ const Dashboard = () => {
 	const [userOutData, setUserOutData] = useState(
 		user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
 	);
+
+	if (user.role.kind === "USER") {
+		return (
+			<>
+				<TabContext value={tabValue}>
+					<TabList onChange={(e, nv) => setTabValue(nv)}>
+						<Tab label="Inprocessing Tasks" value="1" />
+						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab label="User Settings" value="3" />
+					</TabList>
+
+					<TabPanel value="1">
+						<TableContainer component={Paper}>
+							{userData.length > 0 && <UserTable alldata={userInData} />}
+						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="2">
+						<TableContainer component={Paper}>
+							{userData.length > 0 && <UserTable alldata={userOutData} />}
+						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="3">
+						<UserSettings settings={user} />
+					</TabPanel>
+				</TabContext>
+				<Doughnut data={donutData} />
+			</>
+		);
+	}
+
+	////////////////////////////////////////// ADMIN VIEW ////////////////////////////////////
 
 	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
@@ -57,10 +126,6 @@ const Dashboard = () => {
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
 
 	const [adminTaskApprovers, setAdminTaskApprovers] = useState([]);
-
-	// START OF FUNCTIONS FOR USER VIEW
-
-	// none at this time
 
 	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
 
@@ -134,39 +199,6 @@ const Dashboard = () => {
 	};
 
 	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
-
-	// Analytics
-
-	if (user.role.kind === "USER") {
-		return (
-			<>
-				<TabContext value={tabValue}>
-					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab label="Inprocessing Tasks" value="1" />
-						<Tab label="Outprocessing Tasks" value="2" />
-						<Tab label="User Settings" value="3" />
-					</TabList>
-
-					<TabPanel value="1">
-						<TableContainer component={Paper}>
-							{userData.length > 0 && <UserTable alldata={userInData} />}
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="2">
-						<TableContainer component={Paper}>
-							{userData.length > 0 && <UserTable alldata={userOutData} />}
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="3">
-						<UserSettings settings={user} />
-					</TabPanel>
-				</TabContext>
-			</>
-		);
-	}
-
 	if (user.role.kind.includes("ADMIN")) {
 		return (
 			<>
