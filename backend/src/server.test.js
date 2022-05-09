@@ -1,6 +1,10 @@
 /* eslint-disable indent */
 import request from "supertest";
+import pino from "pino";
+import pretty from "pino-pretty";
 import app from "./server";
+
+const logger = pino(pretty({ colorize: true, sync: true }));
 
 const response = request(app);
 const routePrefix = "/api/v1";
@@ -207,7 +211,7 @@ const mkTest = async (method, data, status, endpointName) => {
 
 		const { body } = res;
 		if (method !== "GET") {
-			console.log(`
+			logger.info(`
 			Route: ${route}
 			Data(sent): ${JSON.stringify(data)}
 			Data(received): ${JSON.stringify(body.data)}
@@ -238,14 +242,15 @@ const mkTest = async (method, data, status, endpointName) => {
 };
 
 describe("Backend Tests", () => {
-	test("GET /status", async () => {
-		const res = await response.get("/status");
+	test("GET /info", async () => {
+		const res = await response.get("/info");
 		expect(res.statusCode).toBe(200);
+		expect(res.body.build.name).toBe("voyager-backend");
 	});
 
 	Object.entries(testData).forEach(([method, metadata]) => {
 		describe(`METHOD ${method}`, () => {
-			console.log({ method });
+			logger.info({ method });
 			Object.entries(metadata.data).forEach(
 				async ([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
@@ -270,80 +275,3 @@ describe("Backend Tests", () => {
 		});
 	});
 });
-/*
-	routes.forEach(route => {
-		const routeRegular = `/api/v1/${route}`;
-		const routeByID = `/api/v1/${route}/1`;
-		describe(`Route ${routeRegular}`, () => {
-			describe(`METHOD`, () => {
-				test(`GET`, async () => {
-					const res = await response.get(`${routeRegular}`);
-					expect(res.statusCode).toBe(200);
-				});
-
-				test(`POST request returns 201`, async () => {
-					const res = await response
-						.post(`${routeRegular}`)
-						.send(post[route])
-						.set("Accept", "application/json");
-					expect(res.statusCode).toBe(201);
-				});
-			});
-			test(`GET request returns 200`, async () => {
-				const res = await response.get(`${routeRegular}`);
-				expect(res.statusCode).toBe(200);
-			});
-
-			test(`POST request returns 201`, async () => {
-				const res = await response
-					.post(`${routeRegular}`)
-					.send(post[route])
-					.set("Accept", "application/json");
-				expect(res.statusCode).toBe(201);
-			});
-		});
-
-		describe(`Route ${routeByID}`, () => {
-			test(`GET request returns 200`, async () => {
-				const res = await response.get(`${routeByID}`);
-				const { body } = res;
-
-				expect(res.statusCode).toBe(200);
-				expect(body.data.id).toBe(1);
-				Object.entries(getID[route]).forEach(([k, v]) => {
-					if (
-						typeof v === "object" &&
-						Array.isArray(v) === false &&
-						v !== null
-					) {
-						Object.entries(v).forEach(([k2, v2]) => {
-							expect(body.data[k2]).toBe(v2);
-						});
-					} else {
-						expect(body.data[k]).toBe(v);
-					}
-				});
-			});
-
-			test(`PUT request returns 202`, async () => {
-				const res = await response
-					.put(`${routeByID}`)
-					.send(putID[route])
-					.set("Accept", "application/json");
-				expect(res.statusCode).toBe(202);
-			});
-
-			test(`DELETE request returns 204`, async () => {
-				const delRoute = `/api/v1/${deleteID[route]}`;
-				const res = await response.delete(`${delRoute}`);
-				console.log(
-					`Route: ${delRoute}`,
-					"Body: ",
-					JSON.stringify(res.body)
-				);
-				expect(res.statusCode).toBe(204);
-			});
-		});
-	});
-});
-*/

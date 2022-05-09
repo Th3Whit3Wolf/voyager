@@ -45,7 +45,9 @@ app.use((req, res, next) => {
 */
 
 app.get("/", (req, res) => {
-	res.send("ok");
+	res.send(
+		'Did you mean to go to "https://bsdi1-voyager-frontend.herokuapp.com/"'
+	);
 });
 
 /// Read all exported routes and use them
