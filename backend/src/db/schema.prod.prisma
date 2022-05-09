@@ -1,0 +1,198 @@
+generator client {
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "darwin", "linux-musl"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum UnitKind {
+    INSTALLATION
+    COMMAND
+    DELTA
+    SQUADRON
+}
+
+model Unit {
+    id        Int      @id @default(autoincrement())
+    name      String   @unique
+    abbrev    String?  @db.VarChar(64)
+    kind      UnitKind
+    function  String?  @db.Text
+    location  String?  @db.Text
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+    /// Define possible relationship with parent Unit
+    /// Rename collumn to conform to SQL naming conventions
+    parentID Int?  @map("parent_id")
+    parent   Unit? @relation("ParentUnit", fields: [parentID], references: [id], onDelete: SetNull)
+
+    /// Define possible relationship with grandparent Unit
+    /// Rename collumn to conform to SQL naming conventions
+    grandParentID Int?  @map("grand_parent_id")
+    grandParent   Unit? @relation("GrandParentUnit", fields: [grandParentID], references: [id])
+
+    /// Define possible relationship with installation Unit
+    /// Rename collumn to conform to SQL naming conventions
+    installationID Int?  @map("installation_id")
+    installation   Unit? @relation("InstallationUnit", fields: [installationID], references: [id])
+
+    /// One-to-Many Relationships
+    children             Unit[] @relation("ParentUnit")
+    grandChildren        Unit[] @relation("GrandParentUnit")
+    installationChildren Unit[] @relation("InstallationUnit")
+    assignedUsers        User[] @relation("Current unit of user")
+    gainingUsers         User[] @relation("Gaining unit of user")
+    tasks                Task[] @relation("Unit Task")
+
+    /// Rename table to units to conform to
+    /// SQL naming conventions
+    @@map("units")
+}
+
+enum ProcessingStatus {
+    IN_PROCESSING
+    IN_TRANSIT
+    OUT_PROCESSING
+    OUT_PROCESSING_WITH_ORDERS
+    STATIONARY
+}
+
+enum RoleKind {
+    USER
+    TASK_APPROVER
+    SITE_ADMIN
+    COMMAND_ADMIN
+    INSTALLATION_ADMIN
+    DELTA_ADMIN
+    SQUADRON_ADMIN
+}
+
+enum TaskStatus {
+    NOT_STARTED
+    IN_PROGRESS
+    COMPLETED
+}
+
+enum TaskProcessingKind {
+    IN_PROCESSING
+    OUT_PROCESSING
+}
+
+model Role {
+    id        Int      @id @default(autoincrement())
+    kind      RoleKind
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+
+    /// One-to-Many relationships
+    users User[] @relation("Role of user")
+
+    /// Rename table to roles to conform to
+    /// SQL naming conventions
+    @@map("roles")
+}
+
+model User {
+    id                   Int              @id @default(autoincrement())
+    firstName            String           @db.VarChar(64)
+    lastName             String           @db.VarChar(64)
+    email                String           @unique @db.VarChar(128)
+    dsn                  String?          @db.VarChar(32)
+    auth                 String
+    assignedOfficeSymbol String           @db.VarChar(64)
+    gainingOfficeSymbol  String?          @db.VarChar(64)
+    status               ProcessingStatus
+    sperationDate        DateTime         @default(dbgenerated("NOW() + interval '4 year'")) @map("seperation_date")
+    createdAt            DateTime         @default(now()) @map("created_at")
+    updatedAt            DateTime         @default(now()) @updatedAt @map("updated_at")
+
+    /// Define possible relationship with Unit
+    /// Rename collumn to conform to SQL naming conventions
+    assignedUnitID Int?  @map("assigned_unit_id")
+    assignedUnit   Unit? @relation("Current unit of user", fields: [assignedUnitID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    /// Define possible relationship with Unit
+    /// Rename collumn to conform to SQL naming conventions
+    gainingUnitID Int?  @map("gaining_unit_id")
+    gainingUnit   Unit? @relation("Gaining unit of user", fields: [gainingUnitID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    /// Define possible relationship with Role
+    /// Rename collumn to conform to SQL naming conventions
+    roleID Int?  @map("role_id")
+    role   Role? @relation("Role of user", fields: [roleID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    /// Define possible relationship with User
+    /// Rename collumn to conform to SQL naming conventions
+    supervisorID Int?  @map("supervisor_id")
+    supervisor   User? @relation("Supervisor of user", fields: [supervisorID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    /// One-to-Many relationships
+    subordinates      User[] @relation("Supervisor of user")
+    tasksAssigned     Task[] @relation("Task assigner")
+    taskApproverTasks Task[] @relation("Task approver")
+
+    /// Many-to-Many relationships
+    tasks TaskUser[] @relation("TaskUsers userID")
+
+    /// Rename table to users to conform to
+    /// SQL naming conventions
+    @@map("users")
+}
+
+model Task {
+    id          Int                @id @default(autoincrement())
+    title       String             @db.VarChar(64)
+    description String             @db.Text
+    isActive    Boolean            @map("is_active")
+    kind        TaskProcessingKind
+    createdAt   DateTime           @default(now()) @map("created_at")
+    updatedAt   DateTime           @default(now()) @updatedAt @map("updated_at")
+
+    /// Define possible relationship with User
+    /// Rename collumn to conform to SQL naming conventions
+    assignerID Int?  @map("assigner_id")
+    assigner   User? @relation("Task assigner", fields: [assignerID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    /// Define possible relationship with User
+    /// Rename collumn to conform to SQL naming conventions
+    approverID Int?  @map("approver_id")
+    approver   User? @relation("Task approver", fields: [approverID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    /// Define possible relationship with User
+    /// Rename collumn to conform to SQL naming conventions
+    unitID Int?  @map("unit_id")
+    unit   Unit? @relation("Unit Task", fields: [unitID], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+    /// Many-to-Many relationships
+    assignedTasks TaskUser[] @relation("TaskUsers taskID")
+
+    /// Rename table to tasks to conform to
+    /// SQL naming conventions
+    @@map("tasks")
+}
+
+model TaskUser {
+    id          Int        @id @default(autoincrement())
+    progress    TaskStatus
+    completedAt DateTime?  @map("completed_at")
+    createdAt   DateTime   @default(now()) @map("created_at")
+    updatedAt   DateTime   @default(now()) @updatedAt @map("updated_at")
+
+    /// Define relationship with Task
+    /// Rename collumn to conform to SQL naming conventions
+    taskID Int  @map("task_id")
+    task   Task @relation("TaskUsers taskID", fields: [taskID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    /// Define relationship with User
+    /// Rename collumn to conform to SQL naming conventions
+    userID Int  @map("user_id")
+    user   User @relation("TaskUsers userID", fields: [userID], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    /// Rename table to task_users to conform to
+    /// SQL naming conventions
+    @@map("task_users")
+}

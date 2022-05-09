@@ -22,7 +22,8 @@
 		"prettier:fix": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npm run prettier -- --write",
 		"format": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npm run prettier:fix && npm run lint:fix",
 		"start": "NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' node src",
-		"test": "NODE_ENV=test NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npx jest"
+		"test": "NODE_ENV=test NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npx jest",
+		"heroku-postbuild": "prisma generate --schema src/db/schema.prod.prisma"
 	},
 	"prisma": {
 		"seed": "node src/db/seeds/index.js"
