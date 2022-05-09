@@ -1,11 +1,20 @@
 import express from "express";
 import helmet from "helmet";
+import actuator from "express-actuator";
 import routes from "./routes";
 
 const app = express();
 
-app.use(express.json());
 app.use(helmet());
+app.use(
+	actuator({
+		infoGitMode: "simple", // the amount of git information you want to expose, 'simple' or 'full',
+		infoBuildOptions: null, // extra information you want to expose in the build object. Requires an object.
+		infoDateFormat: "MMMM Do YYYY, h:mm:ss a", // by default, git.commit.time will show as is defined in git.properties. If infoDateFormat is defined, moment will format git.commit.time. See https://momentjs.com/docs/#/displaying/format/.
+		customEndpoints: [] // array of custom endpoints
+	})
+);
+app.use(express.json());
 
 app.use((req, res, next) => {
 	res.header({ "Access-Control-Allow-Origin": "http://localhost:3000" });
@@ -19,8 +28,18 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get("/status", (req, res) => {
-	res.send("good");
+/*
+## Endpoints provided by Express Actuator
+
+| ID      | Description                                            |
+| ------- | ------------------------------------------------------ |
+| info    | Displays application information.                      |
+| metrics | Shows metrics information for the current application. |
+| health  | Shows application health information.                  |
+*/
+
+app.get("/", (req, res) => {
+	res.send("ok");
 });
 
 /// Read all exported routes and use them
