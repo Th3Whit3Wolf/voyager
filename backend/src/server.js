@@ -2,6 +2,7 @@ import express from "express";
 import helmet from "helmet";
 import actuator from "express-actuator";
 import routes from "./routes";
+import logger from "./logger";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(
 		customEndpoints: [] // array of custom endpoints
 	})
 );
+app.use(logger);
 app.use(express.json());
 
 app.use((req, res, next) => {
