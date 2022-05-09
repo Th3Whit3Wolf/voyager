@@ -30,17 +30,9 @@ import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 // Start of the AdminTableRow React Hook
 
 const AdminTableRow = ({ entry, setMessage }) => {
-	// console.log("Entry", entry);
-	// console.log("Entry.kind", entry.kind);
-	// console.log("Entry.Approver", entry.approver);
-
 	const { user, setUser } = useContext(UserContext);
 
-	const [open, setOpen] = useState(false);
-	const [delete_open, delete_setOpen] = useState(false);
-	const [info_open, info_setOpen] = useState(false);
-
-	//AdminTableRow State
+	//START of AdminTableRow State
 	const [checked, setChecked] = useState(entry.isActive);
 	const [taskTitle, setTaskTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
@@ -50,6 +42,11 @@ const AdminTableRow = ({ entry, setMessage }) => {
 	const [pocID, setPocID] = useState(entry.approver.id);
 	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
 	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
+	// END of AdminTableRow State
+
+	const [open, setOpen] = useState(false);
+	const [delete_open, delete_setOpen] = useState(false);
+	const [info_open, info_setOpen] = useState(false);
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
@@ -159,7 +156,12 @@ const AdminTableRow = ({ entry, setMessage }) => {
 					<Switch checked={checked} onChange={handleChange} />
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={taskTitle} sx={{ width: "30ch" }} />
+					<TextField
+						size="small"
+						value={taskTitle}
+						sx={{ width: "30ch" }}
+						onChange={e => setTaskTitle(e.target.value)}
+					/>
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
