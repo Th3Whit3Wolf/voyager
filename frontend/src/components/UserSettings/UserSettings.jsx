@@ -2,16 +2,30 @@
 import React from "react";
 
 // Third Part Components
-import { Card, CardHeader, CardContent, Typography } from "@mui/material";
+import {
+	Container,
+	Card,
+	CardHeader,
+	CardContent,
+	Typography
+} from "@mui/material";
 
 const UserSettings = ({ settings }) => {
 	console.log(settings);
 
 	return (
-		<div>
+		<Container>
 			<h2>{settings.firstName + " " + settings.lastName}</h2>
-			<Card sx={{ maxWidth: 350 }}>
-				<CardHeader title={"Current Unit: " + settings.assignedOfficeSymbol} />
+			<Card>
+				<CardHeader
+					title={
+						"Current Unit: " +
+						settings.assignedOfficeSymbol +
+						" : " +
+						settings.assignedUnit.name
+					}
+					subheader={"Status: " + settings.status.replaceAll("_", " ")}
+				/>
 				<CardContent>
 					<Typography>Your Contact Information</Typography>
 					<Typography>DSN: {settings.dsn}</Typography>
@@ -27,7 +41,18 @@ const UserSettings = ({ settings }) => {
 					<Typography>Email: {settings.supervisor.email}</Typography>
 				</CardContent>
 			</Card>
-		</div>
+
+			<h3>Subordinates</h3>
+			<Card>
+				<CardContent>
+					{settings.subordinates.map(sub => (
+						<Typography key={sub.id}>
+							{sub.firstName + " " + sub.lastName}
+						</Typography>
+					))}
+				</CardContent>
+			</Card>
+		</Container>
 	);
 };
 

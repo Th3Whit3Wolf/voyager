@@ -73,37 +73,6 @@ const Dashboard = () => {
 		user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
 	);
 
-	if (user.role.kind === "USER") {
-		return (
-			<>
-				<TabContext value={tabValue}>
-					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab label="Inprocessing Tasks" value="1" />
-						<Tab label="Outprocessing Tasks" value="2" />
-						<Tab label="User Settings" value="3" />
-					</TabList>
-
-					<TabPanel value="1">
-						<TableContainer component={Paper}>
-							{userData.length > 0 && <UserTable alldata={userInData} />}
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="2">
-						<TableContainer component={Paper}>
-							{userData.length > 0 && <UserTable alldata={userOutData} />}
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="3">
-						<UserSettings settings={user} />
-					</TabPanel>
-				</TabContext>
-				<Doughnut data={donutData} />
-			</>
-		);
-	}
-
 	////////////////////////////////////////// ADMIN VIEW ////////////////////////////////////
 
 	// State for Admin and Admin Pagination
@@ -199,6 +168,37 @@ const Dashboard = () => {
 	};
 
 	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
+
+	if (user.role.kind === "USER") {
+		return (
+			<>
+				<TabContext value={tabValue}>
+					<TabList onChange={(e, nv) => setTabValue(nv)}>
+						<Tab label="Inprocessing Tasks" value="1" />
+						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab label="User Settings" value="3" />
+					</TabList>
+
+					<TabPanel value="1">
+						<TableContainer component={Paper}>
+							{userData.length > 0 && <UserTable alldata={userInData} />}
+						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="2">
+						<TableContainer component={Paper}>
+							{userData.length > 0 && <UserTable alldata={userOutData} />}
+						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="3">
+						<UserSettings settings={user} />
+					</TabPanel>
+				</TabContext>
+				{/* <Doughnut data={donutData} /> */}
+			</>
+		);
+	}
 	if (user.role.kind.includes("ADMIN")) {
 		return (
 			<>
@@ -206,7 +206,8 @@ const Dashboard = () => {
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
 						<Tab label="Outprocessing Tasks" value="2" />
-						<Tab label="Modify Admins" value="3" />
+						<Tab label="User Settings" value="3" />
+						<Tab label="Modify Admins" value="4" />
 					</TabList>
 
 					<TabPanel value="1">
@@ -270,6 +271,10 @@ const Dashboard = () => {
 					</TabPanel>
 
 					<TabPanel value="3">
+						<UserSettings settings={user} />
+					</TabPanel>
+
+					<TabPanel value="4">
 						This is where I modify Admins.
 						<p>
 							This should show as a table view, where each row has a status and
