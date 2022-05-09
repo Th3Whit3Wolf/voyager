@@ -54,6 +54,7 @@ app.use(express.json());
 | health  | Shows application health information.                  |
 */
 
+/// This route shouldn't be used
 app.get("/", (req, res) => {
 	res.send(
 		'Did you mean to go to "https://bsdi1-voyager-frontend.herokuapp.com/"'
