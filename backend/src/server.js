@@ -2,9 +2,11 @@ import express from "express";
 import helmet from "helmet";
 import actuator from "express-actuator";
 import expressPino from "express-pino-logger";
+import cors from "cors";
 import routes from "./routes";
 import logger from "./logger";
 
+const NODE_ENV = process.env.NODE_ENV || "development";
 const app = express();
 const log = expressPino({
 	logger
@@ -20,19 +22,27 @@ app.use(
 	})
 );
 app.use(log);
-app.use(express.json());
 
-app.use((req, res, next) => {
-	res.header({ "Access-Control-Allow-Origin": "http://localhost:3000" });
-	res.header({
-		"Access-Control-Allow-Headers":
-			"Origin, X-Requested-With, Content-Type, Accept"
+if (NODE_ENV === "production") {
+	app.use(
+		cors({
+			methods: ["GET", "PUT", "POST", "DELETE"]
+		})
+	);
+} else {
+	app.use((req, res, next) => {
+		res.header({ "Access-Control-Allow-Origin": "http://localhost:3000" });
+		res.header({
+			"Access-Control-Allow-Headers":
+				"Origin, X-Requested-With, Content-Type, Accept"
+		});
+		res.header({
+			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+		});
+		next();
 	});
-	res.header({
-		"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-	});
-	next();
-});
+}
+app.use(express.json());
 
 /*
 ## Endpoints provided by Express Actuator
