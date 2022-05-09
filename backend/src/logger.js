@@ -1,7 +1,6 @@
 import pino from "pino";
-import expressPino from "express-pino-logger";
 
-const loggerOptions = pino({
+export default pino({
 	level: "info",
 	transport: {
 		target: "pino-pretty",
@@ -9,8 +8,4 @@ const loggerOptions = pino({
 			colorize: true
 		}
 	}
-});
-
-export default expressPino({
-	logger: loggerOptions
 });

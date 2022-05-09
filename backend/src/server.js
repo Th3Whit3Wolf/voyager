@@ -1,10 +1,14 @@
 import express from "express";
 import helmet from "helmet";
 import actuator from "express-actuator";
+import expressPino from "express-pino-logger";
 import routes from "./routes";
 import logger from "./logger";
 
 const app = express();
+const log = expressPino({
+	logger
+});
 
 app.use(helmet());
 app.use(
@@ -15,7 +19,7 @@ app.use(
 		customEndpoints: [] // array of custom endpoints
 	})
 );
-app.use(logger);
+app.use(log);
 app.use(express.json());
 
 app.use((req, res, next) => {
