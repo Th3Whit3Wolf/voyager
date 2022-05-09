@@ -1,18 +1,16 @@
 import Prisma from "@prisma/client";
-import { createRequire } from "module";
 import notifier from "node-notifier";
-import { URI, genData } from "./utils";
-
-const require = createRequire(import.meta.url);
-const units = require("./data/units.json");
-const roles = require("./data/roles.json");
-const users = require("./data/users.json");
-const tasks = require("./data/tasks.json");
-const taskApprovers = require("./data/task_approvers.json");
-const taskUsers = require("./data/task_users.json");
+import path from "path";
+import * as url from "url";
+import { URI, genUpdatedSeedData, genData } from "./utils";
 
 const { PrismaClient } = Prisma;
+const prismaIMG = path.join(
+	url.fileURLToPath(new URL(".", import.meta.url)),
+	"data/notification.png"
+);
 
+const { units, roles, users, tasks, taskUsers } = genUpdatedSeedData();
 const seedUnits = async prisma => {
 	await genData(prisma, "Unit", units, "name", [
 		{ display: "Commands", fieldName: "kind", fieldVal: "COMMAND" },
@@ -67,8 +65,7 @@ const seedRoles = async prisma => {
 };
 
 const seedUsers = async prisma => {
-	const allUsers = users.concat(taskApprovers);
-	await genData(prisma, "User", allUsers, "email", [
+	await genData(prisma, "User", users, "email", [
 		{
 			display: "Site Administrators",
 			fieldName: "roleID",
@@ -152,9 +149,12 @@ main(prisma)
 		console.error(`There was an error while seeding: ${err}`);
 		notifier.notify({
 			title: "Database Seeding Failed",
-			message: `Database seeding ${err}!`,
+			message: `Database seeding error!`,
 			sound: true, // Only Notification Center or Windows Toasters
-			wait: true // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+			wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+			icon: prismaIMG,
+			contentImage: prismaIMG,
+			open: `file://${prismaIMG}`
 		});
 		process.exit(1);
 	})
@@ -164,7 +164,10 @@ main(prisma)
 			title: "Database Seeding Success",
 			message: "Successful seeded units, roles, users, & tasks!",
 			sound: true, // Only Notification Center or Windows Toasters
-			wait: true // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+			wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+			icon: prismaIMG,
+			contentImage: prismaIMG,
+			open: `file://${prismaIMG}`
 		});
 		await prisma.$disconnect();
 	});
