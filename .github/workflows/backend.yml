@@ -103,4 +103,4 @@ jobs:
           heroku_app_name: "bsdi1-voyager-backend"
           heroku_email: "dkarrick2@gmail.com"
           appdir: "backend/"
-          usedocker: true
+          branch: main
