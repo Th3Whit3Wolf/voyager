@@ -1,9 +1,12 @@
 import express from "express";
+import helmet from "helmet";
 import routes from "./routes";
 
 const app = express();
 
 app.use(express.json());
+app.use(helmet());
+
 app.use((req, res, next) => {
 	res.header({ "Access-Control-Allow-Origin": "http://localhost:3000" });
 	res.header({
