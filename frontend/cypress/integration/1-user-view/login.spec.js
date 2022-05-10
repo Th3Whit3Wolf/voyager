@@ -36,4 +36,10 @@ describe("testing the Login View", () => {
 		cy.get("button").first().click();
 		cy.url().should("eq", "http://localhost:3000/");
 	});
+
+	it("does not let a User login with just a password", () => {
+		cy.get("input").last().type("1234567890qwertyuiop");
+		cy.get("button").first().click();
+		cy.url().should("eq", "http://localhost:3000/");
+	});
 });
