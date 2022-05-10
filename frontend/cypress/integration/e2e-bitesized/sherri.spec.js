@@ -18,6 +18,12 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("input").should("have.length", 3);
 	});
 
+	it("the test User Sherri Ortiz should have 0 Outprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("button").contains("Outprocessing Tasks").click();
+		cy.get("input").should("have.length", 0);
+	});
+
 	it("the inprocessing tasks should all not be complete", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		for (let i = 0; i < cy.get("input").length; i++) {
