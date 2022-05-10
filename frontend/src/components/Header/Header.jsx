@@ -45,7 +45,11 @@ const Header = () => {
 				{user?.firstName ? (
 					<div className={styles.header__title3}>
 						<p style={{ marginRight: "2rem" }}>Welcome, {user.firstName}!</p>{" "}
-						<Button variant="contained" onClick={handleClick}>
+						<Button
+							variant="contained"
+							onClick={handleClick}
+							data-testid="logoutButton"
+						>
 							Logout
 						</Button>
 					</div>

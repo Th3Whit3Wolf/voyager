@@ -46,7 +46,7 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 
 	it("clicking a logout button will end session and return to login", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.get("button").contains("Logout").click();
+		cy.get("[data-testid=logoutButton]").click();
 		cy.url().should("eq", "http://localhost:3000/");
 	});
 });

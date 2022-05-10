@@ -15,21 +15,21 @@ const UserSettings = ({ settings }) => {
 
 	return (
 		<Container>
-			<h2>{settings.firstName + " " + settings.lastName}</h2>
+			<h2>{settings?.firstName + " " + settings?.lastName}</h2>
 			<Card>
 				<CardHeader
 					title={
 						"Current Unit: " +
-						settings.assignedOfficeSymbol +
+						settings?.assignedOfficeSymbol +
 						" : " +
-						settings.assignedUnit.name
+						settings?.assignedUnit?.name
 					}
-					subheader={"Status: " + settings.status.replaceAll("_", " ")}
+					subheader={"Status: " + settings?.status?.replaceAll("_", " ")}
 				/>
 				<CardContent>
 					<Typography>Your Contact Information</Typography>
-					<Typography>DSN: {settings.dsn}</Typography>
-					<Typography>Email: {settings.email}</Typography>
+					<Typography>DSN: {settings?.dsn}</Typography>
+					<Typography>Email: {settings?.email}</Typography>
 				</CardContent>
 				<CardContent>
 					<Typography>Supervisor Contact Information</Typography>
@@ -41,17 +41,6 @@ const UserSettings = ({ settings }) => {
 					</Typography>
 					<Typography>DSN: {settings?.supervisor?.dsn}</Typography>
 					<Typography>Email: {settings?.supervisor?.email}</Typography>
-				</CardContent>
-			</Card>
-
-			<h3>Subordinates</h3>
-			<Card>
-				<CardContent>
-					{settings.subordinates.map(sub => (
-						<Typography key={sub.id}>
-							{sub.firstName + " " + sub.lastName}
-						</Typography>
-					))}
 				</CardContent>
 			</Card>
 		</Container>
