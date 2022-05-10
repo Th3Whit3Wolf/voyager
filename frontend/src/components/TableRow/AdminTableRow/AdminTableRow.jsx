@@ -91,17 +91,13 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 			.catch(err => console.log(err));
 	};
 
-	const updatePocID = e => {
-		setPocID(parseInt(e.target.value));
+	const handlePut = stringifiedJSON => {
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
-		var raw = JSON.stringify({
-			approverID: e.target.value
-		});
 		var requestOptions = {
 			method: "PUT",
 			headers: myHeaders,
-			body: raw,
+			body: stringifiedJSON,
 			redirect: "follow"
 		};
 		fetch(`http://localhost:8081/api/v1/tasks/${entry.id}`, requestOptions)
@@ -116,6 +112,14 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					.then(d => setUser(d.data[0]));
 			})
 			.catch(error => console.log("error", error));
+	};
+
+	const updatePocID = e => {
+		setPocID(parseInt(e.target.value));
+		var raw = JSON.stringify({
+			approverID: e.target.value
+		});
+		handlePut(raw);
 	};
 
 	return (
