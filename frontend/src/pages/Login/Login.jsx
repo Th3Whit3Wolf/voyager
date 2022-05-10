@@ -53,8 +53,18 @@ const Login = () => {
 				.get()
 				.then(response => response.json())
 				.then(d => setUser(d.data[0]))
+				.then(console.log(user))
 				.catch(err => console.log(err))
-				.then(() => navigate("/dashboard"))
+				.then(() => {
+					if (user?.role === undefined) {
+						alert(
+							"Invalid Authentication Details. Try again or Contact your POC."
+						);
+						navigate("/");
+					} else {
+						navigate("/dashboard");
+					}
+				})
 				.finally(setIsLoading(false));
 		}
 	};
@@ -131,7 +141,7 @@ const Login = () => {
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate USER 68 (Bridget Smitham) Username and Password
+					Click to Auto Populate USER XX (Bridget Smitham) --- AN INVALID USER
 				</Button>
 
 				<br />

@@ -65,12 +65,12 @@ const Dashboard = () => {
 	////////////////////////////////////////// USER VIEW ////////////////////////////////////
 
 	// State for Users
-	const [userData, setUserData] = useState(user.tasks);
+	const [userData, setUserData] = useState(user?.tasks);
 	const [userInData, setUserInData] = useState(
-		user.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
+		user?.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
 	);
 	const [userOutData, setUserOutData] = useState(
-		user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
+		user?.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
 	);
 
 	////////////////////////////////////////// ADMIN VIEW ////////////////////////////////////
@@ -80,16 +80,16 @@ const Dashboard = () => {
 	const [end, setEnd] = useState(7);
 	const [revision, setRevision] = useState(0);
 
-	const [data, setData] = useState(user.tasksAssigned);
+	const [data, setData] = useState(user?.tasksAssigned);
 
 	const [dataForAdminIn, setDataForAdminIn] = useState(
-		user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+		user?.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
 	);
 	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
 	const [adminInForLoop, setAdminInForLoop] = useState([]);
 
 	const [dataForAdminOut, setDataForAdminOut] = useState(
-		user.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
+		user?.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
 	);
 	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
@@ -105,19 +105,25 @@ const Dashboard = () => {
 
 	const retrieveTaskApproversThatShareAdminUnitID = () => {
 		const taskApproversApi = new UserAPI();
-		taskApproversApi
-			.roleID(6)
-			.assignedUnitID(user.assignedUnit.id)
-			.limit(100)
-			.get()
-			.then(response => response.json())
-			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data))
-			.catch(err => console.log(err));
+		if (user?.assignedUnit.id) {
+			taskApproversApi
+				.roleID(6)
+				.assignedUnitID(user.assignedUnit.id)
+				.limit(100)
+				.get()
+				.then(response => response.json())
+				.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data))
+				.catch(err => console.log(err));
+		}
 	};
 
 	const calculateTotalPaginationPages = () => {
-		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
-		setTotalAdminOutPages(parseInt(dataForAdminOut.length / (end - start)) + 1);
+		if (dataForAdminIn)
+			setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
+		if (dataForAdminOut)
+			setTotalAdminOutPages(
+				parseInt(dataForAdminOut.length / (end - start)) + 1
+			);
 	};
 
 	useEffect(retrieveTaskApproversThatShareAdminUnitID, []);
@@ -144,12 +150,12 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		setDataForAdminIn(
-			user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+			user?.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
 		);
 		setDataForAdminOut(
-			user.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
+			user?.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
 		);
-		setData(user.tasksAssigned);
+		setData(user?.tasksAssigned);
 		setRevision(revision + 1);
 	}, [user]);
 
@@ -169,7 +175,7 @@ const Dashboard = () => {
 
 	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
 
-	if (user.role.kind === "USER") {
+	if (user?.role.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -199,7 +205,7 @@ const Dashboard = () => {
 			</>
 		);
 	}
-	if (user.role.kind.includes("ADMIN")) {
+	if (user?.role.kind.includes("ADMIN")) {
 		return (
 			<>
 				<TabContext value={tabValue}>

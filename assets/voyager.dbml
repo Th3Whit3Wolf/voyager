@@ -54,15 +54,15 @@ Table users {
   sperationDate DateTime [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
-  assignedUnitID Int [not null, note: 'Define possible relationship with Unit
+  assignedUnitID Int [note: 'Define possible relationship with Unit
 Rename collumn to conform to SQL naming conventions']
-  assignedUnit Unit [not null]
+  assignedUnit Unit
   gainingUnitID Int [note: 'Define possible relationship with Unit
 Rename collumn to conform to SQL naming conventions']
   gainingUnit Unit
-  roleID Int [not null, note: 'Define possible relationship with Role
+  roleID Int [note: 'Define possible relationship with Role
 Rename collumn to conform to SQL naming conventions']
-  role Role [not null]
+  role Role
   supervisorID Int [note: 'Define possible relationship with User
 Rename collumn to conform to SQL naming conventions']
   supervisor User
@@ -86,9 +86,9 @@ Rename collumn to conform to SQL naming conventions']
   approverID Int [note: 'Define possible relationship with User
 Rename collumn to conform to SQL naming conventions']
   approver User
-  unitID Int [not null, note: 'Define possible relationship with User
+  unitID Int [note: 'Define possible relationship with User
 Rename collumn to conform to SQL naming conventions']
-  unit Unit [not null]
+  unit Unit
   assignedTasks TaskUser [not null, note: 'Many-to-Many relationships']
 }
 
@@ -142,26 +142,26 @@ Enum TaskProcessingKind {
   OUT_PROCESSING
 }
 
-Ref: Unit.parentID - Unit.id
+Ref: Unit.parentID - Unit.id [delete: Set Null]
 
-Ref: Unit.grandParentID - Unit.id
+Ref: Unit.grandParentID - Unit.id [delete: Set Null]
 
-Ref: Unit.installationID - Unit.id
+Ref: Unit.installationID - Unit.id [delete: Set Null]
 
-Ref: User.assignedUnitID > Unit.id
+Ref: User.assignedUnitID > Unit.id [delete: Set Null]
 
-Ref: User.gainingUnitID > Unit.id
+Ref: User.gainingUnitID > Unit.id [delete: Set Null]
 
-Ref: User.roleID > Role.id
+Ref: User.roleID > Role.id [delete: Set Null]
 
-Ref: User.supervisorID - User.id
+Ref: User.supervisorID - User.id [delete: Set Null]
 
-Ref: Task.assignerID > User.id
+Ref: Task.assignerID > User.id [delete: Set Null]
 
-Ref: Task.approverID > User.id
+Ref: Task.approverID > User.id [delete: Set Null]
 
-Ref: Task.unitID > Unit.id
+Ref: Task.unitID > Unit.id [delete: Set Null]
 
-Ref: TaskUser.taskID > Task.id
+Ref: TaskUser.taskID > Task.id [delete: Cascade]
 
-Ref: TaskUser.userID > User.id
+Ref: TaskUser.userID > User.id [delete: Cascade]
