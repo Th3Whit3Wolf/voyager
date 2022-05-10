@@ -11,9 +11,16 @@ describe("testing the Login View", () => {
 		cy.get("input").first().should("have.value", "");
 		cy.get("input").last().should("have.value", "");
 
+		// First input should be for an email
 		cy.get("input")
 			.first()
 			.invoke("attr", "placeholder")
 			.should("contain", "Enter Email");
+
+		// Second input should be for a password
+		cy.get("input")
+			.last()
+			.invoke("attr", "placeholder")
+			.should("contain", "Enter Password");
 	});
 });
