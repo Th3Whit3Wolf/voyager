@@ -267,6 +267,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 							//delete_handleClickOpen();
 							handleDelete(entry.id);
 						}}
+						id={`#deleteButton${entry.id}`}
 					>
 						<Delete />
 					</IconButton>
