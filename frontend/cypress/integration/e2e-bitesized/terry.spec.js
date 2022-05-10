@@ -32,4 +32,11 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("button").contains("Outprocessing Tasks").click();
 		cy.get("input").should("have.length", 6 * numberOfColumns);
 	});
+
+	it("clicking on the + button will create a new task in the Inprocessing Tasks view", () => {
+		const numberOfColumns = 6;
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("#addTaskButton").click();
+		cy.get("input").should("have.length", 4 * numberOfColumns);
+	});
 });

@@ -84,6 +84,7 @@ const AdminTable = ({ data, start, end, kind, approverList }) => {
 				size="large"
 				sx={{ width: "100%" }}
 				onClick={handleAddRow}
+				id="addTaskButton"
 			>
 				<AddCircle />
 			</IconButton>
