@@ -31,6 +31,11 @@ describe("testing the Login View", () => {
 			.should("have.text", "Common Access Card (CAC) Login");
 	});
 
+	it("does not let a User login with an empty email and password", () => {
+		cy.get("button").first().click();
+		cy.url().should("eq", "http://localhost:3000/");
+	});
+
 	it("does not let a User login with just an email", () => {
 		cy.get("input").first().type("bridget.smitham@spaceforce.mil");
 		cy.get("button").first().click();
