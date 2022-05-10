@@ -62,3 +62,16 @@ describe("testing the Login View", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 	});
 });
+
+describe("testing the Login View", () => {
+	beforeEach(() => {
+		cy.visit("http://localhost:3000/");
+	});
+
+	it("entering correct email and password logs a User to a Dashboard", () => {
+		cy.get("input").first().type("sherri.ortiz@spaceforce.mil");
+		cy.get("input").last().type("1234567890qwertyuiop");
+		cy.get("button").first().click();
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+	});
+});
