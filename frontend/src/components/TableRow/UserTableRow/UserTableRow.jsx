@@ -116,13 +116,6 @@ const UserTableRow = ({ entry }) => {
 				<TableCell>{entry.task.approver.dsn}</TableCell>
 				<TableCell>{entry.task.approver.email}</TableCell>
 				<TableCell>
-					{taskUpdated
-						? `${
-								taskUpdated.getUTCMonth() + 1
-						  } - ${taskUpdated.getUTCDate()} - ${taskUpdated.getUTCFullYear()}`
-						: null}
-				</TableCell>
-				<TableCell>
 					{entry.task.assigner.firstName} {entry.task.assigner.lastName}
 				</TableCell>
 				<TableCell onClick={() => handleClickOpen()}>*</TableCell>

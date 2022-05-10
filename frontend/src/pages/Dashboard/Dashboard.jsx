@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import UserContext from "../../context/UserContext";
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Our Components and Utilities
 import { UserAPI } from "../../services/api/UserAPI";
@@ -25,68 +27,94 @@ import {
 const Dashboard = () => {
 	const { user, setUser } = useContext(UserContext);
 
-	console.log(user);
-
 	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
 
+	////////////////////////////////////////// USER VIEW ////////////////////////////////////
+
 	// State for Users
-	const [userData, setUserData] = useState(user.tasks);
+	const [userData, setUserData] = useState(
+		user?.tasks.sort((a, b) => a.id - b.id)
+	);
 	const [userInData, setUserInData] = useState(
-		user.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
+		user?.tasks
+			.sort((a, b) => a.id - b.id)
+			.filter(entry => entry.task.kind === "IN_PROCESSING")
 	);
 	const [userOutData, setUserOutData] = useState(
-		user.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
+		user?.tasks
+			.sort((a, b) => a.id - b.id)
+			.filter(entry => entry.task.kind === "OUT_PROCESSING")
 	);
+
+	////////////////////////////////////////// ADMIN VIEW ////////////////////////////////////
 
 	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(7);
+	const [end, setEnd] = useState(20);
 	const [revision, setRevision] = useState(0);
 
-	const [data, setData] = useState(user.tasksAssigned);
+	const [data, setData] = useState(
+		user?.tasksAssigned.sort((a, b) => a.id - b.id)
+	);
 
 	const [dataForAdminIn, setDataForAdminIn] = useState(
-		user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+		user?.tasksAssigned
+			.sort((a, b) => a.id - b.id)
+			.filter(tasker => tasker.kind === "IN_PROCESSING")
 	);
 	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
 	const [adminInForLoop, setAdminInForLoop] = useState([]);
 
 	const [dataForAdminOut, setDataForAdminOut] = useState(
-		user.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
+		user?.tasksAssigned
+			.sort((a, b) => a.id - b.id)
+			.filter(tasker => tasker.kind === "OUT_PROCESSING")
 	);
 	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
 
 	const [adminTaskApprovers, setAdminTaskApprovers] = useState([]);
 
-	// START OF FUNCTIONS FOR USER VIEW
-
-	// none at this time
-
-	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
+	// START OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
 
 	// This useEffect is mostly for Admin View
 	// I wouldn't worry about builing it out for Users
 	// since the Users view has so few tasks compared
 	// to the Admin view and pagination isn't needed.
 
-	useEffect(() => {
+	const retrieveTaskApproversThatShareAdminUnitID = () => {
 		const taskApproversApi = new UserAPI();
-		taskApproversApi
-			.roleID(6)
-			.assignedUnitID(user.assignedUnit.id)
-			.limit(100)
-			.get()
-			.then(response => response.json())
-			.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data))
-			.catch(err => console.log(err));
-	}, []);
+		if (user?.assignedUnit.id) {
+			taskApproversApi
+				.roleID(6)
+				.assignedUnitID(user.assignedUnit.id)
+				.limit(100)
+				.get()
+				.then(response => response.json())
+				.then(taskapprovers => setAdminTaskApprovers(taskapprovers.data))
+				.catch(err => console.log(err));
+		}
+	};
 
-	useEffect(() => {
-		setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
-		setTotalAdminOutPages(parseInt(dataForAdminOut.length / (end - start)) + 1);
-	}, [user, dataForAdminIn, dataForAdminOut, start, end]);
+	const calculateTotalPaginationPages = () => {
+		if (dataForAdminIn)
+			setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
+		if (dataForAdminOut)
+			setTotalAdminOutPages(
+				parseInt(dataForAdminOut.length / (end - start)) + 1
+			);
+	};
+
+	useEffect(retrieveTaskApproversThatShareAdminUnitID, []);
+
+	useEffect(calculateTotalPaginationPages, [
+		user,
+		dataForAdminIn,
+		dataForAdminOut,
+		start,
+		end
+	]);
 
 	useEffect(() => {
 		let idxs = [];
@@ -102,12 +130,12 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		setDataForAdminIn(
-			user.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+			user?.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
 		);
 		setDataForAdminOut(
-			user.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
+			user?.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
 		);
-		setData(user.tasksAssigned);
+		setData(user?.tasksAssigned);
 		setRevision(revision + 1);
 	}, [user]);
 
@@ -125,15 +153,23 @@ const Dashboard = () => {
 		setRevision(revision + 1);
 	};
 
-	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 62 to 109
+	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
 
-	if (user.role.kind === "USER") {
+	if (user?.role.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab label="Inprocessing Tasks" value="1" />
-						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab
+							label="Inprocessing Tasks"
+							value="1"
+							data-testid="buttonInprocessingTasks"
+						/>
+						<Tab
+							label="Outprocessing Tasks"
+							value="2"
+							data-testid="buttonOutprocessingTasks"
+						/>
 						<Tab label="User Settings" value="3" />
 					</TabList>
 
@@ -153,18 +189,28 @@ const Dashboard = () => {
 						<UserSettings settings={user} />
 					</TabPanel>
 				</TabContext>
+				{/* <Doughnut data={donutData} /> */}
 			</>
 		);
 	}
-
-	if (user.role.kind.includes("ADMIN")) {
+	if (user?.role.kind.includes("ADMIN")) {
 		return (
 			<>
+				{/* <Doughnut data={donutData} />; */}
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab label="Inprocessing Tasks" value="1" />
-						<Tab label="Outprocessing Tasks" value="2" />
-						<Tab label="Modify Admins" value="3" />
+						<Tab
+							label="Inprocessing Tasks"
+							value="1"
+							data-testid="buttonInprocessingTasks"
+						/>
+						<Tab
+							label="Outprocessing Tasks"
+							value="2"
+							data-testid="buttonOutprocessingTasks"
+						/>
+						<Tab label="User Settings" value="3" />
+						<Tab label="Modify Admins" value="4" />
 					</TabList>
 
 					<TabPanel value="1">
@@ -172,6 +218,7 @@ const Dashboard = () => {
 							Displaying {dataForAdminIn.slice(start, end).length} of{" "}
 							{dataForAdminIn.length} Inprocessing Tasks.
 						</p>
+						Page:{" "}
 						{adminInForLoop.map(idx => (
 							<Button
 								sx={{ minWidth: "10px" }}
@@ -228,6 +275,10 @@ const Dashboard = () => {
 					</TabPanel>
 
 					<TabPanel value="3">
+						<UserSettings settings={user} />
+					</TabPanel>
+
+					<TabPanel value="4">
 						This is where I modify Admins.
 						<p>
 							This should show as a table view, where each row has a status and

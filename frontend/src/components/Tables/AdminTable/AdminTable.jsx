@@ -18,7 +18,7 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-const AdminTable = ({ data, start, end, kind }) => {
+const AdminTable = ({ data, start, end, kind, approverList }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
 	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
@@ -50,10 +50,9 @@ const AdminTable = ({ data, start, end, kind }) => {
 			.catch(err => console.log(err));
 	};
 
-	console.log(adminData);
 	return (
 		<>
-			<MuiTable size={"small"}>
+			<MuiTable size={"small"} id={`adminTable-${kind}`}>
 				<TableHead>
 					<TableRow>
 						<TableCell>Active Task</TableCell>
@@ -74,6 +73,7 @@ const AdminTable = ({ data, start, end, kind }) => {
 							key={idx}
 							entry={entry}
 							setMessage={setMessage}
+							approverList={approverList}
 						/>
 					))}
 				</TableBody>
@@ -84,6 +84,8 @@ const AdminTable = ({ data, start, end, kind }) => {
 				size="large"
 				sx={{ width: "100%" }}
 				onClick={handleAddRow}
+				id="addTaskButton"
+				data-testid="addTaskButton"
 			>
 				<AddCircle />
 			</IconButton>

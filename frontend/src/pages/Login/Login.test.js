@@ -42,7 +42,7 @@ test("issue45: Login displays a password field that accepts a password", async (
 test("issue46: Login displays a Login Button that takes username and password for authentication", async () => {
 	setup();
 	const loginButton = await screen.getByRole("button", {
-		name: /username\/password login/i
+		name: /email\/password login/i
 	});
 	expect(loginButton).toBeInTheDocument();
 });

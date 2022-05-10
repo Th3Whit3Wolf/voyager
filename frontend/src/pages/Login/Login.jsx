@@ -12,19 +12,18 @@ import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony
 
+import "../../../node_modules/react-vis/dist/style.css";
+import { XYPlot, LineSeries } from "react-vis";
+
 const Login = () => {
 	// STATE
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [splashOff, setSplashOff] = useState(false);
 
 	const { user, setUser } = useContext(UserContext);
-
-	useEffect(() => {
-		console.log(user);
-	}, [user]);
 
 	const navigate = useNavigate();
 
@@ -39,9 +38,9 @@ const Login = () => {
 	// Internal Functions
 
 	const handleUserPass = () => {
-		if (username == undefined || username.length === 0) {
-			setUsername("");
-			alert("Username Required");
+		if (email == undefined || email.length === 0) {
+			setEmail("");
+			alert("Email Required");
 		} else if (password == undefined || password.length === 0) {
 			setPassword("");
 			alert("Password Required");
@@ -49,12 +48,23 @@ const Login = () => {
 			setIsLoading(true);
 			const userapi = new UserAPI();
 			userapi
-				.email(`${username}`)
+				.email(`${email}`)
 				.get()
 				.then(response => response.json())
-				.then(d => setUser(d.data[0]))
+				.then(d => {
+					let tempUser = d.data[0];
+					setUser(tempUser);
+					if (tempUser === undefined) {
+						alert(
+							"Invalid Authentication Details. Try again or Contact your POC."
+						);
+						setEmail("");
+						setPassword("");
+					} else {
+						navigate("/dashboard");
+					}
+				})
 				.catch(err => console.log(err))
-				.then(() => navigate("/dashboard"))
 				.finally(setIsLoading(false));
 		}
 	};
@@ -69,8 +79,24 @@ const Login = () => {
 
 	if (isLoading) return <Loading />;
 
+	const dataReactVis = [
+		{ x: 0, y: 8 },
+		{ x: 1, y: 5 },
+		{ x: 2, y: 4 },
+		{ x: 3, y: 9 },
+		{ x: 4, y: 1 },
+		{ x: 5, y: 7 },
+		{ x: 6, y: 6 },
+		{ x: 7, y: 3 },
+		{ x: 8, y: 2 },
+		{ x: 9, y: 0 }
+	];
+
 	return (
 		<>
+			{/* <XYPlot height={300} width={300} style={{ backgroundColor: "white" }}>
+				<LineSeries data={dataReactVis} />
+			</XYPlot> */}
 			<Container maxWidth="sm">
 				<Stack
 					spacing={3}
@@ -88,8 +114,8 @@ const Login = () => {
 						label="Email"
 						variant="standard"
 						placeholder="Enter Email"
-						value={username}
-						onChange={e => setUsername(e.target.value)}
+						value={email}
+						onChange={e => setEmail(e.target.value)}
 						sx={{ minWidth: "300px" }}
 					/>
 					<TextField
@@ -103,7 +129,7 @@ const Login = () => {
 						sx={{ minWidth: "300px" }}
 					/>
 					<Button variant="contained" onClick={handleUserPass}>
-						Username/Password Login
+						Email/Password Login
 					</Button>
 					<br />
 					<br />
@@ -124,14 +150,40 @@ const Login = () => {
 				}}
 			>
 				<Button
-					color="secondary"
+					color="error"
 					variant="contained"
 					onClick={() => {
-						setUsername("bridget.smitham@spaceforce.mil");
+						setEmail("bridget.smitham@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate USER 68 (Bridget Smitham) Username and Password
+					Click to Auto Populate USER XX (Bridget Smitham) --- AN INVALID USER
+				</Button>
+
+				<br />
+
+				<Button
+					color="secondary"
+					variant="contained"
+					onClick={() => {
+						setEmail("sherri.ortiz@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate USER 68 (Sherry Ortiz) --- InProcessing
+				</Button>
+
+				<br />
+
+				<Button
+					color="secondary"
+					variant="contained"
+					onClick={() => {
+						setEmail("raquel.orn@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate USER 67 (Raquel Orn) --- OutProcessing
 				</Button>
 
 				<br />
@@ -140,11 +192,11 @@ const Login = () => {
 					color="warning"
 					variant="contained"
 					onClick={() => {
-						setUsername("morris.hirthe@spaceforce.mil");
+						setEmail("terry.schiller@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate ADMIN 66 (Morris Hirthe) Username and Password
+					Click to Auto Populate ADMIN 66 (Terry Schiller) -- Installation Admin
 				</Button>
 			</Stack>
 		</>

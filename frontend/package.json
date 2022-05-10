@@ -20,10 +20,13 @@
 		"@mui/icons-material": "^5.6.2",
 		"@mui/lab": "^5.0.0-alpha.78",
 		"@mui/material": "^5.6.2",
+		"chart.js": "^3.7.1",
 		"msw": "^0.39.2",
 		"react": "^18.0.0",
+		"react-chartjs-2": "^4.1.0",
 		"react-dom": "^18.0.0",
-		"react-router-dom": "^6.3.0"
+		"react-router-dom": "^6.3.0",
+		"react-vis": "^1.11.7"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.9",
@@ -188,6 +191,10 @@
 			"text",
 			"lcov"
 		],
-		"verbose": true
+		"verbose": true,
+		"transformIgnorePatterns": [
+			"<rootDir>/node_modules/d3/",
+			"<rootDir>/node_modules/d3-array/"
+		]
 	}
 }

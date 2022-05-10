@@ -1,5 +1,5 @@
 // React Base Functionality
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Services
 import { UserContext } from "../../../context";
@@ -29,33 +29,36 @@ import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
 // Start of the AdminTableRow React Hook
 
-const AdminTableRow = ({ entry, setMessage }) => {
-	// console.log("Entry", entry);
-	// console.log("Entry.kind", entry.kind);
-	// console.log("Entry.Approver", entry.approver);
-
+const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	const { user, setUser } = useContext(UserContext);
 
-	const [open, setOpen] = useState(false);
-	const [delete_open, delete_setOpen] = useState(false);
-	const [info_open, info_setOpen] = useState(false);
-
-	//AdminTableRow State
-	const [checked, setChecked] = useState(entry.isActive);
+	//START of AdminTableRow State
+	const [isActive, setIsActive] = useState(entry.isActive);
 	const [taskTitle, setTaskTitle] = useState(entry.title);
+	const [oldTitle, setOldTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
+	const [oldDesc, setOldDesc] = useState(entry.description);
+
 	const [pocName, setPocName] = useState(
-		`${entry.approver.firstName} ${entry.approver.lastName}`
+		entry.approver.firstName + " " + entry.approver.lastName
 	);
+	const [taskKind, setTaskKind] = useState(entry.kind);
 	const [pocID, setPocID] = useState(entry.approver.id);
 	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
 	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
+	// END of AdminTableRow State
+
+	// START of Dialog Boxes State -- see Jelani
+	const [open, setOpen] = useState(false);
+	const [delete_open, delete_setOpen] = useState(false);
+	const [info_open, info_setOpen] = useState(false);
+	// END of Dialog Boxes State
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
-		setChecked(event.target.checked);
+		setIsActive(event.target.vlue);
 	};
-	//end of switch code
+
 	const delete_handleClickOpen = () => {
 		delete_setOpen(true);
 	};
@@ -74,11 +77,10 @@ const AdminTableRow = ({ entry, setMessage }) => {
 	//const InfoDialogProps = { info_open, handleClose, entry };
 
 	const handleDelete = value => {
-		console.log(parseInt(value));
 		const deleteTask = new TaskAPI();
 		deleteTask
 			.delete(parseInt(value))
-			.then(response => console.log(response))
+			.then(response => response.text())
 			.then(setMessage(`Deleted Task Number ID: ${value}!`))
 			.then(() => {
 				const refreshUser = new UserAPI();
@@ -89,6 +91,53 @@ const AdminTableRow = ({ entry, setMessage }) => {
 					.then(d => setUser(d.data[0]));
 			})
 			.catch(err => console.log(err));
+	};
+
+	const handlePut = stringifiedJSON => {
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+		var requestOptions = {
+			method: "PUT",
+			headers: myHeaders,
+			body: stringifiedJSON,
+			redirect: "follow"
+		};
+		fetch(`http://localhost:8081/api/v1/tasks/${entry.id}`, requestOptions)
+			.then(response => response.json())
+			.then(result => console.log("PUT", result))
+			.then(() => {
+				const refreshUser = new UserAPI();
+				refreshUser
+					.email(user.email)
+					.get()
+					.then(response => response.json())
+					.then(d => setUser(d.data[0]));
+			})
+			.catch(error => console.log("error", error));
+	};
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			if (taskTitle !== oldTitle)
+				handlePut(JSON.stringify({ title: taskTitle }));
+		}, 1000);
+		return () => clearTimeout(timer);
+	}, [taskTitle]);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			if (taskDesc !== oldDesc)
+				handlePut(JSON.stringify({ description: taskDesc }));
+		}, 1000);
+		return () => clearTimeout(timer);
+	}, [taskDesc]);
+
+	const updatePocID = e => {
+		setPocID(parseInt(e.target.value));
+		var raw = JSON.stringify({
+			approverID: e.target.value
+		});
+		handlePut(raw);
 	};
 
 	return (
@@ -156,24 +205,38 @@ const AdminTableRow = ({ entry, setMessage }) => {
 			</Dialog> */}
 			<TableRow>
 				<TableCell>
-					<Switch checked={checked} onChange={handleChange} />
+					<Switch checked={isActive} name="isActive" />
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={taskTitle} sx={{ width: "30ch" }} />
+					<TextField
+						size="small"
+						value={taskTitle}
+						sx={{ width: "30ch" }}
+						onChange={e => setTaskTitle(e.target.value)}
+					/>
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
+					<TextField
+						size="small"
+						value={taskDesc}
+						sx={{ width: "45ch" }}
+						onChange={e => setTaskDesc(e.target.value)}
+					/>
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={pocName} sx={{ width: "25ch" }} />
-					{/* <Select value={pocID}>
+					<Select
+						value={pocID}
+						onChange={updatePocID}
+						sx={{ width: "20ch" }}
+						name="pocID"
+					>
 						{approverList.length > 0 &&
 							approverList.map((approver, idx) => (
 								<MenuItem key={idx} value={approver.id}>
 									{approver.firstName} {approver.lastName}
 								</MenuItem>
 							))}
-					</Select> */}
+					</Select>
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />
@@ -204,6 +267,7 @@ const AdminTableRow = ({ entry, setMessage }) => {
 							//delete_handleClickOpen();
 							handleDelete(entry.id);
 						}}
+						data-testid={`delete-button-${entry.id}`}
 					>
 						<Delete />
 					</IconButton>
