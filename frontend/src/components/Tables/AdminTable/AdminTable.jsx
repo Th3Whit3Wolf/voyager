@@ -52,7 +52,7 @@ const AdminTable = ({ data, start, end, kind, approverList }) => {
 
 	return (
 		<>
-			<MuiTable size={"small"}>
+			<MuiTable size={"small"} id={`#adminTable-${kind}`}>
 				<TableHead>
 					<TableRow>
 						<TableCell>Active Task</TableCell>

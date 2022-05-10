@@ -33,10 +33,17 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("input").should("have.length", 6 * numberOfColumns);
 	});
 
-	it("clicking on the + button will create a new task in the Inprocessing Tasks view", () => {
-		const numberOfColumns = 6;
+	let numberOfInprocessingRows = 0;
+	it("A Series of Checks: Step 1 - Get the Number of Inprocessing Tasks By Row Count", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.get("#addTaskButton").click();
-		cy.get("input").should("have.length", 4 * numberOfColumns);
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfInprocessingRows = len;
+				cy.log(
+					"Initial Inprocessing Admin Table Length: " + numberOfInprocessingRows
+				);
+			});
 	});
 });
