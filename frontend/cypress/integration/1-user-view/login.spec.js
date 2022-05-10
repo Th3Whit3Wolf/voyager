@@ -27,5 +27,8 @@ describe("testing the Login View", () => {
 	it("displays a User/Password Login Button and a CAC Login Button", () => {
 		// The input fields should be empty
 		cy.get("button").first().should("have.text", "Email/Password Login");
+		cy.get("button")
+			.eq(1)
+			.should("have.text", "Common Access Card (CAC) Login");
 	});
 });
