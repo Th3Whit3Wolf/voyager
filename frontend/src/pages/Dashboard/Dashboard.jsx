@@ -77,7 +77,7 @@ const Dashboard = () => {
 
 	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(7);
+	const [end, setEnd] = useState(20);
 	const [revision, setRevision] = useState(0);
 
 	const [data, setData] = useState(user?.tasksAssigned);
@@ -178,6 +178,7 @@ const Dashboard = () => {
 	if (user?.role.kind === "USER") {
 		return (
 			<>
+				{/* <Doughnut data={donutData} />; */}
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />
@@ -208,6 +209,7 @@ const Dashboard = () => {
 	if (user?.role.kind.includes("ADMIN")) {
 		return (
 			<>
+				{/* <Doughnut data={donutData} />; */}
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
 						<Tab label="Inprocessing Tasks" value="1" />

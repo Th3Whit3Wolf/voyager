@@ -56,7 +56,7 @@ const Login = () => {
 				.then(console.log(user))
 				.catch(err => console.log(err))
 				.then(() => {
-					if (user?.role === undefined) {
+					if (Object.keys(user).length === 0) {
 						alert(
 							"Invalid Authentication Details. Try again or Contact your POC."
 						);
@@ -134,7 +134,7 @@ const Login = () => {
 				}}
 			>
 				<Button
-					color="secondary"
+					color="error"
 					variant="contained"
 					onClick={() => {
 						setUsername("bridget.smitham@spaceforce.mil");
@@ -142,6 +142,19 @@ const Login = () => {
 					}}
 				>
 					Click to Auto Populate USER XX (Bridget Smitham) --- AN INVALID USER
+				</Button>
+
+				<br />
+
+				<Button
+					color="secondary"
+					variant="contained"
+					onClick={() => {
+						setUsername("terry.schiller@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate USER 66 (Terry Schiller) --- AN INVALID USER
 				</Button>
 
 				<br />

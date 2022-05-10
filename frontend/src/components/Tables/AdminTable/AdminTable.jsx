@@ -18,7 +18,7 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-const AdminTable = ({ data, start, end, kind }) => {
+const AdminTable = ({ data, start, end, kind, approverList }) => {
 	const [adminData, setAdminData] = useState(data.slice(start, end));
 	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
@@ -74,6 +74,7 @@ const AdminTable = ({ data, start, end, kind }) => {
 							key={idx}
 							entry={entry}
 							setMessage={setMessage}
+							approverList={approverList}
 						/>
 					))}
 				</TableBody>

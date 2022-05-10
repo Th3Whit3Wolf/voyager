@@ -29,7 +29,7 @@ import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
 
 // Start of the AdminTableRow React Hook
 
-const AdminTableRow = ({ entry, setMessage }) => {
+const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	const { user, setUser } = useContext(UserContext);
 
 	//START of AdminTableRow State
@@ -44,15 +44,17 @@ const AdminTableRow = ({ entry, setMessage }) => {
 	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
 	// END of AdminTableRow State
 
+	// START of Dialog Boxes State -- see Jelani
 	const [open, setOpen] = useState(false);
 	const [delete_open, delete_setOpen] = useState(false);
 	const [info_open, info_setOpen] = useState(false);
+	// END of Dialog Boxes State
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
 		setChecked(event.target.checked);
 	};
-	//end of switch code
+
 	const delete_handleClickOpen = () => {
 		delete_setOpen(true);
 	};
@@ -167,15 +169,14 @@ const AdminTableRow = ({ entry, setMessage }) => {
 					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={pocName} sx={{ width: "25ch" }} />
-					{/* <Select value={pocID}>
+					<Select value={pocID} onChange={e => setPocID(e.target.value)}>
 						{approverList.length > 0 &&
 							approverList.map((approver, idx) => (
 								<MenuItem key={idx} value={approver.id}>
 									{approver.firstName} {approver.lastName}
 								</MenuItem>
 							))}
-					</Select> */}
+					</Select>
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />
