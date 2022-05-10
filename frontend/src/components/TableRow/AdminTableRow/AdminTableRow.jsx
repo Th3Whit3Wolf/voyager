@@ -1,5 +1,5 @@
 // React Base Functionality
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Services
 import { UserContext } from "../../../context";
@@ -35,6 +35,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	//START of AdminTableRow State
 	const [isActive, setIsActive] = useState(entry.isActive);
 	const [taskTitle, setTaskTitle] = useState(entry.title);
+	const [newTitle, setNewTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [pocName, setPocName] = useState(
 		entry.approver.firstName + " " + entry.approver.lastName
@@ -113,6 +114,16 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 			})
 			.catch(error => console.log("error", error));
 	};
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			if (taskTitle !== newTitle)
+				handlePut(JSON.stringify({ title: taskTitle }));
+		}, 1000);
+		return () => clearTimeout(timer);
+	}, [taskTitle]);
+
+	//useEffect(handlePut(JSON.stringify({ title: taskTitle })), [changeTitle]);
 
 	const updatePocID = e => {
 		setPocID(parseInt(e.target.value));
