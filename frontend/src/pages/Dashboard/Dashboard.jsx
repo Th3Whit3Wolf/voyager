@@ -158,11 +158,18 @@ const Dashboard = () => {
 	if (user?.role.kind === "USER") {
 		return (
 			<>
-				{/* <Doughnut data={donutData} />; */}
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab label="Inprocessing Tasks" value="1" />
-						<Tab label="Outprocessing Tasks" value="2" />
+						<Tab
+							label="Inprocessing Tasks"
+							value="1"
+							data-testid="buttonInprocessingTasks"
+						/>
+						<Tab
+							label="Outprocessing Tasks"
+							value="2"
+							data-testid="buttonOutprocessingTasks"
+						/>
 						<Tab label="User Settings" value="3" />
 					</TabList>
 
@@ -192,7 +199,11 @@ const Dashboard = () => {
 				{/* <Doughnut data={donutData} />; */}
 				<TabContext value={tabValue}>
 					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab label="Inprocessing Tasks" value="1" />
+						<Tab
+							label="Inprocessing Tasks"
+							value="1"
+							data-testid="buttonInprocessingTasks"
+						/>
 						<Tab label="Outprocessing Tasks" value="2" />
 						<Tab label="User Settings" value="3" />
 						<Tab label="Modify Admins" value="4" />
