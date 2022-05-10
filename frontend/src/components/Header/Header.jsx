@@ -31,7 +31,7 @@ const Header = () => {
 				<h1 style={user?.role && { marginBottom: "-20px" }}>
 					<span className={styles.header__title2}>Voyager</span>
 				</h1>
-				{user?.role && <h4>{user.role.kind} VIEW</h4>}
+				{user?.role && <h4>{user.role.kind.replace("_", " ")} VIEW</h4>}
 			</div>
 
 			<Grid

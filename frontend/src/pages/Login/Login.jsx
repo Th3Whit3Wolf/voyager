@@ -12,9 +12,12 @@ import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony
 
+import "../../../node_modules/react-vis/dist/style.css";
+import { XYPlot, LineSeries } from "react-vis";
+
 const Login = () => {
 	// STATE
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +26,12 @@ const Login = () => {
 	const { user, setUser } = useContext(UserContext);
 
 	useEffect(() => {
-		console.log(user);
+		if (Object.keys(user).length === 0) {
+			alert("Invalid Authentication Details. Try again or Contact your POC.");
+		}
+		if (Object.keys(user).length !== 0) {
+			navigate("/dashboard");
+		}
 	}, [user]);
 
 	const navigate = useNavigate();
@@ -39,9 +47,9 @@ const Login = () => {
 	// Internal Functions
 
 	const handleUserPass = () => {
-		if (username == undefined || username.length === 0) {
-			setUsername("");
-			alert("Username Required");
+		if (email == undefined || email.length === 0) {
+			setEmail("");
+			alert("Email Required");
 		} else if (password == undefined || password.length === 0) {
 			setPassword("");
 			alert("Password Required");
@@ -49,22 +57,11 @@ const Login = () => {
 			setIsLoading(true);
 			const userapi = new UserAPI();
 			userapi
-				.email(`${username}`)
+				.email(`${email}`)
 				.get()
 				.then(response => response.json())
 				.then(d => setUser(d.data[0]))
-				.then(console.log(user))
 				.catch(err => console.log(err))
-				.then(() => {
-					if (Object.keys(user).length === 0) {
-						alert(
-							"Invalid Authentication Details. Try again or Contact your POC."
-						);
-						navigate("/");
-					} else {
-						navigate("/dashboard");
-					}
-				})
 				.finally(setIsLoading(false));
 		}
 	};
@@ -79,8 +76,24 @@ const Login = () => {
 
 	if (isLoading) return <Loading />;
 
+	const dataReactVis = [
+		{ x: 0, y: 8 },
+		{ x: 1, y: 5 },
+		{ x: 2, y: 4 },
+		{ x: 3, y: 9 },
+		{ x: 4, y: 1 },
+		{ x: 5, y: 7 },
+		{ x: 6, y: 6 },
+		{ x: 7, y: 3 },
+		{ x: 8, y: 2 },
+		{ x: 9, y: 0 }
+	];
+
 	return (
 		<>
+			<XYPlot height={300} width={300}>
+				<LineSeries data={dataReactVis} />
+			</XYPlot>
 			<Container maxWidth="sm">
 				<Stack
 					spacing={3}

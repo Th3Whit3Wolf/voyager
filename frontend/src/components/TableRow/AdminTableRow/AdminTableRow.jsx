@@ -169,7 +169,11 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
 				</TableCell>
 				<TableCell>
-					<Select value={pocID} onChange={e => setPocID(e.target.value)}>
+					<Select
+						value={pocID}
+						onChange={e => setPocID(e.target.value)}
+						sx={{ width: "20ch" }}
+					>
 						{approverList.length > 0 &&
 							approverList.map((approver, idx) => (
 								<MenuItem key={idx} value={approver.id}>

@@ -35,10 +35,12 @@ const UserSettings = ({ settings }) => {
 					<Typography>Supervisor Contact Information</Typography>
 					<Typography>
 						Name:{" "}
-						{settings.supervisor.firstName + " " + settings.supervisor.lastName}
+						{settings?.supervisor?.firstName +
+							" " +
+							settings?.supervisor?.lastName}
 					</Typography>
-					<Typography>DSN: {settings.supervisor.dsn}</Typography>
-					<Typography>Email: {settings.supervisor.email}</Typography>
+					<Typography>DSN: {settings?.supervisor?.dsn}</Typography>
+					<Typography>Email: {settings?.supervisor?.email}</Typography>
 				</CardContent>
 			</Card>
 
