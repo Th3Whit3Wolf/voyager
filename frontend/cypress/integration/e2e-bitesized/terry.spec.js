@@ -71,5 +71,10 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
 	});
 
+	it("A Series of Checks: Step 5 - Find Last Row, Get Delete Button, Click It", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("table").find("tr").last().find("button").eq(1).click();
+	});
+
 	// it("A Series of Checks: Step 3 - ")
 });
