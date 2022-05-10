@@ -25,10 +25,6 @@ const Login = () => {
 
 	const { user, setUser } = useContext(UserContext);
 
-	// useEffect(() => {
-
-	// }, [user]);
-
 	const navigate = useNavigate();
 
 	// EFFECTS
@@ -98,7 +94,7 @@ const Login = () => {
 
 	return (
 		<>
-			<XYPlot height={300} width={300}>
+			<XYPlot height={300} width={300} style={{ backgroundColor: "white" }}>
 				<LineSeries data={dataReactVis} />
 			</XYPlot>
 			<Container maxWidth="sm">

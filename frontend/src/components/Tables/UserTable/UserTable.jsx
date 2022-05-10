@@ -22,7 +22,6 @@ const UserTable = ({ alldata }) => {
 						<TableCell>POC Name</TableCell>
 						<TableCell>POC Phone</TableCell>
 						<TableCell>POC Email</TableCell>
-						<TableCell>Last POC Updated</TableCell>
 						<TableCell>Owner</TableCell>
 						<TableCell>More Info</TableCell>
 					</TableRow>
