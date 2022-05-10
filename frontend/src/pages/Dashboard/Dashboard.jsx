@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import UserContext from "../../context/UserContext";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 
 // Our Components and Utilities
 import { UserAPI } from "../../services/api/UserAPI";
@@ -31,46 +30,21 @@ const Dashboard = () => {
 	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
 
-	// Analytics
-
-	ChartJS.register(ArcElement, Tooltip, Legend);
-
-	const donutData = {
-		labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-		datasets: [
-			{
-				label: "# of Votes",
-				data: [12, 19, 3, 5, 2, 3],
-				backgroundColor: [
-					"rgba(255, 99, 132, 0.2)",
-					"rgba(54, 162, 235, 0.2)",
-					"rgba(255, 206, 86, 0.2)",
-					"rgba(75, 192, 192, 0.2)",
-					"rgba(153, 102, 255, 0.2)",
-					"rgba(255, 159, 64, 0.2)"
-				],
-				borderColor: [
-					"rgba(255, 99, 132, 1)",
-					"rgba(54, 162, 235, 1)",
-					"rgba(255, 206, 86, 1)",
-					"rgba(75, 192, 192, 1)",
-					"rgba(153, 102, 255, 1)",
-					"rgba(255, 159, 64, 1)"
-				],
-				borderWidth: 1
-			}
-		]
-	};
-
 	////////////////////////////////////////// USER VIEW ////////////////////////////////////
 
 	// State for Users
-	const [userData, setUserData] = useState(user?.tasks);
+	const [userData, setUserData] = useState(
+		user?.tasks.sort((a, b) => a.id - b.id)
+	);
 	const [userInData, setUserInData] = useState(
-		user?.tasks.filter(entry => entry.task.kind === "IN_PROCESSING")
+		user?.tasks
+			.sort((a, b) => a.id - b.id)
+			.filter(entry => entry.task.kind === "IN_PROCESSING")
 	);
 	const [userOutData, setUserOutData] = useState(
-		user?.tasks.filter(entry => entry.task.kind === "OUT_PROCESSING")
+		user?.tasks
+			.sort((a, b) => a.id - b.id)
+			.filter(entry => entry.task.kind === "OUT_PROCESSING")
 	);
 
 	////////////////////////////////////////// ADMIN VIEW ////////////////////////////////////
@@ -80,16 +54,22 @@ const Dashboard = () => {
 	const [end, setEnd] = useState(20);
 	const [revision, setRevision] = useState(0);
 
-	const [data, setData] = useState(user?.tasksAssigned);
+	const [data, setData] = useState(
+		user?.tasksAssigned.sort((a, b) => a.id - b.id)
+	);
 
 	const [dataForAdminIn, setDataForAdminIn] = useState(
-		user?.tasksAssigned.filter(tasker => tasker.kind === "IN_PROCESSING")
+		user?.tasksAssigned
+			.sort((a, b) => a.id - b.id)
+			.filter(tasker => tasker.kind === "IN_PROCESSING")
 	);
 	const [totalAdminInPages, setTotalAdminInPages] = useState(0);
 	const [adminInForLoop, setAdminInForLoop] = useState([]);
 
 	const [dataForAdminOut, setDataForAdminOut] = useState(
-		user?.tasksAssigned.filter(tasker => tasker.kind === "OUT_PROCESSING")
+		user?.tasksAssigned
+			.sort((a, b) => a.id - b.id)
+			.filter(tasker => tasker.kind === "OUT_PROCESSING")
 	);
 	const [totalAdminOutPages, setTotalAdminOutPages] = useState(0);
 	const [adminOutForLoop, setAdminOutForLoop] = useState([]);
