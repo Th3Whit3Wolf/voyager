@@ -76,5 +76,23 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("table").find("tr").last().find("button").eq(1).click();
 	});
 
+	it("A Series of Checks: Step 6 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfInprocessingRowsNew = len;
+				cy.log(
+					"Initial Inprocessing Admin Table Length: " +
+						numberOfInprocessingRowsNew
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 7 - There To Be the Initial Number of Rows Again", () => {
+		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(0);
+	});
+
 	// it("A Series of Checks: Step 3 - ")
 });
