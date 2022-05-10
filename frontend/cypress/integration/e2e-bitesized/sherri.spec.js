@@ -38,4 +38,10 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("input").first().click();
 		cy.get("input").first().should("have.value", "false");
 	});
+
+	it("clicking a logout button will end session and return to login", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("button").contains("Logout").click();
+		cy.url().should("eq", "http://localhost:3000/");
+	});
 });
