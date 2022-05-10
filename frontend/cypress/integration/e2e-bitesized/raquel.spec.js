@@ -38,7 +38,6 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 	it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("button").contains("Outprocessing Tasks").click();
-
 		cy.get("input").first().click();
 		cy.get("input").first().should("have.value", "true");
 		cy.get("input").first().click();

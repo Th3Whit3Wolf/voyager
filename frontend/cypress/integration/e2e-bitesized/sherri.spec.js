@@ -26,6 +26,8 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 
 	it("the inprocessing tasks should all not be complete", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("button").contains("Inprocessing Tasks").click();
+
 		for (let i = 0; i < cy.get("input").length; i++) {
 			cy.get("input").eq(i).should("have.value", "false");
 		}
@@ -33,6 +35,7 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 
 	it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("button").contains("Inprocessing Tasks").click();
 		cy.get("input").first().click();
 		cy.get("input").first().should("have.value", "true");
 		cy.get("input").first().click();
