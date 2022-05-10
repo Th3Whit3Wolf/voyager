@@ -16,4 +16,10 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("button").contains("Modify Admins").should("exist");
 	});
+
+	it("the test Admin Terry Schiller should have 3 Inprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("button").contains("Inprocessing Tasks").click();
+		cy.get("input").should("have.length", 3);
+	});
 });
