@@ -26,6 +26,6 @@ describe("testing the Login View", () => {
 
 	it("displays a User/Password Login Button and a CAC Login Button", () => {
 		// The input fields should be empty
-		cy.get("button").first().should("have.text", "EMAIL/PASSWORD LOGIN");
+		cy.get("button").first().should("have.text", "Email/Password Login");
 	});
 });

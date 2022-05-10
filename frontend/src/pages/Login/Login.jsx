@@ -129,7 +129,7 @@ const Login = () => {
 						sx={{ minWidth: "300px" }}
 					/>
 					<Button variant="contained" onClick={handleUserPass}>
-						Username/Password Login
+						Email/Password Login
 					</Button>
 					<br />
 					<br />
