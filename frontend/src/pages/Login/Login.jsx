@@ -25,14 +25,9 @@ const Login = () => {
 
 	const { user, setUser } = useContext(UserContext);
 
-	useEffect(() => {
-		if (Object.keys(user).length === 0) {
-			alert("Invalid Authentication Details. Try again or Contact your POC.");
-		}
-		if (Object.keys(user).length !== 0) {
-			navigate("/dashboard");
-		}
-	}, [user]);
+	// useEffect(() => {
+
+	// }, [user]);
 
 	const navigate = useNavigate();
 
@@ -60,7 +55,20 @@ const Login = () => {
 				.email(`${email}`)
 				.get()
 				.then(response => response.json())
-				.then(d => setUser(d.data[0]))
+				.then(d => {
+					let tempUser = d.data[0];
+					setUser(tempUser);
+					if (tempUser === undefined) {
+						alert(
+							"Invalid Authentication Details. Try again or Contact your POC."
+						);
+						setEmail("");
+						setPassword("");
+					}
+					if (Object.keys(tempUser).length !== 0) {
+						navigate("/dashboard");
+					}
+				})
 				.catch(err => console.log(err))
 				.finally(setIsLoading(false));
 		}
@@ -111,8 +119,8 @@ const Login = () => {
 						label="Email"
 						variant="standard"
 						placeholder="Enter Email"
-						value={username}
-						onChange={e => setUsername(e.target.value)}
+						value={email}
+						onChange={e => setEmail(e.target.value)}
 						sx={{ minWidth: "300px" }}
 					/>
 					<TextField
@@ -150,7 +158,7 @@ const Login = () => {
 					color="error"
 					variant="contained"
 					onClick={() => {
-						setUsername("bridget.smitham@spaceforce.mil");
+						setEmail("bridget.smitham@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
@@ -163,7 +171,7 @@ const Login = () => {
 					color="secondary"
 					variant="contained"
 					onClick={() => {
-						setUsername("terry.schiller@spaceforce.mil");
+						setEmail("terry.schiller@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
@@ -176,7 +184,7 @@ const Login = () => {
 					color="warning"
 					variant="contained"
 					onClick={() => {
-						setUsername("morris.hirthe@spaceforce.mil");
+						setEmail("morris.hirthe@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
