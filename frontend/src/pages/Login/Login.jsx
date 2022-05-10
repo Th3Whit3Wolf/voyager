@@ -64,8 +64,7 @@ const Login = () => {
 						);
 						setEmail("");
 						setPassword("");
-					}
-					if (Object.keys(tempUser).length !== 0) {
+					} else {
 						navigate("/dashboard");
 					}
 				})
