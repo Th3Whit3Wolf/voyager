@@ -1,0 +1,116 @@
+Project "Voyager" {
+  database_type: 'PostgreSQL'
+  Note: 'Better In/Out-Processing'
+}
+
+Table units {
+  id Int [pk, increment]
+  name String [unique, not null]
+  abbrev String
+  kind UnitKind [not null]
+  function String
+  location String
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [default: `now()`, not null]
+  parent_id Int
+  grand_parent_id Int
+  installation_id Int
+}
+
+Table roles {
+  id Int [pk, increment]
+  kind RoleKind [not null]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [default: `now()`, not null]
+}
+
+Table users {
+  id Int [pk, increment]
+  first_name String [not null, note: "User's first name"]
+  last_name String [not null, note: "User's last name"]
+  email String [unique, not null, note: "Should be `${firstName}.${lastName}.${previousSameName.length > 0? previousSameName.length + 1: ''}"]
+  dsn String
+  auth String [not null]
+  assigned_office_symbol String [not null]
+  gaining_office_symbol String
+  status ProcessingStatus [not null]
+  speration_date DateTime [not null]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [default: `now()`, not null]
+  assigned_unit_id Int
+  gaining_unit_id Int
+  role_id Int [not null]
+  supervisor_id Int
+}
+
+Table tasks {
+  id Int [pk, increment]
+  title String [not null]
+  description String [not null]
+  is_active Boolean [not null]
+  kind TaskProcessingKind [not null]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [default: `now()`, not null]
+  assigner_id Int
+  approver_id Int
+  unit_id Int
+}
+
+Table task_users {
+  id Int [pk, increment]
+  progress TaskStatus [not null]
+  completedAt DateTime
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [default: `now()`, not null]
+  task_id Int [not null]
+  user_id Int [not null]
+}
+
+Enum UnitKind {
+  INSTALLATION
+  COMMAND
+  DELTA
+  SQUADRON
+}
+
+Enum ProcessingStatus {
+  IN_PROCESSING
+  IN_TRANSIT
+  OUT_PROCESSING
+  OUT_PROCESSING_WITH_ORDERS
+  STATIONARY
+}
+
+Enum RoleKind {
+  USER
+  TASK_APPROVER
+  SITE_ADMIN
+  COMMAND_ADMIN
+  INSTALLATION_ADMIN
+  DELTA_ADMIN
+  SQUADRON_ADMIN
+}
+
+Enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+Enum TaskProcessingKind {
+  IN_PROCESSING
+  OUT_PROCESSING
+}
+
+Ref: units.parent_id - units.id [delete: Set Null]
+Ref: units.grand_parent_id - units.id [delete: Set Null]
+Ref: units.installation_id - units.id [delete: Set Null]
+Ref: users.assigned_unit_id > units.id [delete: Set Null]
+Ref: users.gaining_unit_id > units.id [delete: Set Null]
+Ref: users.role_id > roles.id [delete: Set Null]
+Ref: users.supervisor_id - users.id [delete: Set Null]
+Ref: tasks.assigner_id > users.id [delete: Set Null]
+Ref: tasks.approver_id > users.id [delete: Set Null]
+Ref: tasks.unit_id > units.id [delete: Set Null]
+Ref: task_users.task_id > tasks.id [delete: Cascade]
+Ref: task_users.user_id > users.id [delete: Cascade]
