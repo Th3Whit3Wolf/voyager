@@ -43,6 +43,7 @@ if (NODE_ENV === "production") {
 	});
 }
 app.use(express.json());
+app.use(express.static("src/static"));
 
 /*
 ## Endpoints provided by Express Actuator
