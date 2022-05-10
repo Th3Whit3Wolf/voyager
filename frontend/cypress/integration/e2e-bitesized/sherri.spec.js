@@ -8,6 +8,13 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 
 	it("the test User Sherri Ortiz should have 3 Inprocessing Tasks", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.get("checkbox").should("have.length", 3);
+		cy.get("input").should("have.length", 3);
+	});
+
+	it("the inprocessing tasks should all not be complete", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		for (let i = 0; i < cy.get("input").length; i++) {
+			cy.get("input").eq(i).should("have.value", "false");
+		}
 	});
 });
