@@ -35,8 +35,10 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	//START of AdminTableRow State
 	const [isActive, setIsActive] = useState(entry.isActive);
 	const [taskTitle, setTaskTitle] = useState(entry.title);
-	const [newTitle, setNewTitle] = useState(entry.title);
+	const [oldTitle, setOldTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
+	const [oldDesc, setOldDesc] = useState(entry.description);
+
 	const [pocName, setPocName] = useState(
 		entry.approver.firstName + " " + entry.approver.lastName
 	);
@@ -117,13 +119,19 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			if (taskTitle !== newTitle)
+			if (taskTitle !== oldTitle)
 				handlePut(JSON.stringify({ title: taskTitle }));
 		}, 1000);
 		return () => clearTimeout(timer);
 	}, [taskTitle]);
 
-	//useEffect(handlePut(JSON.stringify({ title: taskTitle })), [changeTitle]);
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			if (taskDesc !== oldDesc)
+				handlePut(JSON.stringify({ description: taskDesc }));
+		}, 1000);
+		return () => clearTimeout(timer);
+	}, [taskDesc]);
 
 	const updatePocID = e => {
 		setPocID(parseInt(e.target.value));
@@ -209,7 +217,12 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					/>
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={taskDesc} sx={{ width: "45ch" }} />
+					<TextField
+						size="small"
+						value={taskDesc}
+						sx={{ width: "45ch" }}
+						onChange={e => setTaskDesc(e.target.value)}
+					/>
 				</TableCell>
 				<TableCell>
 					<Select
