@@ -223,6 +223,7 @@ const Dashboard = () => {
 							Displaying {dataForAdminIn.slice(start, end).length} of{" "}
 							{dataForAdminIn.length} Inprocessing Tasks.
 						</p>
+						Page:{" "}
 						{adminInForLoop.map(idx => (
 							<Button
 								sx={{ minWidth: "10px" }}

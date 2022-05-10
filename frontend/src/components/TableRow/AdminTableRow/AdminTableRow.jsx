@@ -77,11 +77,10 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	//const InfoDialogProps = { info_open, handleClose, entry };
 
 	const handleDelete = value => {
-		console.log(parseInt(value));
 		const deleteTask = new TaskAPI();
 		deleteTask
 			.delete(parseInt(value))
-			.then(response => console.log(response))
+			.then(response => response.text())
 			.then(setMessage(`Deleted Task Number ID: ${value}!`))
 			.then(() => {
 				const refreshUser = new UserAPI();

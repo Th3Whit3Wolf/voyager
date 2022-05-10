@@ -50,7 +50,6 @@ const AdminTable = ({ data, start, end, kind, approverList }) => {
 			.catch(err => console.log(err));
 	};
 
-	console.log(adminData);
 	return (
 		<>
 			<MuiTable size={"small"}>

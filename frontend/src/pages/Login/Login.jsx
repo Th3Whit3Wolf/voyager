@@ -94,9 +94,9 @@ const Login = () => {
 
 	return (
 		<>
-			<XYPlot height={300} width={300} style={{ backgroundColor: "white" }}>
+			{/* <XYPlot height={300} width={300} style={{ backgroundColor: "white" }}>
 				<LineSeries data={dataReactVis} />
-			</XYPlot>
+			</XYPlot> */}
 			<Container maxWidth="sm">
 				<Stack
 					spacing={3}
