@@ -47,12 +47,29 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 			});
 	});
 
-	// let numberOfInprocessingRowsNew = 0;
+	it("A Series of Checks: Step 2 - Click on the Add New Row Button", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=addTaskButton]").click();
+	});
 
-	// it("A Series of Checks: Step 2 - Check that the + Button Adds a New Row", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[id=addTaskButton]").click();
-	// });
+	let numberOfInprocessingRowsNew = 0;
+	it("A Series of Checks: Step 3 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfInprocessingRowsNew = len;
+				cy.log(
+					"Initial Inprocessing Admin Table Length: " +
+						numberOfInprocessingRowsNew
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 4 - There Should Be One More Row than There had Been", () => {
+		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
+	});
 
 	// it("A Series of Checks: Step 3 - ")
 });
