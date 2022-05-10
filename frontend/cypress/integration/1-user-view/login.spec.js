@@ -23,4 +23,9 @@ describe("testing the Login View", () => {
 			.invoke("attr", "placeholder")
 			.should("contain", "Enter Password");
 	});
+
+	it("displays a User/Password Login Button and a CAC Login Button", () => {
+		// The input fields should be empty
+		cy.get("button").first().should("have.text", "EMAIL/PASSWORD LOGIN");
+	});
 });
