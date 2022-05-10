@@ -33,12 +33,13 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	const { user, setUser } = useContext(UserContext);
 
 	//START of AdminTableRow State
-	const [checked, setChecked] = useState(entry.isActive);
+	const [isActive, setIsActive] = useState(entry.isActive);
 	const [taskTitle, setTaskTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [pocName, setPocName] = useState(
-		`${entry.approver.firstName} ${entry.approver.lastName}`
+		entry.approver.firstName + " " + entry.approver.lastName
 	);
+	const [taskKind, setTaskKind] = useState(entry.kind);
 	const [pocID, setPocID] = useState(entry.approver.id);
 	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
 	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
@@ -52,7 +53,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 
 	const handleChange = event => {
 		console.log(`Switch has been changed id ${entry.id}`);
-		setChecked(event.target.checked);
+		setIsActive(event.target.vlue);
 	};
 
 	const delete_handleClickOpen = () => {
@@ -88,6 +89,33 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					.then(d => setUser(d.data[0]));
 			})
 			.catch(err => console.log(err));
+	};
+
+	const updatePocID = e => {
+		setPocID(parseInt(e.target.value));
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+		var raw = JSON.stringify({
+			approverID: e.target.value
+		});
+		var requestOptions = {
+			method: "PUT",
+			headers: myHeaders,
+			body: raw,
+			redirect: "follow"
+		};
+		fetch(`http://localhost:8081/api/v1/tasks/${entry.id}`, requestOptions)
+			.then(response => response.json())
+			.then(result => console.log("PUT", result))
+			.then(() => {
+				const refreshUser = new UserAPI();
+				refreshUser
+					.email(user.email)
+					.get()
+					.then(response => response.json())
+					.then(d => setUser(d.data[0]));
+			})
+			.catch(error => console.log("error", error));
 	};
 
 	return (
@@ -155,7 +183,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 			</Dialog> */}
 			<TableRow>
 				<TableCell>
-					<Switch checked={checked} onChange={handleChange} />
+					<Switch checked={isActive} name="isActive" />
 				</TableCell>
 				<TableCell>
 					<TextField
@@ -171,8 +199,9 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 				<TableCell>
 					<Select
 						value={pocID}
-						onChange={e => setPocID(e.target.value)}
+						onChange={updatePocID}
 						sx={{ width: "20ch" }}
+						name="pocID"
 					>
 						{approverList.length > 0 &&
 							approverList.map((approver, idx) => (
