@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Utilities
-import AdminTableRow from "../../TableRow/AdminTableRow/AdminTableRow";
-import { TaskAPI } from "../../../services/api/TaskAPI";
-import { UserAPI } from "../../../services/api/UserAPI";
-import { UserContext } from "../../../context";
+import { AdminTableRow } from "#components";
+import { TaskAPI, UserAPI } from "#services/api";
+import { UserContext } from "#context";
 
 // Third Party Imports
 import {

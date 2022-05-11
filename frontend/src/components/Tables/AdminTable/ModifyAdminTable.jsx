@@ -11,7 +11,7 @@ import {
 
 import { AddCircle } from "@mui/icons-material";
 
-import ModifyAdminRow from "../../TableRow/ModifyAdminRow/ModifyAdminRow";
+import { ModifyAdminRow } from "#components";
 
 const ModifyAdminTable = ({ data }) => {
 	const [adminData, setAdminData] = useState([]);

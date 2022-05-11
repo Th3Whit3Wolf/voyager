@@ -2,9 +2,9 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Services
-import { UserContext } from "../../../context";
-import { TaskAPI } from "../../../services/api/TaskAPI";
-import { UserAPI } from "../../../services/api/UserAPI";
+import { UserContext } from "#context";
+import { TaskAPI } from "#services/api/TaskAPI";
+import { UserAPI } from "#services/api/UserAPI";
 
 // MUI Components
 import {
@@ -24,8 +24,7 @@ import {
 } from "@mui/material";
 
 import { Delete, Star } from "@mui/icons-material";
-import DeleteDialog from "../../Dialog/DeleteDialog/DeleteDialog";
-import InfoDialog from "../../Dialog/InfoDialog/InfoDialog";
+import { DeleteDialog, InfoDialog } from "#components";
 
 // Start of the AdminTableRow React Hook
 

@@ -31,7 +31,6 @@ services:
     environment:
       - NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node'
       - NODE_ENV=development
-      - FIREBASE_SERVICE_ACCOUNT="${FIREBASE_SERVICE_ACCOUNT}"
       - FIREBASE_PATH="${FIREBASE_PATH}"
       - DATABASE_HOST=capstone-db
       - PG_USER=${PG_USER:-postgres}

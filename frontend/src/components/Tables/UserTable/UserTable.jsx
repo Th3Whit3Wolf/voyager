@@ -7,7 +7,7 @@ import {
 	TableRow,
 	TableCell
 } from "@mui/material";
-import UserTableRow from "../../TableRow/UserTableRow/UserTableRow";
+import { UserTableRow } from "#components";
 
 const UserTable = ({ alldata }) => {
 	return (

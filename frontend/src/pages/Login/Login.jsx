@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 
 // Our Components and Hooks
-import SplashScreen from "../../components/SplashScreen/SplashScreen";
-import UserContext from "../../context/UserContext";
-import Loading from "../../components/Loading/Loading";
+import { SplashScreen, Loading } from "#components";
+import { UserContext } from "#context";
 
-import { UserAPI } from "../../services/api/UserAPI";
+import { UserAPI } from "#services/api";
 
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";

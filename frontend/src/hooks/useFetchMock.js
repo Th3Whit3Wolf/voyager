@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { mockUserData } from "../data/mockUserData";
-import { mockAdminData } from "../data/mockAdminData";
+import { mockUserData, mockAdminData } from "#data";
 
 const useFetchMock = (mockUrlRoute, revision, delay) => {
 	const [data, setData] = useState([]);
