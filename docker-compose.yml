@@ -31,6 +31,7 @@ services:
     environment:
       - NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node'
       - NODE_ENV=development
+      - FIREBASE_PATH="${FIREBASE_PATH}"
       - DATABASE_HOST=capstone-db
       - PG_USER=${PG_USER:-postgres}
       - PG_HOST=${PG_HOST:-capstone-db}
@@ -41,6 +42,9 @@ services:
       - type: bind
         source: ./backend
         target: /app
+      - type: bind
+        source: ./.secrets
+        target: /secrets
     command: npm run dev
 
   capstone-db-viewer:

@@ -25,5 +25,7 @@ export {
 	AdminTable,
 	UserTable,
 	ModifyAdminTable,
-	UserSettings
+	UserSettings,
+	DeleteDialog,
+	InfoDialog
 };

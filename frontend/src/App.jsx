@@ -2,9 +2,9 @@
 import React, { createContext, useMemo, useState } from "react";
 
 // Our Components
-import Header from "./components/Header/Header";
-import { Login, Dashboard, PageNotFound } from "./pages";
-import { UserContext } from "./context";
+import { Header } from "#components";
+import { Login, Dashboard, PageNotFound } from "#pages";
+import { UserContext } from "#context";
 import getDesignTokens from "./theme.js";
 
 // Third Party Components

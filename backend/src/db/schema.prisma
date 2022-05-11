@@ -120,7 +120,7 @@ model User {
   assignedOfficeSymbol String           @db.VarChar(64)
   gainingOfficeSymbol  String?          @db.VarChar(64)
   status               ProcessingStatus
-  sperationDate        DateTime         @default(dbgenerated("NOW() + interval '4 year'")) @map("seperation_date")
+  separationDate       DateTime         @default(dbgenerated("NOW() + interval '4 year'")) @map("seperation_date")
   createdAt            DateTime         @default(now()) @map("created_at")
   updatedAt            DateTime         @default(now()) @updatedAt @map("updated_at")
 

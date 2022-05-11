@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "#context";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Our Components and Utilities
-import { UserAPI } from "../../services/api/UserAPI";
+import { UserAPI } from "#services/api/UserAPI";
 
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer, Button } from "@mui/material";
@@ -14,7 +14,7 @@ import {
 	AdminTable,
 	UserSettings,
 	ModifyAdminTable
-} from "../../components";
+} from "#components";
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided

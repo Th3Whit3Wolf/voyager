@@ -5,7 +5,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
 // Import Features to be Tested
-import App from "../../App.jsx";
+import App from "#App.jsx";
 import PageNotFound from "./PageNotFound.jsx";
 
 // Note that I use a setup function here instead of
