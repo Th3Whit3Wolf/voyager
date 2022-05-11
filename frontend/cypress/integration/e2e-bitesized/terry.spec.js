@@ -1,5 +1,3 @@
-import { NearbyOffTwoTone } from "@mui/icons-material";
-
 describe("testing the User Dashboard View -- Inprocessing", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
@@ -61,8 +59,7 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 			.then(len => {
 				numberOfInprocessingRowsNew = len;
 				cy.log(
-					"Initial Inprocessing Admin Table Length: " +
-						numberOfInprocessingRowsNew
+					"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
 				);
 			});
 	});
@@ -84,8 +81,7 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 			.then(len => {
 				numberOfInprocessingRowsNew = len;
 				cy.log(
-					"Initial Inprocessing Admin Table Length: " +
-						numberOfInprocessingRowsNew
+					"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
 				);
 			});
 	});
@@ -94,5 +90,75 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(0);
 	});
 
-	// it("A Series of Checks: Step 3 - ")
+	/// OUTPROCESSING
+	let numberOfOutprocessingRows = 0;
+	it("A Series of Checks: Step 1 - Get the Number of Outprocessing Tasks By Row Count", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfOutprocessingRows = len;
+				cy.log(
+					"Initial Outprocessing Admin Table Length: " +
+						numberOfOutprocessingRows
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 2 - Click on the Add New Row Button", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("[data-testid=addTaskButton]").click();
+	});
+
+	let numberOfOutprocessingRowsNew = 0;
+	it("A Series of Checks: Step 3 - Get the Number of Outprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfOutprocessingRowsNew = len;
+				cy.log(
+					"New Outprocessing Admin Table Length: " +
+						numberOfOutprocessingRowsNew
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 4 - There Should Be One More Row than There had Been", () => {
+		expect(numberOfOutprocessingRowsNew - numberOfOutprocessingRows).to.equal(
+			1
+		);
+	});
+
+	it("A Series of Checks: Step 5 - Find Last Row, Get Delete Button, Click It", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table").find("tr").last().find("button").eq(1).click();
+	});
+
+	it("A Series of Checks: Step 6 - Get the Number of Outprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfOutprocessingRowsNew = len;
+				cy.log(
+					"New Outprocessing Admin Table Length: " +
+						numberOfOutprocessingRowsNew
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 7 - Expect There To Be the Initial Number of Rows Again", () => {
+		expect(numberOfOutprocessingRowsNew - numberOfOutprocessingRows).to.equal(
+			0
+		);
+	});
 });

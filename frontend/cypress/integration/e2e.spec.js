@@ -139,17 +139,6 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("input").should("have.length", 6);
 	});
 
-	it("the outprocessing tasks should have at least 2 complete", () => {
-		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.get("[data-testid=buttonOutprocessingTasks]").click();
-		for (let i = 0; i < 4; i++) {
-			cy.get("input").eq(i).should("have.value", "false");
-		}
-		for (let i = 4; i < 6; i++) {
-			cy.get("input").eq(i).should("have.value", "true");
-		}
-	});
-
 	it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonOutprocessingTasks]").click();
@@ -166,7 +155,7 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 	});
 });
 
-describe("testing the User Dashboard View -- Inprocessing", () => {
+describe("testing the Admin Dashboard View -- Inprocessing", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
 		cy.get("input").first().type("terry.schiller@spaceforce.mil");
@@ -258,5 +247,85 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 
 	it("A Series of Checks: Step 7 - There To Be the Initial Number of Rows Again", () => {
 		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(0);
+	});
+});
+
+describe("testing the Admin Dashboard View -- Outprocessing", () => {
+	beforeEach(() => {
+		cy.visit("http://localhost:3000/");
+		cy.get("input").first().type("terry.schiller@spaceforce.mil");
+		cy.get("input").last().type("1234567890qwertyuiop");
+		cy.get("button").first().click();
+	});
+
+	let numberOfOutprocessingRows = 0;
+	it("A Series of Checks: Step 1 - Get the Number of Outprocessing Tasks By Row Count", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfOutprocessingRows = len;
+				cy.log(
+					"Initial Outprocessing Admin Table Length: " +
+						numberOfOutprocessingRows
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 2 - Click on the Add New Row Button", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("[data-testid=addTaskButton]").click();
+	});
+
+	let numberOfOutprocessingRowsNew = 0;
+	it("A Series of Checks: Step 3 - Get the Number of Outprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfOutprocessingRowsNew = len;
+				cy.log(
+					"New Outprocessing Admin Table Length: " +
+						numberOfOutprocessingRowsNew
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 4 - There Should Be One More Row than There had Been", () => {
+		expect(numberOfOutprocessingRowsNew - numberOfOutprocessingRows).to.equal(
+			1
+		);
+	});
+
+	it("A Series of Checks: Step 5 - Find Last Row, Get Delete Button, Click It", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table").find("tr").last().find("button").eq(1).click();
+	});
+
+	it("A Series of Checks: Step 6 - Get the Number of Outprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfOutprocessingRowsNew = len;
+				cy.log(
+					"New Outprocessing Admin Table Length: " +
+						numberOfOutprocessingRowsNew
+				);
+			});
+	});
+
+	it("A Series of Checks: Step 7 - Expect There To Be the Initial Number of Rows Again", () => {
+		expect(numberOfOutprocessingRowsNew - numberOfOutprocessingRows).to.equal(
+			0
+		);
 	});
 });
