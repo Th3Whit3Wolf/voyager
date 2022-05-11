@@ -155,7 +155,7 @@ const Dashboard = () => {
 
 	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
 
-	if (user?.role.kind === "USER") {
+	if (user?.role?.kind === "USER") {
 		return (
 			<>
 				<TabContext value={tabValue}>
@@ -193,7 +193,7 @@ const Dashboard = () => {
 			</>
 		);
 	}
-	if (user?.role.kind.includes("ADMIN")) {
+	if (user?.role?.kind?.includes("ADMIN")) {
 		return (
 			<>
 				{/* <Doughnut data={donutData} />; */}
