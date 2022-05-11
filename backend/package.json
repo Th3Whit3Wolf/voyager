@@ -61,12 +61,33 @@
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-import-resolver-alias": "^1.1.2",
+		"eslint-import-resolver-babel-module": "^5.3.1",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"jest": "^27.5.1",
 		"prettier": "^2.6.2",
 		"prettier-eslint": "^14.0.2",
 		"supertest": "^6.2.2"
+	},
+	"babel": {
+		"plugins": [
+			[
+				"module-resolver",
+				{
+					"root": [
+						"src"
+					],
+					"alias": {
+						"#config": "./src/config/index.js",
+						"#controllers": "./src/controllers",
+						"#middlewares": "./src/middlewares",
+						"#routes": "./src/routes",
+						"#server": "./src/server.js",
+						"#Controller": "./src/controllers/Controller/index.js"
+					}
+				}
+			]
+		]
 	},
 	"jest": {
 		"coveragePathIgnorePatterns": [
@@ -91,14 +112,16 @@
 		},
 		"extends": [
 			"airbnb-base",
-			"prettier"
+			"prettier",
+			"plugin:import/recommended"
 		],
 		"parserOptions": {
 			"ecmaVersion": "latest",
 			"sourceType": "module"
 		},
 		"plugins": [
-			"prettier"
+			"prettier",
+			"import"
 		],
 		"rules": {
 			"prettier/prettier": [
@@ -148,33 +171,14 @@
 			"public"
 		],
 		"settings": {
+			"import/extensions": [
+				".js",
+				".jsx"
+			],
 			"import/resolver": {
-				"alias": [
-					[
-						"#config",
-						"./src/config/index.js"
-					],
-					[
-						"#controllers",
-						"./src/controllers"
-					],
-					[
-						"#middlewares",
-						"./src/middlewares"
-					],
-					[
-						"#routes",
-						"./src/routes"
-					],
-					[
-						"#server",
-						"./src/server.js"
-					],
-					[
-						"#Controller",
-						"./src/controllers/Controller/index.js"
-					]
-				]
+				"babel-module": {
+					"allowExistingDirectories": true
+				}
 			}
 		}
 	},

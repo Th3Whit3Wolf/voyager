@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "#config": ["./backend/src/config/index.js"],
+      "#controllers": ["./backend/src/controllers/index.js"],
+      "#middlewares": ["./backend/src/middlewares/index.js"],
+      "#routes": ["./backend/src/routes/index.js"],
+      "#server": ["./backend/src/server.js"],
+      "#Controller": ["./backend/src/controllers/Controller/index.js"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
