@@ -4,7 +4,6 @@ const apiError = (fnName, expected, received) => {
 };
 const endpoint = "roles";
 const validQueryParameters = {
-	id: { type: "number" },
 	kind: {
 		type: "enum",
 		variants: [
@@ -22,23 +21,13 @@ const validQueryParameters = {
 	},
 	updatedAt: {
 		type: "Date"
-	},
-	limit: { type: "number" },
-	page: { type: "number" }
+	}
 };
 
 class RoleAPI extends APIQueryBuilder {
 	constructor() {
 		super(endpoint, validQueryParameters);
 	}
-	id = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "id", value });
-			return this;
-		} else {
-			return apiError("id", "number", value);
-		}
-	};
 
 	kind = value => {
 		if (
@@ -86,24 +75,6 @@ class RoleAPI extends APIQueryBuilder {
 			return this;
 		} else {
 			return apiError("updatedAt", "string", value);
-		}
-	};
-
-	limit = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "limit", value });
-			return this;
-		} else {
-			return apiError("limit", "number", value);
-		}
-	};
-
-	page = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "page", value });
-			return this;
-		} else {
-			return apiError("page", "number", value);
 		}
 	};
 }

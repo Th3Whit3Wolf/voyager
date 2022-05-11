@@ -4,7 +4,6 @@ const apiError = (fnName, expected, received) => {
 };
 const endpoint = "units";
 const validQueryParameters = {
-	id: { type: "number" },
 	name: { type: "string" },
 	abbrev: { type: "string" },
 	kind: {
@@ -21,24 +20,13 @@ const validQueryParameters = {
 	},
 	parentID: { type: "number" },
 	grandParentID: { type: "number" },
-	installationID: { type: "number" },
-	limit: { type: "number" },
-	page: { type: "number" }
+	installationID: { type: "number" }
 };
 
 class UnitAPI extends APIQueryBuilder {
 	constructor() {
 		super(endpoint, validQueryParameters);
 	}
-
-	id = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "id", value });
-			return this;
-		} else {
-			return apiError("id", "number", value);
-		}
-	};
 
 	name = value => {
 		if (typeof value === "string") {
@@ -131,24 +119,6 @@ class UnitAPI extends APIQueryBuilder {
 			return this;
 		} else {
 			return apiError("installationID", "number", value);
-		}
-	};
-
-	limit = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "limit", value });
-			return this;
-		} else {
-			return apiError("limit", "number", value);
-		}
-	};
-
-	page = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "page", value });
-			return this;
-		} else {
-			return apiError("page", "number", value);
 		}
 	};
 }

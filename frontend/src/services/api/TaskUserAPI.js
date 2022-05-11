@@ -4,7 +4,6 @@ const apiError = (fnName, expected, received) => {
 };
 const endpoint = "users/tasks";
 const validQueryParameters = {
-	id: { type: "number" },
 	progress: {
 		type: "enum",
 		variants: ["NOT_STARTED", "IN_PROGRESS", "COMPLETED"]
@@ -19,23 +18,13 @@ const validQueryParameters = {
 		type: "Date"
 	},
 	taskID: { type: "number" },
-	userID: { type: "number" },
-	limit: { type: "number" },
-	page: { type: "number" }
+	userID: { type: "number" }
 };
 
 class TaskUserAPI extends APIQueryBuilder {
 	constructor() {
 		super(endpoint, validQueryParameters);
 	}
-	id = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "id", value });
-			return this;
-		} else {
-			return apiError("id", "number", value);
-		}
-	};
 
 	progress = value => {
 		if (["NOT_STARTED", "IN_PROGRESS", "COMPLETED"].includes(value)) {
@@ -92,24 +81,6 @@ class TaskUserAPI extends APIQueryBuilder {
 			return this;
 		} else {
 			return apiError("userID", "number", value);
-		}
-	};
-
-	limit = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "limit", value });
-			return this;
-		} else {
-			return apiError("limit", "number", value);
-		}
-	};
-
-	page = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "page", value });
-			return this;
-		} else {
-			return apiError("page", "number", value);
 		}
 	};
 }

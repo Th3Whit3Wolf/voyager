@@ -4,7 +4,6 @@ const apiError = (fnName, expected, received) => {
 };
 const endpoint = "users";
 const validQueryParameters = {
-	id: { type: "number" },
 	firstName: { type: "string" },
 	lastName: { type: "string" },
 	email: { type: "string" },
@@ -33,23 +32,13 @@ const validQueryParameters = {
 	assignedUnitID: { type: "number" },
 	gainingUnitID: { type: "number" },
 	roleID: { type: "number" },
-	supervisorID: { type: "number" },
-	limit: { type: "number" },
-	page: { type: "number" }
+	supervisorID: { type: "number" }
 };
 
 class UserAPI extends APIQueryBuilder {
 	constructor() {
 		super(endpoint, validQueryParameters);
 	}
-	id = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "id", value });
-			return this;
-		} else {
-			return apiError("id", "number", value);
-		}
-	};
 
 	firstName = value => {
 		if (typeof value === "string") {
@@ -191,24 +180,6 @@ class UserAPI extends APIQueryBuilder {
 			return this;
 		} else {
 			return apiError("supervisorID", "number", value);
-		}
-	};
-
-	limit = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "limit", value });
-			return this;
-		} else {
-			return apiError("limit", "number", value);
-		}
-	};
-
-	page = value => {
-		if (typeof value === "number") {
-			this.addQueryParameter({ name: "page", value });
-			return this;
-		} else {
-			return apiError("page", "number", value);
 		}
 	};
 }

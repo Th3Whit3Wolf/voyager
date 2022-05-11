@@ -12,6 +12,10 @@ describe("TaskAPI", () => {
 		expect(api.toURL()).toBe(baseURL);
 	});
 
+	test(".baseURL()", () => {
+		expect(api.baseURL()).toBe(baseURL);
+	});
+
 	test(".id(1)", () => {
 		api.id(1);
 		expect(api.toURL()).toBe(`${baseURL}?id=1`);
