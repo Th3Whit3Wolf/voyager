@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { Controller, db, handleDatabaseWrite } from "./Controller";
+import { Controller, db, handleDatabaseWrite } from "#Controller";
 
 const TaskController = new Controller("Task", {
 	searchAttributes: {

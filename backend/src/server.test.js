@@ -2,7 +2,7 @@
 import request from "supertest";
 import pino from "pino";
 import pretty from "pino-pretty";
-import app from "./server";
+import app from "#server";
 
 const logger = pino(pretty({ colorize: true, sync: true }));
 

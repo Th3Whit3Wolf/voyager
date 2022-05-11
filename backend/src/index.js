@@ -1,8 +1,8 @@
 import { createTerminus } from "@godaddy/terminus";
 import http from "http";
-import app from "./server";
-import logger from "./logger";
-import { db } from "./controllers/Controller";
+import { db } from "#Controller";
+import app from "#server";
+import { logger } from "#config";
 
 const port = process.env.PORT || 8081;
 const NODE_ENV = process.env.NODE_ENV || "development";

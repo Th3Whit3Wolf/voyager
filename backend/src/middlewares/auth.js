@@ -1,4 +1,4 @@
-import admin from "../firebase";
+import admin from "../config/firebase";
 
 const getAuthToken = (req, res, next) => {
 	if (

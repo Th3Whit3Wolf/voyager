@@ -1,4 +1,4 @@
-import { Controller } from "./Controller";
+import { Controller } from "#Controller";
 
 const TaskUserController = new Controller("TaskUser", {
 	searchAttributes: {

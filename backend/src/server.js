@@ -3,8 +3,8 @@ import helmet from "helmet";
 import actuator from "express-actuator";
 import expressPino from "express-pino-logger";
 import cors from "cors";
-import routes from "./routes";
-import logger from "./logger";
+import routes from "#routes";
+import { logger } from "#config";
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const app = express();
