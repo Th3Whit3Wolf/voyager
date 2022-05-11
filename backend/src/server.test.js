@@ -80,12 +80,12 @@ const testData = {
 					validate: {
 						id: 1,
 						task: {
-							id: 1
+							id: 404
 						},
 						user: {
 							id: 1
 						},
-						progress: "NOT_STARTED"
+						progress: "IN_PROGRESS"
 					}
 				}
 			]
@@ -115,6 +115,7 @@ const testData = {
 					name: "Space Delta 13 Detachment 3",
 					abbrev: "DEL 13 DET 3",
 					kind: "SQUADRON",
+					img: "/img/SpOC_Template.png",
 					function: "To be made up",
 					location: null,
 					parentID: 36,
@@ -128,7 +129,6 @@ const testData = {
 					lastName: "Anderson",
 					email: "tom.anderson@myspace.com",
 					dsn: "(312) 867-5309",
-					auth: "",
 					status: "STATIONARY",
 					assignedUnitID: 1,
 					assignedOfficeSymbol: "MSOS",
