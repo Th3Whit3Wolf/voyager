@@ -2,7 +2,16 @@ import Prisma from "@prisma/client";
 import notifier from "node-notifier";
 import path from "path";
 import * as url from "url";
-import { URI, genUpdatedSeedData, genData } from "./utils";
+import { createRequire } from "module";
+
+import { URI, genData } from "./utils";
+
+const require = createRequire(import.meta.url);
+const units = require("./data/units.json");
+const roles = require("./data/roles.json");
+const users = require("./data/users.json");
+const tasks = require("./data/tasks.json");
+const taskUsers = require("./data/task_users.json");
 
 const { PrismaClient } = Prisma;
 const prismaIMG = path.join(
@@ -10,9 +19,8 @@ const prismaIMG = path.join(
 	"data/notification.png"
 );
 
-const { units, roles, users, tasks, taskUsers } = genUpdatedSeedData();
 const seedUnits = async prisma => {
-	await genData(prisma, "Unit", units, "name", [
+	await genData(prisma, "Unit", units, [
 		{ display: "Commands", fieldName: "kind", fieldVal: "COMMAND" },
 		{ display: "Deltas", fieldName: "kind", fieldVal: "DELTA" },
 		{
@@ -25,7 +33,7 @@ const seedUnits = async prisma => {
 };
 
 const seedRoles = async prisma => {
-	await genData(prisma, "Role", roles, "kind", [
+	await genData(prisma, "Role", roles, [
 		{
 			display: "Site Administrators",
 			fieldName: "kind",
@@ -65,7 +73,7 @@ const seedRoles = async prisma => {
 };
 
 const seedUsers = async prisma => {
-	await genData(prisma, "User", users, "email", [
+	await genData(prisma, "User", users, [
 		{
 			display: "Site Administrators",
 			fieldName: "roleID",
@@ -105,7 +113,7 @@ const seedUsers = async prisma => {
 };
 
 const seedTasks = async prisma => {
-	await genData(prisma, "Task", tasks, "approverID", [
+	await genData(prisma, "Task", tasks, [
 		{
 			display: "In Processing",
 			fieldName: "kind",
@@ -120,18 +128,43 @@ const seedTasks = async prisma => {
 };
 
 const seedTaskUsers = async prisma => {
-	await genData(prisma, "TaskUser", taskUsers, "id", []);
+	await genData(prisma, "TaskUser", taskUsers, []);
 };
 
 const main = async prisma => {
-	const seeds = [seedUnits, seedRoles, seedUsers, seedTasks, seedTaskUsers];
+	const seeds = [
+		{ name: "Units", data: seedUnits },
+		{ name: "Roles", data: seedRoles },
+		{ name: "Users", data: seedUsers },
+		{ name: "Tasks", data: seedTasks },
+		{ name: "TaskUsers", data: seedTaskUsers }
+	];
 	// eslint-disable-next-line no-restricted-syntax
 	for (const seed of seeds) {
 		try {
 			// eslint-disable-next-line no-await-in-loop
-			await seed(prisma);
+			await seed.data(prisma);
+
+			notifier.notify({
+				title: "Prisma Seed Succesful",
+				message: `Successful seeded ${seed.name}`,
+				sound: true, // Only Notification Center or Windows Toasters
+				wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+				icon: prismaIMG,
+				contentImage: prismaIMG,
+				open: `file://${prismaIMG}`
+			});
 		} catch (err) {
 			console.error(err);
+			notifier.notify({
+				title: "Prisma Seed Failed",
+				message: `Failed seeding for ${seed.name}!`,
+				sound: true, // Only Notification Center or Windows Toasters
+				wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+				icon: prismaIMG,
+				contentImage: prismaIMG,
+				open: `file://${prismaIMG}`
+			});
 		}
 	}
 };
