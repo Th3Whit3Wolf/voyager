@@ -144,27 +144,8 @@ const main = async prisma => {
 		try {
 			// eslint-disable-next-line no-await-in-loop
 			await seed.data(prisma);
-
-			notifier.notify({
-				title: "Prisma Seed Succesful",
-				message: `Successful seeded ${seed.name}`,
-				sound: true, // Only Notification Center or Windows Toasters
-				wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
-				icon: prismaIMG,
-				contentImage: prismaIMG,
-				open: `file://${prismaIMG}`
-			});
 		} catch (err) {
-			console.error(err);
-			notifier.notify({
-				title: "Prisma Seed Failed",
-				message: `Failed seeding for ${seed.name}!`,
-				sound: true, // Only Notification Center or Windows Toasters
-				wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
-				icon: prismaIMG,
-				contentImage: prismaIMG,
-				open: `file://${prismaIMG}`
-			});
+			console.error(`Error occured while seeding ${seed.name}: ${err}`);
 		}
 	}
 };
