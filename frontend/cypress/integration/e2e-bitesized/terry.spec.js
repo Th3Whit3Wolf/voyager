@@ -102,7 +102,7 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 				numberOfOutprocessingRows = len;
 				cy.log(
 					"Initial Outprocessing Admin Table Length: " +
-						numberOfInprocessingRows
+						numberOfOutprocessingRows
 				);
 			});
 	});
