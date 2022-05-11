@@ -21,7 +21,7 @@ const validQueryParameters = {
 			"STATIONARY"
 		]
 	},
-	sperationDate: {
+	separationDate: {
 		type: "Date"
 	},
 	createdAt: {

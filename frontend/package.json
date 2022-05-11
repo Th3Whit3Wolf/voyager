@@ -170,6 +170,7 @@
 			"\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/.jest/fileTransform.js",
 			"\\.(css|sass|scss)$": "<rootDir>/.jest/cssTransform.js",
 			"#assets": "<rootDir>/src/assets",
+			"#App.jsx": "<rootDir>/src/App.jsx",
 			"#components": "<rootDir>/src/components",
 			"#context": "<rootDir>/src/context",
 			"#data": "<rootDir>/src/data",
