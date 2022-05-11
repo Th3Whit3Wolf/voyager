@@ -1,30 +1,30 @@
 [
-  {
-    "kind": "SITE_ADMIN",
-    "createdAt": "2019-12-19T00:00:00.000Z"
-  },
-  {
-    "kind": "COMMAND_ADMIN",
-    "createdAt": "2019-12-19T00:00:00.000Z"
-  },
-  {
-    "kind": "DELTA_ADMIN",
-    "createdAt": "2019-12-19T00:00:00.000Z"
-  },
-  {
-    "kind": "INSTALLATION_ADMIN",
-    "createdAt": "2019-12-19T00:00:00.000Z"
-  },
-  {
-    "kind": "SQUADRON_ADMIN",
-    "createdAt": "2019-12-19T00:00:00.000Z"
-  },
-  {
-    "kind": "TASK_APPROVER",
-    "createdAt": "2019-12-19T00:00:00.000Z"
-  },
-  {
-    "kind": "USER",
-    "createdAt": "2019-12-19T00:00:00.000Z"
-  }
+	{
+		"kind": "SITE_ADMIN",
+		"createdAt": "2019-12-19T00:00:00.000Z"
+	},
+	{
+		"kind": "COMMAND_ADMIN",
+		"createdAt": "2019-12-19T00:00:00.000Z"
+	},
+	{
+		"kind": "DELTA_ADMIN",
+		"createdAt": "2019-12-19T00:00:00.000Z"
+	},
+	{
+		"kind": "INSTALLATION_ADMIN",
+		"createdAt": "2019-12-19T00:00:00.000Z"
+	},
+	{
+		"kind": "SQUADRON_ADMIN",
+		"createdAt": "2019-12-19T00:00:00.000Z"
+	},
+	{
+		"kind": "TASK_APPROVER",
+		"createdAt": "2019-12-19T00:00:00.000Z"
+	},
+	{
+		"kind": "USER",
+		"createdAt": "2019-12-19T00:00:00.000Z"
+	}
 ]
