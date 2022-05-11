@@ -14,7 +14,7 @@ const UserController = new Controller("User", {
 				email: true,
 				dsn: true,
 				status: true,
-				sperationDate: true,
+				separationDate: true,
 				assignedUnit: {
 					select: {
 						id: true,
