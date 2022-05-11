@@ -5,12 +5,13 @@ const require = createRequire(import.meta.url);
 const { GOOGLE_APPLICATION_CREDENTIALS } = process.env;
 const apiKey = process.env.API_KEY || "api-key";
 
+// eslint-disable-next-line import/no-dynamic-require
 const appCreds = require(GOOGLE_APPLICATION_CREDENTIALS);
 
 const config = {
 	apiKey,
 	authDomain: "bsdi-capstone.firebaseapp.com",
-	projectId: "bsdi-capstone",
+	projectId: "bsdi-capstone"
 };
 
 const credentials = {
@@ -22,4 +23,4 @@ const serviceAccount =
 
 admin.initializeApp(serviceAccount);
 
-export default admin
+export default admin;
