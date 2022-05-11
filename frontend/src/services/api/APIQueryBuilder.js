@@ -178,8 +178,9 @@ class APIQueryBuilder {
 
 	create = async data => {
 		const body = JSON.stringify(data);
-		return fetch(this.baseURL(), {
+		return fetch(this.toURL(), {
 			method: "POST",
+			mode: "cors",
 			headers: jsonHeaders,
 			body
 		});
@@ -188,7 +189,9 @@ class APIQueryBuilder {
 	delete = async () => {
 		if (this.#id !== undefined) {
 			return fetch(`${this.baseURL()}/${this.#id}`, {
-				method: "DELETE"
+				method: "DELETE",
+				mode: "cors",
+				headers: {}
 			});
 		} else {
 			queryBuilderThrow(
@@ -203,6 +206,7 @@ class APIQueryBuilder {
 	get = async () => {
 		return fetch(this.toURL(), {
 			method: "GET",
+			mode: "cors",
 			headers: {}
 		});
 	};
@@ -212,6 +216,7 @@ class APIQueryBuilder {
 			const body = JSON.stringify(data);
 			return fetch(`${this.baseURL()}/${this.#id}`, {
 				method: "PUT",
+				mode: "cors",
 				headers: jsonHeaders,
 				body
 			});
