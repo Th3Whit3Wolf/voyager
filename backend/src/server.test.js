@@ -242,7 +242,7 @@ const mkTest = async (method, data, status, endpointName) => {
 };
 
 describe("Backend Tests", () => {
-	describe("Express Actuator Endpoints", async () => {
+	describe("Express Actuator Endpoints", () => {
 		test("GET /info", async () => {
 			const res = await response.get("/info");
 			expect(res.statusCode).toBe(200);
