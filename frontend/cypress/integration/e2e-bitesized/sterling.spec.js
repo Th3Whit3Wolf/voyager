@@ -1,7 +1,7 @@
 describe("testing the User Dashboard View -- Inprocessing", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
-		cy.get("input").first().type("terry.schiller@spaceforce.mil");
+		cy.get("input").first().type("sterling.archer@spaceforce.mil");
 		cy.get("input").last().type("1234567890qwertyuiop");
 		cy.get("button").first().click();
 	});
@@ -17,14 +17,14 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("button").contains("Modify Admins").should("exist");
 	});
 
-	it("the test Admin Terry Schiller should have 3 Inprocessing Tasks", () => {
+	it("the test Admin Sterling Archer should have 3 Inprocessing Tasks", () => {
 		const numberOfColumns = 6;
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonInprocessingTasks]").click();
 		cy.get("input").should("have.length", 3 * numberOfColumns);
 	});
 
-	it("the test Admin Terry Schiller should have 6 Outprocessing Tasks", () => {
+	it("the test Admin Sterling Archer should have 6 Outprocessing Tasks", () => {
 		const numberOfColumns = 6;
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonOutprocessingTasks]").click();

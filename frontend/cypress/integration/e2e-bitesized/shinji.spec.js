@@ -1,7 +1,7 @@
 describe("testing the User Dashboard View -- Outprocessing", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
-		cy.get("input").first().type("raquel.orn@spaceforce.mil");
+		cy.get("input").first().type("shinji.ikari@spaceforce.mil");
 		cy.get("input").last().type("1234567890qwertyuiop");
 		cy.get("button").first().click();
 	});
@@ -12,13 +12,13 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("[data-testid=buttonOutprocessingTasks]").should("exist");
 	});
 
-	it("the test User Raquel Orn should have 0 Inprocessing Tasks", () => {
+	it("the test User Shinji Ikari should have 0 Inprocessing Tasks", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonInprocessingTasks]").click();
 		cy.get("input").should("have.length", 0);
 	});
 
-	it("the test Raquel Orn Ortiz should have 6 Outprocessing Tasks", () => {
+	it("the test User Shinji Ikari should have 6 Outprocessing Tasks", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonOutprocessingTasks]").click();
 		cy.get("input").should("have.length", 6);
