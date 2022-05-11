@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./Header.module.css";
-import logo from "#space-force-logo.png";
+import logo from "../../space-force-logo.png";
 import { UserContext } from "#context";
 
 import { Button, Grid } from "@mui/material";
