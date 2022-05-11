@@ -139,17 +139,6 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("input").should("have.length", 6);
 	});
 
-	it("the outprocessing tasks should have at least 2 complete", () => {
-		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.get("[data-testid=buttonOutprocessingTasks]").click();
-		for (let i = 0; i < 4; i++) {
-			cy.get("input").eq(i).should("have.value", "false");
-		}
-		for (let i = 4; i < 6; i++) {
-			cy.get("input").eq(i).should("have.value", "true");
-		}
-	});
-
 	it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonOutprocessingTasks]").click();
