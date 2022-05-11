@@ -12,10 +12,10 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("[data-testid=buttonOutprocessingTasks]").should("exist");
 	});
 
-	it("the test User Shinji Ikari should have 0 Inprocessing Tasks", () => {
+	it("the test User Shinji Ikari should have 14 Inprocessing Tasks", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonInprocessingTasks]").click();
-		cy.get("input").should("have.length", 0);
+		cy.get("input").should("have.length", 14);
 	});
 
 	it("the test User Shinji Ikari should have 6 Outprocessing Tasks", () => {
