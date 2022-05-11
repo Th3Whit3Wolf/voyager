@@ -242,10 +242,22 @@ const mkTest = async (method, data, status, endpointName) => {
 };
 
 describe("Backend Tests", () => {
-	test("GET /info", async () => {
-		const res = await response.get("/info");
-		expect(res.statusCode).toBe(200);
-		expect(res.body.build.name).toBe("voyager-backend");
+	describe("Express Actuator Endpoints", async () => {
+		test("GET /info", async () => {
+			const res = await response.get("/info");
+			expect(res.statusCode).toBe(200);
+			expect(res.body.build.name).toBe("voyager-backend");
+		});
+
+		test("GET /metrics", async () => {
+			const res = await response.get("/info");
+			expect(res.statusCode).toBe(200);
+		});
+
+		test("GET /health", async () => {
+			const res = await response.get("/info");
+			expect(res.statusCode).toBe(200);
+		});
 	});
 
 	Object.entries(testData).forEach(([method, metadata]) => {
