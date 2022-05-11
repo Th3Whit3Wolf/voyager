@@ -127,8 +127,10 @@ Allowing you to focus on what you actually need to do and help you do it.
      3a. create firebase project
      3b. go to Project settings > Service accounts
      3c. select `Generate new private key`
+     3d. move that key into `.secrets` from the project root directory
+     3e. create a `.env` file with `FIREBASE_PATH` set to the name of the file you added to the `.secrets` directory
 ```bash
- mkdir .secrets
+mkdir .secrets
 
 cat << EOF > .env
 FIREBASE_PATH="firebaseVoyagerDev.json"
