@@ -250,12 +250,12 @@ describe("Backend Tests", () => {
 		});
 
 		test("GET /metrics", async () => {
-			const res = await response.get("/info");
+			const res = await response.get("/metrics");
 			expect(res.statusCode).toBe(200);
 		});
 
 		test("GET /health", async () => {
-			const res = await response.get("/info");
+			const res = await response.get("/health");
 			expect(res.statusCode).toBe(200);
 		});
 	});
