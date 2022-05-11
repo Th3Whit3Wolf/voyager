@@ -130,10 +130,10 @@ Allowing you to focus on what you actually need to do and help you do it.
      4a. Navigate into the backend
      4b. type `npm run db:seed`
   5. open a new browser and navigate to http://localhost:3000
-     4a. optionally, you can also find the container in Docker Desktop and open the UI from there
+     5a. optionally, you can also find the container in Docker Desktop and open the UI from there
   6. to spin the application back down, you have two options:
-     5a. type `docker compose down`
-     5b. type `npm run docker:down`
+     6a. type `docker compose down`
+     6b. type `npm run docker:down`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
