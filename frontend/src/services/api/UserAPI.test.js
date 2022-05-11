@@ -62,11 +62,11 @@ describe("UserAPI", () => {
 		expect(api.toURL()).toBe(`${baseURL}?status=STATIONARY`);
 	});
 
-	test(`.sperationDate(new Date())`, () => {
+	test(`.separationDate(new Date())`, () => {
 		const date = new Date();
-		api.sperationDate(date);
+		api.separationDate(date);
 		expect(api.toURL()).toBe(
-			`${baseURL}?sperationDate=${JSON.stringify(date)}`
+			`${baseURL}?separationDate=${JSON.stringify(date)}`
 		);
 	});
 

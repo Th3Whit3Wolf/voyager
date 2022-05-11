@@ -132,12 +132,12 @@ class UserAPI extends APIQueryBuilder {
 		}
 	};
 
-	sperationDate = value => {
+	separationDate = value => {
 		if (value instanceof Date && !isNaN(value)) {
-			this.addQueryParameter({ name: "sperationDate", value });
+			this.addQueryParameter({ name: "separationDate", value });
 			return this;
 		} else {
-			return apiError("sperationDate", "string", value);
+			return apiError("separationDate", "string", value);
 		}
 	};
 
