@@ -64,11 +64,13 @@ jobs:
           npm run db:seed
 
       - name: Test Backend
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           docker run \
           -e CI=true \
           -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
-          -e FIREBASE_SERVICE_ACCOUNT=$(cat ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}) \
+          -e FIREBASE_SERVICE_ACCOUNT=$(cat ${FIREBASE_SERVICE_ACCOUNT}) \
           capstone-api npm run test
 
   # This workflow kicks off the linter for your Backend.
