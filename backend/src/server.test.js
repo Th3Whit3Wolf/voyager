@@ -2,7 +2,7 @@
 import request from "supertest";
 import pino from "pino";
 import pretty from "pino-pretty";
-import app from "./server";
+import app from "#server";
 
 const logger = pino(pretty({ colorize: true, sync: true }));
 
@@ -85,7 +85,7 @@ const testData = {
 						user: {
 							id: 1
 						},
-						progress: "NOT_STARTED"
+						progress: "IN_PROGRESS"
 					}
 				}
 			]
@@ -115,6 +115,7 @@ const testData = {
 					name: "Space Delta 13 Detachment 3",
 					abbrev: "DEL 13 DET 3",
 					kind: "SQUADRON",
+					img: "/img/SpOC_Template.png",
 					function: "To be made up",
 					location: null,
 					parentID: 36,
@@ -128,7 +129,6 @@ const testData = {
 					lastName: "Anderson",
 					email: "tom.anderson@myspace.com",
 					dsn: "(312) 867-5309",
-					auth: "",
 					status: "STATIONARY",
 					assignedUnitID: 1,
 					assignedOfficeSymbol: "MSOS",
@@ -182,16 +182,16 @@ const testData = {
 				id: 7
 			},
 			tasks: {
-				id: 1309
+				id: 1200
 			},
 			units: {
-				id: 92
+				id: 80
 			},
 			users: {
-				id: 8644
+				id: 8000
 			},
 			"users/tasks": {
-				id: 68692
+				id: 60000
 			}
 		}
 	}
@@ -242,10 +242,22 @@ const mkTest = async (method, data, status, endpointName) => {
 };
 
 describe("Backend Tests", () => {
-	test("GET /info", async () => {
-		const res = await response.get("/info");
-		expect(res.statusCode).toBe(200);
-		expect(res.body.build.name).toBe("voyager-backend");
+	describe("Express Actuator Endpoints", () => {
+		test("GET /info", async () => {
+			const res = await response.get("/info");
+			expect(res.statusCode).toBe(200);
+			expect(res.body.build.name).toBe("voyager-backend");
+		});
+
+		test("GET /metrics", async () => {
+			const res = await response.get("/metrics");
+			expect(res.statusCode).toBe(200);
+		});
+
+		test("GET /health", async () => {
+			const res = await response.get("/health");
+			expect(res.statusCode).toBe(200);
+		});
 	});
 
 	Object.entries(testData).forEach(([method, metadata]) => {

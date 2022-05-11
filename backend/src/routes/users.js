@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { UserController, TaskUserController } from "../controllers";
+import { UserController, TaskUserController } from "#controllers";
 
 const router = Router();
 
@@ -19,7 +19,5 @@ router
 	.get(TaskUserController.get)
 	.delete(TaskUserController.delete)
 	.put(TaskUserController.update);
-
-// router.put("/users/tasks/:id", TaskUserController.update);
 
 export default router;

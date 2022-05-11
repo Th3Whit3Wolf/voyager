@@ -1,4 +1,4 @@
-import { Controller } from "./Controller";
+import { Controller } from "#Controller";
 
 const RoleController = new Controller("Role", {
 	searchAttributes: {

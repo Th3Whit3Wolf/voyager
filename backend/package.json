@@ -4,6 +4,14 @@
 	"description": "",
 	"main": "index.js",
 	"type": "module",
+	"imports": {
+		"#config": "./src/config/index.js",
+		"#controllers": "./src/controllers",
+		"#middlewares": "./src/middlewares",
+		"#routes": "./src/routes",
+		"#server": "./src/server.js",
+		"#Controller": "./src/controllers/Controller/index.js"
+	},
 	"config": {
 		"db": "DATABASE_URL=$(node scripts/db.js)"
 	},
@@ -38,6 +46,7 @@
 		"express": "^4.17.3",
 		"express-actuator": "^1.8.1",
 		"express-pino-logger": "^7.0.0",
+		"firebase-admin": "^10.2.0",
 		"helmet": "^5.0.2",
 		"node-notifier": "^10.0.1",
 		"nodemon": "^2.0.15",
@@ -51,6 +60,7 @@
 		"eslint": "^8.13.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-prettier": "^8.5.0",
+		"eslint-import-resolver-alias": "^1.1.2",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"jest": "^27.5.1",
@@ -63,6 +73,14 @@
 			"/node_modules/",
 			"src/db"
 		],
+		"moduleNameMapper": {
+			"#config": "<rootDir>/src/config/index.js",
+			"#controllers": "<rootDir>/src/controllers/index.js",
+			"#middlewares": "<rootDir>/src/middlewares/index.js",
+			"#routes": "<rootDir>/src/routes/index.js",
+			"#server": "<rootDir>/src/server.js",
+			"#Controller": "<rootDir>/src/controllers/Controller/index.js"
+		},
 		"testEnvironment": "node"
 	},
 	"eslintConfig": {
@@ -128,7 +146,37 @@
 			"build",
 			"dist",
 			"public"
-		]
+		],
+		"settings": {
+			"import/resolver": {
+				"alias": [
+					[
+						"#config",
+						"./src/config/index.js"
+					],
+					[
+						"#controllers",
+						"./src/controllers"
+					],
+					[
+						"#middlewares",
+						"./src/middlewares"
+					],
+					[
+						"#routes",
+						"./src/routes"
+					],
+					[
+						"#server",
+						"./src/server.js"
+					],
+					[
+						"#Controller",
+						"./src/controllers/Controller/index.js"
+					]
+				]
+			}
+		}
 	},
 	"prettier": {
 		"arrowParens": "avoid",

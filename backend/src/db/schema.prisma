@@ -34,6 +34,7 @@ model Unit {
   name      String   @unique
   abbrev    String?  @db.VarChar(64)
   kind      UnitKind
+  img       String   @db.VarChar(64)
   function  String?  @db.Text
   location  String?  @db.Text
   createdAt DateTime @default(now()) @map("created_at")
@@ -116,7 +117,6 @@ model User {
   lastName             String           @db.VarChar(64)
   email                String           @unique @db.VarChar(128)
   dsn                  String?          @db.VarChar(32)
-  auth                 String
   assignedOfficeSymbol String           @db.VarChar(64)
   gainingOfficeSymbol  String?          @db.VarChar(64)
   status               ProcessingStatus
