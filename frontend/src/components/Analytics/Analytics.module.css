@@ -24,6 +24,7 @@
 	flex-direction: column;
 	border-right: 1px solid;
 	padding: 1rem;
+	width: 30ch;
 }
 
 .main {
