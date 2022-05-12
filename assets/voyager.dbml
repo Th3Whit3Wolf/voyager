@@ -12,6 +12,7 @@ Table units {
   name String [unique, not null]
   abbrev String
   kind UnitKind [not null]
+  img String [not null]
   function String
   location String
   createdAt DateTime [default: `now()`, not null]
@@ -47,11 +48,10 @@ Table users {
   lastName String [not null]
   email String [unique, not null]
   dsn String
-  auth String [not null]
   assignedOfficeSymbol String [not null]
   gainingOfficeSymbol String
   status ProcessingStatus [not null]
-  sperationDate DateTime [not null]
+  separationDate DateTime [not null]
   createdAt DateTime [default: `now()`, not null]
   updatedAt DateTime [default: `now()`, not null]
   assignedUnitID Int [note: 'Define possible relationship with Unit

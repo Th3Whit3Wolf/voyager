@@ -52,6 +52,7 @@ const Login = () => {
 				.then(response => response.json())
 				.then(d => {
 					let tempUser = d.data[0];
+					console.log(tempUser);
 					setUser(tempUser);
 					if (tempUser === undefined) {
 						alert(
