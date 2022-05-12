@@ -101,7 +101,7 @@ const Dashboard = () => {
 			// 		})
 			// 		.catch(err => console.log(err));
 			// }
-			var requestOptions = {
+			const requestOptions = {
 				method: "GET",
 				redirect: "follow"
 			};
