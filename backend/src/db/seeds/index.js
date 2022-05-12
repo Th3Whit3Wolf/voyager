@@ -2,14 +2,17 @@ import Prisma from "@prisma/client";
 import notifier from "node-notifier";
 import path from "path";
 import * as url from "url";
-import { URI } from "./utils";
+
+// eslint-disable-next-line import/extensions
+import { URI } from "./utils.js";
 import {
 	seedRoles,
 	seedTasks,
 	seedTaskUsers,
 	seedUnits,
 	seedUsers
-} from "./seeders/index";
+	// eslint-disable-next-line import/extensions
+} from "./seeders/index.js";
 
 const debug = process.env.DEBUG === "true" || false;
 const { PrismaClient } = Prisma;
