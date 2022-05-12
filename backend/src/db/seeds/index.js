@@ -128,7 +128,326 @@ const seedTasks = async prisma => {
 };
 
 const seedTaskUsers = async prisma => {
-	await genData(prisma, "TaskUser", taskUsers, []);
+	const newTaskUsers = [
+		{
+			taskID: 404,
+			userID: 8,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 405,
+			userID: 8,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 406,
+			userID: 8,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 407,
+			userID: 8,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 408,
+			userID: 8,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 409,
+			userID: 8,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 404,
+			userID: 9,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 405,
+			userID: 9,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 406,
+			userID: 9,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 407,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 408,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 409,
+			userID: 9,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1090,
+			userID: 9,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1091,
+			userID: 9,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1092,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1093,
+			userID: 9,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1094,
+			userID: 9,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1095,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1096,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1097,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1098,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1099,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1100,
+			userID: 9,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1101,
+			userID: 9,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1102,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 1103,
+			userID: 9,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 390,
+			userID: 10,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 391,
+			userID: 10,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 392,
+			userID: 10,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 393,
+			userID: 10,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 394,
+			userID: 10,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 395,
+			userID: 10,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 396,
+			userID: 10,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 397,
+			userID: 10,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 398,
+			userID: 10,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 399,
+			userID: 10,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 400,
+			userID: 10,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 401,
+			userID: 10,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 402,
+			userID: 10,
+			progress: "COMPLETED",
+			completedAt: new Date("May 4, 2022 07:30:00"),
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 403,
+			userID: 10,
+			progress: "NOT_STARTED",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 404,
+			userID: 11,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 405,
+			userID: 11,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 406,
+			userID: 11,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 407,
+			userID: 11,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{
+			taskID: 408,
+			userID: 11,
+			progress: "IN_PROGRESS",
+			completedAt: null,
+			createdAt: new Date("2022-01-07T00:00:00.001Z")
+		},
+		{ taskID: 409, userID: 11, progress: "IN_PROGRESS", completedAt: null }
+	];
+	const tasksUser = newTaskUsers.concat(taskUsers);
+	await genData(prisma, "TaskUser", tasksUser, []);
 };
 
 const main = async prisma => {

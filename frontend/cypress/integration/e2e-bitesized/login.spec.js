@@ -37,7 +37,7 @@ describe("testing the Login View", () => {
 	});
 
 	it("does not let a User login with just an email", () => {
-		cy.get("input").first().type("bridget.smitham@spaceforce.mil");
+		cy.get("input").first().type("rei.ayanami@spaceforce.mil");
 		cy.get("button").first().click();
 		cy.url().should("eq", "http://localhost:3000/");
 	});
@@ -49,14 +49,14 @@ describe("testing the Login View", () => {
 	});
 
 	it("does not let a User login if they enter incorrect info", () => {
-		cy.get("input").first().type("bridget.smitham@spaceforce.mil");
+		cy.get("input").first().type("rei.ayanami@spaceforce.mil");
 		cy.get("input").last().type("1234567890qwertyuiop");
 		cy.get("button").first().click();
 		cy.url().should("eq", "http://localhost:3000/");
 	});
 
 	it("entering correct email and password logs a User to a Dashboard", () => {
-		cy.get("input").first().type("sherri.ortiz@spaceforce.mil");
+		cy.get("input").first().type("rei.ayanami@spaceforce.mil");
 		cy.get("input").last().type("1234567890qwertyuiop");
 		cy.get("button").first().click();
 		cy.url().should("eq", "http://localhost:3000/dashboard");

@@ -12,11 +12,43 @@ const jsonHeaders = new Headers();
 jsonHeaders.append("Content-Type", "application/json");
 class APIQueryBuilder {
 	#queryParameters = [];
+	#id;
+	#limit;
+	#page;
 
 	constructor(endpoint, validQueryParameters) {
 		this.endpoint = endpoint;
 		this.validQueryParameters = validQueryParameters;
 	}
+
+	id = num => {
+		if (typeof num === "number") {
+			this.#id = num;
+		} else {
+			return queryBuilderThrow("id", "Invalid Parameter Type", "number", num);
+		}
+	};
+
+	limit = num => {
+		if (typeof num === "number") {
+			this.#limit = num;
+		} else {
+			return queryBuilderThrow(
+				"limit",
+				"Invalid Parameter Type",
+				"number",
+				num
+			);
+		}
+	};
+
+	page = num => {
+		if (typeof num === "number") {
+			this.#page = num;
+		} else {
+			return queryBuilderThrow("page", "Invalid Parameter Type", "number", num);
+		}
+	};
 
 	addQueryParameter = parameter => {
 		if (this.validQueryParameters[parameter.name] !== undefined) {
@@ -125,10 +157,18 @@ class APIQueryBuilder {
 	};
 
 	toURL = () => {
+		const queryParams = [...this.#queryParameters];
+		if (this.#id !== undefined) {
+			queryParams.unshift(`id=${this.#id}`);
+		}
+		if (this.#page !== undefined) {
+			queryParams.push(`page=${this.#page}`);
+		}
+		if (this.#limit !== undefined) {
+			queryParams.push(`limit=${this.#limit}`);
+		}
 		return `${baseURL}/${this.endpoint}${
-			this.#queryParameters.length > 0
-				? "?" + [...this.#queryParameters].join("&")
-				: ""
+			queryParams.length > 0 ? `?${queryParams.join("&")}` : ""
 		}`;
 	};
 
@@ -138,33 +178,56 @@ class APIQueryBuilder {
 
 	create = async data => {
 		const body = JSON.stringify(data);
-		return fetch(this.baseURL(), {
+		return fetch(this.toURL(), {
 			method: "POST",
+			mode: "cors",
 			headers: jsonHeaders,
 			body
 		});
 	};
 
-	delete = async id => {
-		return fetch(`${this.baseURL()}/${id}`, {
-			method: "DELETE"
-		});
+	delete = async () => {
+		if (this.#id !== undefined) {
+			return fetch(`${this.baseURL()}/${this.#id}`, {
+				method: "DELETE",
+				mode: "cors",
+				headers: {}
+			});
+		} else {
+			queryBuilderThrow(
+				"delete",
+				"method id never called",
+				".id(num)\n.delete()",
+				".delete()"
+			);
+		}
 	};
 
 	get = async () => {
 		return fetch(this.toURL(), {
 			method: "GET",
+			mode: "cors",
 			headers: {}
 		});
 	};
 
-	update = async (id, data) => {
-		const body = JSON.stringify(data);
-		return fetch(`${this.baseURL()}/${id}`, {
-			method: "PUT",
-			headers: jsonHeaders,
-			body
-		});
+	update = async data => {
+		if (this.#id !== undefined) {
+			const body = JSON.stringify(data);
+			return fetch(`${this.baseURL()}/${this.#id}`, {
+				method: "PUT",
+				mode: "cors",
+				headers: jsonHeaders,
+				body
+			});
+		} else {
+			queryBuilderThrow(
+				"update",
+				"method id never called",
+				".id(num)\n.update(data)",
+				".update(data)"
+			);
+		}
 	};
 }
 export { APIQueryBuilder };

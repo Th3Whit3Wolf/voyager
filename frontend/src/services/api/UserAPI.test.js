@@ -12,6 +12,10 @@ describe("UserAPI", () => {
 		expect(api.toURL()).toBe(baseURL);
 	});
 
+	test(".baseURL()", () => {
+		expect(api.baseURL()).toBe(baseURL);
+	});
+
 	test(".id(66)", () => {
 		api.id(66);
 		expect(api.toURL()).toBe(`${baseURL}?id=66`);
