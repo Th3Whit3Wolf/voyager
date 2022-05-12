@@ -22,6 +22,11 @@ const Analytics = () => {
 							control={<Checkbox />}
 							label="Inprocessing Tasks"
 						/>
+						<FormControlLabel
+							id="outprocessingTasksLabelID"
+							control={<Checkbox />}
+							label="Outprocessing Tasks"
+						/>
 					</FormGroup>
 				</sidebar>
 				<article className={styles.main}>
