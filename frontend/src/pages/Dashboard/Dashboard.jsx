@@ -324,7 +324,7 @@ const Dashboard = () => {
 
 					<TabPanel value="5">
 						<TableContainer component={Paper}>
-							<Analytics />
+							<Analytics user={user} />
 						</TableContainer>
 					</TabPanel>
 				</TabContext>

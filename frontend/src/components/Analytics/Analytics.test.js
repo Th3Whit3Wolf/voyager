@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 
 // Import Features to be Tested
 import Analytics from "./Analytics.jsx";
+import { analyticsMockAdmin } from "./analyticsMockAdmin.js";
 
 // Third Party Wrappers
 import { MemoryRouter as Router } from "react-router-dom";
@@ -13,20 +14,23 @@ import { MemoryRouter as Router } from "react-router-dom";
 // previous software projects. --Tony
 
 describe("RTL unit tests for the Analytics Component", () => {
-	const setup = () =>
+	const setup = (user = {}) =>
 		render(
 			<Router>
-				<Analytics />
+				<Analytics user={user} />
 			</Router>
 		);
 
 	test("it renders a Analytics component successfully", () => {
-		setup();
+		setup(analyticsMockAdmin);
 	});
 
 	test("it renders a set of checkboxes to inform which analytics to show", async () => {
 		setup();
 
+		const checkboxForBasic = await screen.findByRole("checkbox", {
+			name: /basic/i
+		});
 		const checkboxForInprocessingTasks = await screen.findByRole("checkbox", {
 			name: /inprocessing tasks/i
 		});
@@ -34,6 +38,7 @@ describe("RTL unit tests for the Analytics Component", () => {
 			name: /outprocessing tasks/i
 		});
 
+		expect(checkboxForBasic).toBeInTheDocument();
 		expect(checkboxForInprocessingTasks).toBeInTheDocument();
 		expect(checkboxForOutprocessingTasks).toBeInTheDocument();
 	});
