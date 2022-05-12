@@ -6,7 +6,7 @@ import { UserContext } from "#context";
 import styles from "./Analytics.module.css";
 
 // Third Party Packages
-import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
+import { Checkbox, FormGroup, FormControlLabel, Card } from "@mui/material";
 import {
 	XYPlot,
 	XAxis,
@@ -115,21 +115,21 @@ const Analytics = ({ user }) => {
 					{basicChecked && (
 						<div>
 							<h2>Show Basic Plots</h2>
-							<XYPlot xType="ordinal" width={600} height={500} xDistance={10}>
-								<VerticalGridLines />
-								<HorizontalGridLines />
-								<XAxis style={{ fontSize: "1.1em" }} />
-								<YAxis style={{ fontSize: "1.05em" }} />
-								<VerticalBarSeries data={greenData} />
-								<VerticalBarSeries data={blueData} />
+							<Card sx={{ backgroundColor: "#000000", padding: "10px" }}>
+								<XYPlot xType="ordinal" width={600} height={500} xDistance={10}>
+									<VerticalGridLines />
+									<HorizontalGridLines />
+									<XAxis style={{ fontSize: "1.1em" }} />
+									<YAxis style={{ fontSize: "1.05em" }} />
+									<VerticalBarSeries data={greenData} />
+									<VerticalBarSeries data={blueData} />
+								</XYPlot>
 								<DiscreteColorLegend
-									style={{
-										backgroundColor: "white"
-									}}
+									style={{ fontSize: "1.1rem", color: "white" }}
 									width={180}
 									items={[{ title: "Inprocessing" }, "Outprocessing"]}
 								/>
-							</XYPlot>
+							</Card>
 						</div>
 					)}
 					{inprocessingChecked && (
