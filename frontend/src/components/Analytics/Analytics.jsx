@@ -7,17 +7,64 @@ import styles from "./Analytics.module.css";
 
 // Third Party Packages
 import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
+import {
+	XYPlot,
+	XAxis,
+	YAxis,
+	VerticalGridLines,
+	HorizontalGridLines,
+	VerticalBarSeries,
+	DiscreteColorLegend
+} from "react-vis";
 
 const Analytics = ({ user }) => {
 	console.log("Admin User", user);
 	console.log("Admin Tasks Assigned", user?.tasksAssigned);
-	console.log(
-		user?.tasksAssigned?.filter(task => task.kind === "IN_PROCESSING")
-	);
 
 	const [basicChecked, setBasicChecked] = useState(true);
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
 	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
+
+	const total_in = user?.tasksAssigned?.filter(
+		task => task?.kind === "IN_PROCESSING"
+	);
+
+	const total_in_active = user?.tasksAssigned
+		?.filter(task => task?.kind === "IN_PROCESSING")
+		?.filter(task => task?.isActive === true);
+
+	const total_out = user?.tasksAssigned?.filter(
+		task => task?.kind === "OUT_PROCESSING"
+	);
+
+	const total_out_active = user?.tasksAssigned
+		?.filter(task => task?.kind === "OUT_PROCESSING")
+		?.filter(task => task?.isActive === true);
+
+	//console.log(total_in);
+	//console.log(total_out);
+
+	const greenData = [
+		{
+			x: "Total",
+			y: total_in.length
+		},
+		{
+			x: "Total Active",
+			y: total_in_active.length
+		}
+	];
+
+	const blueData = [
+		{
+			x: "Total",
+			y: total_out.length
+		},
+		{
+			x: "Total Active",
+			y: total_out_active.length
+		}
+	];
 
 	return (
 		<section className={styles.container}>
@@ -68,6 +115,21 @@ const Analytics = ({ user }) => {
 					{basicChecked && (
 						<div>
 							<h2>Show Basic Plots</h2>
+							<XYPlot xType="ordinal" width={600} height={500} xDistance={10}>
+								<VerticalGridLines />
+								<HorizontalGridLines />
+								<XAxis style={{ fontSize: "1.1em" }} />
+								<YAxis style={{ fontSize: "1.05em" }} />
+								<VerticalBarSeries data={greenData} />
+								<VerticalBarSeries data={blueData} />
+								<DiscreteColorLegend
+									style={{
+										backgroundColor: "white"
+									}}
+									width={180}
+									items={[{ title: "Inprocessing" }, "Outprocessing"]}
+								/>
+							</XYPlot>
 						</div>
 					)}
 					{inprocessingChecked && (

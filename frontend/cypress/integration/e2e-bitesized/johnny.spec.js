@@ -17,14 +17,14 @@ describe("testing the Admin Dashboard View -- Inprocessing", () => {
 		cy.get("button").contains("Modify Admins").should("exist");
 	});
 
-	it("the test Admin Johnny Bravo should have 20 Inprocessing Tasks", () => {
+	it("the test Admin Johnny Bravo should have 17 Inprocessing Tasks", () => {
 		const numberOfColumns = 6;
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonInprocessingTasks]").click();
 		cy.get("input").should("have.length", 20 * numberOfColumns);
 	});
 
-	it("the test Admin Johnny Bravo should have 14 Outprocessing Tasks", () => {
+	it("the test Admin Johnny Bravo should have 12 Outprocessing Tasks", () => {
 		const numberOfColumns = 6;
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonOutprocessingTasks]").click();

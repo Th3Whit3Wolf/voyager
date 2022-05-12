@@ -19,7 +19,7 @@ const ModifyAdminTable = ({ data }) => {
 	useEffect(() => {
 		setAdminData(data);
 	}, []);
-	console.log(data);
+	//console.log(data);
 	const handleAddRow = () => {
 		setAdminData([
 			...adminData,
