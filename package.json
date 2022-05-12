@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docker:up": "docker-compose up --build -d",
-    "docker:down": "docker-compose down",
+    "docker:up": "docker compose up --build -d || docker-compose up --build -d",
+    "docker:down": "docker compose down || docker-compose down",
     "install": "npm --prefix frontend install && npm --prefix backend install",
     "lint": "npm --prefix frontend run lint && npm --prefix backend run lint",
     "test": "npm --prefix frontend test && npm --prefix backend test"
