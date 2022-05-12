@@ -1,5 +1,6 @@
 import { createRequire } from "module";
-import { genData } from "../utils";
+// eslint-disable-next-line import/extensions
+import { genData } from "../utils.js";
 
 const require = createRequire(import.meta.url);
 const units = require("../data/units.json");
