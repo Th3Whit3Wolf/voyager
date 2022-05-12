@@ -9,11 +9,15 @@ import styles from "./Analytics.module.css";
 import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
 
 const Analytics = ({ user }) => {
-	console.log(user);
-	console.log(user?.tasksAssigned);
+	console.log("Admin User", user);
+	console.log("Admin Tasks Assigned", user?.tasksAssigned);
 	console.log(
 		user?.tasksAssigned?.filter(task => task.kind === "IN_PROCESSING")
 	);
+
+	const [basicChecked, setBasicChecked] = useState(true);
+	const [inprocessingChecked, setInprocessingChecked] = useState(false);
+	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
 
 	return (
 		<section className={styles.container}>
@@ -26,17 +30,35 @@ const Analytics = ({ user }) => {
 					<FormGroup>
 						<FormControlLabel
 							id="inprocessingTasksLabelID"
-							control={<Checkbox />}
+							control={
+								<Checkbox
+									value={basicChecked}
+									onChange={() => setBasicChecked(!basicChecked)}
+									checked={basicChecked ? "checked" : ""}
+								/>
+							}
 							label="Basic"
 						/>
 						<FormControlLabel
 							id="inprocessingTasksLabelID"
-							control={<Checkbox />}
+							control={
+								<Checkbox
+									onChange={() => setInprocessingChecked(!inprocessingChecked)}
+									checked={inprocessingChecked ? "checked" : ""}
+								/>
+							}
 							label="Inprocessing Tasks"
 						/>
 						<FormControlLabel
 							id="outprocessingTasksLabelID"
-							control={<Checkbox />}
+							control={
+								<Checkbox
+									onChange={() =>
+										setOutprocessingChecked(!outprocessingChecked)
+									}
+									checked={outprocessingChecked ? "checked" : ""}
+								/>
+							}
 							label="Outprocessing Tasks"
 						/>
 					</FormGroup>
