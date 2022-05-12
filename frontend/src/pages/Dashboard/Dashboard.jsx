@@ -13,7 +13,8 @@ import {
 	UserTable,
 	AdminTable,
 	UserSettings,
-	ModifyAdminTable
+	ModifyAdminTable,
+	Analytics
 } from "#components";
 
 // There is no longer a useNavigate state prop called role.
@@ -235,6 +236,7 @@ const Dashboard = () => {
 						/>
 						<Tab label="User Settings" value="3" />
 						<Tab label="Modify Admins" value="4" />
+						<Tab label="Analytics" value="5" />
 					</TabList>
 
 					<TabPanel value="1">
@@ -317,6 +319,12 @@ const Dashboard = () => {
 										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
 								}
 							/>
+						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="5">
+						<TableContainer component={Paper}>
+							<Analytics />
 						</TableContainer>
 					</TabPanel>
 				</TabContext>

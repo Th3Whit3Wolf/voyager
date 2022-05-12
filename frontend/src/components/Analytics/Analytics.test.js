@@ -13,7 +13,7 @@ import { MemoryRouter as Router } from "react-router-dom";
 // previous software projects. --Tony
 
 describe("RTL unit tests for the Analytics Component", () => {
-	const setup = (settings = {}) =>
+	const setup = () =>
 		render(
 			<Router>
 				<Analytics />

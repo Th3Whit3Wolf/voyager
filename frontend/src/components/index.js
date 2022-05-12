@@ -12,6 +12,7 @@ import UserTableRow from "./TableRow/UserTableRow/UserTableRow";
 import AdminTable from "./Tables/AdminTable/AdminTable";
 import UserTable from "./Tables/UserTable/UserTable";
 import ModifyAdminTable from "./Tables/AdminTable/ModifyAdminTable";
+import Analytics from "./Analytics/Analytics";
 
 import UserSettings from "./UserSettings/UserSettings";
 
@@ -27,5 +28,6 @@ export {
 	ModifyAdminTable,
 	UserSettings,
 	DeleteDialog,
-	InfoDialog
+	InfoDialog,
+	Analytics
 };
