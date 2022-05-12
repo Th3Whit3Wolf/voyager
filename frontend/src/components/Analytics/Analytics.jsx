@@ -65,6 +65,21 @@ const Analytics = ({ user }) => {
 				</sidebar>
 				<article className={styles.main}>
 					<h3>Main Article</h3>
+					{basicChecked && (
+						<div>
+							<h2>Show Basic Plots</h2>
+						</div>
+					)}
+					{inprocessingChecked && (
+						<div>
+							<h2>Show Inprocessing Plots</h2>
+						</div>
+					)}
+					{outprocessingChecked && (
+						<div>
+							<h2>Show Outprocessing Plots</h2>
+						</div>
+					)}
 				</article>
 			</section>
 		</section>
