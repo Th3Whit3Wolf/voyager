@@ -28,7 +28,7 @@ describe("RTL unit tests for the Analytics Component", () => {
 		setup();
 
 		const checkboxForInprocessingTasks = await screen.findByRole("checkbox", {
-			name: "Inprocessing Tasks"
+			name: /inprocessing tasks/i
 		});
 		const checkboxForOutprocessingTasks = await screen.findByRole("checkbox", {
 			name: "Outprocessing Tasks"
