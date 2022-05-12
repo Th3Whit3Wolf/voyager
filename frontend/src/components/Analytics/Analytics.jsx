@@ -16,7 +16,7 @@ const Analytics = () => {
 				<sidebar className={styles.sidebar}>
 					<h3>Sidebar</h3>
 				</sidebar>
-				<article>
+				<article className={styles.main}>
 					<h3>Main Article</h3>
 				</article>
 			</section>

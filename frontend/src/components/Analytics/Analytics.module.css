@@ -25,3 +25,10 @@
 	border-right: 1px solid;
 	padding: 1rem;
 }
+
+.main {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+}
