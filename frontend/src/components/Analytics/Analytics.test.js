@@ -12,13 +12,25 @@ import { MemoryRouter as Router } from "react-router-dom";
 // from code hardening tools such as SonarCube on
 // previous software projects. --Tony
 
-const setup = (settings = {}) =>
-	render(
-		<Router>
-			<Analytics />
-		</Router>
-	);
+describe("RTL unit tests for the Analytics Component", () => {
+	const setup = (settings = {}) =>
+		render(
+			<Router>
+				<Analytics />
+			</Router>
+		);
 
-test("renders a Analytics component successfully", () => {
-	setup();
+	test("it renders a Analytics component successfully", () => {
+		setup();
+	});
+
+	test("it renders a set of checkboxes to inform which analytics to show", async () => {
+		setup();
+
+		const checkboxForInprocessingTasks = await screen.findByRole("checkbox", {
+			name: "Inprocessing Tasks"
+		});
+
+		expect(checkboxForInprocessingTasks).toBeInTheDocument();
+	});
 });
