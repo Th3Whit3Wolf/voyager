@@ -9,7 +9,7 @@ import styles from "./Analytics.module.css";
 const Analytics = () => {
 	return (
 		<section className={styles.container}>
-			<nav>
+			<nav className={styles.nav}>
 				<h3>Navigation</h3>
 			</nav>
 			<section className={styles.sidebyside}>
