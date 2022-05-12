@@ -5,6 +5,7 @@ import React from "react";
 import styles from "./Analytics.module.css";
 
 // Third Party Packages
+import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
 
 const Analytics = () => {
 	return (
@@ -15,6 +16,13 @@ const Analytics = () => {
 			<section className={styles.sidebyside}>
 				<sidebar className={styles.sidebar}>
 					<h3>Sidebar</h3>
+					<FormGroup>
+						<FormControlLabel
+							id="inprocessingTasksLabelID"
+							control={<Checkbox />}
+							label="Inprocessing Tasks"
+						/>
+					</FormGroup>
 				</sidebar>
 				<article className={styles.main}>
 					<h3>Main Article</h3>
