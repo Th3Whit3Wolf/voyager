@@ -124,11 +124,11 @@ Allowing you to focus on what you actually need to do and help you do it.
   1. git clone this repo
   2. navigate into the repo (voyager by default if you did not rename the clone)
   3. add firebase private key to `.secrets`
-     3a. create firebase project
-     3b. go to Project settings > Service accounts
-     3c. select `Generate new private key`
-     3d. move that key into `.secrets` from the project root directory
-     3e. create a `.env` file with `FIREBASE_PATH` set to the name of the file you added to the `.secrets` directory
+    - 3a. create firebase project
+    - 3b. go to Project settings > Service accounts
+    - 3c. select `Generate new private key`
+    - 3d. move that key into `.secrets` from the project root directory
+    - 3e. create a `.env` file with `FIREBASE_PATH` set to the name of the file you added to the `.secrets` directory
 ```bash
 mkdir .secrets
 
@@ -139,16 +139,16 @@ EOF
 mv firebaseVoyagerDev.json .secrets
 ```
   4. Start up docker compose using one of two options
-     4a. type `docker compose up -d` on the terminal
-     4b. use the script `npm run docker:up` on the terminal
+    - 4a. type `docker compose up -d` on the terminal
+    - 4b. use the script `npm run docker:up` on the terminal
   5. Set up the database with initial seeding
-     5a. Navigate into the backend
-     5b. type `npm run db:seed`
+    - 5a. Navigate into the backend
+    - 5b. type `npm run db:seed`
   6. open a new browser and navigate to http://localhost:3000
-     6a. optionally, you can also find the container in Docker Desktop and open the UI from there
+    - 6a. optionally, you can also find the container in Docker Desktop and open the UI from there
   7. to spin the application back down, you have two options:
-     7a. type `docker compose down`
-     7b. type `npm run docker:down`
+    - 7a. type `docker compose down`
+    - 7b. type `npm run docker:down`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
