@@ -1,10 +1,6 @@
 /* eslint-disable indent */
 import request from "supertest";
-import pino from "pino";
-import pretty from "pino-pretty";
 import app from "#server";
-
-const logger = pino(pretty({ colorize: true, sync: true }));
 
 const response = request(app);
 const routePrefix = "/api/v1";
@@ -84,8 +80,7 @@ const testData = {
 						},
 						user: {
 							id: 1
-						},
-						progress: "IN_PROGRESS"
+						}
 					}
 				}
 			]
@@ -210,14 +205,6 @@ const mkTest = async (method, data, status, endpointName) => {
 						.set("Accept", "application/json");
 
 		const { body } = res;
-		if (method !== "GET") {
-			logger.info(`
-			Route: ${route}
-			Data(sent): ${JSON.stringify(data)}
-			Data(received): ${JSON.stringify(body.data)}
-			`);
-		}
-
 		expect(res.statusCode).toBe(status);
 
 		if (
@@ -262,7 +249,6 @@ describe("Backend Tests", () => {
 
 	Object.entries(testData).forEach(([method, metadata]) => {
 		describe(`METHOD ${method}`, () => {
-			logger.info({ method });
 			Object.entries(metadata.data).forEach(
 				async ([endpointName, endpointData]) => {
 					if (Array.isArray(endpointData)) {
