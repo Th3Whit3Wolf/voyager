@@ -203,7 +203,8 @@ class APIQueryBuilder {
 		}
 	};
 
-	get = async () => {
+	get = () => {
+		console.log(this.toURL());
 		return fetch(this.toURL(), {
 			method: "GET",
 			mode: "cors",
@@ -230,4 +231,4 @@ class APIQueryBuilder {
 		}
 	};
 }
-export { APIQueryBuilder };
+export default APIQueryBuilder;

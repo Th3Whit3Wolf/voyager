@@ -13,12 +13,26 @@ const UnitController = new Controller("Unit", {
 				name: true,
 				abbrev: true,
 				function: true,
+				assignedUsers: true,
+				gainingUsers: true,
 				children: {
 					select: {
 						id: true,
 						name: true,
 						abbrev: true,
-						function: true
+						function: true,
+						assignedUsers: true,
+						gainingUsers: true
+					}
+				},
+				parent: {
+					select: {
+						id: true,
+						name: true,
+						abbrev: true,
+						function: true,
+						assignedUsers: true,
+						gainingUsers: true
 					}
 				},
 				grandChildren: {
@@ -26,7 +40,39 @@ const UnitController = new Controller("Unit", {
 						id: true,
 						name: true,
 						abbrev: true,
-						function: true
+						function: true,
+						assignedUsers: true,
+						gainingUsers: true
+					}
+				},
+				grandParent: {
+					select: {
+						id: true,
+						name: true,
+						abbrev: true,
+						function: true,
+						assignedUsers: true,
+						gainingUsers: true
+					}
+				},
+				installationChildren: {
+					select: {
+						id: true,
+						name: true,
+						abbrev: true,
+						function: true,
+						assignedUsers: true,
+						gainingUsers: true
+					}
+				},
+				installation: {
+					select: {
+						id: true,
+						name: true,
+						abbrev: true,
+						function: true,
+						assignedUsers: true,
+						gainingUsers: true
 					}
 				}
 			}

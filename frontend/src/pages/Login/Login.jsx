@@ -15,8 +15,8 @@ import "../../../node_modules/react-vis/dist/style.css";
 
 const Login = () => {
 	// STATE
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("johnny.bravo@spaceforce.mil");
+	const [password, setPassword] = useState("123456789");
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [splashOff, setSplashOff] = useState(false);
@@ -76,24 +76,8 @@ const Login = () => {
 
 	if (isLoading) return <Loading />;
 
-	const dataReactVis = [
-		{ x: 0, y: 8 },
-		{ x: 1, y: 5 },
-		{ x: 2, y: 4 },
-		{ x: 3, y: 9 },
-		{ x: 4, y: 1 },
-		{ x: 5, y: 7 },
-		{ x: 6, y: 6 },
-		{ x: 7, y: 3 },
-		{ x: 8, y: 2 },
-		{ x: 9, y: 0 }
-	];
-
 	return (
 		<>
-			{/* <XYPlot height={300} width={300} style={{ backgroundColor: "white" }}>
-				<LineSeries data={dataReactVis} />
-			</XYPlot> */}
 			<Container maxWidth="sm">
 				<Stack
 					spacing={3}
@@ -189,11 +173,63 @@ const Login = () => {
 					color="warning"
 					variant="contained"
 					onClick={() => {
+						setEmail("rick.sanchez@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate ADMIN 1 (Rick Sanchez) -- Squadron Admin
+				</Button>
+
+				<br />
+
+				<Button
+					color="warning"
+					variant="contained"
+					onClick={() => {
 						setEmail("johnny.bravo@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
 					Click to Auto Populate ADMIN 66 (Johnny Bravo) -- Installation Admin
+				</Button>
+
+				<br />
+
+				<Button
+					color="warning"
+					variant="contained"
+					onClick={() => {
+						setEmail("lynette.bogan@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate ADMIN 1104 (Lynette Bogan) -- Delta Admin
+				</Button>
+
+				<br />
+
+				<Button
+					color="warning"
+					variant="contained"
+					onClick={() => {
+						setEmail("sterling.archer@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate ADMIN 2 (Sterling Archer) -- Command Admin
+				</Button>
+
+				<br />
+
+				<Button
+					color="warning"
+					variant="contained"
+					onClick={() => {
+						setEmail("rick.sanchez@spaceforce.mil");
+						setPassword("123456789");
+					}}
+				>
+					Click to Auto Populate ADMIN 1 (Rick Sanchez) -- Site Admin
 				</Button>
 			</Stack>
 		</>

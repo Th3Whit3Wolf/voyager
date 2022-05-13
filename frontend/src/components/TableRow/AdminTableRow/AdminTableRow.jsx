@@ -3,8 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Services
 import { UserContext } from "#context";
-import { TaskAPI } from "#services/api/TaskAPI";
-import { UserAPI } from "#services/api/UserAPI";
+import { TaskAPI, UserAPI } from "#services/api";
 
 // MUI Components
 import {

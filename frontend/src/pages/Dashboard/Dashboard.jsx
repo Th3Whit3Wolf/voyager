@@ -4,7 +4,7 @@ import { UserContext } from "#context";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Our Components and Utilities
-import { UserAPI } from "#services/api/UserAPI";
+import { UserAPI } from "#services/api";
 
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer, Button } from "@mui/material";

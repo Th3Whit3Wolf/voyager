@@ -1,4 +1,4 @@
-import { UnitAPI } from "./UnitAPI";
+import UnitAPI from "./UnitAPI";
 
 describe("UnitAPI", () => {
 	let api;
