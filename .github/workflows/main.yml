@@ -28,8 +28,8 @@ jobs:
         id: changes
         run: |
           # Diff HEAD with the previous commit
-          if (( $(git diff --name-only HEAD^ HEAD backend | grep ".js$\|json$" | wc -l) > 30)); then echo "::set-output name=backend::true"; fi
-          if (( $(git diff --name-only HEAD^ HEAD frontend | grep ".js$\|json$" | wc -l) > 30)); then echo "::set-output name=frontend::true"; fi
+          if (( $(git diff --name-only HEAD^ HEAD backend | grep ".js$\|json$" | wc -l) > 1)); then echo "::set-output name=backend::true"; fi
+          if (( $(git diff --name-only HEAD^ HEAD frontend | grep ".js$\|json$" | wc -l) > 1)); then echo "::set-output name=frontend::true"; fi
 
   # This workflow kicks off the build and test for the Frontend
   frontend-build-and-test:
