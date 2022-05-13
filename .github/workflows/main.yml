@@ -31,23 +31,19 @@ jobs:
           PR_HEAD=$(jq --raw-output .pull_request.head.sha "${{ github.event_path }}")
           PUSH_BASE=$(jq --raw-output .before "${{ github.event_path }}")
           PUSH_HEAD=$(jq --raw-output .after "${{ github.event_path }}")
-          # Diff HEAD with the previous commit
-          if (( $(git diff --name-only HEAD^ HEAD backend | grep ".js$\|json$" | wc -l) > 1)); then echo "::set-output name=backend::true"; fi
-          if (( $(git diff --name-only HEAD^ HEAD frontend | grep ".js$\|json$" | wc -l) > 1)); then echo "::set-output name=frontend::true"; fi
-          echo $(git diff --name-only HEAD^ HEAD backend | grep ".js$\|json$")
-          echo $(git diff --name-only HEAD^ HEAD frontend | grep ".js$\|json$")
-          git diff --name-only HEAD^ HEAD backend
-          git diff --name-only HEAD^ HEAD frontend
-          echo $(git diff --name-only HEAD^ HEAD backend | grep ".js$\|json$" | wc -l)
-          echo $(git diff --name-only HEAD^ HEAD frontend | grep ".js$\|json$" | wc -l)
-          echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
-          if [[ "${PR_BASE}" == "null" ]]; then THE_DIFF=$(git diff --name-only $PUSH_BASE $PUSH_HEAD); else THE_DIFF=$(git diff --name-only $PR_BASE $PR_HEAD); fi
 
-          echo $PR_BASE
-          echo $PR_HEAD
-          echo $PUSH_BASE
-          echo $PUSH_HEAD
+          if [[ "${PR_BASE}" == "null" ]]; then BACKEND=$(git diff --name-only $PUSH_BASE $PUSH_HEAD backend | grep ".js$\|json$" | wc -l); else BACKEND=$(git diff --name-only $PR_BASE $PR_HEAD backend | grep ".js$\|json$" | wc -l); fi
+          if [[ "${PR_BASE}" == "null" ]]; then FRONTEND=$(git diff --name-only $PUSH_BASE $PUSH_HEAD frontend | grep ".js$\|json$" | wc -l); else FRONTEND=$(git diff --name-only $PR_BASE $PR_HEAD frontend | grep ".js$\|json$" | wc -l); fi
+          if [[ "${PR_BASE}" == "null" ]]; then THE_DIFF=$(git diff --name-only $PUSH_BASE $PUSH_HEAD); else THE_DIFF=$(git diff --name-only $PR_BASE $PR_HEAD); fi
+          if [[ "${PR_BASE}" == "null" ]]; then THE_DIFF_COUNT=$(git diff --name-only $PUSH_BASE $PUSH_HEAD | grep ".js$\|json$\|.yml$" | wc -l); else THE_DIFF_COUNT=$(git diff --name-only $PR_BASE $PR_HEAD | grep ".js$\|json$\|.yml$" | wc -l); fi
+
+          echo $BACKEND
+          echo $FRONTEND
           echo $THE_DIFF
+          echo $THE_DIFF_COUNT
+          if (( $BACKEND > 1)); then echo "::set-output name=backend::true"; fi
+          if (( $FRONTEND > 1)); then echo "::set-output name=frontend::true"; fi
+
   
   # This workflow kicks off the build and test for the Frontend
   frontend-build-and-test:
