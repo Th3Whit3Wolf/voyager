@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { UserTableRow } from "#components";
 
+// Componet storing users's task data as a table
 const UserTable = ({ alldata }) => {
 	console.log(alldata);
 
