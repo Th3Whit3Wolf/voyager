@@ -2,17 +2,15 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Our Packages
+import { BarChart } from ".";
+
+// Our Packages
 import { UserContext } from "#context";
+import { UnitAPI } from "#services/api";
 import styles from "./Analytics.module.css";
 
 // Third Party Packages
-import {
-	Checkbox,
-	FormGroup,
-	FormControlLabel,
-	Card,
-	Button
-} from "@mui/material";
+import { Checkbox, FormGroup, FormControlLabel, Card } from "@mui/material";
 import {
 	XYPlot,
 	XAxis,
@@ -24,34 +22,48 @@ import {
 } from "react-vis";
 
 const Analytics = ({ user }) => {
-	console.log("Admin User", user);
-	console.log("Admin User Unit", user?.assignedUnit.id, user?.assigned);
-	console.log("Admin Tasks Assigned", user?.tasksAssigned);
-	console.log(
-		"Admin Subordinates with gaining unit",
-		user?.subordinates
-			.filter(sub => sub.gainingUnitID !== null)
-			.map(person => person.status)
-	);
+	//console.log(user);
+	//console.log("Analytics", user?.assignedUnit.id);
+
+	//const {user, setUser} = useContext(UserContext);
+
+	//unitData.id(user?.assignedUnit.id);
+
+	//console.log("unitData: ", JSON.stringify(unitData));
+	//console.log("unitData url: ", unitData);
+
+	// unitData.id(user?.assignedUnit.id).toURL();
+
+	// const unitData = new UnitAPI();
+	// console.log(
+	// 	Object.getOwnPropertyNames(UnitAPI).filter(function (p) {
+	// 		return typeof UnitAPI[p] === "function";
+	// 	})
+	// );
+
+	// unitData
+	// 	.id(user?.assignedUnit.id)
+	// 	.get()
+	// 	.then(data => data.json())
+	// 	.then(data => {
+	// 		console.log("UnitData: ", data);
+	// 		return data;
+	// 	});
 
 	const [basicChecked, setBasicChecked] = useState(true);
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
 	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
 
-	const [subordinates, setSubordinates] = useState([]);
 	const [gainingUsers, setGainingUsers] = useState([]);
 	const [remainingUsers, setRemainingUsers] = useState([]);
 	const [leavingUsers, setLeavingUsers] = useState([]);
 
 	// on component load set load up the state
 	useEffect(() => {
-		setSubordinates(user?.subordinates);
 		setGainingUsers(
 			user?.subordinates.filter(sub => sub.gainingUnitID === null)
 		);
 	}, []);
-
-	console.log("Admin Subordinates", subordinates);
 
 	const total_in = user?.tasksAssigned?.filter(
 		task => task?.kind === "IN_PROCESSING"
@@ -91,6 +103,8 @@ const Analytics = ({ user }) => {
 		}
 	];
 
+	const datasets = [greenData, blueData];
+
 	return (
 		<section className={styles.container}>
 			<nav className={styles.nav}>
@@ -103,46 +117,28 @@ const Analytics = ({ user }) => {
 							borderRadius: "5px"
 						}}
 					>
+						Leaving
+						<p>Placheolder for micro-statistics</p>
+					</Card>
+					<Card
+						sx={{
+							backgroundColor: "#000000",
+							padding: "10px",
+							borderRadius: "5px"
+						}}
+					>
+						Assigned
+						<p>Placheolder for micro-statistics</p>
+					</Card>
+					<Card
+						sx={{
+							backgroundColor: "#000000",
+							padding: "10px",
+							borderRadius: "5px"
+						}}
+					>
 						Gaining
-						<p>Placheolder for micro-graph</p>
-						<XYPlot
-							xType="ordinal"
-							width={200}
-							height={100}
-							xDistance={10}
-						></XYPlot>
-					</Card>
-					<Card
-						sx={{
-							backgroundColor: "#000000",
-							padding: "10px",
-							borderRadius: "5px"
-						}}
-					>
-						Stationary
-						<p>Placheolder for micro-graph</p>
-						<XYPlot
-							xType="ordinal"
-							width={200}
-							height={100}
-							xDistance={10}
-						></XYPlot>{" "}
-					</Card>
-					<Card
-						sx={{
-							backgroundColor: "#000000",
-							padding: "10px",
-							borderRadius: "5px"
-						}}
-					>
-						Losing
-						<p>Placheolder for micro-graph</p>
-						<XYPlot
-							xType="ordinal"
-							width={200}
-							height={100}
-							xDistance={10}
-						></XYPlot>{" "}
+						<p>Placheolder for micro-statistics</p>
 					</Card>
 				</section>
 			</nav>
@@ -191,61 +187,8 @@ const Analytics = ({ user }) => {
 						<h2>Show Basic Plots</h2>
 						{basicChecked && (
 							<div className={styles.showPlots}>
-								<Card
-									sx={{
-										backgroundColor: "#000000",
-										padding: "10px",
-										borderRadius: "5px"
-									}}
-								>
-									{" "}
-									<XYPlot
-										xType="ordinal"
-										width={500}
-										height={400}
-										xDistance={10}
-									>
-										<VerticalGridLines />
-										<HorizontalGridLines />
-										<XAxis style={{ fontSize: "1.1em" }} />
-										<YAxis style={{ fontSize: "1.05em" }} />
-										<VerticalBarSeries data={greenData} />
-										<VerticalBarSeries data={blueData} />
-									</XYPlot>
-									<DiscreteColorLegend
-										style={{ fontSize: "1.1rem", color: "white" }}
-										width={180}
-										items={[{ title: "Inprocessing" }, "Outprocessing"]}
-									/>
-								</Card>
-								<Card
-									sx={{
-										backgroundColor: "#000000",
-										padding: "10px",
-										borderRadius: "5px"
-									}}
-								>
-									{" "}
-									<XYPlot
-										xType="ordinal"
-										width={500}
-										height={400}
-										xDistance={10}
-										animation="true"
-									>
-										<VerticalGridLines />
-										<HorizontalGridLines />
-										<XAxis style={{ fontSize: "1.1em" }} />
-										<YAxis style={{ fontSize: "1.05em" }} />
-										<VerticalBarSeries data={greenData} />
-										<VerticalBarSeries data={blueData} />
-									</XYPlot>
-									<DiscreteColorLegend
-										style={{ fontSize: "1.1rem", color: "white" }}
-										width={180}
-										items={[{ title: "Inprocessing" }, "Outprocessing"]}
-									/>
-								</Card>
+								<BarChart datasets={datasets} />
+								<BarChart datasets={datasets} />
 							</div>
 						)}
 					</section>
