@@ -6,7 +6,7 @@ import { BarChart } from ".";
 
 // Our Packages
 import { UserContext } from "#context";
-import { UnitAPI } from "#services/api";
+import { UnitAPI } from "#services";
 import styles from "./Analytics.module.css";
 
 // Third Party Packages
@@ -21,49 +21,52 @@ import {
 	DiscreteColorLegend
 } from "react-vis";
 
+function FindAllMethods(obj) {
+	return Object.getOwnPropertyNames(obj).filter(function (property) {
+		return typeof obj[property] == "function";
+	});
+}
+
 const Analytics = ({ user }) => {
-	//console.log(user);
-	//console.log("Analytics", user?.assignedUnit.id);
-
-	//const {user, setUser} = useContext(UserContext);
-
-	//unitData.id(user?.assignedUnit.id);
-
-	//console.log("unitData: ", JSON.stringify(unitData));
-	//console.log("unitData url: ", unitData);
-
-	// unitData.id(user?.assignedUnit.id).toURL();
-
-	// const unitData = new UnitAPI();
-	// console.log(
-	// 	Object.getOwnPropertyNames(UnitAPI).filter(function (p) {
-	// 		return typeof UnitAPI[p] === "function";
-	// 	})
-	// );
-
-	// unitData
-	// 	.id(user?.assignedUnit.id)
-	// 	.get()
-	// 	.then(data => data.json())
-	// 	.then(data => {
-	// 		console.log("UnitData: ", data);
-	// 		return data;
-	// 	});
-
 	const [basicChecked, setBasicChecked] = useState(true);
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
 	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
 
-	const [gainingUsers, setGainingUsers] = useState([]);
-	const [remainingUsers, setRemainingUsers] = useState([]);
-	const [leavingUsers, setLeavingUsers] = useState([]);
+	const [unit, setUnit] = useState({});
+	const [analyticsState, setAnalyticsState] = useState({});
 
 	// on component load set load up the state
 	useEffect(() => {
-		setGainingUsers(
-			user?.subordinates.filter(sub => sub.gainingUnitID === null)
-		);
+		const unitData = new UnitAPI().id(user.assignedUnit.id);
+		unitData
+			.get()
+			.then(response => response.json())
+			.then(result => {
+				if (result.data.length > 0) {
+					setUnit(result.data[0]);
+				}
+			})
+			.catch(error => console.log("error", error));
 	}, []);
+
+	useEffect(() => {
+		const analyticsInfo = {};
+		if (Object.entries(unit).length > 0) {
+			const {
+				gainingUsers: gaining,
+				assignedUsers: assigned,
+				children,
+				grandChildren,
+				installationChildren
+			} = unit;
+			analyticsInfo.own = { assigned, gaining };
+			analyticsInfo.children = [...children];
+			analyticsInfo.grandChildren = [...grandChildren];
+			analyticsInfo.installationChildren = [...installationChildren];
+			setAnalyticsState(analyticsInfo);
+		}
+		console.log(analyticsState);
+	}, [unit]);
 
 	const total_in = user?.tasksAssigned?.filter(
 		task => task?.kind === "IN_PROCESSING"

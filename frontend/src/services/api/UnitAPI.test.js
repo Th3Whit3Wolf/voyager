@@ -19,6 +19,7 @@ describe("UnitAPI", () => {
 	test(".id(1)", () => {
 		api.id(1);
 		expect(api.toURL()).toBe(`${baseURL}?id=1`);
+		console.log(api.get);
 	});
 
 	test(`.name("Morris")`, () => {
