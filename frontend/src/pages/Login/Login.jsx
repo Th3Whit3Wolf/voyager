@@ -34,7 +34,6 @@ const Login = () => {
 	});
 
 	// Internal Functions
-
 	const handleUserPass = () => {
 		if (email == undefined || email.length === 0) {
 			setEmail("");
