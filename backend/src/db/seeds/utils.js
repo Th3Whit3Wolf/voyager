@@ -119,10 +119,10 @@ const genData = async (prisma, schemaName, datum, wheres, debug = false) => {
 		}
 		const data = datum.map(d => {
 			const deets = { ...d };
-			if (deets.createdAt !== undefined) {
+			if (typeof deets.createdAt === "string") {
 				deets.createdAt = new Date(deets.createdAt);
 			}
-			if (deets.completedAt !== undefined) {
+			if (typeof deets.completedAt === "string") {
 				deets.completedAt = new Date(deets.completedAt);
 			}
 			return deets;
