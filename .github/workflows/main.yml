@@ -41,10 +41,12 @@ jobs:
           echo $(git diff --name-only HEAD^ HEAD backend | grep ".js$\|json$" | wc -l)
           echo $(git diff --name-only HEAD^ HEAD frontend | grep ".js$\|json$" | wc -l)
           echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
+          if [[ "${PR_BASE}" == "null" ]]; then DIFF=$(git diff --name-only $PUSH_BASE $PUSH_HEAD); else DIFF=$(git diff --name-only $PR_BASE $PR_HEAD); fi
           echo $PR_BASE
           echo $PR_HEAD
           echo $PUSH_BASE
           echo $PUSH_HEAD
+          echo $DIFF
   
   # This workflow kicks off the build and test for the Frontend
   frontend-build-and-test:
