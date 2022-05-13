@@ -27,7 +27,6 @@ import { Delete, Star } from "@mui/icons-material";
 import { DeleteDialog, InfoDialog } from "#components";
 
 // Start of the AdminTableRow React Hook
-
 const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	const { user, setUser } = useContext(UserContext);
 
