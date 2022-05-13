@@ -36,9 +36,9 @@ jobs:
           git diff --name-only HEAD^ HEAD frontend
           echo $(git diff --name-only HEAD^ HEAD backend | grep ".js$\|json$" | wc -l)
           echo $(git diff --name-only HEAD^ HEAD frontend | grep ".js$\|json$" | wc -l)
-          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} 
-          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} backend
-          git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} frontend
+          echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
+          echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} backend)
+          echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} frontend)
 
   # This workflow kicks off the build and test for the Frontend
   frontend-build-and-test:
