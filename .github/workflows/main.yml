@@ -32,13 +32,13 @@ jobs:
           PUSH_BASE=$(jq --raw-output .before "${{ github.event_path }}")
           PUSH_HEAD=$(jq --raw-output .after "${{ github.event_path }}")
 
-          if [[ "${PR_BASE}" == "null" ]]; then BACKEND=$(git diff --name-only $PUSH_BASE $PUSH_HEAD backend | grep "js$\|json$" | wc -l); else BACKEND=$(git diff --name-only $PR_BASE $PR_HEAD backend | grep "js$\|json$" | wc -l); fi
-          if [[ "${PR_BASE}" == "null" ]]; then FRONTEND=$(git diff --name-only $PUSH_BASE $PUSH_HEAD frontend | grep "js$\|json$\|jsx$" | wc -l); else FRONTEND=$(git diff --name-only $PR_BASE $PR_HEAD frontend | grep "js$\|json$\|jsx$" | wc -l); fi
+          if [[ "${PR_BASE}" == "null" ]]; then BACKEND=$(git diff --name-only "${PUSH_BASE}^" $PUSH_HEAD backend | grep "js$\|json$" | wc -l); else BACKEND=$(git diff --name-only "${PR_BASE}^" $PR_HEAD backend | grep "js$\|json$" | wc -l); fi
+          if [[ "${PR_BASE}" == "null" ]]; then FRONTEND=$(git diff --name-only "${PUSH_BASE}^" $PUSH_HEAD frontend | grep "js$\|json$\|jsx$" | wc -l); else FRONTEND=$(git diff --name-only "${PR_BASE}^" $PR_HEAD frontend | grep "js$\|json$\|jsx$" | wc -l); fi
           if [[ "${PR_BASE}" == "null" ]]; then BACKEND_FILES=$(git diff --name-only "${PUSH_BASE}^" $PUSH_HEAD backend ); else BACKEND_FILES=$(git diff --name-only "${PR_BASE}^" $PR_HEAD backend ); fi
           if [[ "${PR_BASE}" == "null" ]]; then FRONTEND_FILES=$(git diff --name-only "${PUSH_BASE}^" $PUSH_HEAD frontend ); else FRONTEND_FILES=$(git diff --name-only "${PR_BASE}^" $PR_HEAD frontend ); fi
 
-          echo $BACKEND $BACKEND_FILES
-          echo $FRONTEND $FRONTEND_FILES
+          if (( $BACKEND > 0)); then echo -e "New bckend files: \n$(echo $BACKEND_FILE | sed 's/ /\n/g')"; fi
+          if (( $FRONTEND > 0)); then echo -e "New frontend files: \n$(echo $FRONTEND_FILES | sed 's/ /\n/g')"; fi
 
           if (( $BACKEND > 0)); then echo "::set-output name=backend::true"; fi
           if (( $FRONTEND > 0)); then echo "::set-output name=frontend::true"; fi
