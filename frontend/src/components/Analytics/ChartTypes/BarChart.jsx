@@ -24,17 +24,6 @@ import {
 // 	}
 // ];
 
-// const blueData = [
-// 	{
-// 		x: "Total",
-// 		y: total_out.length
-// 	},
-// 	{
-// 		x: "Total Active",
-// 		y: total_out_active.length
-// 	}
-// ];
-
 const BarChart = ({ datasets }) => {
 	return (
 		<Card

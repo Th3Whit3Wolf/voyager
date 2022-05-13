@@ -1,3 +1,4 @@
-import BarChart from "./BarChart";
+import BarChart from "./ChartTypes/BarChart";
+import InfoCard from "./ChartTypes/InfoCard";
 
-export { BarChart };
+export { BarChart, InfoCard };

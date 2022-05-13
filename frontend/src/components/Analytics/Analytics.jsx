@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Our Packages
-import { BarChart } from ".";
+import { BarChart, InfoCard } from ".";
 
 // Our Packages
 import { UserContext } from "#context";
@@ -51,16 +51,16 @@ const Analytics = ({ user }) => {
 
 	// on component load set load up the state
 	useEffect(() => {
-		const unitData =
-			user.role.kind === "SITE_ADMIN"
-				? new UnitAPI()
-				: new UnitAPI().id(user.assignedUnit.id);
+		let isSiteAdmin = user.role.kind === "SITE_ADMIN";
+		const unitData = isSiteAdmin
+			? new UnitAPI()
+			: new UnitAPI().id(user.assignedUnit.id);
 		unitData
 			.get()
 			.then(response => response.json())
 			.then(result => {
 				if (result.data.length > 0) {
-					setUnit(result.data[0]);
+					setUnit(isSiteAdmin ? result.data : result.data[0]);
 				}
 			})
 			.catch(error => console.log("error", error));
@@ -68,11 +68,13 @@ const Analytics = ({ user }) => {
 
 	useEffect(() => {
 		const analyticsInfo = {};
-
-		if (Object.entries(unit).length > 0) {
-			console.log("Object has entries", unit);
-			if (user.role.kind === "SITE_ADMIN") {
-			} else {
+		if (user.role.kind === "SITE_ADMIN") {
+			let assigned = [];
+			let gaining = [];
+			let leaving = [];
+			unit;
+		} else {
+			if (Object.entries(unit).length > 0) {
 				let {
 					gainingUsers: gaining,
 					assignedUsers: assigned,
@@ -174,39 +176,18 @@ const Analytics = ({ user }) => {
 			<nav className={styles.nav}>
 				{/* <h1 style={{ fontSize: "2rem" }}>Analytics</h1> */}
 				<section className={styles.snapshot}>
-					<Card
-						sx={{
-							backgroundColor: "#000000",
-							padding: "10px",
-							borderRadius: "5px"
-						}}
-					>
-						Leaving
-						<br />
-						{analyticsState?.own?.leaving?.length}
-					</Card>
-					<Card
-						sx={{
-							backgroundColor: "#000000",
-							padding: "10px",
-							borderRadius: "5px"
-						}}
-					>
-						Assigned
-						<br />
-						{analyticsState?.own?.assigned?.length}
-					</Card>
-					<Card
-						sx={{
-							backgroundColor: "#000000",
-							padding: "10px",
-							borderRadius: "5px"
-						}}
-					>
-						Gaining
-						<br />
-						{analyticsState?.own?.gaining?.length}
-					</Card>
+					<InfoCard
+						title="Leaving"
+						value={analyticsState?.own?.leaving?.length}
+					/>
+					<InfoCard
+						title="Assigned"
+						value={analyticsState?.own?.assigned?.length}
+					/>
+					<InfoCard
+						title="Gaining"
+						value={analyticsState?.own?.gaining?.length}
+					/>
 				</section>
 			</nav>
 			<section className={styles.sidebyside}>
