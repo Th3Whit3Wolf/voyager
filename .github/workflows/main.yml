@@ -34,13 +34,13 @@ jobs:
 
           if [[ "${PR_BASE}" == "null" ]]; then BACKEND=$(git diff --name-only $PUSH_BASE $PUSH_HEAD backend | grep ".js$\|json$" | wc -l); else BACKEND=$(git diff --name-only $PR_BASE $PR_HEAD backend | grep ".js$\|json$" | wc -l); fi
           if [[ "${PR_BASE}" == "null" ]]; then FRONTEND=$(git diff --name-only $PUSH_BASE $PUSH_HEAD frontend | grep ".js$\|json$" | wc -l); else FRONTEND=$(git diff --name-only $PR_BASE $PR_HEAD frontend | grep ".js$\|json$" | wc -l); fi
-          if [[ "${PR_BASE}" == "null" ]]; then THE_DIFF=$(git diff --name-only $PUSH_BASE $PUSH_HEAD); else THE_DIFF=$(git diff --name-only $PR_BASE $PR_HEAD); fi
-          if [[ "${PR_BASE}" == "null" ]]; then THE_DIFF_COUNT=$(git diff --name-only $PUSH_BASE $PUSH_HEAD | grep ".js$\|json$\|.yml$" | wc -l); else THE_DIFF_COUNT=$(git diff --name-only $PR_BASE $PR_HEAD | grep ".js$\|json$\|.yml$" | wc -l); fi
+          # if [[ "${PR_BASE}" == "null" ]]; then THE_DIFF=$(git diff --name-only $PUSH_BASE $PUSH_HEAD); else THE_DIFF=$(git diff --name-only $PR_BASE $PR_HEAD); fi
+          # if [[ "${PR_BASE}" == "null" ]]; then THE_DIFF_COUNT=$(git diff --name-only $PUSH_BASE $PUSH_HEAD | grep ".js$\|json$\|.yml$" | wc -l); else THE_DIFF_COUNT=$(git diff --name-only $PR_BASE $PR_HEAD | grep ".js$\|json$\|.yml$" | wc -l); fi
 
           echo $BACKEND
           echo $FRONTEND
-          echo $THE_DIFF
-          echo $THE_DIFF_COUNT
+          # echo $THE_DIFF
+          # echo $THE_DIFF_COUNT
           if (( $BACKEND > 1)); then echo "::set-output name=backend::true"; fi
           if (( $FRONTEND > 1)); then echo "::set-output name=frontend::true"; fi
 
