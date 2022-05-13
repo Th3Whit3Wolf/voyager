@@ -59,13 +59,63 @@ const statusUpdate = (schemaName, data) => {
 	);
 };
 
-// let wheres = [{ display: "", fieldName: "", fieldVal: val }];
-const genData = async (prisma, schemaName, datum, wheres) => {
+const isObject = obj =>
+	typeof obj === "object" && !Array.isArray(obj) && obj !== null;
+
+const cmpData = (arr1, arr2, ignoreKeys = []) => {
+	if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+		return false;
+	}
+	if (arr1.length === arr2.length && arr1.length > 0 && arr2.length > 0) {
+		if (isObject(arr1[0]) && isObject(arr2[0])) {
+			return arr1
+				.map((_, idx) => {
+					const entry1 = Object.entries(arr1[idx])
+						.filter(([k]) => !ignoreKeys.includes(k))
+						.flat();
+
+					const entry2 = Object.entries(arr2[idx])
+						.filter(([k]) => !ignoreKeys.includes(k))
+						.flat();
+					return cmpData(entry1, entry2);
+				})
+				.every(v => v === true);
+		}
+		return arr1
+			.map((_, idx) => arr1[idx] === arr2[idx])
+			.every(v => v === true);
+	}
+	return false;
+};
+
+const genData = async (prisma, schemaName, datum, wheres, debug = false) => {
+	const dbg = msg => {
+		if (debug === true) {
+			console.log(msg);
+		}
+	};
 	let currentPrismaData = await prisma[schemaName].findMany();
 
-	if (currentPrismaData.length !== datum.length) {
-		if (currentPrismaData.length > 1) {
-			await prisma[schemaName].deleteMany({});
+	dbg(`${schemaName} Count: ${currentPrismaData.length}/${datum.length}`);
+
+	if (
+		!cmpData(currentPrismaData, datum, [
+			"id",
+			"createdAt",
+			"completedAt",
+			"updatedAt"
+		])
+	) {
+		if (currentPrismaData.length > 0) {
+			dbg(`Prisma attempting to delete all entries from ${schemaName}`);
+			try {
+				await prisma[schemaName].deleteMany({});
+			} catch (err) {
+				dbg(`Error while trying to delete entries: ${err}`);
+				throw new Error(
+					`Prisma  failed to delete entries from ${schemaName}: ${err}`
+				);
+			}
 		}
 		const data = datum.map(d => {
 			const deets = { ...d };
@@ -78,12 +128,85 @@ const genData = async (prisma, schemaName, datum, wheres) => {
 			return deets;
 		});
 
-		await prisma[schemaName].createMany({
-			data
-		});
+		dbg(`Prisma attempting to seed all entries for ${schemaName}`);
+		if (debug) {
+			const failures = [];
+			let failureErrors = "N/a";
+			// eslint-disable-next-line no-restricted-syntax
+			for (const d of data) {
+				try {
+					// eslint-disable-next-line no-await-in-loop
+					await prisma[schemaName].create({
+						data: d
+					});
+				} catch (err) {
+					const failureID = data.indexOf(d) + 1;
+					failures.push(failureID);
+					failureErrors = err.message;
+				}
+			}
+
+			if (failures.length > 0) {
+				dbg("Failed to insert: [");
+				dbg(
+					`${schemaName}: ${JSON.stringify(
+						{ id: failures[0], ...data[failures[0] - 1] },
+						null,
+						2
+					)}${failures.length > 1 ? "," : ""}`
+				);
+				if (failures.length > 1) {
+					if (failures.length > 2) {
+						const plural = failures.length > 3 ? "s" : "";
+						const desc =
+							schemaName === "TaskUsers"
+								? `user${plural} with tasks`
+								: `${schemaName.toLowerCase()}${plural}`;
+						dbg(`\n... ${failures.length - 2} more ${desc} ...\n`);
+					}
+					dbg(
+						`${schemaName}: ${JSON.stringify(
+							{
+								id: failures[0],
+								...data[failures[failures.length - 1] - 1]
+							},
+							null,
+							2
+						)}`
+					);
+				}
+				dbg("]");
+				dbg(`Failures: ${failures.length}: ${failureErrors[0]}`);
+
+				throw new Error(
+					`Prisma had ${failures.length} failure${
+						failures.length > 1 ? "s" : ""
+					} trying to create entries for ${schemaName}!`
+				);
+			} else {
+				dbg(`Prisma seed for ${schemaName} was sucessful`);
+			}
+		} else {
+			try {
+				await prisma[schemaName].createMany({
+					data
+				});
+			} catch (err) {
+				throw new Error(
+					`Prisma failed to create entries for ${schemaName}: ${err}`
+				);
+			}
+		}
+	} else {
+		dbg(`${schemaName} is already seeded`);
 	}
 
-	currentPrismaData = await prisma[schemaName].findMany();
+	try {
+		currentPrismaData = await prisma[schemaName].findMany();
+	} catch (err) {
+		throw new Error(`Prisma failed to find ${schemaName}: ${err}`);
+	}
+
 	const statusData = [];
 
 	// eslint-disable-next-line no-restricted-syntax
