@@ -9,10 +9,9 @@ import { UserAPI } from "#services/api";
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony
+import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony // But also why? David
 
 import "../../../node_modules/react-vis/dist/style.css";
-import { XYPlot, LineSeries } from "react-vis";
 
 const Login = () => {
 	// STATE
@@ -35,7 +34,6 @@ const Login = () => {
 	});
 
 	// Internal Functions
-
 	const handleUserPass = () => {
 		if (email == undefined || email.length === 0) {
 			setEmail("");
@@ -165,11 +163,11 @@ const Login = () => {
 					color="secondary"
 					variant="contained"
 					onClick={() => {
-						setEmail("sherri.ortiz@spaceforce.mil");
+						setEmail("raquel.orn@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate USER 68 (Sherry Ortiz) --- InProcessing
+					Click to Auto Populate USER 67 (Raquel Orn) --- InProcessing
 				</Button>
 
 				<br />
@@ -178,11 +176,11 @@ const Login = () => {
 					color="secondary"
 					variant="contained"
 					onClick={() => {
-						setEmail("raquel.orn@spaceforce.mil");
+						setEmail("sherri.ortiz@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate USER 67 (Raquel Orn) --- OutProcessing
+					Click to Auto Populate USER 68 (Sherry Ortiz) --- OutProcessing
 				</Button>
 
 				<br />
@@ -195,7 +193,7 @@ const Login = () => {
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate ADMIN 2 (Johnny Bravo) -- Installation Admin
+					Click to Auto Populate ADMIN 66 (Johnny Bravo) -- Installation Admin
 				</Button>
 			</Stack>
 		</>

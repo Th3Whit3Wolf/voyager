@@ -9,7 +9,10 @@ import {
 } from "@mui/material";
 import { UserTableRow } from "#components";
 
+// Componet storing users's task data as a table
 const UserTable = ({ alldata }) => {
+	console.log(alldata);
+
 	return (
 		<>
 			<MuiTable size={"small"}>
@@ -27,9 +30,11 @@ const UserTable = ({ alldata }) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{alldata.map(entry => (
-						<UserTableRow hover={true} key={entry.id} entry={entry} />
-					))}
+					{alldata
+						.filter(entry => entry.task.isActive === true)
+						.map(entry => (
+							<UserTableRow hover={true} key={entry.id} entry={entry} />
+						))}
 				</TableBody>
 			</MuiTable>
 		</>

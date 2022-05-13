@@ -27,7 +27,6 @@ import { Delete, Star } from "@mui/icons-material";
 import { DeleteDialog, InfoDialog } from "#components";
 
 // Start of the AdminTableRow React Hook
-
 const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	const { user, setUser } = useContext(UserContext);
 
@@ -76,9 +75,29 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	//const InfoDialogProps = { info_open, handleClose, entry };
 
 	const handleDelete = value => {
-		const deleteTask = new TaskAPI();
-		deleteTask
-			.delete(parseInt(value))
+		// const deleteTask = new TaskAPI();
+		// deleteTask
+		// 	.delete(parseInt(value))
+		// 	.then(response => response.text())
+		// 	.then(setMessage(`Deleted Task Number ID: ${value}!`))
+		// 	.then(() => {
+		// 		const refreshUser = new UserAPI();
+		// 		refreshUser
+		// 			.email(user.email)
+		// 			.get()
+		// 			.then(response => response.json())
+		// 			.then(d => setUser(d.data[0]));
+		// 	})
+		// 	.catch(err => console.log(err));
+		const requestOptions = {
+			method: "DELETE",
+			redirect: "follow"
+		};
+
+		fetch(
+			`http://localhost:8081/api/v1/tasks/${parseInt(value)}`,
+			requestOptions
+		)
 			.then(response => response.text())
 			.then(setMessage(`Deleted Task Number ID: ${value}!`))
 			.then(() => {
@@ -89,7 +108,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					.then(response => response.json())
 					.then(d => setUser(d.data[0]));
 			})
-			.catch(err => console.log(err));
+			.catch(error => console.log("error", error));
 	};
 
 	const handlePut = stringifiedJSON => {
@@ -133,9 +152,17 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 
 	const updatePocID = e => {
 		setPocID(parseInt(e.target.value));
-		var raw = JSON.stringify({
+		let raw = JSON.stringify({
 			approverID: e.target.value
 		});
+		handlePut(raw);
+	};
+
+	const updateIsActive = e => {
+		let raw = JSON.stringify({
+			isActive: !isActive
+		});
+		setIsActive(!isActive);
 		handlePut(raw);
 	};
 
@@ -204,7 +231,12 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 			</Dialog> */}
 			<TableRow>
 				<TableCell>
-					<Switch checked={isActive} name="isActive" />
+					<Switch
+						checked={isActive}
+						name="isActive"
+						value={isActive}
+						onChange={updateIsActive}
+					/>
 				</TableCell>
 				<TableCell>
 					<TextField
