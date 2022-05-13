@@ -88,7 +88,6 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 		// 			.get()
 		// 			.then(response => response.json())
 		// 			.then(d => setUser(d.data[0]));
-		//
 		// 	})
 		// 	.catch(err => console.log(err));
 		const requestOptions = {
