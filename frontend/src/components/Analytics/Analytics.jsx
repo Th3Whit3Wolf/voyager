@@ -25,11 +25,33 @@ import {
 
 const Analytics = ({ user }) => {
 	console.log("Admin User", user);
+	console.log("Admin User Unit", user?.assignedUnit.id, user?.assigned);
 	console.log("Admin Tasks Assigned", user?.tasksAssigned);
+	console.log(
+		"Admin Subordinates with gaining unit",
+		user?.subordinates
+			.filter(sub => sub.gainingUnitID !== null)
+			.map(person => person.status)
+	);
 
 	const [basicChecked, setBasicChecked] = useState(true);
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
 	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
+
+	const [subordinates, setSubordinates] = useState([]);
+	const [gainingUsers, setGainingUsers] = useState([]);
+	const [remainingUsers, setRemainingUsers] = useState([]);
+	const [leavingUsers, setLeavingUsers] = useState([]);
+
+	// on component load set load up the state
+	useEffect(() => {
+		setSubordinates(user?.subordinates);
+		setGainingUsers(
+			user?.subordinates.filter(sub => sub.gainingUnitID === null)
+		);
+	}, []);
+
+	console.log("Admin Subordinates", subordinates);
 
 	const total_in = user?.tasksAssigned?.filter(
 		task => task?.kind === "IN_PROCESSING"
@@ -46,9 +68,6 @@ const Analytics = ({ user }) => {
 	const total_out_active = user?.tasksAssigned
 		?.filter(task => task?.kind === "OUT_PROCESSING")
 		?.filter(task => task?.isActive === true);
-
-	//console.log(total_in);
-	//console.log(total_out);
 
 	const greenData = [
 		{
