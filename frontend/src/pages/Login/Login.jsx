@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony
 
 import "../../../node_modules/react-vis/dist/style.css";
-import { XYPlot, LineSeries } from "react-vis";
 
 const Login = () => {
 	// STATE
@@ -195,7 +194,7 @@ const Login = () => {
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate ADMIN 2 (Johnny Bravo) -- Installation Admin
+					Click to Auto Populate ADMIN 66 (Johnny Bravo) -- Installation Admin
 				</Button>
 			</Stack>
 		</>
