@@ -41,8 +41,8 @@ jobs:
           echo $FRONTEND
           # echo $THE_DIFF
           # echo $THE_DIFF_COUNT
-          if (( $BACKEND > 1)); then echo "::set-output name=backend::true"; fi
-          if (( $FRONTEND > 1)); then echo "::set-output name=frontend::true"; fi
+          if (( $BACKEND > 0)); then echo "::set-output name=backend::true"; fi
+          if (( $FRONTEND > 0)); then echo "::set-output name=frontend::true"; fi
 
   
   # This workflow kicks off the build and test for the Frontend
