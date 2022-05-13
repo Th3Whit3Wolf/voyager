@@ -13,7 +13,8 @@ import {
 	UserTable,
 	AdminTable,
 	UserSettings,
-	ModifyAdminTable
+	ModifyAdminTable,
+	Analytics
 } from "#components";
 
 // There is no longer a useNavigate state prop called role.
@@ -51,7 +52,7 @@ const Dashboard = () => {
 
 	// State for Admin and Admin Pagination
 	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(20);
+	const [end, setEnd] = useState(50);
 	const [revision, setRevision] = useState(0);
 
 	const [data, setData] = useState(
@@ -107,7 +108,7 @@ const Dashboard = () => {
 			};
 
 			fetch(
-				"http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=3",
+				`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${user.assignedUnit.id}`,
 				requestOptions
 			)
 				.catch(err => console.log(err))
@@ -235,6 +236,7 @@ const Dashboard = () => {
 						/>
 						<Tab label="User Settings" value="3" />
 						<Tab label="Modify Admins" value="4" />
+						<Tab label="Analytics" value="5" />
 					</TabList>
 
 					<TabPanel value="1">
@@ -317,6 +319,12 @@ const Dashboard = () => {
 										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
 								}
 							/>
+						</TableContainer>
+					</TabPanel>
+
+					<TabPanel value="5">
+						<TableContainer component={Paper}>
+							<Analytics user={user} />
 						</TableContainer>
 					</TabPanel>
 				</TabContext>

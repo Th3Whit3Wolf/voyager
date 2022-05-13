@@ -11,8 +11,6 @@ import {
 } from "@mui/material";
 
 const UserSettings = ({ settings }) => {
-	console.log(settings);
-
 	return (
 		<Container>
 			<h2>{settings?.firstName + " " + settings?.lastName}</h2>

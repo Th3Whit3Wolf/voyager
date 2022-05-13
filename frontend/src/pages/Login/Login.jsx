@@ -52,7 +52,6 @@ const Login = () => {
 				.then(response => response.json())
 				.then(d => {
 					let tempUser = d.data[0];
-					console.log(tempUser);
 					setUser(tempUser);
 					if (tempUser === undefined) {
 						alert(
@@ -192,11 +191,11 @@ const Login = () => {
 					color="warning"
 					variant="contained"
 					onClick={() => {
-						setEmail("terry.schiller@spaceforce.mil");
+						setEmail("johnny.bravo@spaceforce.mil");
 						setPassword("123456789");
 					}}
 				>
-					Click to Auto Populate ADMIN 66 (Terry Schiller) -- Installation Admin
+					Click to Auto Populate ADMIN 2 (Johnny Bravo) -- Installation Admin
 				</Button>
 			</Stack>
 		</>
