@@ -6,7 +6,13 @@ import { UserContext } from "#context";
 import styles from "./Analytics.module.css";
 
 // Third Party Packages
-import { Checkbox, FormGroup, FormControlLabel, Card } from "@mui/material";
+import {
+	Checkbox,
+	FormGroup,
+	FormControlLabel,
+	Card,
+	Button
+} from "@mui/material";
 import {
 	XYPlot,
 	XAxis,
@@ -69,7 +75,57 @@ const Analytics = ({ user }) => {
 	return (
 		<section className={styles.container}>
 			<nav className={styles.nav}>
-				<h3>Navigation</h3>
+				{/* <h1 style={{ fontSize: "2rem" }}>Analytics</h1> */}
+				<section className={styles.snapshot}>
+					<Card
+						sx={{
+							backgroundColor: "#000000",
+							padding: "10px",
+							borderRadius: "5px"
+						}}
+					>
+						Gaining
+						<p>Placheolder for micro-graph</p>
+						<XYPlot
+							xType="ordinal"
+							width={200}
+							height={100}
+							xDistance={10}
+						></XYPlot>
+					</Card>
+					<Card
+						sx={{
+							backgroundColor: "#000000",
+							padding: "10px",
+							borderRadius: "5px"
+						}}
+					>
+						Stationary
+						<p>Placheolder for micro-graph</p>
+						<XYPlot
+							xType="ordinal"
+							width={200}
+							height={100}
+							xDistance={10}
+						></XYPlot>{" "}
+					</Card>
+					<Card
+						sx={{
+							backgroundColor: "#000000",
+							padding: "10px",
+							borderRadius: "5px"
+						}}
+					>
+						Losing
+						<p>Placheolder for micro-graph</p>
+						<XYPlot
+							xType="ordinal"
+							width={200}
+							height={100}
+							xDistance={10}
+						></XYPlot>{" "}
+					</Card>
+				</section>
 			</nav>
 			<section className={styles.sidebyside}>
 				<sidebar className={styles.sidebar}>
@@ -112,26 +168,69 @@ const Analytics = ({ user }) => {
 				</sidebar>
 				<article className={styles.main}>
 					<h3>Main Article</h3>
-					{basicChecked && (
-						<div>
-							<h2>Show Basic Plots</h2>
-							<Card sx={{ backgroundColor: "#000000", padding: "10px" }}>
-								<XYPlot xType="ordinal" width={600} height={500} xDistance={10}>
-									<VerticalGridLines />
-									<HorizontalGridLines />
-									<XAxis style={{ fontSize: "1.1em" }} />
-									<YAxis style={{ fontSize: "1.05em" }} />
-									<VerticalBarSeries data={greenData} />
-									<VerticalBarSeries data={blueData} />
-								</XYPlot>
-								<DiscreteColorLegend
-									style={{ fontSize: "1.1rem", color: "white" }}
-									width={180}
-									items={[{ title: "Inprocessing" }, "Outprocessing"]}
-								/>
-							</Card>
-						</div>
-					)}
+					<section>
+						<h2>Show Basic Plots</h2>
+						{basicChecked && (
+							<div className={styles.showPlots}>
+								<Card
+									sx={{
+										backgroundColor: "#000000",
+										padding: "10px",
+										borderRadius: "5px"
+									}}
+								>
+									{" "}
+									<XYPlot
+										xType="ordinal"
+										width={500}
+										height={400}
+										xDistance={10}
+									>
+										<VerticalGridLines />
+										<HorizontalGridLines />
+										<XAxis style={{ fontSize: "1.1em" }} />
+										<YAxis style={{ fontSize: "1.05em" }} />
+										<VerticalBarSeries data={greenData} />
+										<VerticalBarSeries data={blueData} />
+									</XYPlot>
+									<DiscreteColorLegend
+										style={{ fontSize: "1.1rem", color: "white" }}
+										width={180}
+										items={[{ title: "Inprocessing" }, "Outprocessing"]}
+									/>
+								</Card>
+								<Card
+									sx={{
+										backgroundColor: "#000000",
+										padding: "10px",
+										borderRadius: "5px"
+									}}
+								>
+									{" "}
+									<XYPlot
+										xType="ordinal"
+										width={500}
+										height={400}
+										xDistance={10}
+										animation="true"
+									>
+										<VerticalGridLines />
+										<HorizontalGridLines />
+										<XAxis style={{ fontSize: "1.1em" }} />
+										<YAxis style={{ fontSize: "1.05em" }} />
+										<VerticalBarSeries data={greenData} />
+										<VerticalBarSeries data={blueData} />
+									</XYPlot>
+									<DiscreteColorLegend
+										style={{ fontSize: "1.1rem", color: "white" }}
+										width={180}
+										items={[{ title: "Inprocessing" }, "Outprocessing"]}
+									/>
+								</Card>
+							</div>
+						)}
+					</section>
+
 					{inprocessingChecked && (
 						<div>
 							<h2>Show Inprocessing Plots</h2>
