@@ -224,7 +224,12 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 			</Dialog> */}
 			<TableRow>
 				<TableCell>
-					<Switch checked={isActive} name="isActive" />
+					<Switch
+						checked={isActive}
+						name="isActive"
+						value={isActive}
+						onChange={e => setIsActive(!isActive)}
+					/>
 				</TableCell>
 				<TableCell>
 					<TextField
