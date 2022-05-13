@@ -153,9 +153,17 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 
 	const updatePocID = e => {
 		setPocID(parseInt(e.target.value));
-		var raw = JSON.stringify({
+		let raw = JSON.stringify({
 			approverID: e.target.value
 		});
+		handlePut(raw);
+	};
+
+	const updateIsActive = e => {
+		let raw = JSON.stringify({
+			isActive: !isActive
+		});
+		setIsActive(!isActive);
 		handlePut(raw);
 	};
 
@@ -228,7 +236,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 						checked={isActive}
 						name="isActive"
 						value={isActive}
-						onChange={e => setIsActive(!isActive)}
+						onChange={updateIsActive}
 					/>
 				</TableCell>
 				<TableCell>

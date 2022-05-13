@@ -10,6 +10,8 @@ import {
 import { UserTableRow } from "#components";
 
 const UserTable = ({ alldata }) => {
+	console.log(alldata);
+
 	return (
 		<>
 			<MuiTable size={"small"}>
@@ -27,9 +29,11 @@ const UserTable = ({ alldata }) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{alldata.map(entry => (
-						<UserTableRow hover={true} key={entry.id} entry={entry} />
-					))}
+					{alldata
+						.filter(entry => entry.task.isActive === true)
+						.map(entry => (
+							<UserTableRow hover={true} key={entry.id} entry={entry} />
+						))}
 				</TableBody>
 			</MuiTable>
 		</>
