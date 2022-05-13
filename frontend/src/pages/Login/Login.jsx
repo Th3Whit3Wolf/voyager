@@ -9,7 +9,7 @@ import { UserAPI } from "#services/api";
 // Third Party Components
 import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony
+import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony // But also why? David
 
 import "../../../node_modules/react-vis/dist/style.css";
 
