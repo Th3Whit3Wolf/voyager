@@ -39,7 +39,8 @@ jobs:
           echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
           echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} backend)
           echo $(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} frontend)
-
+          echo $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+  
   # This workflow kicks off the build and test for the Frontend
   frontend-build-and-test:
     name: Build and Test Frontend
