@@ -17,7 +17,8 @@ import {
 	FormControlLabel,
 	InputLabel,
 	MenuItem,
-	Select
+	Select,
+	useTheme
 } from "@mui/material";
 
 const updateAnalytics = (displayName, arr, analyticsObj) => {
@@ -41,7 +42,7 @@ const Analytics = ({ user }) => {
 	// the analyticsState object which conducts feature engineering
 	//    You will almost always be using the analyticsState to reference
 	//    for simple data heuristics
-
+	const theme = useTheme();
 	const [unit, setUnit] = useState({});
 	const [analyticsState, setAnalyticsState] = useState({});
 
@@ -221,35 +222,39 @@ const Analytics = ({ user }) => {
 
 	// END OF FILTERING FUNCTIONS
 
-	const greenData = [
+	const data = [
 		{
-			x: "Total",
-			y: user?.tasksAssigned?.filter(task => task?.kind === "IN_PROCESSING")
-				.length
+			name: "Total",
+			"In Processing": user?.tasksAssigned?.filter(
+				task => task?.kind === "IN_PROCESSING"
+			).length,
+			"Out Processing": user?.tasksAssigned?.filter(
+				task => task?.kind === "OUT_PROCESSING"
+			).length
 		},
 		{
 			x: "Total Active",
-			y: user?.tasksAssigned
+			name: "Total ",
+			"In Processing": user?.tasksAssigned
 				?.filter(task => task?.kind === "IN_PROCESSING")
-				?.filter(task => task?.isActive === true).length
-		}
-	];
-
-	const blueData = [
-		{
-			x: "Total",
-			y: user?.tasksAssigned?.filter(task => task?.kind === "OUT_PROCESSING")
-				.length
-		},
-		{
-			x: "Total Active",
-			y: user?.tasksAssigned
+				?.filter(task => task?.isActive === true).length,
+			"Out Processing": user?.tasksAssigned
 				?.filter(task => task?.kind === "OUT_PROCESSING")
 				?.filter(task => task?.isActive === true).length
 		}
 	];
+	const barInfo = [
+		{
+			dataKey: "In Processing",
+			fill: theme.palette.success[theme.palette.mode]
+		},
+		{
+			dataKey: "Out Processing",
+			fill: theme.palette.warning[theme.palette.mode]
+		}
+	];
 
-	const datasets = [greenData, blueData];
+	const datasets = { data, barInfo };
 
 	return (
 		<section className={styles.container}>
@@ -371,16 +376,11 @@ const Analytics = ({ user }) => {
 						/>
 					</FormGroup>
 				</sidebar>
+				<BarChart datasets={datasets} />
 
-				<article className={styles.main}>
-					<section>
-						{basicChecked && (
-							<div className={styles.showPlots}>
-								<BarChart datasets={datasets} />
-								<BarChart datasets={datasets} />
-							</div>
-						)}
-					</section>
+				{/*
+<article className={styles.main}>
+					<section>{basicChecked}</section>
 
 					{inprocessingChecked && (
 						<div>
@@ -393,6 +393,7 @@ const Analytics = ({ user }) => {
 						</div>
 					)}
 				</article>
+						*/}
 			</section>
 		</section>
 	);

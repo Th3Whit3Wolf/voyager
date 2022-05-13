@@ -1,57 +1,56 @@
-import React from "react";
-
-// Third Party Packages
-import { Card } from "@mui/material";
-
 import {
-	XYPlot,
+	BarChart,
+	Bar,
 	XAxis,
 	YAxis,
-	VerticalGridLines,
-	HorizontalGridLines,
-	VerticalBarSeries,
-	DiscreteColorLegend
-} from "react-vis";
+	CartesianGrid,
+	Tooltip,
+	Legend
+} from "recharts";
+// Third Party Packages
+import { Card, CardContent, useTheme, Paper } from "@mui/material";
 
-// const greenData = [
-// 	{
-// 		x: "Total",
-// 		y: total_in.length
-// 	},
-// 	{
-// 		x: "Total Active",
-// 		y: total_in_active.length
-// 	}
-// ];
+const VoyagerBarChart = ({ datasets }) => {
+	let { data, barInfo } = datasets;
+	const theme = useTheme();
 
-const BarChart = ({ datasets }) => {
+	console.log("THEME:", theme.palette);
+
 	return (
 		<Card
 			sx={{
-				backgroundColor: "#000000",
-				padding: "10px",
-				borderRadius: "5px"
+				padding: "2rem",
+				marginLeft: "2rem",
+				borderRadius: "2rem",
+				width: "100%",
+				height: "100%",
+				backgroundColor: theme.palette.hover.default
 			}}
 		>
-			{" "}
-			<XYPlot xType="ordinal" width={500} height={400} xDistance={10}>
-				<VerticalGridLines />
-				<HorizontalGridLines />
-				<XAxis style={{ fontSize: "1.1em" }} />
-				<YAxis style={{ fontSize: "1.05em" }} />
-				{datasets.map((dataset, idx) => (
-					<VerticalBarSeries key={idx} data={dataset} />
-				))}
-				{/* <VerticalBarSeries data={datasets} />
-				<VerticalBarSeries data={blueData} /> */}
-			</XYPlot>
-			<DiscreteColorLegend
-				style={{ fontSize: "1.1rem", color: "white" }}
-				width={180}
-				items={[{ title: "Inprocessing" }, "Outprocessing"]}
-			/>
+			<CardContent>
+				<BarChart
+					width={500}
+					height={300}
+					data={data}
+					margin={{
+						top: 5,
+						right: 30,
+						left: 20,
+						bottom: 5
+					}}
+				>
+					<CartesianGrid strokeDasharray="3 3" />
+					<XAxis dataKey="name" />
+					<YAxis />
+					<Tooltip />
+					<Legend />
+					{barInfo.map(barI => (
+						<Bar key={barI.dataKey} {...barI} />
+					))}
+				</BarChart>
+			</CardContent>
 		</Card>
 	);
 };
 
-export default BarChart;
+export default VoyagerBarChart;
