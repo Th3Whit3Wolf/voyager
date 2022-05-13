@@ -27,6 +27,20 @@ function FindAllMethods(obj) {
 	});
 }
 
+const updateAnalytics = (displayName, arr, analyticsObj) => {
+	return (analyticsObj[displayName] = arr.map(old => {
+		let newData = {
+			...old,
+			gaining: old.gainingUsers,
+			assigned: old.assignedUsers
+		};
+		newData.leaving = newData.assigned.filter(
+			usr => usr.gainingUnitID !== null
+		);
+		return newData;
+	}));
+};
+
 const Analytics = ({ user }) => {
 	const [basicChecked, setBasicChecked] = useState(true);
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
@@ -37,7 +51,10 @@ const Analytics = ({ user }) => {
 
 	// on component load set load up the state
 	useEffect(() => {
-		const unitData = new UnitAPI().id(user.assignedUnit.id);
+		const unitData =
+			user.role.kind === "SITE_ADMIN"
+				? new UnitAPI()
+				: new UnitAPI().id(user.assignedUnit.id);
 		unitData
 			.get()
 			.then(response => response.json())
@@ -51,21 +68,65 @@ const Analytics = ({ user }) => {
 
 	useEffect(() => {
 		const analyticsInfo = {};
+
 		if (Object.entries(unit).length > 0) {
-			const {
-				gainingUsers: gaining,
-				assignedUsers: assigned,
-				children,
-				grandChildren,
-				installationChildren
-			} = unit;
-			analyticsInfo.own = { assigned, gaining };
-			analyticsInfo.children = [...children];
-			analyticsInfo.grandChildren = [...grandChildren];
-			analyticsInfo.installationChildren = [...installationChildren];
-			setAnalyticsState(analyticsInfo);
+			console.log("Object has entries", unit);
+			if (user.role.kind === "SITE_ADMIN") {
+			} else {
+				let {
+					gainingUsers: gaining,
+					assignedUsers: assigned,
+					children,
+					grandChildren,
+					installationChildren
+				} = unit;
+
+				console.log("Role = ", user.role.kind);
+				switch (user.role.kind) {
+					case "INSTALLATION_ADMIN":
+						analyticsInfo.own = {
+							assigned,
+							gaining,
+							leaving: assigned.filter(usr => usr.gainingUnitID !== null)
+						};
+						updateAnalytics("Squadrons", installationChildren, analyticsInfo);
+						setAnalyticsState(analyticsInfo);
+						console.log(analyticsInfo);
+						return;
+					case "COMMAND_ADMIN":
+						analyticsInfo.own = {
+							assigned,
+							gaining,
+							leaving: assigned.filter(usr => usr.gainingUnitID !== null)
+						};
+						updateAnalytics("Deltas", children, analyticsInfo);
+						updateAnalytics("Squadrons", grandChildren, analyticsInfo);
+						setAnalyticsState(analyticsInfo);
+						return;
+					case "DELTA_ADMIN":
+						analyticsInfo.own = {
+							assigned,
+							gaining,
+							leaving: assigned.filter(usr => usr.gainingUnitID !== null)
+						};
+						updateAnalytics("Squadrons", children, analyticsInfo);
+						setAnalyticsState(analyticsInfo);
+						return;
+					case "SQUADRON_ADMIN":
+						analyticsInfo.own = {
+							assigned,
+							gaining,
+							leaving: assigned.filter(usr => usr.gainingUnitID !== null)
+						};
+						setAnalyticsState(analyticsInfo);
+						return;
+					default:
+						return;
+				}
+			}
 		}
-		console.log(analyticsState);
+
+		console.log("State", analyticsState);
 	}, [unit]);
 
 	const total_in = user?.tasksAssigned?.filter(
@@ -121,7 +182,8 @@ const Analytics = ({ user }) => {
 						}}
 					>
 						Leaving
-						<p>Placheolder for micro-statistics</p>
+						<br />
+						{analyticsState?.own?.leaving?.length}
 					</Card>
 					<Card
 						sx={{
@@ -131,7 +193,8 @@ const Analytics = ({ user }) => {
 						}}
 					>
 						Assigned
-						<p>Placheolder for micro-statistics</p>
+						<br />
+						{analyticsState?.own?.assigned?.length}
 					</Card>
 					<Card
 						sx={{
@@ -141,7 +204,8 @@ const Analytics = ({ user }) => {
 						}}
 					>
 						Gaining
-						<p>Placheolder for micro-statistics</p>
+						<br />
+						{analyticsState?.own?.gaining?.length}
 					</Card>
 				</section>
 			</nav>
