@@ -22,7 +22,7 @@ import {
 	Legend
 } from "recharts";
 
-import { Card } from "@mui/material";
+import { Card, CardMedia, Grid, CardHeader } from "@mui/material";
 
 const Report = ({ dataset }) => {
 	const [data, setData] = useState({});
@@ -255,9 +255,6 @@ const Report = ({ dataset }) => {
 						<li>
 							Total In and Below Your Heirachy: {data.total.leaving.length}
 						</li>
-						<ul>
-							{console.log(data?.total?.leaving.map(entry => entry?.role?.id))}
-						</ul>
 					</ul>
 				</div>
 				<div>
@@ -417,8 +414,9 @@ const Report = ({ dataset }) => {
 				</div>
 			</section>
 
-			<section>
+			{/* <section>
 				<h3>Leaving Task Information</h3>
+				{console.log(dataForLBC)}
 				<Card
 					sx={{
 						padding: "2rem",
@@ -477,37 +475,48 @@ const Report = ({ dataset }) => {
 						/>
 					</BarChart>{" "}
 				</Card>
-			</section>
+			</section> */}
 
 			<section>
-				<h3>Gaining Task Information</h3>
-				<Card
-					sx={{
-						padding: "2rem",
-						borderRadius: "2rem",
-						boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
-					}}
+				<Grid
+					container
+					spacing={0}
+					direction="column"
+					alignItems="center"
+					justify="center"
+					style={{ minHeight: "100vh" }}
 				>
-					<BarChart width={1000} height={450} data={dataForGBC}>
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey="name" />
-						<YAxis />
-						<Tooltip content={<CustomTooltip />} />
-						<Legend />
-						<Bar
-							dataKey="NOT STARTED"
-							fill="#8884d8"
-							name="NOT STARTED"
-							onMouseOver={() => (tooltip = "NOT STARTED")}
-						/>
-						<Bar
-							dataKey="COMPLETED"
-							fill="#82ca9d"
-							name="COMPLETED"
-							onMouseOver={() => (tooltip = "COMPLETED")}
-						/>
-					</BarChart>{" "}
-				</Card>
+					<Card
+						sx={{
+							padding: "2rem",
+							borderRadius: "2rem",
+							boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
+						}}
+					>
+						<CardHeader title="Gaining - Task Completion Status" />
+						<CardMedia>
+							<BarChart width={1000} height={450} data={dataForGBC}>
+								<CartesianGrid strokeDasharray="3 3" />
+								<XAxis dataKey="name" />
+								<YAxis />
+								<Tooltip content={<CustomTooltip />} />
+								<Legend />
+								<Bar
+									dataKey="NOT STARTED"
+									fill="#8884d8"
+									name="NOT STARTED"
+									onMouseOver={() => (tooltip = "NOT STARTED")}
+								/>
+								<Bar
+									dataKey="COMPLETED"
+									fill="#82ca9d"
+									name="COMPLETED"
+									onMouseOver={() => (tooltip = "COMPLETED")}
+								/>
+							</BarChart>{" "}
+						</CardMedia>
+					</Card>
+				</Grid>
 			</section>
 		</section>
 	);
