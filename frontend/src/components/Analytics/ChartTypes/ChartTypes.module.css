@@ -1,3 +1,27 @@
 .barchart {
 	stroke: black;
 }
+
+.report {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.report_header {
+	display: flex;
+	justify-content: space-around;
+}
+
+.report > h1 {
+	text-align: center;
+	font-size: 2.5rem;
+}
+
+.report > h2 {
+	text-align: center;
+	font-size: 2rem;
+}
+
+.report > h3 {
+	font-size: 1.5rem;
+}

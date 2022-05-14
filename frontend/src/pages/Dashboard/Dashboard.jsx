@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { UserContext } from "#context";
-
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Our Components and Utilities
+import { UserContext } from "#context";
+
 import { UserAPI } from "#services";
 
 // Third Party Components and Utilities
@@ -16,6 +15,8 @@ import {
 	ModifyAdminTable,
 	Analytics
 } from "#components";
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
