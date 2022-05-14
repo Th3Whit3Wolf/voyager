@@ -127,7 +127,7 @@ const Report = ({ dataset }) => {
 				let com = entry.filter(word => word === "COMPLETED").length;
 
 				returnTemp.push({
-					name: idx,
+					xlabels: idx + 1,
 					"NOT STARTED": nos,
 					COMPLETED: com,
 					person: temp2[idx],
@@ -497,7 +497,7 @@ const Report = ({ dataset }) => {
 						<CardMedia>
 							<BarChart width={1000} height={450} data={dataForGBC}>
 								<CartesianGrid strokeDasharray="3 3" />
-								<XAxis dataKey="name" />
+								<XAxis dataKey="xlabels" />
 								<YAxis />
 								<Tooltip content={<CustomTooltip />} />
 								<Legend />
