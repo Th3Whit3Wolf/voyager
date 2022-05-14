@@ -2,7 +2,8 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Our Packages
-import { BarChart, InfoCard } from ".";
+import { Loading } from "#components";
+import { BarChart, InfoCard, Report } from ".";
 
 // Our Packages
 import { UnitAPI } from "#services";
@@ -258,21 +259,32 @@ const Analytics = ({ user }) => {
 			{console.log("Render", analyticsState)}
 			<nav className={styles.nav}>
 				<section className={styles.snapshot}>
-					<InfoCard
-						title="Leaving"
-						value={analyticsState?.total?.leaving?.length}
-					/>
-					<InfoCard
-						title="Assigned"
-						value={analyticsState?.total?.assigned?.length}
-					/>
-					<InfoCard
-						title="Gaining"
-						value={analyticsState?.total?.gaining?.length}
-					/>
+					{Object.entries(analyticsState).length === 0 && <Loading />}
+					{Object.entries(analyticsState).length !== 0 && (
+						<InfoCard
+							title="Leaving"
+							value={analyticsState?.total?.leaving?.length}
+						/>
+					)}
+
+					{Object.entries(analyticsState).length === 0 && <Loading />}
+					{Object.entries(analyticsState).length !== 0 && (
+						<InfoCard
+							title="Assigned"
+							value={analyticsState?.total?.assigned?.length}
+						/>
+					)}
+
+					{Object.entries(analyticsState).length === 0 && <Loading />}
+					{Object.entries(analyticsState).length !== 0 && (
+						<InfoCard
+							title="Gaining"
+							value={analyticsState?.total?.gaining?.length}
+						/>
+					)}
 				</section>
 			</nav>
-			<section className={styles.sidebyside}>
+			{/* <section className={styles.sidebyside}>
 				<sidebar className={styles.sidebar}>
 					<h2>Unit Filters</h2>
 
@@ -374,7 +386,7 @@ const Analytics = ({ user }) => {
 				</sidebar>
 				<article className={styles.main}>
 					<section>
-						{basicChecked && <hr />}
+						{basicChecked}
 
 						{basicChecked && (
 							<div
@@ -385,15 +397,12 @@ const Analytics = ({ user }) => {
 								}}
 							>
 								<BarChart datasets={datasets} />
-								<BarChart datasets={datasets} />
-								<InfoCard title={"Placeholder"} />
-								<InfoCard title={"Placeholder"} />
 							</div>
 						)}
 					</section>
 
 					<section>
-						{inprocessingChecked && <hr />}
+						{inprocessingChecked}
 
 						{inprocessingChecked && (
 							<div
@@ -425,7 +434,7 @@ const Analytics = ({ user }) => {
 						)}
 					</section>
 				</article>
-			</section>
+			</section> */}
 			<article
 				style={{
 					backgroundColor: "rgb(61, 82, 101)",
@@ -434,7 +443,10 @@ const Analytics = ({ user }) => {
 					color: "white"
 				}}
 			>
-				<h3 style={{ textAlign: "center" }}>Report</h3>
+				{Object.entries(analyticsState).length === 0 && <Loading />}
+				{Object.entries(analyticsState).length > 0 && (
+					<Report dataset={analyticsState} />
+				)}
 			</article>
 		</section>
 	);
