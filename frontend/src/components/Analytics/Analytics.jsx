@@ -295,9 +295,21 @@ const Analytics = ({ user }) => {
 			console.log("totalusers ", totalUserIDs);
 			console.log("fetchedTotalUserIDs ", fetchedTotalUserIDs);
 
-			fetch("http://localhost:8081/api/v1/users/67", requestOptions)
-				.then(response => response.json())
-				.then(result => setTotalUserData(result.data))
+			const arr = [67, 68];
+
+			const promises = arr.map(prom => {
+				return fetch(
+					`http://localhost:8081/api/v1/users/${prom}`,
+					requestOptions
+				);
+			});
+
+			Promise.all(promises)
+				.then(responses =>
+					Promise.all(responses.map(response => response.json()))
+				)
+				.then(results => results.map(result => result.data))
+				.then(hugeArray => setTotalUserData(hugeArray))
 				.catch(error => console.log("error", error));
 		}
 	}, [totalUserIDs]);
