@@ -60,7 +60,7 @@ const Login = () => {
 					}
 				})
 				.catch(err => console.log(err))
-				.finally(setIsLoading(true));
+				.finally(setIsLoading(false));
 		}
 	};
 
@@ -72,7 +72,7 @@ const Login = () => {
 
 	//if (splashOff === false) return <SplashScreen />;
 
-	if (isLoading) return <SplashScreen />;
+	if (isLoading) return <Loading />;
 
 	const dataReactVis = [
 		{ x: 0, y: 8 },
