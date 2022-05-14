@@ -1,6 +1,8 @@
 describe("testing the Login View", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
+		cy.get("input").first().clear();
+		cy.get("input").last().clear();
 	});
 
 	it("displays email and password input fields", () => {
