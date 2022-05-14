@@ -3,8 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 // Our Components and Services
 import { UserContext } from "#context";
-import { TaskAPI } from "#services/api/TaskAPI";
-import { UserAPI } from "#services/api/UserAPI";
+import { TaskAPI, UserAPI } from "#services/api";
 
 // MUI Components
 import {
@@ -75,59 +74,36 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	//const InfoDialogProps = { info_open, handleClose, entry };
 
 	const handleDelete = value => {
-		// const deleteTask = new TaskAPI();
-		// deleteTask
-		// 	.delete(parseInt(value))
-		// 	.then(response => response.text())
-		// 	.then(setMessage(`Deleted Task Number ID: ${value}!`))
-		// 	.then(() => {
-		// 		const refreshUser = new UserAPI();
-		// 		refreshUser
-		// 			.email(user.email)
-		// 			.get()
-		// 			.then(response => response.json())
-		// 			.then(d => setUser(d.data[0]));
-		// 	})
-		// 	.catch(err => console.log(err));
-		const requestOptions = {
-			method: "DELETE",
-			redirect: "follow"
-		};
-
-		fetch(
-			`http://localhost:8081/api/v1/tasks/${parseInt(value)}`,
-			requestOptions
-		)
+		const deleteTask = new TaskAPI();
+		deleteTask
+			.id(parseInt(value))
+			.delete(user.token)
 			.then(response => response.text())
 			.then(setMessage(`Deleted Task Number ID: ${value}!`))
 			.then(() => {
 				const refreshUser = new UserAPI();
 				refreshUser
 					.email(user.email)
-					.get()
+					.get(user.target)
 					.then(response => response.json())
 					.then(d => setUser(d.data[0]));
 			})
-			.catch(error => console.log("error", error));
+			.catch(err => console.log(err));
 	};
 
 	const handlePut = stringifiedJSON => {
-		var myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
-		var requestOptions = {
-			method: "PUT",
-			headers: myHeaders,
-			body: stringifiedJSON,
-			redirect: "follow"
-		};
-		fetch(`http://localhost:8081/api/v1/tasks/${entry.id}`, requestOptions)
+		const updateTask = new TaskAPI();
+
+		updateTask
+			.id(entry.id)
+			.put(user.token, stringifiedJSON)
 			.then(response => response.json())
 			.then(result => console.log("PUT", result))
 			.then(() => {
 				const refreshUser = new UserAPI();
 				refreshUser
 					.email(user.email)
-					.get()
+					.get(user.target)
 					.then(response => response.json())
 					.then(d => setUser(d.data[0]));
 			})

@@ -7,9 +7,8 @@ const queryBuilderThrow = (fnName, errorKind, expected, received) => {
 	throw `\n[API QueryBuilder::${fnName}] Error(${errorKind}):\nExpected: ${expected}.\nReceived: ${received}\n`;
 };
 
-const jsonHeaders = new Headers();
+const headers = new Headers();
 
-jsonHeaders.append("Content-Type", "application/json");
 class APIQueryBuilder {
 	#queryParameters = [];
 	#id;
@@ -24,6 +23,7 @@ class APIQueryBuilder {
 	id = num => {
 		if (typeof num === "number") {
 			this.#id = num;
+			return this;
 		} else {
 			return queryBuilderThrow("id", "Invalid Parameter Type", "number", num);
 		}
@@ -32,6 +32,7 @@ class APIQueryBuilder {
 	limit = num => {
 		if (typeof num === "number") {
 			this.#limit = num;
+			return this;
 		} else {
 			return queryBuilderThrow(
 				"limit",
@@ -45,6 +46,7 @@ class APIQueryBuilder {
 	page = num => {
 		if (typeof num === "number") {
 			this.#page = num;
+			return this;
 		} else {
 			return queryBuilderThrow("page", "Invalid Parameter Type", "number", num);
 		}
@@ -176,22 +178,25 @@ class APIQueryBuilder {
 		return `${baseURL}/${this.endpoint}`;
 	};
 
-	create = async data => {
+	create = async (token, data) => {
+		headers.append("Content-Type", "application/json");
+		headers.append("Authorization", `Bearer ${token}`);
 		const body = JSON.stringify(data);
 		return fetch(this.toURL(), {
 			method: "POST",
 			mode: "cors",
-			headers: jsonHeaders,
+			headers,
 			body
 		});
 	};
 
-	delete = async () => {
+	delete = async token => {
 		if (this.#id !== undefined) {
+			headers.append("Authorization", `Bearer ${token}`);
 			return fetch(`${this.baseURL()}/${this.#id}`, {
 				method: "DELETE",
 				mode: "cors",
-				headers: {}
+				headers
 			});
 		} else {
 			queryBuilderThrow(
@@ -203,21 +208,25 @@ class APIQueryBuilder {
 		}
 	};
 
-	get = async () => {
+	get = async token => {
+		headers.append("Authorization", `Bearer ${token}`);
+
 		return fetch(this.toURL(), {
 			method: "GET",
 			mode: "cors",
-			headers: {}
+			headers
 		});
 	};
 
-	update = async data => {
+	update = async (token, data) => {
 		if (this.#id !== undefined) {
+			headers.append("Content-Type", "application/json");
+			headers.append("Authorization", `Bearer ${token}`);
 			const body = JSON.stringify(data);
 			return fetch(`${this.baseURL()}/${this.#id}`, {
 				method: "PUT",
 				mode: "cors",
-				headers: jsonHeaders,
+				headers,
 				body
 			});
 		} else {
