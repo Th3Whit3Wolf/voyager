@@ -78,10 +78,12 @@ const Login = () => {
 		<>
 			<Container maxWidth="sm">
 				<Stack
-					spacing={3}
-					pb={3}
+					mt={5}
+					spacing={1}
+					pb={5}
+					pt={1}
 					border={2}
-					lineHeight={2}
+					lineHeight={1}
 					sx={{
 						justifyContent: "center",
 						alignItems: "center",
@@ -95,7 +97,7 @@ const Login = () => {
 						placeholder="Enter Email"
 						value={email}
 						onChange={e => setEmail(e.target.value)}
-						sx={{ minWidth: "300px" }}
+						sx={{ minWidth: "340px", pb: 2 }}
 					/>
 					<TextField
 						id="password"
@@ -105,22 +107,31 @@ const Login = () => {
 						type="password"
 						value={password}
 						onChange={e => setPassword(e.target.value)}
-						sx={{ minWidth: "300px" }}
+						sx={{ minWidth: "340px", pb: 4 }}
 					/>
-					<Button variant="contained" onClick={handleUserPass}>
+					<Button
+						variant="contained"
+						onClick={handleUserPass}
+						sx={{ minWidth: "210px" }}
+					>
 						Email/Password Login
 					</Button>
 					<br />
 					<br />
-					<Button variant="contained" onClick={handleCAC}>
-						Common Access Card (CAC) Login
+					<Button
+						variant="contained"
+						onClick={handleCAC}
+						sx={{ minWidth: "210px" }}
+					>
+						CAC/ECA Login
 					</Button>
 				</Stack>
 			</Container>
 
 			<Stack
-				py={5}
-				my={3}
+				pt={5}
+				mt={3}
+				spacing={2}
 				sx={{
 					display: "flex",
 					justifyContent: "center",
