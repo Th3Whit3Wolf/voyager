@@ -4,7 +4,7 @@ import { UserContext } from "#context";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Our Components and Utilities
-import { UserAPI } from "#services/api";
+import { UserAPI } from "#services";
 
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer, Button } from "@mui/material";
@@ -235,7 +235,7 @@ const Dashboard = () => {
 							data-testid="buttonOutprocessingTasks"
 						/>
 						<Tab label="User Settings" value="3" />
-						<Tab label="Modify Admins" value="4" />
+						{/* <Tab label="Modify Admins" value="4" /> */}
 						<Tab label="Analytics" value="5" />
 					</TabList>
 

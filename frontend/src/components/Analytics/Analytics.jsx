@@ -44,6 +44,7 @@ const Analytics = ({ user }) => {
 	//    for simple data heuristics
 	const theme = useTheme();
 	const [unit, setUnit] = useState({});
+	const [allUsers, setAllUsers] = useState([]);
 	const [analyticsState, setAnalyticsState] = useState({});
 
 	// These pieces of State are used for various filtering routines
@@ -65,7 +66,6 @@ const Analytics = ({ user }) => {
 	//  totalUserData -> fetch all the user data once, then hold it here
 	const [totalUserIDs, setTotalUserIDs] = useState([]);
 	const [fetchedTotalUserIDs, setFetchedTotalUserIDs] = useState(false);
-	const [totalUserData, setTotalUserData] = useState([]);
 
 	const calcAnalytics = analyticsObj => {
 		let newAnalytics = { ...analyticsObj };
@@ -118,6 +118,17 @@ const Analytics = ({ user }) => {
 				}
 			})
 			.catch(error => console.log("error", error));
+
+		// GRAB ALL USERS
+		// var requestOptions = {
+		// 	method: "GET",
+		// 	redirect: "follow"
+		// };
+
+		// fetch("http://localhost:8081/api/v1/users", requestOptions)
+		// 	.then(response => response.json())
+		// 	.then(result => setAllUsers(result))
+		// 	.catch(error => console.log("error", error));
 	}, []);
 
 	// After UNIT is populated from the above useEffect, then build out
@@ -295,8 +306,6 @@ const Analytics = ({ user }) => {
 			console.log("totalusers ", totalUserIDs);
 			console.log("fetchedTotalUserIDs ", fetchedTotalUserIDs);
 
-			const arr = [67, 68];
-
 			const promises = totalUserIDs.map(prom => {
 				return fetch(
 					`http://localhost:8081/api/v1/users/${prom}`,
@@ -313,26 +322,6 @@ const Analytics = ({ user }) => {
 				.catch(error => console.log("error", error));
 		}
 	}, [totalUserIDs]);
-
-	useEffect(() => {
-		if (fetchedTotalUserIDs === true) {
-			console.log("totalUserData ", totalUserData);
-		}
-		console.log("totalUserData-gaining", [
-			...new Map(
-				totalUserData
-					.filter(person => person.gainingUnitID !== null)
-					.map(v => [v.id, v])
-			).values()
-		]);
-		console.log("totalUserData-not-gaining", [
-			...new Map(
-				totalUserData
-					.filter(person => person.gainingUnitID === null)
-					.map(v => [v.id, v])
-			).values()
-		]);
-	}, [totalUserData]);
 
 	//  END FEATURE ENGINEERING
 

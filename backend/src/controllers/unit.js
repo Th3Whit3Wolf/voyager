@@ -13,7 +13,49 @@ const UnitController = new Controller("Unit", {
 				name: true,
 				abbrev: true,
 				function: true,
-				assignedUsers: true,
+				assignedUsers: {
+					select: {
+						tasks: {
+							select: {
+								id: true,
+								progress: true,
+								task: {
+									select: {
+										id: true,
+										title: true,
+										description: true,
+										isActive: true,
+										kind: true,
+										approver: {
+											select: {
+												firstName: true,
+												lastName: true,
+												email: true,
+												dsn: true
+											}
+										},
+										assigner: {
+											select: {
+												firstName: true,
+												lastName: true,
+												email: true,
+												dsn: true,
+												role: {
+													select: {
+														kind: true
+													}
+												}
+											}
+										}
+									}
+								},
+								createdAt: true,
+								updatedAt: true,
+								completedAt: true
+							}
+						}
+					}
+				},
 				gainingUsers: true,
 				children: {
 					select: {
