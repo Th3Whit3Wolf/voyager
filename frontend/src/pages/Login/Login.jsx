@@ -95,7 +95,7 @@ const Login = () => {
 			<Container maxWidth="sm">
 				<Stack
 					mt={5}
-					spacing={0}
+					spacing={1}
 					pb={5}
 					pt={1}
 					border={2}
@@ -145,8 +145,9 @@ const Login = () => {
 			</Container>
 
 			<Stack
-				py={5}
-				my={3}
+				pt={5}
+				mt={3}
+				spacing={2}
 				sx={{
 					display: "flex",
 					justifyContent: "center",
