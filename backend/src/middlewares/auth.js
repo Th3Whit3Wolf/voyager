@@ -5,6 +5,7 @@ const getAuthToken = (req, res, next) => {
 		req.headers.authorization &&
 		req.headers.authorization.split(" ")[0] === "Bearer"
 	) {
+		console.log("Headers: ", req.headers);
 		// eslint-disable-next-line prefer-destructuring
 		req.authToken = req.headers.authorization.split(" ")[1];
 	} else {
@@ -17,6 +18,7 @@ export const checkIfAuthenticated = (req, res, next) => {
 	getAuthToken(req, res, async () => {
 		try {
 			const { authToken } = req;
+			console.log({ authToken });
 			const userInfo = await admin.auth().verifyIdToken(authToken);
 			req.authId = userInfo.uid;
 			return next();
