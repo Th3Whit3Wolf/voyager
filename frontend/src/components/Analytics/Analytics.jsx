@@ -5,7 +5,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { BarChart, InfoCard } from ".";
 
 // Our Packages
-import { UserContext } from "#context";
 import { UnitAPI } from "#services";
 import styles from "./Analytics.module.css";
 
@@ -44,7 +43,6 @@ const Analytics = ({ user }) => {
 	//    for simple data heuristics
 	const theme = useTheme();
 	const [unit, setUnit] = useState({});
-	const [allUsers, setAllUsers] = useState([]);
 	const [analyticsState, setAnalyticsState] = useState({});
 
 	// These pieces of State are used for various filtering routines
@@ -56,29 +54,12 @@ const Analytics = ({ user }) => {
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
 	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
 
-	// These pieces of State are used for feature engineering
-	// totalUserIDs -> gathers all the unitIDs into one state array
-	//     the idea is this changes based on whether Total, Squadron, or Delta is selected
-	// fetchedTotalUserIDs -> don't want to do the whole promise chain on totalUserIDs with
-	//     every re-render! The idea is to do it once, then use this as a flag to stop if
-	//     from happening again. You can probably use the analyticState's leaving, gaining,
-	//     assiging to re-filter off of totalUserData when any filters are changed
-	//  totalUserData -> fetch all the user data once, then hold it here
-	const [totalUserIDs, setTotalUserIDs] = useState([]);
-	const [fetchedTotalUserIDs, setFetchedTotalUserIDs] = useState(false);
-
 	const calcAnalytics = analyticsObj => {
 		let newAnalytics = { ...analyticsObj };
 		let assigned = [];
 		let gaining = [];
 		let leaving = [];
 		Object.entries(newAnalytics).forEach(([key, value]) => {
-			// console.log(
-			// 	"INFO::calcAnalytics (key):",
-			// 	key,
-			// 	"INFO::calcAnalytics (value):",
-			// 	value
-			// );
 			if (key === "own") {
 				assigned = [...assigned, ...value.assigned];
 				gaining = [...gaining, ...value.gaining];
@@ -97,7 +78,6 @@ const Analytics = ({ user }) => {
 			leaving
 		};
 		setAnalyticsState(newAnalytics);
-		console.log("Current analytics state:", analyticsState);
 	};
 
 	// on component load set load up the state
@@ -118,17 +98,6 @@ const Analytics = ({ user }) => {
 				}
 			})
 			.catch(error => console.log("error", error));
-
-		// GRAB ALL USERS
-		// var requestOptions = {
-		// 	method: "GET",
-		// 	redirect: "follow"
-		// };
-
-		// fetch("http://localhost:8081/api/v1/users", requestOptions)
-		// 	.then(response => response.json())
-		// 	.then(result => setAllUsers(result))
-		// 	.catch(error => console.log("error", error));
 	}, []);
 
 	// After UNIT is populated from the above useEffect, then build out
@@ -152,7 +121,7 @@ const Analytics = ({ user }) => {
 			analyticsInfo.Deltas = [];
 			analyticsInfo.Installations = [];
 			analyticsInfo.Squadrons = [];
-			const unitKinds = ["t", "INSTALLATION", "COMMAND", "DELTA", "SQUADRON"];
+			//const unitKinds = ["t", "INSTALLATION", "COMMAND", "DELTA", "SQUADRON"];
 
 			unit.forEach(u => {
 				[
@@ -165,7 +134,6 @@ const Analytics = ({ user }) => {
 			});
 
 			setAnalyticsState(analyticsInfo);
-			console.log("Current analytics state:", analyticsState);
 
 			return;
 		} else if (Object.entries(unit).length > 0) {
@@ -179,7 +147,6 @@ const Analytics = ({ user }) => {
 				installationChildren
 			} = unit;
 
-			console.log("Role = ", user.role.kind);
 			switch (user.role.kind) {
 				case "INSTALLATION_ADMIN":
 					analyticsInfo.own = {
@@ -191,7 +158,6 @@ const Analytics = ({ user }) => {
 					};
 					updateAnalytics("Squadrons", installationChildren, analyticsInfo);
 					calcAnalytics(analyticsInfo);
-					console.log("Analytics state:", analyticsState);
 					return;
 				case "COMMAND_ADMIN":
 					analyticsInfo.own = {
@@ -284,49 +250,12 @@ const Analytics = ({ user }) => {
 	const datasets = { data, barInfo };
 
 	//  START FEATURE ENGINEERING
-	useEffect(() => {
-		console.log(analyticsState.total);
-		if (analyticsState.total) {
-			setTotalUserIDs([
-				...analyticsState.total.assigned.map(person => person.id),
-				...analyticsState.total.gaining.map(person => person.id),
-				...analyticsState.total.leaving.map(person => person.id)
-			]);
-		}
-	}, [analyticsState?.total]);
-
-	useEffect(() => {
-		var requestOptions = {
-			method: "GET",
-			redirect: "follow"
-		};
-
-		if (totalUserIDs.length > 0 && fetchedTotalUserIDs === false) {
-			setFetchedTotalUserIDs(true);
-			console.log("totalusers ", totalUserIDs);
-			console.log("fetchedTotalUserIDs ", fetchedTotalUserIDs);
-
-			const promises = totalUserIDs.map(prom => {
-				return fetch(
-					`http://localhost:8081/api/v1/users/${prom}`,
-					requestOptions
-				);
-			});
-
-			Promise.all(promises)
-				.then(responses =>
-					Promise.all(responses.map(response => response.json()))
-				)
-				.then(results => results.map(result => result.data))
-				.then(hugeArray => setTotalUserData(hugeArray))
-				.catch(error => console.log("error", error));
-		}
-	}, [totalUserIDs]);
 
 	//  END FEATURE ENGINEERING
 
 	return (
 		<section className={styles.container}>
+			{console.log("Render", analyticsState)}
 			<nav className={styles.nav}>
 				<section className={styles.snapshot}>
 					<InfoCard
@@ -392,7 +321,6 @@ const Analytics = ({ user }) => {
 									id="squadron-dropdown-filter"
 									value={squadronDropdown}
 									onChange={e => {
-										console.log("Changing Squadron Filter ", e.target.value);
 										setSquadronDropdown(e.target.value);
 									}}
 									label="squadronDropdownFilter"
