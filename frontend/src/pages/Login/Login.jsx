@@ -171,19 +171,6 @@ const Login = () => {
 					color="warning"
 					variant="contained"
 					onClick={() => {
-						setEmail("rick.sanchez@spaceforce.mil");
-						setPassword("123456789");
-					}}
-				>
-					Click to Auto Populate ADMIN 1 (Rick Sanchez) -- Squadron Admin
-				</Button>
-
-				<br />
-
-				<Button
-					color="warning"
-					variant="contained"
-					onClick={() => {
 						setEmail("johnny.bravo@spaceforce.mil");
 						setPassword("123456789");
 					}}
