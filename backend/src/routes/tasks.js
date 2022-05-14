@@ -1,13 +1,17 @@
 import { Router } from "express";
 import { TaskController } from "#controllers";
+import { checkIfAuthenticated } from "../middlewares/auth";
 
 const router = Router();
 
-router.route("/tasks").get(TaskController.list).post(TaskController.addTask);
+router
+	.route("/tasks")
+	.get(checkIfAuthenticated, TaskController.list)
+	.post(checkIfAuthenticated, TaskController.addTask);
 router
 	.route("/tasks/:id")
-	.get(TaskController.get)
-	.put(TaskController.update)
-	.delete(TaskController.delete);
+	.get(checkIfAuthenticated, TaskController.get)
+	.put(checkIfAuthenticated, TaskController.update)
+	.delete(checkIfAuthenticated, TaskController.delete);
 
 export default router;

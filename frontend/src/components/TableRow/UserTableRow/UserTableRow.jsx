@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
+import { TaskUserAPI } from "#services/api";
+import { UserContext } from "#context";
 import {
 	TableRow,
 	TableCell,
@@ -10,6 +12,7 @@ import {
 } from "@mui/material";
 
 const UserTableRow = ({ entry }) => {
+	const { user, setUser } = useContext(UserContext);
 	// STATE for USER TASKS
 	const [taskCompletedAt, setTaskCompletedAt] = useState(
 		entry.completedAt === null ? false : new Date(entry.completedAt)
@@ -31,47 +34,21 @@ const UserTableRow = ({ entry }) => {
 	/////
 
 	const handleOnChange = e => {
-		if (e.target.value === "false") {
-			let myHeaders = new Headers();
-			myHeaders.append("Content-Type", "application/json");
-			let raw = JSON.stringify({
-				completedAt: new Date()
-			});
-			const requestOptions = {
-				method: "PUT",
-				headers: myHeaders,
-				body: raw
-			};
-			fetch(
-				`http://localhost:8081/api/v1/users/tasks/${entry.id}`,
-				requestOptions
-			)
+		if (e.target.value === "false" || e.target.value === "true") {
+			const updateUserTask = new TaskUserAPI();
+			updateUserTask
+				.id(entry.id)
+				.put(
+					user.token,
+					JSON.stringify({
+						completedAt: e.target.value === "false" ? new Date() : null
+					})
+				)
 				.then(response => response.json())
 				.then(result => console.log(result))
 				.catch(error => console.log("error", error));
 			setTaskChecked(true);
 			setTaskCompletedAt(new Date());
-		}
-		if (e.target.value === "true") {
-			let myHeaders = new Headers();
-			myHeaders.append("Content-Type", "application/json");
-			let raw = JSON.stringify({
-				completedAt: null
-			});
-			const requestOptions = {
-				method: "PUT",
-				headers: myHeaders,
-				body: raw
-			};
-			fetch(
-				`http://localhost:8081/api/v1/users/tasks/${entry.id}`,
-				requestOptions
-			)
-				.then(response => response.json())
-				.then(result => console.log(result))
-				.catch(error => console.log("error", error));
-			setTaskChecked(false);
-			setTaskCompletedAt(null);
 		}
 	};
 

@@ -87,37 +87,22 @@ const Dashboard = () => {
 
 	const retrieveTaskApproversThatShareAdminUnitID = () => {
 		const taskApproversApi = new UserAPI();
-		if (user?.assignedUnit?.id) {
-			// 	console.log(user.assignedUnit);
-			// 	taskApproversApi
-			// 		.roleID(6)
-			// 		.assignedUnitID(user.assignedUnit.id)
-			// 		.limit(100)
-			// 		.get()
-			// 		.catch(err => console.log(err))
-			// 		.then(response => response.json())
-			// 		.then(taskapprovers => {
-			// 			const approvers = taskapprovers;
-			// 			console.log(approvers);
-			// 			setAdminTaskApprovers(approvers.data);
-			// 		})
-			// 		.catch(err => console.log(err));
-			// }
-			const requestOptions = {
-				method: "GET",
-				redirect: "follow"
-			};
-
-			fetch(
-				`http://localhost:8081/api/v1/users?roleID=6&assignedUnitID=${user.assignedUnit.id}`,
-				requestOptions
-			)
+		console.log(user.assignedUnit);
+		if (user.token !== undefined) {
+			console.log("User Token: ", user.token);
+			taskApproversApi
+				.roleID(6)
+				.assignedUnitID(user.assignedUnit.id)
+				.limit(100)
+				.get(user.token)
 				.catch(err => console.log(err))
 				.then(response => response.json())
 				.then(taskapprovers => {
-					const approvers = taskapprovers;
-					console.log(approvers);
-					setAdminTaskApprovers(approvers.data);
+					if (taskapprovers.error === undefined) {
+						const approvers = taskapprovers;
+						console.log({ approvers });
+						setAdminTaskApprovers(approvers.data);
+					}
 				})
 				.catch(err => console.log(err));
 		}

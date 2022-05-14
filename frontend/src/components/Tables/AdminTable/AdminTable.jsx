@@ -42,7 +42,7 @@ const AdminTable = ({ data, start, end, kind, approverList }) => {
 				const refreshUser = new UserAPI();
 				refreshUser
 					.email(user.email)
-					.get()
+					.get(user.token)
 					.then(response => response.json())
 					.then(d => setUser(d.data[0]));
 			})
