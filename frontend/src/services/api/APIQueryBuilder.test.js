@@ -1,4 +1,4 @@
-import { APIQueryBuilder } from "./APIQueryBuilder";
+import APIQueryBuilder from "./APIQueryBuilder";
 
 const endpoint = "users";
 const baseURL = "http://localhost:8081/api/v1/users";

@@ -1,6 +1,8 @@
 describe("testing the Login View", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
+		cy.get("input").first().clear();
+		cy.get("input").last().clear();
 	});
 
 	it("displays email and password input fields", () => {
@@ -26,9 +28,7 @@ describe("testing the Login View", () => {
 
 	it("displays a User/Password Login Button and a CAC Login Button", () => {
 		cy.get("button").first().should("have.text", "Email/Password Login");
-		cy.get("button")
-			.eq(1)
-			.should("have.text", "Common Access Card (CAC) Login");
+		cy.get("button").eq(1).should("have.text", "CAC/ECA Login");
 	});
 
 	it("does not let a User login with an empty email and password", () => {

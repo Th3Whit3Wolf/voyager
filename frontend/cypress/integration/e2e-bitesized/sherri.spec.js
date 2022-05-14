@@ -1,7 +1,9 @@
 describe("testing the User Dashboard View -- Outprocessing", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
-		cy.get("input").first().type("shinji.ikari@spaceforce.mil");
+		cy.get("input").first().clear();
+		cy.get("input").first().type("sherri.ortiz@spaceforce.mil");
+		cy.get("input").last().clear();
 		cy.get("input").last().type("1234567890qwertyuiop");
 		cy.get("button").first().click();
 	});
@@ -12,13 +14,13 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("[data-testid=buttonOutprocessingTasks]").should("exist");
 	});
 
-	it("the test User Shinji Ikari should have 14 Inprocessing Tasks", () => {
+	it("the test User Sherri Ortiz should have 0 Inprocessing Tasks", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonInprocessingTasks]").click();
-		cy.get("input").should("have.length", 14);
+		cy.get("input").should("have.length", 0);
 	});
 
-	it("the test User Shinji Ikari should have 6 Outprocessing Tasks", () => {
+	it("the test User Sherri Ortiz should have 6 Outprocessing Tasks", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonOutprocessingTasks]").click();
 		cy.get("input").should("have.length", 6);
@@ -27,10 +29,10 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 	it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonOutprocessingTasks]").click();
-		cy.get("input").first().click();
-		cy.get("input").first().should("have.value", "true");
-		cy.get("input").first().click();
-		cy.get("input").first().should("have.value", "false");
+		cy.get("input").last().click();
+		cy.get("input").last().should("have.value", "true");
+		cy.get("input").last().click();
+		cy.get("input").last().should("have.value", "false");
 	});
 
 	it("clicking a logout button will end session and return to login", () => {

@@ -24,6 +24,7 @@ class APIQueryBuilder {
 	id = num => {
 		if (typeof num === "number") {
 			this.#id = num;
+			return this;
 		} else {
 			return queryBuilderThrow("id", "Invalid Parameter Type", "number", num);
 		}
@@ -32,6 +33,7 @@ class APIQueryBuilder {
 	limit = num => {
 		if (typeof num === "number") {
 			this.#limit = num;
+			return this;
 		} else {
 			return queryBuilderThrow(
 				"limit",
@@ -45,6 +47,7 @@ class APIQueryBuilder {
 	page = num => {
 		if (typeof num === "number") {
 			this.#page = num;
+			return this;
 		} else {
 			return queryBuilderThrow("page", "Invalid Parameter Type", "number", num);
 		}
@@ -230,4 +233,4 @@ class APIQueryBuilder {
 		}
 	};
 }
-export { APIQueryBuilder };
+export default APIQueryBuilder;

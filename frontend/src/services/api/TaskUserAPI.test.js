@@ -1,4 +1,4 @@
-import { TaskUserAPI } from "./TaskUserAPI";
+import TaskUserAPI from "./TaskUserAPI";
 
 describe("TaskUserAPI", () => {
 	let api;
