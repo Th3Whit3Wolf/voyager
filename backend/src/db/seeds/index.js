@@ -1,7 +1,4 @@
 import Prisma from "@prisma/client";
-import notifier from "node-notifier";
-import path from "path";
-import * as url from "url";
 
 // eslint-disable-next-line import/extensions
 import { URI } from "./utils.js";
@@ -16,10 +13,6 @@ import {
 
 const debug = process.env.DEBUG === "true" || false;
 const { PrismaClient } = Prisma;
-const notificationIMG = path.join(
-	url.fileURLToPath(new URL(".", import.meta.url)),
-	"data/notification.png"
-);
 
 const main = async prisma => {
 	const seeds = [
@@ -51,27 +44,9 @@ const prisma = new PrismaClient({
 main(prisma)
 	.catch(err => {
 		console.error(`There was an error while seeding: ${err}`);
-		notifier.notify({
-			title: "Database Seeding Failed",
-			message: `Database seeding error!`,
-			sound: true, // Only Notification Center or Windows Toasters
-			wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
-			icon: notificationIMG,
-			contentImage: notificationIMG,
-			open: `file://${notificationIMG}`
-		});
 		process.exit(1);
 	})
 	.finally(async () => {
 		console.log("Successfully seeded database. Closing connection.");
-		notifier.notify({
-			title: "Database Seeding Success",
-			message: "Successful seeded units, roles, users, & tasks!",
-			sound: true, // Only Notification Center or Windows Toasters
-			wait: true, // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
-			icon: notificationIMG,
-			contentImage: notificationIMG,
-			open: `file://${notificationIMG}`
-		});
 		await prisma.$disconnect();
 	});
