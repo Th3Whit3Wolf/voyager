@@ -11,8 +11,6 @@ import { TextField, Button, Container, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CatchingPokemonSharp } from "@mui/icons-material"; // WHATTTTTTT IS THIS ???? LOL.... Tony // But also why? David
 
-import "../../../node_modules/react-vis/dist/style.css";
-
 const Login = () => {
 	// STATE
 	const [email, setEmail] = useState("");
@@ -62,7 +60,7 @@ const Login = () => {
 					}
 				})
 				.catch(err => console.log(err))
-				.finally(setIsLoading(false));
+				.finally(setIsLoading(true));
 		}
 	};
 
@@ -74,7 +72,7 @@ const Login = () => {
 
 	//if (splashOff === false) return <SplashScreen />;
 
-	if (isLoading) return <Loading />;
+	if (isLoading) return <SplashScreen />;
 
 	const dataReactVis = [
 		{ x: 0, y: 8 },
@@ -96,10 +94,12 @@ const Login = () => {
 			</XYPlot> */}
 			<Container maxWidth="sm">
 				<Stack
-					spacing={3}
-					pb={3}
+					mt={5}
+					spacing={0}
+					pb={5}
+					pt={1}
 					border={2}
-					lineHeight={2}
+					lineHeight={1}
 					sx={{
 						justifyContent: "center",
 						alignItems: "center",
@@ -113,7 +113,7 @@ const Login = () => {
 						placeholder="Enter Email"
 						value={email}
 						onChange={e => setEmail(e.target.value)}
-						sx={{ minWidth: "300px" }}
+						sx={{ minWidth: "340px", pb: 2 }}
 					/>
 					<TextField
 						id="password"
@@ -123,15 +123,23 @@ const Login = () => {
 						type="password"
 						value={password}
 						onChange={e => setPassword(e.target.value)}
-						sx={{ minWidth: "300px" }}
+						sx={{ minWidth: "340px", pb: 4 }}
 					/>
-					<Button variant="contained" onClick={handleUserPass}>
+					<Button
+						variant="contained"
+						onClick={handleUserPass}
+						sx={{ minWidth: "210px" }}
+					>
 						Email/Password Login
 					</Button>
 					<br />
 					<br />
-					<Button variant="contained" onClick={handleCAC}>
-						Common Access Card (CAC) Login
+					<Button
+						variant="contained"
+						onClick={handleCAC}
+						sx={{ minWidth: "210px" }}
+					>
+						CAC/ECA Login
 					</Button>
 				</Stack>
 			</Container>
