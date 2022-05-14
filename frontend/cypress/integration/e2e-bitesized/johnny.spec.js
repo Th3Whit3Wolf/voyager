@@ -158,11 +158,9 @@ describe("testing the Admin Dashboard View -- Inprocessing", () => {
 			});
 	});
 
-	/*
 	it("A Series of Checks: Step 7 - Expect There To Be the Initial Number of Rows Again", () => {
 		expect(numberOfOutprocessingRowsNew - numberOfOutprocessingRows).to.equal(
 			0
 		);
 	});
-	*/
 });
