@@ -3,20 +3,6 @@ generator client {
   binaryTargets = ["native", "darwin", "linux-musl"]
 }
 
-generator docs {
-  provider = "node node_modules/prisma-docs-generator"
-  output   = "../../../docs/db"
-}
-
-generator dbml {
-  provider            = "prisma-dbml-generator"
-  output              = "../../../assets"
-  outputName          = "voyager.dbml"
-  projectName         = "Voyager"
-  projectDatabaseType = "PostgreSQL"
-  projectNote         = "Better In/Out-Processing"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
