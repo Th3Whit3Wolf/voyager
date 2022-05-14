@@ -1,4 +1,4 @@
-import { APIQueryBuilder } from "./APIQueryBuilder";
+import APIQueryBuilder from "./APIQueryBuilder";
 const apiError = (fnName, expected, received) => {
 	throw `\n[UserAPI::${fnName}] Error(Invalid Type):\nExpected: ${expected}.\nReceived: ${received}\n`;
 };
@@ -184,4 +184,4 @@ class UserAPI extends APIQueryBuilder {
 	};
 }
 
-export { UserAPI };
+export default UserAPI;

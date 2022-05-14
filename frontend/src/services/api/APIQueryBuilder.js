@@ -239,4 +239,4 @@ class APIQueryBuilder {
 		}
 	};
 }
-export { APIQueryBuilder };
+export default APIQueryBuilder;

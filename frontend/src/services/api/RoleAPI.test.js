@@ -1,4 +1,4 @@
-import { RoleAPI } from "./RoleAPI";
+import RoleAPI from "./RoleAPI";
 
 describe("RoleAPI", () => {
 	let api;

@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	// STATE
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("johnny.bravo@spaceforce.mil");
+	const [password, setPassword] = useState("123456789");
 	const [isLoading, setIsLoading] = useState(false);
 	const { user, setUser } = useContext(UserContext);
 	const navigate = useNavigate();

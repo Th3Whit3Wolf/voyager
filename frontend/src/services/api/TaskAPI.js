@@ -1,4 +1,4 @@
-import { APIQueryBuilder } from "./APIQueryBuilder";
+import APIQueryBuilder from "./APIQueryBuilder";
 const apiError = (fnName, expected, received) => {
 	throw `\n[TaskAPI::${fnName}] Error(Invalid Type):\nExpected: ${expected}.\nReceived: ${received}\n`;
 };
@@ -113,4 +113,4 @@ class TaskAPI extends APIQueryBuilder {
 	};
 }
 
-export { TaskAPI };
+export default TaskAPI;

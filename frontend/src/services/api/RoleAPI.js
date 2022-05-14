@@ -1,4 +1,4 @@
-import { APIQueryBuilder } from "./APIQueryBuilder";
+import APIQueryBuilder from "./APIQueryBuilder";
 const apiError = (fnName, expected, received) => {
 	throw `\n[RoleAPI::${fnName}] Error(Invalid Type):\nExpected: ${expected}.\nReceived: ${received}\n`;
 };
@@ -79,4 +79,4 @@ class RoleAPI extends APIQueryBuilder {
 	};
 }
 
-export { RoleAPI };
+export default RoleAPI;
