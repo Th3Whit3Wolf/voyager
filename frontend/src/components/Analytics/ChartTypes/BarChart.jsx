@@ -24,7 +24,8 @@ const VoyagerBarChart = ({ datasets }) => {
 				borderRadius: "2rem",
 				width: "100%",
 				height: "100%",
-				backgroundColor: theme.palette.hover.default
+				backgroundColor: theme.palette.hover.default,
+				boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
 			}}
 		>
 			<CardContent>

@@ -12,7 +12,7 @@ const InfoCard = ({ title, value }) => {
 				alignItems: "center",
 				backgroundColor: "#000000",
 				padding: "20px",
-				borderRadius: "5px",
+				borderRadius: "2rem",
 				minWidth: "100px",
 				boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
 			}}
