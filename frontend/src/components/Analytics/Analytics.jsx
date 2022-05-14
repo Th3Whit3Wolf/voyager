@@ -297,7 +297,7 @@ const Analytics = ({ user }) => {
 
 			const arr = [67, 68];
 
-			const promises = arr.map(prom => {
+			const promises = totalUserIDs.map(prom => {
 				return fetch(
 					`http://localhost:8081/api/v1/users/${prom}`,
 					requestOptions
@@ -318,6 +318,20 @@ const Analytics = ({ user }) => {
 		if (fetchedTotalUserIDs === true) {
 			console.log("totalUserData ", totalUserData);
 		}
+		console.log("totalUserData-gaining", [
+			...new Map(
+				totalUserData
+					.filter(person => person.gainingUnitID !== null)
+					.map(v => [v.id, v])
+			).values()
+		]);
+		console.log("totalUserData-not-gaining", [
+			...new Map(
+				totalUserData
+					.filter(person => person.gainingUnitID === null)
+					.map(v => [v.id, v])
+			).values()
+		]);
 	}, [totalUserData]);
 
 	//  END FEATURE ENGINEERING
