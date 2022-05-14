@@ -26,8 +26,6 @@ services:
         condition: service_healthy
     ports:
       - "8081:8081"
-    entrypoint:
-      ["npm", "run", "db:testMigration", "npm", "run", "db:seed", "&&", "$$1"]
     environment:
       - NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node'
       - NODE_ENV=development
@@ -63,6 +61,7 @@ services:
       - PG_PASSWD=${PG_PASSWD:-docker}
       - POSTGRES_PORT=${PG_PORT-5432}
       - POSTGRES_DB=capstone
+
     volumes:
       - type: bind
         source: ./backend
@@ -74,6 +73,13 @@ services:
       - "capstone-api"
     ports:
       - "3000:3000"
+    environment:
+      - REACT_APP_FIREBASE_API_KEY="AIzaSyB_Ph-X_XyXlLN7fjyJhoiS73bZs-o-rfU"
+      - REACT_APP_FIREBASE_AUTH_DOMAIN="bsdi-capstone.firebaseapp.com"
+      - REACT_APP_FIREBASE_PROJECT_ID="bsdi-capstone"
+      - REACT_APP_FIREBASE_STORAGE_BUCKET="bsdi-capstone.appspot.com"
+      - REACT_APP_FIREBASE_MESSAGING_SENDER_ID="831411631880"
+      - REACT_APP_FIREBASE_APP_ID="1:831411631880:web:32bf1f0ede9a30e146debd"
     volumes:
       - type: bind
         source: ./frontend/src
