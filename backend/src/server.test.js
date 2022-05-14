@@ -2,7 +2,8 @@
 import request from "supertest";
 import app from "#server";
 import firebase from "firebase/compat/app";
-import { signInWithEmailAndPassword } from "firebase/compat/auth";
+import "firebase/compat/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
