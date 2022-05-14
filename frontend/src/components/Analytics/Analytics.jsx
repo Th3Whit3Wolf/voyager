@@ -55,18 +55,30 @@ const Analytics = ({ user }) => {
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
 	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
 
+	// These pieces of State are used for feature engineering
+	// totalUserIDs -> gathers all the unitIDs into one state array
+	//     the idea is this changes based on whether Total, Squadron, or Delta is selected
+	// fetchedTotalUserIDs -> don't want to do the whole promise chain on totalUserIDs with
+	//     every re-render! The idea is to do it once, then use this as a flag to stop if
+	//     from happening again. You can probably use the analyticState's leaving, gaining,
+	//     assiging to re-filter off of totalUserData when any filters are changed
+	//  totalUserData -> fetch all the user data once, then hold it here
+	const [totalUserIDs, setTotalUserIDs] = useState([]);
+	const [fetchedTotalUserIDs, setFetchedTotalUserIDs] = useState(false);
+	const [totalUserData, setTotalUserData] = useState([]);
+
 	const calcAnalytics = analyticsObj => {
 		let newAnalytics = { ...analyticsObj };
 		let assigned = [];
 		let gaining = [];
 		let leaving = [];
 		Object.entries(newAnalytics).forEach(([key, value]) => {
-			console.log(
-				"INFO::calcAnalytics (key):",
-				key,
-				"INFO::calcAnalytics (value):",
-				value
-			);
+			// console.log(
+			// 	"INFO::calcAnalytics (key):",
+			// 	key,
+			// 	"INFO::calcAnalytics (value):",
+			// 	value
+			// );
 			if (key === "own") {
 				assigned = [...assigned, ...value.assigned];
 				gaining = [...gaining, ...value.gaining];
@@ -217,8 +229,11 @@ const Analytics = ({ user }) => {
 	}, [totalUsersChecked]);
 
 	useEffect(() => {
-		console.log("Changed Filter: ", squadronDropdown);
-	}, [squadronDropdown]);
+		if (totalUsersChecked === false && deltaDropdown !== "")
+			setDeltaDropdown("");
+		if (totalUsersChecked === false && squadronDropdown !== "")
+			setSquadronDropdown("");
+	}, [squadronDropdown, deltaDropdown]);
 
 	// END OF FILTERING FUNCTIONS
 
@@ -243,6 +258,7 @@ const Analytics = ({ user }) => {
 				?.filter(task => task?.isActive === true).length
 		}
 	];
+
 	const barInfo = [
 		{
 			dataKey: "In Processing",
@@ -256,10 +272,47 @@ const Analytics = ({ user }) => {
 
 	const datasets = { data, barInfo };
 
+	//  START FEATURE ENGINEERING
+	useEffect(() => {
+		console.log(analyticsState.total);
+		if (analyticsState.total) {
+			setTotalUserIDs([
+				...analyticsState.total.assigned.map(person => person.id),
+				...analyticsState.total.gaining.map(person => person.id),
+				...analyticsState.total.leaving.map(person => person.id)
+			]);
+		}
+	}, [analyticsState?.total]);
+
+	useEffect(() => {
+		var requestOptions = {
+			method: "GET",
+			redirect: "follow"
+		};
+
+		if (totalUserIDs.length > 0 && fetchedTotalUserIDs === false) {
+			setFetchedTotalUserIDs(true);
+			console.log("totalusers ", totalUserIDs);
+			console.log("fetchedTotalUserIDs ", fetchedTotalUserIDs);
+
+			fetch("http://localhost:8081/api/v1/users/67", requestOptions)
+				.then(response => response.json())
+				.then(result => setTotalUserData(result.data))
+				.catch(error => console.log("error", error));
+		}
+	}, [totalUserIDs]);
+
+	useEffect(() => {
+		if (fetchedTotalUserIDs === true) {
+			console.log("totalUserData ", totalUserData);
+		}
+	}, [totalUserData]);
+
+	//  END FEATURE ENGINEERING
+
 	return (
 		<section className={styles.container}>
 			<nav className={styles.nav}>
-				{/* <h1 style={{ fontSize: "2rem" }}>Analytics</h1> */}
 				<section className={styles.snapshot}>
 					<InfoCard
 						title="Leaving"
@@ -376,25 +429,70 @@ const Analytics = ({ user }) => {
 						/>
 					</FormGroup>
 				</sidebar>
-				<BarChart datasets={datasets} />
+				<article className={styles.main}>
+					<section>
+						{basicChecked && <hr />}
 
-				{/*
-<article className={styles.main}>
-					<section>{basicChecked}</section>
+						{basicChecked && (
+							<div
+								style={{
+									display: "flex",
+									flexDirection: "row",
+									flexWrap: "wrap"
+								}}
+							>
+								<BarChart datasets={datasets} />
+								<BarChart datasets={datasets} />
+								<InfoCard title={"Placeholder"} />
+								<InfoCard title={"Placeholder"} />
+							</div>
+						)}
+					</section>
 
-					{inprocessingChecked && (
-						<div>
-							<h2>Show Inprocessing Plots</h2>
-						</div>
-					)}
-					{outprocessingChecked && (
-						<div>
-							<h2>Show Outprocessing Plots</h2>
-						</div>
-					)}
+					<section>
+						{inprocessingChecked && <hr />}
+
+						{inprocessingChecked && (
+							<div
+								style={{
+									display: "flex",
+									flexDirection: "row",
+									flexWrap: "wrap"
+								}}
+							>
+								<InfoCard title={"Placeholder"} />
+								<InfoCard title={"Placeholder"} />
+							</div>
+						)}
+					</section>
+
+					<section>
+						{outprocessingChecked && (
+							<div
+								style={{
+									display: "flex",
+									flexDirection: "row",
+									flexWrap: "wrap"
+								}}
+							>
+								<InfoCard title={"Placeholder"} />
+								<InfoCard title={"Placeholder"} />
+								<h2>Show Outprocessing Plots</h2>
+							</div>
+						)}
+					</section>
 				</article>
-						*/}
 			</section>
+			<article
+				style={{
+					backgroundColor: "rgb(61, 82, 101)",
+					marginTop: "2rem",
+					borderRadius: "1rem",
+					color: "white"
+				}}
+			>
+				<h3 style={{ textAlign: "center" }}>Report</h3>
+			</article>
 		</section>
 	);
 };
