@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import React, { useState, useContext } from "react";
 
 // Our Components and Hooks
 import { Loading } from "#components";
@@ -8,8 +8,18 @@ import registrarAuth from "../../firebase/config.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 // Third Party Components
-import { TextField, Button, Container, Stack } from "@mui/material";
+import {
+	TextField,
+	Button,
+	Container,
+	Stack,
+	Box,
+	Card,
+	CardActions,
+	Collapse
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ExpandMore } from "@mui/icons-material";
 
 const Login = () => {
 	// STATE
@@ -18,6 +28,7 @@ const Login = () => {
 		"Get out of my chair and make me some coffee with eight sugars, then throw it out and make it again cause it's still not sweet enough!"
 	);
 	const [isLoading, setIsLoading] = useState(false);
+	const [expanded, setExpanded] = useState(false);
 	const { user, setUser } = useContext(UserContext);
 	const navigate = useNavigate();
 
@@ -132,6 +143,29 @@ const Login = () => {
 						CAC/ECA Login
 					</Button>
 				</Stack>
+
+				<Card
+					sx={{
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+						borderRadius: "2rem",
+						marginTop: "20px"
+					}}
+				>
+					<CardActions>
+						<h3>For BDSI Demo Days: Quick Login Options</h3>
+						<ExpandMore
+							expand={`${expanded}`}
+							onClick={() => setExpanded(!expanded)}
+						></ExpandMore>
+					</CardActions>
+					<Collapse in={expanded}>
+						<Button variant="contained" type="secondary">
+							Squadron Admin
+						</Button>
+					</Collapse>
+				</Card>
 			</Container>
 		</>
 	);
