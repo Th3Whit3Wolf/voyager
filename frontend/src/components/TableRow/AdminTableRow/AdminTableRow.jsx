@@ -258,7 +258,13 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					</Select>
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />
+					<TextField
+						size="small"
+						value={pocPhone}
+						sx={{ width: "25ch" }}
+						variant="standard"
+						disabled
+					/>
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocEmail} sx={{ width: "25ch" }} />
