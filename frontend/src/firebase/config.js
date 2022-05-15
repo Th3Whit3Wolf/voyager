@@ -4,12 +4,12 @@ import "firebase/compat/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: "AIzaSyB_Ph-X_XyXlLN7fjyJhoiS73bZs-o-rfU",
-	authDomain: "bsdi-capstone.firebaseapp.com",
-	projectId: "bsdi-capstone",
-	storageBucket: "bsdi-capstone.appspot.com",
-	messagingSenderId: "831411631880",
-	appId: "1:831411631880:web:32bf1f0ede9a30e146debd"
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase

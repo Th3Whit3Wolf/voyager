@@ -21,7 +21,7 @@ app.use(
 		customEndpoints: [] // array of custom endpoints
 	})
 );
-// app.use(log);
+app.use(log);
 
 if (NODE_ENV === "production") {
 	app.use(
