@@ -197,6 +197,12 @@ const Login = () => {
 								variant="contained"
 								color="success"
 								sx={{ marginBottom: "8px" }}
+								onClick={() => {
+									setEmail("lelouch.lamperouge@spaceforce.mil");
+									setPassword(
+										"When there is evil in this world that justice cannot defeat, would you taint your hands with evil to defeat evil? Or would you remain steadfast and righteous even if it means surrendering to evil?"
+									);
+								}}
 							>
 								Squadron Admin
 							</Button>
@@ -213,17 +219,23 @@ const Login = () => {
 							>
 								Installation Admin
 							</Button>
-							<Button
+							{/* <Button
 								variant="contained"
 								color="warning"
 								sx={{ marginBottom: "8px" }}
 							>
 								Delta Admin
-							</Button>
+							</Button> */}
 							<Button
 								variant="contained"
 								color="error"
 								sx={{ marginBottom: "8px" }}
+								onClick={() => {
+									setEmail("sterling.archer@spaceforce.mil");
+									setPassword(
+										"No, forget the glass Woodhouse, just give me the pitcher. For I am a sinner in the hands of an angry God. Bloody Mary, full of vodka, blessed are you among cocktails. Pray for me now and at the hour of my death, which I hope is soon. Amen."
+									);
+								}}
 							>
 								Command Admin
 							</Button>
