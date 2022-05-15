@@ -24,26 +24,14 @@ const UserTableRow = ({ entry }) => {
 
 	const [open, setOpen] = useState(false);
 
-	// STATE handlers
-
-	////////
-
-	//git commit -m "feat: my new thing
-	//
-	//Co-authored-by: whitneyhessler14 <whitneyhessler14@users.noreply.github.com>"
-	/////
-
 	const handleOnChange = e => {
 		if (e.target.value === "false" || e.target.value === "true") {
 			const updateUserTask = new TaskUserAPI();
 			updateUserTask
 				.id(entry.id)
-				.put(
-					user.token,
-					JSON.stringify({
-						completedAt: e.target.value === "false" ? new Date() : null
-					})
-				)
+				.update(user.token, {
+					completedAt: e.target.value === "false" ? new Date() : null
+				})
 				.then(response => response.json())
 				.then(result => console.log(result))
 				.catch(error => console.log("error", error));

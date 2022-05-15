@@ -415,77 +415,69 @@ const Report = ({ dataset }) => {
 			</section>
 
 			<section>
-				<h3>Leaving Task Information</h3>
-				{console.log(dataForLBC)}
-				<Card
-					sx={{
-						padding: "2rem",
-						borderRadius: "2rem",
-						boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
-					}}
-				>
-					<BarChart width={1000} height={450} data={dataForLBC}>
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey="name" />
-						<YAxis />
-						<Tooltip content={<CustomTooltip />} />
-						<Legend />
-						<Bar
-							dataKey="NOT STARTED"
-							fill="#8884d8"
-							name="NOT STARTED"
-							onMouseOver={() => (tooltip = "NOT STARTED")}
-						/>
-						<Bar
-							dataKey="COMPLETED"
-							fill="#82ca9d"
-							name="COMPLETED"
-							onMouseOver={() => (tooltip = "COMPLETED")}
-						/>
-					</BarChart>{" "}
-				</Card>
-			</section>
-
-			<section>
-				<h3>Assigned Task Information</h3>
-				<Card
-					sx={{
-						padding: "2rem",
-						borderRadius: "2rem",
-						boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
-					}}
-				>
-					<BarChart width={1000} height={450} data={dataForABC}>
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey="name" />
-						<YAxis />
-						<Tooltip content={<CustomTooltip />} />
-						<Legend />
-						<Bar
-							dataKey="NOT STARTED"
-							fill="#8884d8"
-							name="NOT STARTED"
-							onMouseOver={() => (tooltip = "NOT STARTED")}
-						/>
-						<Bar
-							dataKey="COMPLETED"
-							fill="#82ca9d"
-							name="COMPLETED"
-							onMouseOver={() => (tooltip = "COMPLETED")}
-						/>
-					</BarChart>{" "}
-				</Card>
-			</section>
-
-			<section>
 				<Grid
 					container
 					spacing={0}
 					direction="column"
 					alignItems="center"
 					justify="center"
-					style={{ minHeight: "100vh" }}
 				>
+					<Card
+						sx={{
+							padding: "2rem",
+							borderRadius: "2rem",
+							boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
+						}}
+					>
+						<CardHeader title="Leaving - Task Completion Status" />
+						<BarChart width={1000} height={450} data={dataForLBC}>
+							<CartesianGrid strokeDasharray="3 3" />
+							<XAxis dataKey="name" />
+							<YAxis />
+							<Tooltip content={<CustomTooltip />} />
+							<Legend />
+							<Bar
+								dataKey="NOT STARTED"
+								fill="#8884d8"
+								name="NOT STARTED"
+								onMouseOver={() => (tooltip = "NOT STARTED")}
+							/>
+							<Bar
+								dataKey="COMPLETED"
+								fill="#82ca9d"
+								name="COMPLETED"
+								onMouseOver={() => (tooltip = "COMPLETED")}
+							/>
+						</BarChart>{" "}
+					</Card>
+					<Card
+						sx={{
+							padding: "2rem",
+							borderRadius: "2rem",
+							boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
+						}}
+					>
+						<CardHeader title="Assigned - Task Completion Status" />
+						<BarChart width={1000} height={450} data={dataForABC}>
+							<CartesianGrid strokeDasharray="3 3" />
+							<XAxis dataKey="name" />
+							<YAxis />
+							<Tooltip content={<CustomTooltip />} />
+							<Legend />
+							<Bar
+								dataKey="NOT STARTED"
+								fill="#8884d8"
+								name="NOT STARTED"
+								onMouseOver={() => (tooltip = "NOT STARTED")}
+							/>
+							<Bar
+								dataKey="COMPLETED"
+								fill="#82ca9d"
+								name="COMPLETED"
+								onMouseOver={() => (tooltip = "COMPLETED")}
+							/>
+						</BarChart>{" "}
+					</Card>
 					<Card
 						sx={{
 							padding: "2rem",

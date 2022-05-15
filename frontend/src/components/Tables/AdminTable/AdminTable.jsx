@@ -35,16 +35,24 @@ const AdminTable = ({ data, start, end, kind, approverList }) => {
 			unitID: user.assignedUnit.id
 		};
 		addTask
-			.create(body)
+			.create(user.token, body)
 			.then(response => response.json())
-			.then(json => setMessage(`Created Task Number ID: ${json.id}!`))
+			.then(json => {
+				console.log(json);
+				setMessage(`Created Task Number ID: ${json.data.taskID}!`);
+			})
 			.then(() => {
 				const refreshUser = new UserAPI();
 				refreshUser
 					.email(user.email)
 					.get(user.token)
 					.then(response => response.json())
-					.then(d => setUser(d.data[0]));
+					.then(d => {
+						let tempUser = d.data[0];
+						tempUser.token = user.token;
+						tempUser.credentials = user.credentials;
+						setUser(tempUser);
+					});
 			})
 			.catch(err => console.log(err));
 	};

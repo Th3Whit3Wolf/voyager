@@ -84,9 +84,14 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 				const refreshUser = new UserAPI();
 				refreshUser
 					.email(user.email)
-					.get(user.target)
+					.get(user.token)
 					.then(response => response.json())
-					.then(d => setUser(d.data[0]));
+					.then(d => {
+						let tempUser = d.data[0];
+						tempUser.token = user.token;
+						tempUser.credentials = user.credentials;
+						setUser(tempUser);
+					});
 			})
 			.catch(err => console.log(err));
 	};
@@ -94,18 +99,25 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	const handlePut = stringifiedJSON => {
 		const updateTask = new TaskAPI();
 
+		updateTask.id(entry.id);
+		console.log({ updateTask });
 		updateTask
-			.id(entry.id)
-			.put(user.token, stringifiedJSON)
+			.update(user.token, stringifiedJSON)
 			.then(response => response.json())
 			.then(result => console.log("PUT", result))
 			.then(() => {
 				const refreshUser = new UserAPI();
+				console.log(user.token);
 				refreshUser
 					.email(user.email)
-					.get(user.target)
+					.get(user.token)
 					.then(response => response.json())
-					.then(d => setUser(d.data[0]));
+					.then(d => {
+						let tempUser = d.data[0];
+						tempUser.token = user.token;
+						tempUser.credentials = user.credentials;
+						setUser(tempUser);
+					});
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -128,16 +140,16 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 
 	const updatePocID = e => {
 		setPocID(parseInt(e.target.value));
-		let raw = JSON.stringify({
+		let raw = {
 			approverID: e.target.value
-		});
+		};
 		handlePut(raw);
 	};
 
 	const updateIsActive = e => {
-		let raw = JSON.stringify({
+		let raw = {
 			isActive: !isActive
-		});
+		};
 		setIsActive(!isActive);
 		handlePut(raw);
 	};
