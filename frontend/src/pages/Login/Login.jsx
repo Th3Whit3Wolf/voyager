@@ -55,6 +55,7 @@ const Login = () => {
 							.then(response => response.json())
 							.then(d => {
 								let tempUser = d.data[0];
+								console.log(tempUser);
 								if (tempUser === undefined) {
 									alert(
 										"Invalid Authentication Details. Try again or Contact your POC."
@@ -172,8 +173,10 @@ const Login = () => {
 								color="secondary"
 								sx={{ marginBottom: "8px" }}
 								onClick={() => {
-									setEmail("mari.illustrious@spaceforce.mil");
-									setPassword("Many a small bird drive away a hawk");
+									setEmail("asuka.sohryu@spaceforce.mil");
+									setPassword(
+										"It is simply the duty of the elite to protect the ignorant masses."
+									);
 								}}
 							>
 								Inprocessing User
