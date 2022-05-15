@@ -6,6 +6,7 @@
   "scripts": {
     "docker:up": "docker compose up --build -d || docker-compose up --build -d",
     "docker:down": "docker compose down || docker-compose down",
+    "reset": "npm run docker:down && (docker rm $(docker ps -a -q) || echo 'removed docker images') && npm run docker:up && sleep 25  && npm --prefix backend run db:reset -- --force",
     "install": "npm --prefix frontend install && npm --prefix backend install",
     "lint": "npm --prefix frontend run lint && npm --prefix backend run lint",
     "test": "npm --prefix frontend test && npm --prefix backend test"
