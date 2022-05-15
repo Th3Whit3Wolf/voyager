@@ -1,4 +1,7 @@
 import express from "express";
+import cookieParser from "cookie-parser";
+
+import session from "express-session";
 import helmet from "helmet";
 import actuator from "express-actuator";
 import expressPino from "express-pino-logger";
@@ -6,6 +9,7 @@ import cors from "cors";
 import routes from "#routes";
 import { logger } from "#config";
 
+const secret = process.env.SESSION_SECRET || "weak sauce secret";
 const NODE_ENV = process.env.NODE_ENV || "development";
 const app = express();
 const log = expressPino({
@@ -13,6 +17,7 @@ const log = expressPino({
 });
 
 app.use(helmet());
+app.use(cookieParser());
 app.use(
 	actuator({
 		infoGitMode: "simple", // the amount of git information you want to expose, 'simple' or 'full',
@@ -21,7 +26,18 @@ app.use(
 		customEndpoints: [] // array of custom endpoints
 	})
 );
-// app.use(log);
+app.use(
+	session({
+		secret,
+		saveUninitialized: true,
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 24 /* one day */,
+			secure: NODE_ENV === "production"
+		},
+		resave: false
+	})
+);
+app.use(log);
 
 if (NODE_ENV === "production") {
 	app.use(

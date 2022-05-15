@@ -2,10 +2,10 @@
 import React, { useState, useEffect, useContext } from "react";
 
 // Our Packages
-import { BarChart, InfoCard } from ".";
+import { Loading } from "#components";
+import { BarChart, InfoCard, Report } from ".";
 
 // Our Packages
-import { UserContext } from "#context";
 import { UnitAPI } from "#services";
 import styles from "./Analytics.module.css";
 
@@ -55,30 +55,12 @@ const Analytics = ({ user }) => {
 	const [inprocessingChecked, setInprocessingChecked] = useState(false);
 	const [outprocessingChecked, setOutprocessingChecked] = useState(false);
 
-	// These pieces of State are used for feature engineering
-	// totalUserIDs -> gathers all the unitIDs into one state array
-	//     the idea is this changes based on whether Total, Squadron, or Delta is selected
-	// fetchedTotalUserIDs -> don't want to do the whole promise chain on totalUserIDs with
-	//     every re-render! The idea is to do it once, then use this as a flag to stop if
-	//     from happening again. You can probably use the analyticState's leaving, gaining,
-	//     assiging to re-filter off of totalUserData when any filters are changed
-	//  totalUserData -> fetch all the user data once, then hold it here
-	const [totalUserIDs, setTotalUserIDs] = useState([]);
-	const [fetchedTotalUserIDs, setFetchedTotalUserIDs] = useState(false);
-	const [totalUserData, setTotalUserData] = useState([]);
-
 	const calcAnalytics = analyticsObj => {
 		let newAnalytics = { ...analyticsObj };
 		let assigned = [];
 		let gaining = [];
 		let leaving = [];
 		Object.entries(newAnalytics).forEach(([key, value]) => {
-			// console.log(
-			// 	"INFO::calcAnalytics (key):",
-			// 	key,
-			// 	"INFO::calcAnalytics (value):",
-			// 	value
-			// );
 			if (key === "own") {
 				assigned = [...assigned, ...value.assigned];
 				gaining = [...gaining, ...value.gaining];
@@ -97,7 +79,6 @@ const Analytics = ({ user }) => {
 			leaving
 		};
 		setAnalyticsState(newAnalytics);
-		console.log("Current analytics state:", analyticsState);
 	};
 
 	// on component load set load up the state
@@ -110,7 +91,7 @@ const Analytics = ({ user }) => {
 			unitData.limit(200);
 		}
 		unitData
-			.get()
+			.get(user.token)
 			.then(response => response.json())
 			.then(result => {
 				if (result.data.length > 0) {
@@ -141,7 +122,7 @@ const Analytics = ({ user }) => {
 			analyticsInfo.Deltas = [];
 			analyticsInfo.Installations = [];
 			analyticsInfo.Squadrons = [];
-			const unitKinds = ["t", "INSTALLATION", "COMMAND", "DELTA", "SQUADRON"];
+			//const unitKinds = ["t", "INSTALLATION", "COMMAND", "DELTA", "SQUADRON"];
 
 			unit.forEach(u => {
 				[
@@ -154,7 +135,6 @@ const Analytics = ({ user }) => {
 			});
 
 			setAnalyticsState(analyticsInfo);
-			console.log("Current analytics state:", analyticsState);
 
 			return;
 		} else if (Object.entries(unit).length > 0) {
@@ -168,7 +148,6 @@ const Analytics = ({ user }) => {
 				installationChildren
 			} = unit;
 
-			console.log("Role = ", user.role.kind);
 			switch (user.role.kind) {
 				case "INSTALLATION_ADMIN":
 					analyticsInfo.own = {
@@ -180,7 +159,6 @@ const Analytics = ({ user }) => {
 					};
 					updateAnalytics("Squadrons", installationChildren, analyticsInfo);
 					calcAnalytics(analyticsInfo);
-					console.log("Analytics state:", analyticsState);
 					return;
 				case "COMMAND_ADMIN":
 					analyticsInfo.own = {
@@ -273,88 +251,40 @@ const Analytics = ({ user }) => {
 	const datasets = { data, barInfo };
 
 	//  START FEATURE ENGINEERING
-	useEffect(() => {
-		console.log(analyticsState.total);
-		if (analyticsState.total) {
-			setTotalUserIDs([
-				...analyticsState.total.assigned.map(person => person.id),
-				...analyticsState.total.gaining.map(person => person.id),
-				...analyticsState.total.leaving.map(person => person.id)
-			]);
-		}
-	}, [analyticsState?.total]);
-
-	useEffect(() => {
-		var requestOptions = {
-			method: "GET",
-			redirect: "follow"
-		};
-
-		if (totalUserIDs.length > 0 && fetchedTotalUserIDs === false) {
-			setFetchedTotalUserIDs(true);
-			console.log("totalusers ", totalUserIDs);
-			console.log("fetchedTotalUserIDs ", fetchedTotalUserIDs);
-
-			const arr = [67, 68];
-
-			const promises = totalUserIDs.map(prom => {
-				return fetch(
-					`http://localhost:8081/api/v1/users/${prom}`,
-					requestOptions
-				);
-			});
-
-			Promise.all(promises)
-				.then(responses =>
-					Promise.all(responses.map(response => response.json()))
-				)
-				.then(results => results.map(result => result.data))
-				.then(hugeArray => setTotalUserData(hugeArray))
-				.catch(error => console.log("error", error));
-		}
-	}, [totalUserIDs]);
-
-	useEffect(() => {
-		if (fetchedTotalUserIDs === true) {
-			console.log("totalUserData ", totalUserData);
-		}
-		console.log("totalUserData-gaining", [
-			...new Map(
-				totalUserData
-					.filter(person => person.gainingUnitID !== null)
-					.map(v => [v.id, v])
-			).values()
-		]);
-		console.log("totalUserData-not-gaining", [
-			...new Map(
-				totalUserData
-					.filter(person => person.gainingUnitID === null)
-					.map(v => [v.id, v])
-			).values()
-		]);
-	}, [totalUserData]);
 
 	//  END FEATURE ENGINEERING
 
 	return (
 		<section className={styles.container}>
+			{console.log("Render", analyticsState)}
 			<nav className={styles.nav}>
 				<section className={styles.snapshot}>
-					<InfoCard
-						title="Leaving"
-						value={analyticsState?.total?.leaving?.length}
-					/>
-					<InfoCard
-						title="Assigned"
-						value={analyticsState?.total?.assigned?.length}
-					/>
-					<InfoCard
-						title="Gaining"
-						value={analyticsState?.total?.gaining?.length}
-					/>
+					{Object.entries(analyticsState).length === 0 && <Loading />}
+					{Object.entries(analyticsState).length !== 0 && (
+						<InfoCard
+							title="Leaving"
+							value={analyticsState?.total?.leaving?.length}
+						/>
+					)}
+
+					{Object.entries(analyticsState).length === 0 && <Loading />}
+					{Object.entries(analyticsState).length !== 0 && (
+						<InfoCard
+							title="Assigned"
+							value={analyticsState?.total?.assigned?.length}
+						/>
+					)}
+
+					{Object.entries(analyticsState).length === 0 && <Loading />}
+					{Object.entries(analyticsState).length !== 0 && (
+						<InfoCard
+							title="Gaining"
+							value={analyticsState?.total?.gaining?.length}
+						/>
+					)}
 				</section>
 			</nav>
-			<section className={styles.sidebyside}>
+			{/* <section className={styles.sidebyside}>
 				<sidebar className={styles.sidebar}>
 					<h2>Unit Filters</h2>
 
@@ -403,7 +333,6 @@ const Analytics = ({ user }) => {
 									id="squadron-dropdown-filter"
 									value={squadronDropdown}
 									onChange={e => {
-										console.log("Changing Squadron Filter ", e.target.value);
 										setSquadronDropdown(e.target.value);
 									}}
 									label="squadronDropdownFilter"
@@ -457,7 +386,7 @@ const Analytics = ({ user }) => {
 				</sidebar>
 				<article className={styles.main}>
 					<section>
-						{basicChecked && <hr />}
+						{basicChecked}
 
 						{basicChecked && (
 							<div
@@ -468,15 +397,12 @@ const Analytics = ({ user }) => {
 								}}
 							>
 								<BarChart datasets={datasets} />
-								<BarChart datasets={datasets} />
-								<InfoCard title={"Placeholder"} />
-								<InfoCard title={"Placeholder"} />
 							</div>
 						)}
 					</section>
 
 					<section>
-						{inprocessingChecked && <hr />}
+						{inprocessingChecked}
 
 						{inprocessingChecked && (
 							<div
@@ -508,7 +434,7 @@ const Analytics = ({ user }) => {
 						)}
 					</section>
 				</article>
-			</section>
+			</section> */}
 			<article
 				style={{
 					backgroundColor: "rgb(61, 82, 101)",
@@ -517,7 +443,10 @@ const Analytics = ({ user }) => {
 					color: "white"
 				}}
 			>
-				<h3 style={{ textAlign: "center" }}>Report</h3>
+				{Object.entries(analyticsState).length === 0 && <Loading />}
+				{Object.entries(analyticsState).length > 0 && (
+					<Report dataset={analyticsState} />
+				)}
 			</article>
 		</section>
 	);

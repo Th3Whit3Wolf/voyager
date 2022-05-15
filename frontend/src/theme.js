@@ -407,61 +407,34 @@ const getDesignTokens = mode => ({
 			fontFamily
 		},
 		body1: {
-			fontFamily,
-			fontSize: "1rem",
-			fontWeight: 400,
-			letterSpacing: 0.5
+			fontFamily
 		},
 		body2: {
-			fontFamily,
-			fontSize: "0.875rem",
-			fontWeight: 400,
-			letterSpacing: 0.5
+			fontFamily
 		},
 		body3: {
-			fontFamily,
-			fontSize: "1rem",
-			fontWeight: 400,
-			letterSpacing: 0
+			fontFamily
 		},
 		caption: {
 			fontFamily
 		},
 		h1: {
-			fontFamily,
-			fontSize: "0.75rem",
-			fontWeight: 400,
-			letterSpacing: 0.25
+			fontFamily
 		},
 		h2: {
-			fontFamily,
-			fontSize: "1.5rem",
-			fontWeight: 400,
-			letterSpacing: 0
+			fontFamily
 		},
 		h3: {
-			fontFamily,
-			fontSize: "1.25rem",
-			fontWeight: 500,
-			letterSpacing: 0.15
+			fontFamily
 		},
 		h4: {
-			fontFamily,
-			fontSize: "1.25rem",
-			fontWeight: 300,
-			letterSpacing: 0.15
+			fontFamily
 		},
 		h5: {
-			fontFamily,
-			fontSize: "0.88rem",
-			fontWeight: 400,
-			letterSpacing: 0
+			fontFamily
 		},
 		h6: {
-			fontFamily,
-			fontSize: "0.88rem",
-			fontWeight: 300,
-			letterSpacing: 0
+			fontFamily
 		},
 		mono: {
 			fontFamily: "'Roboto Mono', monospace"
