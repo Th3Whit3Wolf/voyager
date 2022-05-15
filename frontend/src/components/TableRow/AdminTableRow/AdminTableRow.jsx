@@ -5,6 +5,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "#context";
 import { TaskAPI, UserAPI } from "#services/api";
 
+// Third Party Components
+import { Link } from "react-router-dom";
+
 // MUI Components
 import {
 	TableRow,
@@ -267,8 +270,8 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					/>
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={pocEmail} sx={{ width: "25ch" }} />
-					<Button>Email</Button>
+					{/* <TextField size="small" value={pocEmail} sx={{ width: "25ch" }} /> */}
+					<a href={`mailto:${pocEmail}`}>{pocEmail}</a>
 				</TableCell>
 				<TableCell>
 					{`${
