@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 // Our Components and Services
 import { UserContext } from "#context";
 import { TaskAPI, UserAPI } from "#services/api";
+import styles from "./HtmlDecorator.module.css";
 
 // Third Party Components
 import { Link } from "react-router-dom";
@@ -287,16 +288,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 							"_",
 							" "
 						)}&from={user.email}`}
-						style={{
-							textDecoration: "none",
-							fontFamily:
-								"Roboto,BlinkMacSystemFont,-apple-system,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Montserrat,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
-							fontWeight: "400",
-							fontSize: "1rem",
-							lineHeight: "1.4375em",
-							color: "rgb(77, 172, 255)",
-							cursor: "pointer"
-						}}
+						className={styles.mail}
 					>
 						{pocEmail}
 					</a>

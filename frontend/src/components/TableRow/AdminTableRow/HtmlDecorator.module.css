@@ -1,0 +1,17 @@
+.mail {
+	text-decoration: none;
+	font-family: Roboto, BlinkMacSystemFont, -apple-system, Segoe UI, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,
+		Montserrat, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol";
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.4375em;
+	color: rgb(77, 172, 255);
+	cursor: pointer;
+}
+
+.mail:hover {
+	color: rgb(150, 206, 255);
+	text-decoration: underline;
+}
