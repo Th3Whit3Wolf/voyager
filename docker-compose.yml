@@ -29,7 +29,14 @@ services:
     environment:
       - NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node'
       - NODE_ENV=development
-      - FIREBASE_PATH="${FIREBASE_PATH}"
+      - FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID=${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID}
+      - FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY=${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY}
+      - FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL=${FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL}
+      - FIREBASE_SERVICE_ACCOUNT_CLIENT_ID=${FIREBASE_SERVICE_ACCOUNT_CLIENT_ID}
+      - FIREBASE_SERVICE_ACCOUNT_AUTH_URI=${FIREBASE_SERVICE_ACCOUNT_AUTH_URI}
+      - FIREBASE_SERVICE_ACCOUNT_TOKEN_URI=${FIREBASE_SERVICE_ACCOUNT_TOKEN_URI}
+      - FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL=${FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL}
+      - FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL=${FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL}
       - DATABASE_HOST=capstone-db
       - PG_USER=${PG_USER:-postgres}
       - PG_HOST=${PG_HOST:-capstone-db}
@@ -40,9 +47,6 @@ services:
       - type: bind
         source: ./backend
         target: /app
-      - type: bind
-        source: ./.secrets
-        target: /secrets
     command: npm run dev
 
   capstone-db-viewer:
@@ -61,7 +65,6 @@ services:
       - PG_PASSWD=${PG_PASSWD:-docker}
       - POSTGRES_PORT=${PG_PORT-5432}
       - POSTGRES_DB=capstone
-
     volumes:
       - type: bind
         source: ./backend
