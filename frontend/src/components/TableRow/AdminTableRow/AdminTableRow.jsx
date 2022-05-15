@@ -268,6 +268,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 				</TableCell>
 				<TableCell>
 					<TextField size="small" value={pocEmail} sx={{ width: "25ch" }} />
+					<Button>Email</Button>
 				</TableCell>
 				<TableCell>
 					{`${
