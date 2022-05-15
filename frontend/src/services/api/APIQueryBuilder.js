@@ -4,10 +4,10 @@ const baseURL =
 		: "http://localhost:8081/api/v1";
 
 const queryBuilderThrow = (fnName, errorKind, expected, received) => {
-	throw `\n[API QueryBuilder::${fnName}] Error(${errorKind}):\nExpected: ${expected}.\nReceived: ${received}\n`;
+	throw new Error(
+		`\n[API QueryBuilder::${fnName}] Error(${errorKind}):\nExpected: ${expected}.\nReceived: ${received}\n`
+	);
 };
-
-const headers = new Headers();
 
 class APIQueryBuilder {
 	#queryParameters = [];
@@ -179,9 +179,12 @@ class APIQueryBuilder {
 	};
 
 	create = async (token, data) => {
-		headers.append("Content-Type", "application/json");
-		headers.append("Authorization", `Bearer ${token}`);
+		const headers = new Headers({
+			"Content-Type": "application/json; charset=UTF-8",
+			Authorization: `Bearer ${token}`
+		});
 		const body = JSON.stringify(data);
+
 		return fetch(this.toURL(), {
 			method: "POST",
 			mode: "cors",
@@ -192,7 +195,10 @@ class APIQueryBuilder {
 
 	delete = async token => {
 		if (this.#id !== undefined) {
-			headers.append("Authorization", `Bearer ${token}`);
+			const headers = new Headers({
+				Authorization: `Bearer ${token}`
+			});
+
 			return fetch(`${this.baseURL()}/${this.#id}`, {
 				method: "DELETE",
 				mode: "cors",
@@ -209,7 +215,9 @@ class APIQueryBuilder {
 	};
 
 	get = async token => {
-		headers.append("Authorization", `Bearer ${token}`);
+		const headers = new Headers({
+			Authorization: `Bearer ${token}`
+		});
 
 		return fetch(this.toURL(), {
 			method: "GET",
@@ -220,8 +228,10 @@ class APIQueryBuilder {
 
 	update = async (token, data) => {
 		if (this.#id !== undefined) {
-			headers.append("Content-Type", "application/json");
-			headers.append("Authorization", `Bearer ${token}`);
+			const headers = new Headers({
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `Bearer ${token}`
+			});
 			const body = JSON.stringify(data);
 			return fetch(`${this.baseURL()}/${this.#id}`, {
 				method: "PUT",
