@@ -23,10 +23,8 @@ import { ExpandMore } from "@mui/icons-material";
 
 const Login = () => {
 	// STATE
-	const [email, setEmail] = useState("johnny.bravo@spaceforce.mil");
-	const [password, setPassword] = useState(
-		"Get out of my chair and make me some coffee with eight sugars, then throw it out and make it again cause it's still not sweet enough!"
-	);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [expanded, setExpanded] = useState(false);
 	const { user, setUser } = useContext(UserContext);
