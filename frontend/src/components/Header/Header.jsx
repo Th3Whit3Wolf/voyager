@@ -15,12 +15,10 @@ import {
 import { useNavigate } from "react-router-dom";
 // Also need a small title shows USER or ADMIN
 
-const NewHeader = () => {
+const Header = () => {
 	const theme = useTheme();
 	const navigate = useNavigate();
 	const { user, setUser } = useContext(UserContext);
-
-	console.log("THEME:", theme);
 
 	const handleClick = () => {
 		// Do some stuff
@@ -31,13 +29,14 @@ const NewHeader = () => {
 
 	return (
 		<AppBar
-			position="static"
+			position="fixed"
 			enableColorOnDark
 			sx={{
 				height: 100,
 				display: "flex",
 				padding: "5px 5px 5px 25px",
 				flexGrow: 1,
+				zIndex: thm => thm.zIndex.drawer + 1,
 				backgroundColor: theme.palette.gsb.background
 			}}
 		>
@@ -123,4 +122,4 @@ const NewHeader = () => {
 	);
 };
 
-export default NewHeader;
+export default Header;

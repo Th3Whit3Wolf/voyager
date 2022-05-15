@@ -15,6 +15,7 @@ import ModifyAdminTable from "./Tables/AdminTable/ModifyAdminTable";
 import Analytics from "./Analytics/Analytics";
 
 import UserSettings from "./UserSettings/UserSettings";
+import SideBar from "./SideBar/SideBar";
 
 export {
 	Header,
@@ -29,5 +30,6 @@ export {
 	UserSettings,
 	DeleteDialog,
 	InfoDialog,
+	SideBar,
 	Analytics
 };
