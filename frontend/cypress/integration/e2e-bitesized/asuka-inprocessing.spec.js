@@ -24,7 +24,7 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("input").should("have.length", 17);
 	});
 
-	it("the test User Raquel Orn should have 8 of the Tasks Should be Complete", () => {
+	it("the test User Asuka Sohryu should have 8 Complete and 9 Incomplete", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=buttonInprocessingTasks]").click();
 		expect(cy.get("input").eq(0).should("be.checked"));
@@ -46,28 +46,21 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		expect(cy.get("input").eq(16).should("not.be.checked"));
 	});
 
-	// it("the test User Raquel Orn should have 0 Outprocessing Tasks", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonOutprocessingTasks]").click();
-	// 	cy.get("input").should("have.length", 0);
-	// });
+	it("the test User Asuka Sohryu should have 0 Outprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("input").should("have.length", 0);
+	});
 
-	// it("the inprocessing tasks should all not be complete", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonInprocessingTasks]").click();
-	// 	for (let i = 0; i < cy.get("input").length; i++) {
-	// 		cy.get("input").eq(i).should("have.value", "false");
-	// 	}
-	// });
-
-	// it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonInprocessingTasks]").click();
-	// 	cy.get("input").first().click();
-	// 	cy.get("input").first().should("have.value", "true");
-	// 	cy.get("input").first().click();
-	// 	cy.get("input").first().should("have.value", "false");
-	// });
+	it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonInprocessingTasks]").click();
+		cy.get("input").last().check();
+		cy.get("input").last().should("have.value", "true");
+		cy.log("Clicked last checkbox");
+		cy.get("input").last().uncheck();
+		cy.get("input").last().should("have.value", "false");
+	});
 
 	// it("clicking a logout button will end session and return to login", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");

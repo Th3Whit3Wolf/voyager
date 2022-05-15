@@ -35,8 +35,9 @@ const UserTableRow = ({ entry }) => {
 				.then(response => response.json())
 				.then(result => console.log(result))
 				.catch(error => console.log("error", error));
-			setTaskChecked(true);
-			setTaskCompletedAt(new Date());
+			setTaskChecked(!taskChecked);
+			if (e.target.value === "false") setTaskCompletedAt(new Date());
+			else setTaskCompletedAt(null);
 		}
 	};
 
