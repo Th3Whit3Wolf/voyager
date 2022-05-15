@@ -271,7 +271,25 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 				</TableCell>
 				<TableCell>
 					{/* <TextField size="small" value={pocEmail} sx={{ width: "25ch" }} /> */}
-					<a href={`mailto:${pocEmail}`}>{pocEmail}</a>
+					<a
+						href={`mailto:${pocEmail}?subject=Regarding Task #${entry.id}: ${
+							entry.title
+						}&body=Task #${
+							entry.id
+						}, ${taskTitle}%0D%0A%0D%0A Description: ${taskDesc} %0D%0A%0D%0A Task is Active: ${isActive} %0D%0A%0D%0A Task Type: ${taskKind
+							.toLowerCase()
+							.replace(
+								"_",
+								" "
+							)} %0D%0A%0D%0A ...begin Email here %0D%0A%0D%0A %0D%0A%0D%0A %0D%0A%0D%0A Regards, %0D%0A%0D%0A ${
+							user.firstName
+						} ${user.lastName} %0D%0A ${user.role.kind.replace(
+							"_",
+							" "
+						)}&from={user.email}`}
+					>
+						{pocEmail}
+					</a>
 				</TableCell>
 				<TableCell>
 					{`${
