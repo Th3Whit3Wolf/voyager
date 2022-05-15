@@ -1,18 +1,22 @@
 // Native React
 import React, { createContext, useMemo, useState } from "react";
 
+// Third Party Components
+import { Routes, Route } from "react-router-dom";
+import {
+	Box,
+	Toolbar,
+	createTheme,
+	CssBaseline,
+	ThemeProvider,
+	useMediaQuery
+} from "@mui/material";
+
 // Our Components
-import { Header } from "#components";
+import { Header, SideBar } from "#components";
 import { Login, Dashboard, PageNotFound } from "#pages";
 import { UserContext } from "#context";
 import getDesignTokens from "./theme.js";
-
-// Third Party Components
-import { Routes, Route } from "react-router-dom";
-import Container from "@mui/material/Container";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import CssBaseline from "@mui/material/CssBaseline";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -28,7 +32,7 @@ export default function App() {
 		}),
 		[]
 	);
-	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+	const theme = useMemo(() => createTheme(getDesignTokens("dark")), [mode]);
 
 	const [user, setUser] = useState({});
 	const value = useMemo(() => ({ user, setUser }), [user]);
@@ -37,19 +41,19 @@ export default function App() {
 		<ColorModeContext.Provider value={colorMode}>
 			<UserContext.Provider value={value}>
 				<ThemeProvider theme={theme}>
-					<CssBaseline />
-					<Header />
-					<Container
-						maxWidth="fixed"
-						sx={{ maxWidth: "auto" }}
-						disableGutters={false}
-					>
-						<Routes>
-							<Route path="/" element={<Login />} />
-							<Route path="/dashboard" element={<Dashboard />} />
-							<Route path="*" element={<PageNotFound />} />
-						</Routes>
-					</Container>
+					<Box sx={{ display: "flex" }}>
+						<CssBaseline />
+						<Header />
+						<SideBar />
+						<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+							<Toolbar />
+							<Routes>
+								<Route path="/" element={<Login />} />
+								<Route path="/dashboard" element={<Dashboard />} />
+								<Route path="*" element={<PageNotFound />} />
+							</Routes>
+						</Box>
+					</Box>
 				</ThemeProvider>
 			</UserContext.Provider>
 		</ColorModeContext.Provider>
