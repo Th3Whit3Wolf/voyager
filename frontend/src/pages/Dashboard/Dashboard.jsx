@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { UserContext } from "#context";
-
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Our Components and Utilities
-import { UserAPI } from "#services/api";
+import { UserContext } from "#context";
+
+import { UserAPI } from "#services";
 
 // Third Party Components and Utilities
 import { Paper, Tab, TableContainer, Button } from "@mui/material";
@@ -16,6 +15,8 @@ import {
 	ModifyAdminTable,
 	Analytics
 } from "#components";
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
@@ -220,7 +221,7 @@ const Dashboard = () => {
 							data-testid="buttonOutprocessingTasks"
 						/>
 						<Tab label="User Settings" value="3" />
-						<Tab label="Modify Admins" value="4" />
+						{/* <Tab label="Modify Admins" value="4" /> */}
 						<Tab label="Analytics" value="5" />
 					</TabList>
 

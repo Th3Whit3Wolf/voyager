@@ -1,4 +1,4 @@
-describe("testing the Admin Dashboard View -- Inprocessing", () => {
+describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
 		cy.get("input").first().clear();
