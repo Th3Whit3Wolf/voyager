@@ -18,11 +18,11 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("[data-testid=buttonOutprocessingTasks]").should("exist");
 	});
 
-	// it("the test User Raquel Orn should have 17 Inprocessing Tasks", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonInprocessingTasks]").click();
-	// 	cy.get("input").should("have.length", 17);
-	// });
+	it("the test User Asuka Sohryu should have 17 Inprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonInprocessingTasks]").click();
+		cy.get("input").should("have.length", 17);
+	});
 
 	// 	it("the test User Raquel Orn should have 8 of the Tasks Should be Complete", () => {
 	// 		cy.url().should("eq", "http://localhost:3000/dashboard");
