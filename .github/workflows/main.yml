@@ -18,6 +18,26 @@ jobs:
     outputs:
       backend: ${{ steps.changes.outputs.backend }}
       frontend: ${{ steps.changes.outputs.frontend }}
+    env:
+      DATABASE_URL: "postgres://postgres:postgres@172.17.0.1:5432/postgres"
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID }}
+      FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY }}
+      FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL }}
+      FIREBASE_SERVICE_ACCOUNT_CLIENT_ID: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLIENT_ID }}
+      FIREBASE_SERVICE_ACCOUNT_AUTH_URI: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AUTH_URI }}
+      FIREBASE_SERVICE_ACCOUNT_TOKEN_URI: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TOKEN_URI }}
+      FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL }}
+      FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL }}
+      TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
+      TEST_PASSWORD: ${{ secrets.TEST_EMAIL }}
+      VITE_REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+      VITE_REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
+      VITE_REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
+      VITE_REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+      VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
+      VITE_REACT_APP_FIREBASE_APP_ID: ${{ secrets.REACT_APP_FIREBASE_APP_ID }}
+      NODE_OPTIONS: "--experimental-vm-modules --experimental-specifier-resolution=node"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -43,7 +63,6 @@ jobs:
           if (( $BACKEND > 0)); then echo "::set-output name=backend::true"; fi
           if (( $FRONTEND > 0)); then echo "::set-output name=frontend::true"; fi
 
-  
   # This workflow kicks off the build and test for the Frontend
   frontend-build-and-test:
     name: Build and Test Frontend
@@ -102,18 +121,31 @@ jobs:
           pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
           node -v
           export DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres"
-          export NODE_OPTIONS="--experimental-vm-modules --experimental-specifier-resolution=node"
           npm run db:testMigration
           npm run db:seed
 
       - name: Test Backend
-        env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           docker run \
           -e CI=true \
           -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
           -e FIREBASE_SERVICE_ACCOUNT="${FIREBASE_SERVICE_ACCOUNT}" \
+       -e FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID="${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID}" \
+     -e FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY="${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY}" \
+     -e FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL="${FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL}" \
+     -e FIREBASE_SERVICE_ACCOUNT_CLIENT_ID="${FIREBASE_SERVICE_ACCOUNT_CLIENT_ID}" \
+     -e FIREBASE_SERVICE_ACCOUNT_AUTH_URI="${FIREBASE_SERVICE_ACCOUNT_AUTH_URI}" \
+     -e FIREBASE_SERVICE_ACCOUNT_TOKEN_URI="${FIREBASE_SERVICE_ACCOUNT_TOKEN_URI}" \
+     -e FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL="${FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL}" \
+     -e FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL="${FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL}" \
+      TEST_EMAIL="${TEST_EMAIL}" \
+      TEST_PASSWORD="${TEST_EMAIL}" \
+      VITE_REACT_APP_FIREBASE_API_KEY="${REACT_APP_FIREBASE_API_KEY}" \
+      VITE_REACT_APP_FIREBASE_AUTH_DOMAIN="${REACT_APP_FIREBASE_AUTH_DOMAIN}" \
+      VITE_REACT_APP_FIREBASE_PROJECT_ID="${REACT_APP_FIREBASE_PROJECT_ID}" \
+      VITE_REACT_APP_FIREBASE_STORAGE_BUCKET="${REACT_APP_FIREBASE_STORAGE_BUCKET}" \
+      VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID="${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}" \
+      VITE_REACT_APP_FIREBASE_APP_ID="${REACT_APP_FIREBASE_APP_ID}" \
           capstone-api npm run test
 
   # This workflow kicks off the linter for Frontend.
