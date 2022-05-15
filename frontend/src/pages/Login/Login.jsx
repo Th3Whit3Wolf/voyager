@@ -14,7 +14,9 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
 	// STATE
 	const [email, setEmail] = useState("johnny.bravo@spaceforce.mil");
-	const [password, setPassword] = useState("123456789");
+	const [password, setPassword] = useState(
+		"Get out of my chair and make me some coffee with eight sugars, then throw it out and make it again cause it's still not sweet enough!"
+	);
 	const [isLoading, setIsLoading] = useState(false);
 	const { user, setUser } = useContext(UserContext);
 	const navigate = useNavigate();

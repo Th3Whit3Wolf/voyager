@@ -91,7 +91,7 @@ const Analytics = ({ user }) => {
 			unitData.limit(200);
 		}
 		unitData
-			.get()
+			.get(user.token)
 			.then(response => response.json())
 			.then(result => {
 				if (result.data.length > 0) {
