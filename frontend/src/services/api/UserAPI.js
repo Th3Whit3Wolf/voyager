@@ -1,6 +1,8 @@
 import APIQueryBuilder from "./APIQueryBuilder";
 const apiError = (fnName, expected, received) => {
-	throw `\n[UserAPI::${fnName}] Error(Invalid Type):\nExpected: ${expected}.\nReceived: ${received}\n`;
+	throw new Error(
+		`[UserAPI::${fnName}] Error(Invalid Type):\nExpected: ${expected}.\nReceived: ${received}\n`
+	);
 };
 const endpoint = "users";
 const validQueryParameters = {
