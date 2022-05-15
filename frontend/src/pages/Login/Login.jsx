@@ -161,9 +161,68 @@ const Login = () => {
 						></ExpandMore>
 					</CardActions>
 					<Collapse in={expanded}>
-						<Button variant="contained" type="secondary">
-							Squadron Admin
-						</Button>
+						<Box
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "flex-start",
+								marginBottom: "20px"
+							}}
+						>
+							<Button
+								variant="contained"
+								color="secondary"
+								sx={{ marginBottom: "8px" }}
+								onClick={() => {
+									setEmail("mari.illustrious@spaceforce.mil");
+									setPassword("Many a small bird drive away a hawk");
+								}}
+							>
+								Inprocessing User
+							</Button>
+							<Button
+								variant="contained"
+								color="secondary"
+								sx={{ marginBottom: "8px" }}
+							>
+								Outprocessing User
+							</Button>
+							<Button
+								variant="contained"
+								color="success"
+								sx={{ marginBottom: "8px" }}
+							>
+								Squadron Admin
+							</Button>
+							<Button
+								variant="contained"
+								color="info"
+								sx={{ marginBottom: "8px" }}
+							>
+								Installation Admin
+							</Button>
+							<Button
+								variant="contained"
+								color="warning"
+								sx={{ marginBottom: "8px" }}
+							>
+								Delta Admin
+							</Button>
+							<Button
+								variant="contained"
+								color="error"
+								sx={{ marginBottom: "8px" }}
+							>
+								Command Admin
+							</Button>
+							<Button
+								variant="contained"
+								color="inherit"
+								sx={{ marginBottom: "8px" }}
+							>
+								Site Admin
+							</Button>
+						</Box>
 					</Collapse>
 				</Card>
 			</Container>
