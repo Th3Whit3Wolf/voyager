@@ -184,6 +184,12 @@ const Login = () => {
 								variant="contained"
 								color="secondary"
 								sx={{ marginBottom: "8px" }}
+								onClick={() => {
+									setEmail("shinji.ikari@spaceforce.mil");
+									setPassword(
+										"I still don’t know where to find happiness. But I’ll continue to think about whether it’s good to be here…whether it was good to have been born. But in the end, it’s just realizing the obvious over and over again. Because I am myself."
+									);
+								}}
 							>
 								Outprocessing User
 							</Button>
@@ -219,6 +225,10 @@ const Login = () => {
 								variant="contained"
 								color="inherit"
 								sx={{ marginBottom: "8px" }}
+								onClick={() => {
+									setEmail("rick.sanchez@spaceforce.mil");
+									setPassword("Wubba Lubba Dub Dub");
+								}}
 							>
 								Site Admin
 							</Button>
