@@ -204,6 +204,12 @@ const Login = () => {
 								variant="contained"
 								color="info"
 								sx={{ marginBottom: "8px" }}
+								onClick={() => {
+									setEmail("johnny.bravo@spaceforce.mil");
+									setPassword(
+										"Get out of my chair and make me some coffee with eight sugars, then throw it out and make it again cause it's still not sweet enough!"
+									);
+								}}
 							>
 								Installation Admin
 							</Button>
