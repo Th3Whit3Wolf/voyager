@@ -414,7 +414,7 @@ const Report = ({ dataset }) => {
 				</div>
 			</section>
 
-			{/* <section>
+			<section>
 				<h3>Leaving Task Information</h3>
 				{console.log(dataForLBC)}
 				<Card
@@ -475,7 +475,7 @@ const Report = ({ dataset }) => {
 						/>
 					</BarChart>{" "}
 				</Card>
-			</section> */}
+			</section>
 
 			<section>
 				<Grid
