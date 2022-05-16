@@ -109,6 +109,7 @@ const SideBar = () => {
 				{user?.role?.kind !== "USER" && (
 					<List disablePadding>
 						<ListItemButton
+							data-testid="buttonAnalytics"
 							selected={page === "Analytics"}
 							onClick={e => handleListOnClick(e, "Analytics")}
 							sx={{
@@ -132,6 +133,7 @@ const SideBar = () => {
 				)}
 				<List disablePadding>
 					<ListItemButton
+						data-testid="buttonTasks"
 						selected={page === "Tasks"}
 						onClick={e => handleListOnClick(e, "Tasks")}
 						sx={{
@@ -154,6 +156,7 @@ const SideBar = () => {
 				</List>
 				<List disablePadding>
 					<ListItemButton
+						data-testid="buttonUserSettings"
 						selected={page === "Settings"}
 						onClick={e => handleListOnClick(e, "Settings")}
 						sx={{
