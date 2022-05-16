@@ -28,12 +28,11 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		cy.get("input").should("have.length", 3 * NUM_OF_COLUMNS);
 	});
 
-	// it("the test Admin Johnny Bravo should have 6 Outprocessing Tasks", () => {
-	// 	const numberOfColumns = 6;
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonOutprocessingTasks]").click();
-	// 	cy.get("input").should("have.length", 6 * numberOfColumns);
-	// });
+	it("the test Admin Johnny Bravo should have 6 Outprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("input").should("have.length", 6 * NUM_OF_COLUMNS);
+	});
 
 	// let numberOfInprocessingRows = 0;
 	// it("A Series of Checks: Step 1 - Get the Number of Inprocessing Tasks By Row Count", () => {
