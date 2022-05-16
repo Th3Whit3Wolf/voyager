@@ -259,11 +259,11 @@ const UserRow = ({ task, theme }) => {
 						color: theme.palette.gsb.background,
 						backgroundColor: theme.palette.gsb.primary,
 						ml: "12px",
-						mt: "12px",
+						mt: "14px",
 						mb: "12px",
 						p: 0,
-						width: 18,
-						height: 18
+						width: 17,
+						height: 16
 					}
 				}}
 			/>
