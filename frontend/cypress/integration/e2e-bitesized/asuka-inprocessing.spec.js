@@ -62,9 +62,9 @@ describe("testing the User Dashboard View -- Inprocessing", () => {
 		cy.get("input").last().should("have.value", "false");
 	});
 
-	// it("clicking a logout button will end session and return to login", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=logoutButton]").click();
-	// 	cy.url().should("eq", "http://localhost:3000/");
-	// });
+	it("clicking a logout button will end session and return to login", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=logoutButton]").click();
+		cy.url().should("eq", "http://localhost:3000/");
+	});
 });
