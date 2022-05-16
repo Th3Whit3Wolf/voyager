@@ -9,6 +9,7 @@ import { BarChart, InfoCard, Report } from ".";
 import { UnitAPI } from "#services";
 import styles from "./Analytics.module.css";
 
+import { styled } from "@mui/material/styles";
 // Third Party Packages
 import {
 	Checkbox,
@@ -18,7 +19,10 @@ import {
 	InputLabel,
 	MenuItem,
 	Select,
-	useTheme
+	Grid,
+	useTheme,
+	Paper,
+	Toolbar
 } from "@mui/material";
 
 const updateAnalytics = (displayName, arr, analyticsObj) => {
@@ -237,28 +241,15 @@ const Analytics = ({ user }) => {
 		}
 	];
 
-	const barInfo = [
-		{
-			dataKey: "In Processing",
-			fill: theme.palette.success[theme.palette.mode]
-		},
-		{
-			dataKey: "Out Processing",
-			fill: theme.palette.warning[theme.palette.mode]
-		}
-	];
-
-	const datasets = { data, barInfo };
-
 	//  START FEATURE ENGINEERING
 
 	//  END FEATURE ENGINEERING
 
 	return (
-		<section className={styles.container}>
-			{console.log("Render", analyticsState)}
-			<nav className={styles.nav}>
-				<section className={styles.snapshot}>
+		<>
+			<Toolbar />
+			<Grid container spacing={8} sx={{ p: "0 2rem" }}>
+				<Grid item xs={4}>
 					{Object.entries(analyticsState).length === 0 && <Loading />}
 					{Object.entries(analyticsState).length !== 0 && (
 						<InfoCard
@@ -266,7 +257,8 @@ const Analytics = ({ user }) => {
 							value={analyticsState?.total?.leaving?.length}
 						/>
 					)}
-
+				</Grid>
+				<Grid item xs={4}>
 					{Object.entries(analyticsState).length === 0 && <Loading />}
 					{Object.entries(analyticsState).length !== 0 && (
 						<InfoCard
@@ -274,181 +266,33 @@ const Analytics = ({ user }) => {
 							value={analyticsState?.total?.assigned?.length}
 						/>
 					)}
-
+				</Grid>
+				<Grid item xs={4}>
 					{Object.entries(analyticsState).length === 0 && <Loading />}
 					{Object.entries(analyticsState).length !== 0 && (
 						<InfoCard
-							title="Gaining"
-							value={analyticsState?.total?.gaining?.length}
+							title="Leaving"
+							value={analyticsState?.total?.leaving?.length}
 						/>
 					)}
-				</section>
-			</nav>
-			{/* <section className={styles.sidebyside}>
-				<sidebar className={styles.sidebar}>
-					<h2>Unit Filters</h2>
+				</Grid>
+			</Grid>
 
-					<FormGroup>
-						<FormControlLabel
-							id="totalUsers"
-							control={
-								<Checkbox
-									value={totalUsersChecked}
-									onChange={() => setTotalUsersChecked(!totalUsersChecked)}
-									checked={totalUsersChecked ? "checked" : ""}
-								/>
-							}
-							label={<h3>Analytics for Total Users</h3>}
-						/>
-
-						{analyticsState.Deltas !== undefined && (
-							<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-								<InputLabel id="delta-dropdown-filter-label">
-									Uncheck to Select a Delta
-								</InputLabel>
-								<Select
-									labelId="delta-dropdown-filter-label"
-									id="del-dropdown-filter"
-									value={deltaDropdown}
-									onChange={e => setDeltaDropdown(e.target.value)}
-									label="deltDropdownFilter"
-									disabled={totalUsersChecked}
-								>
-									{analyticsState.Deltas.map((delta, idx) => (
-										<MenuItem key={idx} value={delta.name}>
-											{delta.name}
-										</MenuItem>
-									))}
-								</Select>
-							</FormControl>
-						)}
-
-						{analyticsState.Squadrons !== undefined && (
-							<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-								<InputLabel id="squadron-dropdown-filter-label">
-									Uncheck to Select a Squadron
-								</InputLabel>
-								<Select
-									labelId="squadron-dropdown-filter-label"
-									id="squadron-dropdown-filter"
-									value={squadronDropdown}
-									onChange={e => {
-										setSquadronDropdown(e.target.value);
-									}}
-									label="squadronDropdownFilter"
-									disabled={totalUsersChecked}
-								>
-									{analyticsState.Squadrons.map((squadron, idx) => (
-										<MenuItem key={idx} value={squadron.name}>
-											{squadron.name}
-										</MenuItem>
-									))}
-								</Select>
-							</FormControl>
-						)}
-
-						<h2>Likely Defunct Filters</h2>
-
-						<FormControlLabel
-							id="inprocessingTasksLabelID"
-							control={
-								<Checkbox
-									value={basicChecked}
-									onChange={() => setBasicChecked(!basicChecked)}
-									checked={basicChecked ? "checked" : ""}
-								/>
-							}
-							label="Default Basic"
-						/>
-						<FormControlLabel
-							id="inprocessingTasksLabelID"
-							control={
-								<Checkbox
-									onChange={() => setInprocessingChecked(!inprocessingChecked)}
-									checked={inprocessingChecked ? "checked" : ""}
-								/>
-							}
-							label="Inprocessing Tasks"
-						/>
-						<FormControlLabel
-							id="outprocessingTasksLabelID"
-							control={
-								<Checkbox
-									onChange={() =>
-										setOutprocessingChecked(!outprocessingChecked)
-									}
-									checked={outprocessingChecked ? "checked" : ""}
-								/>
-							}
-							label="Outprocessing Tasks"
-						/>
-					</FormGroup>
-				</sidebar>
-				<article className={styles.main}>
-					<section>
-						{basicChecked}
-
-						{basicChecked && (
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "row",
-									flexWrap: "wrap"
-								}}
-							>
-								<BarChart datasets={datasets} />
-							</div>
-						)}
-					</section>
-
-					<section>
-						{inprocessingChecked}
-
-						{inprocessingChecked && (
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "row",
-									flexWrap: "wrap"
-								}}
-							>
-								<InfoCard title={"Placeholder"} />
-								<InfoCard title={"Placeholder"} />
-							</div>
-						)}
-					</section>
-
-					<section>
-						{outprocessingChecked && (
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "row",
-									flexWrap: "wrap"
-								}}
-							>
-								<InfoCard title={"Placeholder"} />
-								<InfoCard title={"Placeholder"} />
-								<h2>Show Outprocessing Plots</h2>
-							</div>
-						)}
-					</section>
-				</article>
-			</section> */}
-			<article
-				style={{
-					backgroundColor: "rgb(61, 82, 101)",
-					marginTop: "2rem",
-					borderRadius: "1rem",
-					color: "white"
+			<Toolbar />
+			<Paper
+				sx={{
+					p: "0 2rem",
+					backgroundColor: "transparent",
+					zIndex: 0,
+					boxShadow: "none"
 				}}
 			>
 				{Object.entries(analyticsState).length === 0 && <Loading />}
 				{Object.entries(analyticsState).length > 0 && (
 					<Report dataset={analyticsState} />
 				)}
-			</article>
-		</section>
+			</Paper>
+		</>
 	);
 };
 
