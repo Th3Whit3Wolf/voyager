@@ -18,10 +18,16 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("[data-testid=buttonOutprocessingTasks]").should("exist");
 	});
 
-	// it("the test User Asuka Sohryu should have 17 Inprocessing Tasks", () => {
+	it("the test User Shinji Ikari should have 0 Inprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonInprocessingTasks]").click();
+		cy.get("input").should("have.length", 0);
+	});
+
+	// it("the test User Asuka Sohryu should have 0 Outprocessing Tasks", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonInprocessingTasks]").click();
-	// 	cy.get("input").should("have.length", 17);
+	// 	cy.get("[data-testid=buttonOutprocessingTasks]").click();
+	// 	cy.get("input").should("have.length", 0);
 	// });
 
 	// it("the test User Asuka Sohryu should have 8 Complete and 9 Incomplete", () => {
@@ -44,12 +50,6 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 	// 	expect(cy.get("input").eq(14).should("be.checked"));
 	// 	expect(cy.get("input").eq(15).should("not.be.checked"));
 	// 	expect(cy.get("input").eq(16).should("not.be.checked"));
-	// });
-
-	// it("the test User Asuka Sohryu should have 0 Outprocessing Tasks", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonOutprocessingTasks]").click();
-	// 	cy.get("input").should("have.length", 0);
 	// });
 
 	// it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
