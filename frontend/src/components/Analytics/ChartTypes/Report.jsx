@@ -439,18 +439,19 @@ const Report = ({ dataset }) => {
 							: "0 .75em 1.5em -.185em rgba(	0, 0, 0,.9), 0 0 1px rgba(	0, 0, 0,.02)"
 				}}
 			>
-				<Container
-					sx={{
+				<h2
+					style={{
+						width: "100%",
 						textAlign: "center",
-						p: "0.1rem 0",
+						padding: "0.5rem 0",
 						borderTopRightRadius: "6px",
 						borderTopLeftRadius: "6px",
 						backgroundColor: theme.palette.gsb.background,
 						color: theme.palette.gsb.text
 					}}
 				>
-					<h2>Losing Units</h2>
-				</Container>
+					Losing Units
+				</h2>
 				<ResponsiveContainer width="95%" height={500}>
 					<BarChart
 						width={1000}
@@ -500,18 +501,20 @@ const Report = ({ dataset }) => {
 							: "0 .75em 1.5em -.185em rgba(	0, 0, 0,.9), 0 0 1px rgba(	0, 0, 0,.02)"
 				}}
 			>
-				<Container
-					sx={{
+				<h2
+					style={{
+						width: "100%",
 						textAlign: "center",
-						p: "0.1rem 0",
+						padding: "0.5rem 0",
 						borderTopRightRadius: "6px",
 						borderTopLeftRadius: "6px",
 						backgroundColor: theme.palette.gsb.background,
 						color: theme.palette.gsb.text
 					}}
 				>
-					<h2>Assigned Units</h2>
-				</Container>
+					Assigned Units
+				</h2>
+
 				<ResponsiveContainer width="95%" height={500}>
 					<BarChart
 						width={1000}
@@ -561,18 +564,19 @@ const Report = ({ dataset }) => {
 							: "0 .75em 1.5em -.185em rgba(	0, 0, 0,.9), 0 0 1px rgba(	0, 0, 0,.02)"
 				}}
 			>
-				<Container
-					sx={{
+				<h2
+					style={{
+						width: "100%",
 						textAlign: "center",
-						p: "0.1rem 0",
+						padding: "0.5rem 0",
 						borderTopRightRadius: "6px",
 						borderTopLeftRadius: "6px",
 						backgroundColor: theme.palette.gsb.background,
 						color: theme.palette.gsb.text
 					}}
 				>
-					<h2>Gaining Units</h2>
-				</Container>
+					Gaining Units
+				</h2>
 				<ResponsiveContainer width="95%" height={500}>
 					<BarChart
 						width={1000}
