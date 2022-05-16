@@ -30,7 +30,7 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 
 	it("A Series of Checks: Step 2 - Click on the Add New Row Button", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.get("[data-testid=addTaskButton]").click();
+		cy.get("[data-testid=addTaskButton]", { delay: 10000 }).click();
 	});
 
 	let numberOfInprocessingRowsNew = 0;
@@ -48,9 +48,9 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			.then(() => expect(numberOfInprocessingRowsNew).to.equal(16)); // Includes the Header Row
 	});
 
-	// it("A Series of Checks: Step 4 - There Should Be One More Row than There had Been", () => {
-	// 	expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
-	// });
+	it("A Series of Checks: Step 4 - There Should Be One More Row than There had Been", () => {
+		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
+	});
 
 	// it("A Series of Checks: Step 5 - Find Last Row, Get Delete Button, Click It", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
