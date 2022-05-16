@@ -47,15 +47,15 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		expect(cy.get("input").eq(11).should("not.be.checked"));
 	});
 
-	// it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonInprocessingTasks]").click();
-	// 	cy.get("input").last().check();
-	// 	cy.get("input").last().should("have.value", "true");
-	// 	cy.log("Clicked last checkbox");
-	// 	cy.get("input").last().uncheck();
-	// 	cy.get("input").last().should("have.value", "false");
-	// });
+	it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("input").last().check();
+		cy.get("input").last().should("have.value", "true");
+		cy.log("Clicked last checkbox");
+		cy.get("input").last().uncheck();
+		cy.get("input").last().should("have.value", "false");
+	});
 
 	// it("clicking a logout button will end session and return to login", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
