@@ -192,7 +192,6 @@ const usersData = tasks => {
 };
 
 const adminsData = tasks => {
-	console.log("adminsData tasks", tasks);
 	return tasks.map(task => {
 		const {
 			id: taskID,
@@ -338,7 +337,7 @@ const AdminRow = ({ task, approverList, setMessage, theme }) => {
 	// END of Dialog Boxes State
 
 	const handleChange = event => {
-		//console.log(`Switch has been changed id ${taskID}`);
+		console.log(`Switch has been changed id ${taskID}`);
 		setIsActive(event.target.vlue);
 	};
 
@@ -584,7 +583,7 @@ const TablePaginationActions = ({ count, page, rowsPerPage, onPageChange }) => {
 
 const UserTaskTable = ({ data, theme }) => {
 	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(5);
+	const [rowsPerPage, setRowsPerPage] = useState(25);
 
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
@@ -644,7 +643,7 @@ const UserTaskTable = ({ data, theme }) => {
 
 const AdminTaskTable = ({ data, kind, approverList, theme }) => {
 	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(5);
+	const [rowsPerPage, setRowsPerPage] = useState(25);
 	const [message, setMessage] = useState("");
 	const { user, setUser } = useContext(UserContext);
 
@@ -727,6 +726,23 @@ const AdminTaskTable = ({ data, kind, approverList, theme }) => {
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
 					</TableBody>
 				</Table>
+				<TablePagination
+					rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+					colSpan={3}
+					count={data.length}
+					rowsPerPage={rowsPerPage}
+					page={page}
+					SelectProps={{
+						inputProps: {
+							"aria-label": "rows per page"
+						},
+						native: true
+					}}
+					sx={{ display: "flex", alignContent: "right", alignItems: "right" }}
+					onPageChange={handleChangePage}
+					onRowsPerPageChange={handleChangeRowsPerPage}
+					ActionsComponent={TablePaginationActions}
+				/>
 			</TableContainer>
 			<IconButton
 				color="primary"
@@ -738,23 +754,6 @@ const AdminTaskTable = ({ data, kind, approverList, theme }) => {
 			>
 				<AddCircleIcon />
 			</IconButton>
-			<TablePagination
-				rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-				colSpan={3}
-				count={data.length}
-				rowsPerPage={rowsPerPage}
-				page={page}
-				SelectProps={{
-					inputProps: {
-						"aria-label": "rows per page"
-					},
-					native: true
-				}}
-				sx={{ display: "flex", alignContent: "right", alignItems: "right" }}
-				onPageChange={handleChangePage}
-				onRowsPerPageChange={handleChangeRowsPerPage}
-				ActionsComponent={TablePaginationActions}
-			/>
 
 			<div>
 				<h3>{message}</h3>
@@ -837,14 +836,22 @@ const TasksPanel = ({ tasks }) => {
 		return (
 			<>
 				<Toolbar />
-				<UserTaskTable data={usersData(tasks.inprocessing)} theme={theme} />
+				<UserTaskTable
+					data={usersData(tasks.inprocessing)}
+					theme={theme}
+					data-testid="buttonInprocessingTasks"
+				/>
 			</>
 		);
 	} else if (hasOutProcessing) {
 		return (
 			<>
 				<Toolbar />
-				<UserTaskTable data={usersData(tasks.outprocessing)} theme={theme} />
+				<UserTaskTable
+					data={usersData(tasks.outprocessing)}
+					theme={theme}
+					data-testid="buttonOutprocessingTasks"
+				/>
 			</>
 		);
 	} else {
