@@ -1,8 +1,6 @@
 describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
-		cy.get("input").first().clear();
-		cy.get("input").last().clear();
 		cy.get("input").first().type("lelouch.lamperouge@spaceforce.mil");
 		cy.get("input")
 			.last()
@@ -16,11 +14,8 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 	let numberInprocessingTasksForUser = 0;
 	it("A Series of Checks: Step 1 - Login as User and Get the Number of Inprocessing Tasks by Row Count", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=logoutButton]").click();
 		cy.url().should("eq", "http://localhost:3000/");
-		cy.get("input").first().clear();
-		cy.get("input").last().clear();
 		cy.get("input").first().type("asuka.sohryu@spaceforce.mil");
 		cy.get("input")
 			.last()
@@ -58,7 +53,9 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 
 	it("A Series of Checks: Step 3 - Click on the Add New Row Button", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
-		cy.get("[data-testid=addTaskButton]", { delay: 10000 }).click();
+		cy.get("[data-testid=addTaskButton]", { delay: 10000 }).click({
+			force: true
+		});
 	});
 
 	let numberOfInprocessingRowsNew = 0;
@@ -80,10 +77,44 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
 	});
 
-	// it("A Series of Checks: Step 5 - Find Last Row, Get Delete Button, Click It", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("table").find("tr").last().find("button").eq(1).click();
-	// });
+	let numberInprocessingTasksForUserNew = 0;
+
+	it("A Series of Checks: Step 6 - Login as User again and make sure the new task is there", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=logoutButton]").click();
+		cy.url().should("eq", "http://localhost:3000/");
+		cy.get("input").first().type("asuka.sohryu@spaceforce.mil");
+		cy.get("input")
+			.last()
+			.type(
+				"It is simply the duty of the elite to protect the ignorant masses."
+			);
+		cy.get("button").first().click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberInprocessingTasksForUserNew = len;
+				cy.log(
+					"Initial Inprocessing User Table Length: " +
+						numberInprocessingTasksForUserNew
+				);
+			})
+			.then(() =>
+				expect(numberInprocessingTasksForUserNew).to.equal(
+					numberInprocessingTasksForUser + 1
+				)
+			); // Includes the Header Row
+	});
+
+	it("If all GREEN above, then POST works. Moving to test Delete", () => {
+		expect(true).to.equal(true);
+	});
+
+	it("A Series of Checks: Step 7 - Find Last Row, Get Delete Button, Click It", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=DeleteIcon]").last().click({ force: true });
+	});
 
 	// it("A Series of Checks: Step 6 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
