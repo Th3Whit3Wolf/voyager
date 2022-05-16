@@ -192,6 +192,7 @@ const usersData = tasks => {
 };
 
 const adminsData = tasks => {
+	console.log("adminsData tasks", tasks);
 	return tasks.map(task => {
 		const {
 			id: taskID,
