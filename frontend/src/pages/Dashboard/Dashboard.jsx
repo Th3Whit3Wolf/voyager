@@ -220,9 +220,13 @@ const Dashboard = () => {
 							value="2"
 							data-testid="buttonOutprocessingTasks"
 						/>
-						<Tab label="User Settings" value="3" />
+						<Tab
+							label="User Settings"
+							value="3"
+							data-testid="buttonUserSettings"
+						/>
 						{/* <Tab label="Modify Admins" value="4" /> */}
-						<Tab label="Analytics" value="5" />
+						<Tab label="Analytics" value="5" data-testid="buttonAnalytics" />
 					</TabList>
 
 					<TabPanel value="1">
