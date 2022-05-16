@@ -116,23 +116,54 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		cy.get("[data-testid=DeleteIcon]").last().click({ force: true });
 	});
 
-	// it("A Series of Checks: Step 6 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("table")
-	// 		.find("tr")
-	// 		.its("length")
-	// 		.then(len => {
-	// 			numberOfInprocessingRowsNew = len;
-	// 			cy.log(
-	// 				"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
-	// 			);
-	// 		});
-	// });
+	it("A Series of Checks: Step 8 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfInprocessingRowsNew = len;
+				cy.log(
+					"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
+				);
+			});
+	});
 
-	// it("A Series of Checks: Step 7 - There To Be the Initial Number of Rows Again", () => {
-	// 	expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(0);
-	// });
+	it("A Series of Checks: Step 9 - There To Be the Initial Number of Rows Again", () => {
+		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(0);
+	});
 
+	it("A Series of Checks: Step 10 - Login as User again and make sure the new task is GONE", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=logoutButton]").click();
+		cy.url().should("eq", "http://localhost:3000/");
+		cy.get("input").first().type("asuka.sohryu@spaceforce.mil");
+		cy.get("input")
+			.last()
+			.type(
+				"It is simply the duty of the elite to protect the ignorant masses."
+			);
+		cy.get("button").first().click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberInprocessingTasksForUserNew = len;
+				cy.log(
+					"Initial Inprocessing User Table Length: " +
+						numberInprocessingTasksForUserNew
+				);
+			})
+			.then(() =>
+				expect(numberInprocessingTasksForUserNew).to.equal(
+					numberInprocessingTasksForUser
+				)
+			); // Includes the Header Row
+	});
+
+	it("If all GREEN above, then DELETE works.", () => {
+		expect(true).to.equal(true);
+	});
 	// /// OUTPROCESSING
 	// let numberOfOutprocessingRows = 0;
 	// it("A Series of Checks: Step 1 - Get the Number of Outprocessing Tasks By Row Count", () => {
