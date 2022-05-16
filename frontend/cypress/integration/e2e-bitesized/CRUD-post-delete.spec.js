@@ -13,8 +13,36 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		cy.get("button").first().click();
 	});
 
+	let numberInprocessingTasksForUser = 0;
+	it("A Series of Checks: Step 1 - Login as User and Get the Number of Inprocessing Tasks by Row Count", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=logoutButton]").click();
+		cy.url().should("eq", "http://localhost:3000/");
+		cy.get("input").first().clear();
+		cy.get("input").last().clear();
+		cy.get("input").first().type("asuka.sohryu@spaceforce.mil");
+		cy.get("input")
+			.last()
+			.type(
+				"It is simply the duty of the elite to protect the ignorant masses."
+			);
+		cy.get("button").first().click();
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberInprocessingTasksForUser = len;
+				cy.log(
+					"Initial Inprocessing User Table Length: " +
+						numberInprocessingTasksForUser
+				);
+			})
+			.then(() => expect(numberInprocessingTasksForUser).to.equal(18)); // Includes the Header Row
+	});
+
 	let numberOfInprocessingRows = 0;
-	it("A Series of Checks: Step 1 - Get the Number of Inprocessing Tasks By Row Count", () => {
+	it("A Series of Checks: Step 2 - Get the Number of Inprocessing Tasks By Row Count", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("table")
 			.find("tr")
@@ -28,13 +56,13 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			.then(() => expect(numberOfInprocessingRows).to.equal(15)); // Includes the Header Row
 	});
 
-	it("A Series of Checks: Step 2 - Click on the Add New Row Button", () => {
+	it("A Series of Checks: Step 3 - Click on the Add New Row Button", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("[data-testid=addTaskButton]", { delay: 10000 }).click();
 	});
 
 	let numberOfInprocessingRowsNew = 0;
-	it("A Series of Checks: Step 3 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
+	it("A Series of Checks: Step 4 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get("table")
 			.find("tr")
@@ -48,7 +76,7 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			.then(() => expect(numberOfInprocessingRowsNew).to.equal(16)); // Includes the Header Row
 	});
 
-	it("A Series of Checks: Step 4 - There Should Be One More Row than There had Been", () => {
+	it("A Series of Checks: Step 5 - There Should Be One More Row than There had Been", () => {
 		expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
 	});
 
