@@ -17,8 +17,6 @@ import {
 	TaskPanel
 } from "#components";
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
 //   to all of App. I have performed some trickery to make
