@@ -34,6 +34,18 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		cy.get("input").should("have.length", 6 * NUM_OF_COLUMNS);
 	});
 
+	it("the test Admin Johnny Bravo should have a User settings with some basic info", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonUserSettings]").click();
+		cy.get("[data-testid=typographyDSN]").should(
+			"have.text",
+			"DSN: (312) 867-5309"
+		);
+		cy.get("[data-testid=typographyEmail]").should(
+			"have.text",
+			"Email: johnny.bravo@spaceforce.mil"
+		);
+	});
 	// let numberOfInprocessingRows = 0;
 	// it("A Series of Checks: Step 1 - Get the Number of Inprocessing Tasks By Row Count", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");

@@ -26,8 +26,12 @@ const UserSettings = ({ settings }) => {
 				/>
 				<CardContent>
 					<Typography>Your Contact Information</Typography>
-					<Typography>DSN: {settings?.dsn}</Typography>
-					<Typography>Email: {settings?.email}</Typography>
+					<Typography data-testid="typographyDSN">
+						DSN: {settings?.dsn}
+					</Typography>
+					<Typography data-testid="typographyEmail">
+						Email: {settings?.email}
+					</Typography>
 				</CardContent>
 				<CardContent>
 					<Typography>Supervisor Contact Information</Typography>
