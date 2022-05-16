@@ -4,6 +4,10 @@ import React, { useState, useEffect, useContext } from "react";
 // Our Components and Services
 import { UserContext } from "#context";
 import { TaskAPI, UserAPI } from "#services/api";
+import styles from "./HtmlDecorator.module.css";
+
+// Third Party Components
+import { Link } from "react-router-dom";
 
 // MUI Components
 import {
@@ -258,10 +262,36 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					</Select>
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={pocPhone} sx={{ width: "25ch" }} />
+					<TextField
+						size="small"
+						value={pocPhone}
+						sx={{ width: "25ch" }}
+						variant="standard"
+						disabled
+					/>
 				</TableCell>
 				<TableCell>
-					<TextField size="small" value={pocEmail} sx={{ width: "25ch" }} />
+					{/* <TextField size="small" value={pocEmail} sx={{ width: "25ch" }} /> */}
+					<a
+						href={`mailto:${pocEmail}?subject=Regarding Task #${entry.id}: ${
+							entry.title
+						}&body=Task #${
+							entry.id
+						}, ${taskTitle}%0D%0A%0D%0A Description: ${taskDesc} %0D%0A%0D%0A Task is Active: ${isActive} %0D%0A%0D%0A Task Type: ${taskKind
+							.toLowerCase()
+							.replace(
+								"_",
+								" "
+							)} %0D%0A%0D%0A ...begin Email here %0D%0A%0D%0A %0D%0A%0D%0A %0D%0A%0D%0A Regards, %0D%0A%0D%0A ${
+							user.firstName
+						} ${user.lastName} %0D%0A ${user.role.kind.replace(
+							"_",
+							" "
+						)}&from={user.email}`}
+						className={styles.mail}
+					>
+						{pocEmail}
+					</a>
 				</TableCell>
 				<TableCell>
 					{`${
@@ -286,7 +316,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 							//delete_handleClickOpen();
 							handleDelete(entry.id);
 						}}
-						data-testid={`delete-button-${entry.id}`}
+						data-testid={`delete-button delete-button-${entry.id}`}
 					>
 						<Delete />
 					</IconButton>
