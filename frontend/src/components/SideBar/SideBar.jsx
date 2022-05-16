@@ -5,7 +5,7 @@ import {
 	useTheme,
 	styled,
 	Drawer as MuiDrawer,
-	ListItem,
+	List,
 	ListItemButton,
 	ListItemIcon,
 	ListItemText
@@ -18,9 +18,9 @@ import {
 } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "#context";
 // Also need a small title shows USER or ADMIN
 import { useLocation } from "react-router-dom";
+import { PageContext, UserContext } from "#context";
 
 const drawerWidth = 240;
 
@@ -65,10 +65,13 @@ const closedMixin = thm => ({
 const SideBar = () => {
 	const location = useLocation();
 	const theme = useTheme();
-	const { user, setUser } = useContext(UserContext);
+	const { page, setPage } = useContext(PageContext);
+	const { user } = useContext(UserContext);
 	const [open, setOpen] = useState(false);
 
-	console.log("Location", location);
+	console.log({ user });
+	console.log("User: ", user);
+	console.log("Page: ", page);
 
 	const handleDrawerOpen = () => {
 		if (!open) {
@@ -82,6 +85,14 @@ const SideBar = () => {
 		}
 	};
 
+	const handleListOnClick = (e, name) => {
+		e.preventDefault();
+		console.log(`handleListOnClick (${page} === ${name}) ${page === name}`);
+		if (page !== name) {
+			setPage(name);
+		}
+	};
+
 	return (
 		<Drawer
 			variant="permanent"
@@ -89,36 +100,71 @@ const SideBar = () => {
 			onMouseEnter={handleDrawerOpen}
 			onMouseLeave={handleDrawerClose}
 			sx={{
-				display: location.pathname == "/" ? "none" : "block"
+				display: location.pathname !== "/dashboard" ? "none" : "block"
 			}}
 		>
 			<Toolbar />
 			<Toolbar />
 			<Box sx={{ overflow: "hidden" }}>
-				<ListItem disablePadding>
-					<ListItemButton>
-						<ListItemIcon>
-							<AnalyticsIcon />
-						</ListItemIcon>
-						<ListItemText primary="Analytics" />
-					</ListItemButton>
-				</ListItem>
-				<ListItem disablePadding>
-					<ListItemButton>
+				{user?.role?.kind !== "USER" && (
+					<List disablePadding>
+						<ListItemButton
+							selected={page === "Analytics"}
+							onClick={e => handleListOnClick(e, "Analytics")}
+							sx={{
+								"&.Mui-selected": {
+									backgroundColor: theme.palette.selected
+								},
+								"&.MuiListItemButton-root:hover": {
+									backgroundColor: theme.palette.hover.list
+								}
+							}}
+						>
+							<ListItemIcon>
+								<AnalyticsIcon />
+							</ListItemIcon>
+							<ListItemText primary="Analytics" />
+						</ListItemButton>
+					</List>
+				)}
+				<List disablePadding>
+					<ListItemButton
+						selected={page === "Tasks"}
+						onClick={e => handleListOnClick(e, "Tasks")}
+						sx={{
+							"&.Mui-selected": {
+								backgroundColor: theme.palette.selected
+							},
+							"&.MuiListItemButton-root:hover": {
+								backgroundColor: theme.palette.hover.list
+							}
+						}}
+					>
 						<ListItemIcon>
 							<TaskIcon />
 						</ListItemIcon>
 						<ListItemText primary="Tasks" />
 					</ListItemButton>
-				</ListItem>
-				<ListItem disablePadding>
-					<ListItemButton>
+				</List>
+				<List disablePadding>
+					<ListItemButton
+						selected={page === "Settings"}
+						onClick={e => handleListOnClick(e, "Settings")}
+						sx={{
+							"&.Mui-selected": {
+								backgroundColor: theme.palette.selected
+							},
+							"&.MuiListItemButton-root:hover": {
+								backgroundColor: theme.palette.hover.list
+							}
+						}}
+					>
 						<ListItemIcon>
 							<SettingsIcon />
 						</ListItemIcon>
 						<ListItemText primary="Settings" />
 					</ListItemButton>
-				</ListItem>
+				</List>
 			</Box>
 		</Drawer>
 	);
