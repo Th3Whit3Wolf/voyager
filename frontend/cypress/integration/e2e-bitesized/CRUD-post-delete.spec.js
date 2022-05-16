@@ -33,19 +33,20 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		cy.get("[data-testid=addTaskButton]").click();
 	});
 
-	// let numberOfInprocessingRowsNew = 0;
-	// it("A Series of Checks: Step 3 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("table")
-	// 		.find("tr")
-	// 		.its("length")
-	// 		.then(len => {
-	// 			numberOfInprocessingRowsNew = len;
-	// 			cy.log(
-	// 				"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
-	// 			);
-	// 		});
-	// });
+	let numberOfInprocessingRowsNew = 0;
+	it("A Series of Checks: Step 3 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("table")
+			.find("tr")
+			.its("length")
+			.then(len => {
+				numberOfInprocessingRowsNew = len;
+				cy.log(
+					"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
+				);
+			})
+			.then(() => expect(numberOfInprocessingRowsNew).to.equal(16)); // Includes the Header Row
+	});
 
 	// it("A Series of Checks: Step 4 - There Should Be One More Row than There had Been", () => {
 	// 	expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
