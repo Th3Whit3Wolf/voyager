@@ -63,6 +63,14 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			"Gaining - Task Completion Status"
 		);
 	});
+
+	it("the test Admin Johnny Bravo should have Analytics with rechart SVG Graphics of width 1000 and height 450", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonAnalytics]").click();
+		cy.get(".recharts-surface", { timeout: 10000 })
+			.should("have.attr", "width", "1000")
+			.and("have.attr", "height", "450");
+	});
 	// let numberOfInprocessingRows = 0;
 	// it("A Series of Checks: Step 1 - Get the Number of Inprocessing Tasks By Row Count", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");

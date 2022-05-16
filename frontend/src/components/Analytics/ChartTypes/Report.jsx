@@ -496,7 +496,12 @@ const Report = ({ dataset }) => {
 							data-testid="cardHeaderGainingTitle"
 						/>
 						<CardMedia>
-							<BarChart width={1000} height={450} data={dataForGBC}>
+							<BarChart
+								width={1000}
+								height={450}
+								data={dataForGBC}
+								data-testid="cardHeaderGainingSVG"
+							>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis dataKey="xlabels" />
 								<YAxis />
