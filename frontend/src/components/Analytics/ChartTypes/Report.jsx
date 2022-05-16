@@ -429,7 +429,10 @@ const Report = ({ dataset }) => {
 							boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
 						}}
 					>
-						<CardHeader title="Leaving - Task Completion Status" />
+						<CardHeader
+							title="Leaving - Task Completion Status"
+							data-testid="cardHeaderLeavingTitle"
+						/>
 						<BarChart width={1000} height={450} data={dataForLBC}>
 							<CartesianGrid strokeDasharray="3 3" />
 							<XAxis dataKey="name" />
@@ -457,7 +460,10 @@ const Report = ({ dataset }) => {
 							boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
 						}}
 					>
-						<CardHeader title="Assigned - Task Completion Status" />
+						<CardHeader
+							title="Assigned - Task Completion Status"
+							data-testid="cardHeaderAssignedTitle"
+						/>
 						<BarChart width={1000} height={450} data={dataForABC}>
 							<CartesianGrid strokeDasharray="3 3" />
 							<XAxis dataKey="name" />
@@ -485,7 +491,10 @@ const Report = ({ dataset }) => {
 							boxShadow: "6px 6px 9px 2px rgba(0, 0, 0, 0.5)"
 						}}
 					>
-						<CardHeader title="Gaining - Task Completion Status" />
+						<CardHeader
+							title="Gaining - Task Completion Status"
+							data-testid="cardHeaderGainingTitle"
+						/>
 						<CardMedia>
 							<BarChart width={1000} height={450} data={dataForGBC}>
 								<CartesianGrid strokeDasharray="3 3" />

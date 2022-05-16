@@ -46,6 +46,23 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			"Email: johnny.bravo@spaceforce.mil"
 		);
 	});
+
+	it("the test Admin Johnny Bravo should have Analytics with at least 3 Task Completion Status Cards", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonAnalytics]").click();
+		cy.get("[data-testid=cardHeaderLeavingTitle]").should(
+			"have.text",
+			"Leaving - Task Completion Status"
+		);
+		cy.get("[data-testid=cardHeaderAssignedTitle]").should(
+			"have.text",
+			"Assigned - Task Completion Status"
+		);
+		cy.get("[data-testid=cardHeaderGainingTitle]").should(
+			"have.text",
+			"Gaining - Task Completion Status"
+		);
+	});
 	// let numberOfInprocessingRows = 0;
 	// it("A Series of Checks: Step 1 - Get the Number of Inprocessing Tasks By Row Count", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
