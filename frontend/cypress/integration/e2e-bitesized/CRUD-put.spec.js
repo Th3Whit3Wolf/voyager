@@ -1,4 +1,4 @@
-describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", () => {
+describe("testing CRUD: PUT between Admin and USER", () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
 		cy.get("input").first().type("lelouch.lamperouge@spaceforce.mil");
