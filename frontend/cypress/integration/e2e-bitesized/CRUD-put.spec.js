@@ -36,11 +36,10 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			.then(() => expect(numberInprocessingTasksForUser).to.equal(18)); // Includes the Header Row
 	});
 
-	it("A Series of Checks: Step 2 - Login and make the first task from Active to In Active", () => {
+	it("A Series of Checks: Step 2 - Login and make the first task from Active to Not Active", () => {
 		cy.url().should("eq", "http://localhost:3000/dashboard");
 		cy.get(".MuiSwitch-input").first().should("be.checked");
 		cy.get(".MuiSwitch-input").first().uncheck({ force: true });
-		cy.get(".MuiSwitch-input").first().should("not.be.checked");
 	});
 
 	it("A Series of Checks: Step 3 - Login as User and the number of visible taks should be one less", () => {
@@ -67,117 +66,13 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			.then(() => expect(numberInprocessingTasksForUser).to.equal(17)); // Includes the Header Row
 	});
 
-	// it("A Series of Checks: Step 3 - Click on the Add New Row Button", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=addTaskButton]", { delay: 10000 }).click({
-	// 		force: true
-	// 	});
-	// });
+	it("A Series of Checks: Step 4 - Login and make the first task from Not Active to Active again", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get(".MuiSwitch-input").first().should("not.be.checked");
+		cy.get(".MuiSwitch-input").first().check({ force: true });
+	});
 
-	// let numberOfInprocessingRowsNew = 0;
-	// it("A Series of Checks: Step 4 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("table")
-	// 		.find("tr")
-	// 		.its("length")
-	// 		.then(len => {
-	// 			numberOfInprocessingRowsNew = len;
-	// 			cy.log(
-	// 				"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
-	// 			);
-	// 		})
-	// 		.then(() => expect(numberOfInprocessingRowsNew).to.equal(16)); // Includes the Header Row
-	// });
-
-	// it("A Series of Checks: Step 5 - There Should Be One More Row than There had Been", () => {
-	// 	expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(1);
-	// });
-
-	// let numberInprocessingTasksForUserNew = 0;
-
-	// it("A Series of Checks: Step 6 - Login as User again and make sure the new task is there", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=logoutButton]").click();
-	// 	cy.url().should("eq", "http://localhost:3000/");
-	// 	cy.get("input").first().type("asuka.sohryu@spaceforce.mil");
-	// 	cy.get("input")
-	// 		.last()
-	// 		.type(
-	// 			"It is simply the duty of the elite to protect the ignorant masses."
-	// 		);
-	// 	cy.get("button").first().click();
-	// 	cy.get("table")
-	// 		.find("tr")
-	// 		.its("length")
-	// 		.then(len => {
-	// 			numberInprocessingTasksForUserNew = len;
-	// 			cy.log(
-	// 				"Initial Inprocessing User Table Length: " +
-	// 					numberInprocessingTasksForUserNew
-	// 			);
-	// 		})
-	// 		.then(() =>
-	// 			expect(numberInprocessingTasksForUserNew).to.equal(
-	// 				numberInprocessingTasksForUser + 1
-	// 			)
-	// 		); // Includes the Header Row
-	// });
-
-	// it("If all GREEN above, then POST works. Moving to test Delete", () => {
-	// 	expect(true).to.equal(true);
-	// });
-
-	// it("A Series of Checks: Step 7 - Find Last Row, Get Delete Button, Click It", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=DeleteIcon]").last().click({ force: true });
-	// });
-
-	// it("A Series of Checks: Step 8 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("table")
-	// 		.find("tr")
-	// 		.its("length")
-	// 		.then(len => {
-	// 			numberOfInprocessingRowsNew = len;
-	// 			cy.log(
-	// 				"New Inprocessing Admin Table Length: " + numberOfInprocessingRowsNew
-	// 			);
-	// 		});
-	// });
-
-	// it("A Series of Checks: Step 9 - There To Be the Initial Number of Rows Again", () => {
-	// 	expect(numberOfInprocessingRowsNew - numberOfInprocessingRows).to.equal(0);
-	// });
-
-	// it("A Series of Checks: Step 10 - Login as User again and make sure the new task is GONE", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=logoutButton]").click();
-	// 	cy.url().should("eq", "http://localhost:3000/");
-	// 	cy.get("input").first().type("asuka.sohryu@spaceforce.mil");
-	// 	cy.get("input")
-	// 		.last()
-	// 		.type(
-	// 			"It is simply the duty of the elite to protect the ignorant masses."
-	// 		);
-	// 	cy.get("button").first().click();
-	// 	cy.get("table")
-	// 		.find("tr")
-	// 		.its("length")
-	// 		.then(len => {
-	// 			numberInprocessingTasksForUserNew = len;
-	// 			cy.log(
-	// 				"Initial Inprocessing User Table Length: " +
-	// 					numberInprocessingTasksForUserNew
-	// 			);
-	// 		})
-	// 		.then(() =>
-	// 			expect(numberInprocessingTasksForUserNew).to.equal(
-	// 				numberInprocessingTasksForUser
-	// 			)
-	// 		); // Includes the Header Row
-	// });
-
-	// it("If all GREEN above, then DELETE works.", () => {
-	// 	expect(true).to.equal(true);
-	// });
+	it("If all GREEN above, then PUT works.", () => {
+		expect(true).to.equal(true);
+	});
 });
