@@ -7,7 +7,8 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		cy.get("input")
 			.last()
 			.type(
-				"When there is evil in this world that justice cannot defeat, would you taint your hands with evil to defeat evil? Or would you remain steadfast and righteous even if it means surrendering to evil?"
+				"When there is evil in this world that justice cannot defeat, would you taint your hands with evil to defeat evil? Or would you remain steadfast and righteous even if it means surrendering to evil?",
+				{ delay: 0 }
 			);
 		cy.get("button").first().click();
 	});
@@ -27,10 +28,10 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 			.then(() => expect(numberOfInprocessingRows).to.equal(15)); // Includes the Header Row
 	});
 
-	// it("A Series of Checks: Step 2 - Click on the Add New Row Button", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=addTaskButton]").click();
-	// });
+	it("A Series of Checks: Step 2 - Click on the Add New Row Button", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=addTaskButton]").click();
+	});
 
 	// let numberOfInprocessingRowsNew = 0;
 	// it("A Series of Checks: Step 3 - Get the Number of Inprocessing Tasks By Row Count Again", () => {
