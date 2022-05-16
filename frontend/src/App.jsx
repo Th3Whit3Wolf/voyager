@@ -15,14 +15,15 @@ import {
 // Our Components
 import { Header, SideBar } from "#components";
 import { Login, Dashboard, PageNotFound } from "#pages";
-import { UserContext } from "#context";
+import { PageContext, UserContext } from "#context";
 import getDesignTokens from "./theme.js";
-
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export default function App() {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 	const [mode, setMode] = useState(prefersDarkMode ? "dark" : "light");
+	const [page, setPage] = useState("");
+	const [user, setUser] = useState({});
 	const colorMode = useMemo(
 		() => ({
 			// The dark mode switch would invoke this method
@@ -32,29 +33,30 @@ export default function App() {
 		}),
 		[]
 	);
-	const theme = useMemo(() => createTheme(getDesignTokens("dark")), [mode]);
-
-	const [user, setUser] = useState({});
-	const value = useMemo(() => ({ user, setUser }), [user]);
-
+	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+	const usr = useMemo(() => ({ user, setUser }), [user]);
+	const pg = useMemo(() => ({ page, setPage }), [page]);
+	console.log("THEME: ", theme);
 	return (
 		<ColorModeContext.Provider value={colorMode}>
-			<UserContext.Provider value={value}>
-				<ThemeProvider theme={theme}>
-					<Box sx={{ display: "flex" }}>
-						<CssBaseline />
-						<Header />
-						<SideBar />
-						<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-							<Toolbar />
-							<Routes>
-								<Route path="/" element={<Login />} />
-								<Route path="/dashboard" element={<Dashboard />} />
-								<Route path="*" element={<PageNotFound />} />
-							</Routes>
+			<UserContext.Provider value={usr}>
+				<PageContext.Provider value={pg}>
+					<ThemeProvider theme={theme}>
+						<Box sx={{ display: "flex" }}>
+							<CssBaseline />
+							<Header />
+							<SideBar />
+							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+								<Toolbar />
+								<Routes>
+									<Route path="/" element={<Login />} />
+									<Route path="/dashboard" element={<Dashboard />} />
+									<Route path="*" element={<PageNotFound />} />
+								</Routes>
+							</Box>
 						</Box>
-					</Box>
-				</ThemeProvider>
+					</ThemeProvider>
+				</PageContext.Provider>
 			</UserContext.Provider>
 		</ColorModeContext.Provider>
 	);
