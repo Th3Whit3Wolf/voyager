@@ -252,9 +252,20 @@ const UserRow = ({ task, theme }) => {
 		complete: (
 			<Checkbox
 				value={taskChecked}
-				sx={!taskChecked ? { color: "red" } : null}
 				onChange={handleOnChange}
 				checked={taskChecked}
+				sx={{
+					"&.Mui-checked": {
+						color: theme.palette.gsb.background,
+						backgroundColor: theme.palette.gsb.primary,
+						ml: "12px",
+						mt: "12px",
+						mb: "12px",
+						p: 0,
+						width: 18,
+						height: 18
+					}
+				}}
 			/>
 		),
 		name,
