@@ -1,4 +1,6 @@
 describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", () => {
+	const NUM_OF_COLUMNS = 5; // Active Task, Task Name, Task Desc, POC Name, POC Phone
+
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/");
 		cy.get("input").first().clear();
@@ -20,17 +22,11 @@ describe("testing the Admin Dashboard View -- Inprocessing and Outprocessing", (
 		cy.get("[data-testid=buttonAnalytics]").should("exist");
 	});
 
-	// it("should have tab for modifying subordinate admins ", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("button").contains("Modify Admins").should("exist");
-	// });
-
-	// it("the test Admin Johnny Bravo should have 3 Inprocessing Tasks", () => {
-	// 	const numberOfColumns = 6;
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonInprocessingTasks]").click();
-	// 	cy.get("input").should("have.length", 3 * numberOfColumns);
-	// });
+	it("the test Admin Johnny Bravo should have 3 Inprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonInprocessingTasks]").click();
+		cy.get("input").should("have.length", 3 * NUM_OF_COLUMNS);
+	});
 
 	// it("the test Admin Johnny Bravo should have 6 Outprocessing Tasks", () => {
 	// 	const numberOfColumns = 6;
