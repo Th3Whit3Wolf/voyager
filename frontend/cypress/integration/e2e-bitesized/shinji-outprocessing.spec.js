@@ -30,27 +30,22 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("input").should("have.length", 12);
 	});
 
-	// it("the test User Asuka Sohryu should have 8 Complete and 9 Incomplete", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonInprocessingTasks]").click();
-	// 	expect(cy.get("input").eq(0).should("be.checked"));
-	// 	expect(cy.get("input").eq(1).should("be.checked"));
-	// 	expect(cy.get("input").eq(2).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(3).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(4).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(5).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(6).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(7).should("be.checked"));
-	// 	expect(cy.get("input").eq(8).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(9).should("be.checked"));
-	// 	expect(cy.get("input").eq(10).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(11).should("be.checked"));
-	// 	expect(cy.get("input").eq(12).should("be.checked"));
-	// 	expect(cy.get("input").eq(13).should("be.checked"));
-	// 	expect(cy.get("input").eq(14).should("be.checked"));
-	// 	expect(cy.get("input").eq(15).should("not.be.checked"));
-	// 	expect(cy.get("input").eq(16).should("not.be.checked"));
-	// });
+	it("the test User Shinji Ikari should have 6 Complete and 6 Incomplete", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		expect(cy.get("input").eq(0).should("not.be.checked"));
+		expect(cy.get("input").eq(1).should("be.checked"));
+		expect(cy.get("input").eq(2).should("not.be.checked"));
+		expect(cy.get("input").eq(3).should("be.checked"));
+		expect(cy.get("input").eq(4).should("be.checked"));
+		expect(cy.get("input").eq(5).should("not.be.checked"));
+		expect(cy.get("input").eq(6).should("not.be.checked"));
+		expect(cy.get("input").eq(7).should("be.checked"));
+		expect(cy.get("input").eq(8).should("not.be.checked"));
+		expect(cy.get("input").eq(9).should("be.checked"));
+		expect(cy.get("input").eq(10).should("be.checked"));
+		expect(cy.get("input").eq(11).should("not.be.checked"));
+	});
 
 	// it("clicking a checkbox should mark the task complete or incomplete as needed", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
