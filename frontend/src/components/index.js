@@ -16,7 +16,7 @@ import Analytics from "./Analytics/Analytics";
 
 import UserSettings from "./UserSettings/UserSettings";
 import SideBar from "./SideBar/SideBar";
-
+import TaskPanel from "./TaskPanel/TaskPanel";
 export {
 	Header,
 	Loading,
@@ -31,5 +31,6 @@ export {
 	DeleteDialog,
 	InfoDialog,
 	SideBar,
-	Analytics
+	Analytics,
+	TaskPanel
 };
