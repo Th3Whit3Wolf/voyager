@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 // Our Components and Hooks
 import { Loading } from "#components";
-import { UserContext } from "#context";
+import { PageContext, UserContext } from "#context";
 import { UserAPI } from "#services/api";
 import registrarAuth from "../../firebase/config.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -19,7 +19,7 @@ import {
 	Collapse
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore, SecurityUpdateGood } from "@mui/icons-material";
 
 const Login = () => {
 	// STATE
@@ -28,6 +28,7 @@ const Login = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [expanded, setExpanded] = useState(false);
 	const { user, setUser } = useContext(UserContext);
+	const { setPage } = useContext(PageContext);
 	const navigate = useNavigate();
 
 	// Internal Functions
@@ -45,7 +46,6 @@ const Login = () => {
 				.then(userCredential => {
 					// Signed in
 					const userCred = userCredential.user;
-					console.log({ userCred });
 					userCred.getIdToken().then(token => {
 						const userapi = new UserAPI();
 						console.log({ token });
@@ -66,10 +66,15 @@ const Login = () => {
 									tempUser.credentials = userCred;
 									tempUser.token = token;
 									setUser(tempUser);
+									if (tempUser && tempUser.role.kind === "USER") {
+										setPage("Tasks");
+									} else {
+										setPage("Analytics");
+									}
 									navigate("/dashboard");
 								}
 							})
-							.catch(err => console.log(err))
+							.catch(err => console.error(err))
 							.finally(setIsLoading(false));
 					});
 					// ...
