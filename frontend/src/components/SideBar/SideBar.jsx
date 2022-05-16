@@ -120,10 +120,13 @@ const SideBar = () => {
 								}
 							}}
 						>
-							<ListItemIcon>
+							<ListItemIcon sx={{ color: theme.palette.gsb.primary }}>
 								<AnalyticsIcon />
 							</ListItemIcon>
-							<ListItemText primary="Analytics" />
+							<ListItemText
+								primary="Analytics"
+								sx={{ color: theme.palette.gsb.primary }}
+							/>
 						</ListItemButton>
 					</List>
 				)}
@@ -140,10 +143,13 @@ const SideBar = () => {
 							}
 						}}
 					>
-						<ListItemIcon>
+						<ListItemIcon sx={{ color: theme.palette.gsb.primary }}>
 							<TaskIcon />
 						</ListItemIcon>
-						<ListItemText primary="Tasks" />
+						<ListItemText
+							primary="Tasks"
+							sx={{ color: theme.palette.gsb.primary }}
+						/>
 					</ListItemButton>
 				</List>
 				<List disablePadding>
@@ -159,10 +165,13 @@ const SideBar = () => {
 							}
 						}}
 					>
-						<ListItemIcon>
+						<ListItemIcon sx={{ color: theme.palette.gsb.primary }}>
 							<SettingsIcon />
 						</ListItemIcon>
-						<ListItemText primary="Settings" />
+						<ListItemText
+							primary="Settings"
+							sx={{ color: theme.palette.gsb.primary }}
+						/>
 					</ListItemButton>
 				</List>
 			</Box>
