@@ -24,11 +24,11 @@ describe("testing the User Dashboard View -- Outprocessing", () => {
 		cy.get("input").should("have.length", 0);
 	});
 
-	// it("the test User Asuka Sohryu should have 0 Outprocessing Tasks", () => {
-	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
-	// 	cy.get("[data-testid=buttonOutprocessingTasks]").click();
-	// 	cy.get("input").should("have.length", 0);
-	// });
+	it("the test User Shinji Ikari should have 12 Outprocessing Tasks", () => {
+		cy.url().should("eq", "http://localhost:3000/dashboard");
+		cy.get("[data-testid=buttonOutprocessingTasks]").click();
+		cy.get("input").should("have.length", 12);
+	});
 
 	// it("the test User Asuka Sohryu should have 8 Complete and 9 Incomplete", () => {
 	// 	cy.url().should("eq", "http://localhost:3000/dashboard");
