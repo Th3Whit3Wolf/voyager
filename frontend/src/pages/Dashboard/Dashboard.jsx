@@ -6,16 +6,9 @@ import { PageContext, UserContext } from "#context";
 import { UserAPI } from "#services";
 
 // Third Party Components and Utilities
-import { Paper, Tab, TableContainer, Button } from "@mui/material";
+import { Paper, Tab, Button, Toolbar } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import {
-	UserTable,
-	AdminTable,
-	UserSettings,
-	ModifyAdminTable,
-	Analytics,
-	TaskPanel
-} from "#components";
+import { UserTable, AdminTable, UserSettings, Analytics } from "#components";
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
@@ -51,8 +44,7 @@ const Dashboard = () => {
 	////////////////////////////////////////// ADMIN VIEW ////////////////////////////////////
 
 	// State for Admin and Admin Pagination
-	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(50);
+
 	const [revision, setRevision] = useState(0);
 
 	const [data, setData] = useState(
@@ -107,24 +99,7 @@ const Dashboard = () => {
 		}
 	};
 
-	const calculateTotalPaginationPages = () => {
-		if (dataForAdminIn)
-			setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
-		if (dataForAdminOut)
-			setTotalAdminOutPages(
-				parseInt(dataForAdminOut.length / (end - start)) + 1
-			);
-	};
-
 	useEffect(retrieveTaskApproversThatShareAdminUnitID, []);
-
-	useEffect(calculateTotalPaginationPages, [
-		user,
-		dataForAdminIn,
-		dataForAdminOut,
-		start,
-		end
-	]);
 
 	useEffect(() => {
 		let idxs = [];
@@ -150,28 +125,138 @@ const Dashboard = () => {
 	}, [user]);
 
 	if (page === "Tasks") {
-		if (
-			(user?.role?.kind === "USER" && userData.length > 0) ||
-			user?.role?.kind?.includes("ADMIN")
-		) {
-			const tasks =
-				user?.role?.kind === "USER"
-					? {
-							inprocessing: userInData,
-							outprocessing: userOutData
-					  }
-					: {
-							inprocessing: dataForAdminIn,
-							outprocessing: dataForAdminOut,
-							approverList: adminTaskApprovers
-					  };
+		if (user?.role?.kind === "USER") {
+			if (userInData.length > 0 && userOutData.length > 0) {
+				return (
+					<TabContext value={tabValue}>
+						<TabList onChange={(e, nv) => setTabValue(nv)} sx={{ ml: "4rem" }}>
+							<Tab
+								label="Inprocessing Tasks"
+								value="1"
+								data-testid="buttonInprocessingTasks"
+							/>
+							<Tab
+								label="Outprocessing Tasks"
+								value="2"
+								data-testid="buttonOutprocessingTasks"
+							/>
+						</TabList>
 
-			return <TaskPanel tasks={tasks} />;
+						<TabPanel value="1">
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									m: "0 2rem"
+								}}
+							>
+								{userData.length > 0 && <UserTable data={userInData} />}
+							</Paper>
+						</TabPanel>
+
+						<TabPanel value="2">
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									m: "0 2rem"
+								}}
+							>
+								{userData.length > 0 && <UserTable data={userOutData} />}
+							</Paper>
+						</TabPanel>
+					</TabContext>
+				);
+			} else {
+				return (
+					<>
+						{userInData.length > 0 && (
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									alignContent: "center",
+									m: "0 2rem"
+								}}
+							>
+								{userData.length > 0 && <UserTable data={userInData} />}
+							</Paper>
+						)}
+						{userOutData.length > 0 && (
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									m: "0 2rem"
+								}}
+							>
+								{userData.length > 0 && <UserTable data={userOutData} />}
+							</Paper>
+						)}
+					</>
+				);
+			}
+		} else if (user?.role?.kind?.includes("ADMIN")) {
+			return (
+				<TabContext value={tabValue}>
+					<TabList onChange={(e, nv) => setTabValue(nv)} sx={{ ml: "4rem" }}>
+						<Tab
+							label="Inprocessing Tasks"
+							value="1"
+							data-testid="buttonInprocessingTasks"
+						/>
+						<Tab
+							label="Outprocessing Tasks"
+							value="2"
+							data-testid="buttonOutprocessingTasks"
+						/>
+					</TabList>
+
+					<TabPanel value="1">
+						<Paper
+							sx={{
+								overflow: "hidden",
+								borderRadius: "6px",
+								m: "0 2rem"
+							}}
+						>
+							{dataForAdminIn.length > 0 && (
+								<AdminTable
+									key={revision}
+									data={dataForAdminIn}
+									approverList={adminTaskApprovers}
+									kind={"IN_PROCESSING"}
+								/>
+							)}
+						</Paper>
+					</TabPanel>
+
+					<TabPanel value="2">
+						<Paper
+							sx={{
+								overflow: "hidden",
+								borderRadius: "6px",
+								m: "0 2rem"
+							}}
+						>
+							{dataForAdminIn.length > 0 && (
+								<AdminTable
+									data={dataForAdminOut}
+									approverList={adminTaskApprovers}
+									kind={"OUT_PROCESSING"}
+								/>
+							)}
+						</Paper>
+					</TabPanel>
+				</TabContext>
+			);
 		}
 	} else if (page === "Analytics") {
-		if (user?.role?.kind?.includes("ADMIN")) {
-			return <Analytics user={user} />;
-		}
+		return (
+			<>
+				{user?.role?.kind?.includes("ADMIN") ? <Analytics user={user} /> : ""}
+			</>
+		);
 	} else if (page === "Settings") {
 		return <UserSettings settings={user} />;
 	} else {
@@ -184,5 +269,4 @@ const Dashboard = () => {
 		);
 	}
 };
-
 export default Dashboard;
