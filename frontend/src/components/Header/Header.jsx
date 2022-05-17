@@ -123,18 +123,20 @@ const Header = () => {
 									<Brightness2Icon />
 								)}
 							</Button>
-							<Button
-								variant="contained"
-								onClick={handleClick}
-								data-testid="logoutButton"
-								sx={{
-									backgroundColor: theme.palette.gsb.primary,
-									mt: "0.75rem",
-									ml: "1.75rem"
-								}}
-							>
-								Logout
-							</Button>
+							{Object.entries(user).length > 0 && (
+								<Button
+									variant="contained"
+									onClick={handleClick}
+									data-testid="logoutButton"
+									sx={{
+										backgroundColor: theme.palette.gsb.primary,
+										mt: "0.75rem",
+										ml: "1.75rem"
+									}}
+								>
+									Logout
+								</Button>
+							)}
 						</Container>
 					</Grid>
 				</Grid>
