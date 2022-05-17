@@ -7,7 +7,7 @@ import { BarChart, InfoCard, Report } from ".";
 
 // Our Packages
 import { UnitAPI } from "#services";
-import styles from "./Analytics.module.css";
+//import styles from "./Analytics.module.css";
 
 import { styled } from "@mui/material/styles";
 // Third Party Packages
@@ -247,7 +247,6 @@ const Analytics = ({ user }) => {
 
 	return (
 		<>
-			<Toolbar />
 			<Grid container spacing={8} sx={{ p: "0 2rem" }}>
 				<Grid item xs={4}>
 					{Object.entries(analyticsState).length === 0 && <Loading />}

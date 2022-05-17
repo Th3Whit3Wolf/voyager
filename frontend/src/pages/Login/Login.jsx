@@ -65,12 +65,13 @@ const Login = () => {
 								} else {
 									tempUser.credentials = userCred;
 									tempUser.token = token;
-									setUser(tempUser);
 									if (tempUser && tempUser.role.kind === "USER") {
 										setPage("Tasks");
 									} else {
 										setPage("Analytics");
 									}
+									setUser(tempUser);
+
 									navigate("/dashboard");
 								}
 							})

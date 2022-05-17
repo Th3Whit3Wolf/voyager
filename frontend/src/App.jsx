@@ -48,6 +48,8 @@ export default function App() {
 							<SideBar />
 							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 								<Toolbar />
+								<Toolbar />
+
 								<Routes>
 									<Route path="/" element={<Login />} />
 									<Route path="/dashboard" element={<Dashboard />} />
