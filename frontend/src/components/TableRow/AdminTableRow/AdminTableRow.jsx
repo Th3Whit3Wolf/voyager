@@ -30,7 +30,7 @@ import { Delete, Star } from "@mui/icons-material";
 import { DeleteDialog, InfoDialog } from "#components";
 
 // Start of the AdminTableRow React Hook
-const AdminTableRow = ({ entry, setMessage, approverList }) => {
+const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 	const { user, setUser } = useContext(UserContext);
 
 	//START of AdminTableRow State
@@ -205,9 +205,12 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					}
 				</DialogContentText>
 				<DialogContentText id="info-dialog-date">
-					{`${
-						updatedAt.getUTCMonth() + 1
-					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
+					{updatedAt.toLocaleDateString("en-US", {
+						year: "numeric",
+						month: "long",
+						day: "numeric",
+						timeZone: "GMT"
+					})}
 				</DialogContentText>
 
 				<DialogActions>
@@ -221,8 +224,17 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 					</DialogContentText>
 				</DialogContent>
 			</Dialog> */}
-			<TableRow>
-				<TableCell>
+			<TableRow
+				hover
+				role="checkbox"
+				tabIndex={-1}
+				sx={{
+					"&.MuiTableRow-root:hover": {
+						backgroundColor: theme.palette.hover.table
+					}
+				}}
+			>
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					<Switch
 						checked={isActive}
 						name="isActive"
@@ -230,7 +242,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 						onChange={updateIsActive}
 					/>
 				</TableCell>
-				<TableCell>
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					<TextField
 						size="small"
 						value={taskTitle}
@@ -238,7 +250,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 						onChange={e => setTaskTitle(e.target.value)}
 					/>
 				</TableCell>
-				<TableCell>
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					<TextField
 						size="small"
 						value={taskDesc}
@@ -246,7 +258,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 						onChange={e => setTaskDesc(e.target.value)}
 					/>
 				</TableCell>
-				<TableCell>
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					<Select
 						value={pocID}
 						onChange={updatePocID}
@@ -261,7 +273,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 							))}
 					</Select>
 				</TableCell>
-				<TableCell>
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					<TextField
 						size="small"
 						value={pocPhone}
@@ -270,8 +282,7 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 						disabled
 					/>
 				</TableCell>
-				<TableCell>
-					{/* <TextField size="small" value={pocEmail} sx={{ width: "25ch" }} /> */}
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					<a
 						href={`mailto:${pocEmail}?subject=Regarding Task #${entry.id}: ${
 							entry.title
@@ -293,23 +304,13 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 						{pocEmail}
 					</a>
 				</TableCell>
-				<TableCell>
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					{`${
 						updatedAt.getUTCMonth() + 1
 					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
 				</TableCell>
-				<TableCell>
-					<IconButton
-						aria-label="info"
-						onClick={() => {
-							info_handleClickOpen();
-							console.log(`Info Request id ${entry.id}`);
-						}}
-					>
-						<Star />
-					</IconButton>
-				</TableCell>
-				<TableCell>
+
+				<TableCell sx={{ p: "10px 4.5px" }}>
 					<IconButton
 						aria-label="delete"
 						onClick={e => {
