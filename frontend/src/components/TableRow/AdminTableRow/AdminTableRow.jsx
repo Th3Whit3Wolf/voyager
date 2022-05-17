@@ -129,16 +129,14 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			if (taskTitle !== oldTitle)
-				handlePut(JSON.stringify({ title: taskTitle }));
+			if (taskTitle !== oldTitle) handlePut({ title: taskTitle });
 		}, 1000);
 		return () => clearTimeout(timer);
 	}, [taskTitle]);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			if (taskDesc !== oldDesc)
-				handlePut(JSON.stringify({ description: taskDesc }));
+			if (taskDesc !== oldDesc) handlePut({ description: taskDesc });
 		}, 1000);
 		return () => clearTimeout(timer);
 	}, [taskDesc]);
@@ -153,6 +151,7 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 	};
 
 	const updateIsActive = e => {
+		e.preventDefault();
 		let raw = {
 			isActive: !isActive
 		};
