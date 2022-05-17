@@ -31,6 +31,7 @@ import { DeleteDialog, InfoDialog } from "#components";
 
 // Start of the AdminTableRow React Hook
 const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
+	console.log('admintablerow',entry);
 	const { user, setUser } = useContext(UserContext);
 
 	//START of AdminTableRow State
