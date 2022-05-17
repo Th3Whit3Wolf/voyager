@@ -12,6 +12,7 @@ import {
 	TableRow,
 	TableCell,
 	TablePagination,
+	TableFooter,
 	IconButton,
 	useTheme
 } from "@mui/material";
@@ -98,8 +99,6 @@ const UserTable = ({ data }) => {
 		setPage(0);
 	};
 
-	console.log("User Task Data: ", { data });
-
 	return (
 		<>
 			<TableContainer sx={{ maxHeight: "75%" }}>
@@ -178,25 +177,31 @@ const UserTable = ({ data }) => {
 									entry={entry}
 									theme={theme}
 								/>
-							))}
+							))
+							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
 					</TableBody>
+					<TableFooter>
+						<TablePagination
+							rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+							colSpan={8}
+							count={data.length}
+							rowsPerPage={rowsPerPage}
+							page={page}
+							SelectProps={{
+								inputProps: {
+									"aria-label": "rows per page"
+								},
+								native: true
+							}}
+							sx={{
+								width: "100%"
+							}}
+							onPageChange={handleChangePage}
+							onRowsPerPageChange={handleChangeRowsPerPage}
+							ActionsComponent={TablePaginationActions}
+						/>
+					</TableFooter>
 				</Table>
-				<TablePagination
-					rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-					colSpan={3}
-					count={data.length}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					SelectProps={{
-						inputProps: {
-							"aria-label": "rows per page"
-						},
-						native: true
-					}}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
-					ActionsComponent={TablePaginationActions}
-				/>
 			</TableContainer>
 		</>
 	);
