@@ -31,7 +31,7 @@ import { DeleteDialog, InfoDialog } from "#components";
 
 // Start of the AdminTableRow React Hook
 const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
-	console.log('admintablerow',entry);
+	console.log("admintablerow", entry);
 	const { user, setUser } = useContext(UserContext);
 
 	//START of AdminTableRow State
@@ -41,13 +41,13 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [oldDesc, setOldDesc] = useState(entry.description);
 
-	const [pocName, setPocName] = useState(
-		entry.approver.firstName + " " + entry.approver.lastName
-	);
+	// const [pocName, setPocName] = useState(
+	// 	entry.approver.firstName + " " + entry.approver.lastName
+	// );
 	const [taskKind, setTaskKind] = useState(entry.kind);
-	const [pocID, setPocID] = useState(entry.approver.id);
-	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
-	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
+	const [pocID, setPocID] = useState(entry?.approver?.id);
+	const [pocPhone, setPocPhone] = useState(`${entry?.approver?.dsn}`);
+	const [pocEmail, setPocEmail] = useState(`${entry?.approver?.email}`);
 	// END of AdminTableRow State
 
 	// START of Dialog Boxes State -- see Jelani
@@ -144,6 +144,7 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 	}, [taskDesc]);
 
 	const updatePocID = e => {
+		e.preventDefault();
 		setPocID(parseInt(e.target.value));
 		let raw = {
 			approverID: e.target.value

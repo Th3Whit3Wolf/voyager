@@ -28,7 +28,7 @@ const Dashboard = () => {
 
 	// State for Users
 	const [userData, setUserData] = useState(
-		user?.tasks.sort((a, b) => a.id - b.id)
+		user?.tasks?.sort((a, b) => a.id - b.id)
 	);
 	const [userInData, setUserInData] = useState(
 		user?.tasks
@@ -76,9 +76,9 @@ const Dashboard = () => {
 	// since the Users view has so few tasks compared
 	// to the Admin view and pagination isn't needed.
 
-	const retrieveTaskApproversThatShareAdminUnitID = () => {
+	const retrieveTaskApproversThatShareAdminUnitID = e => {
 		const taskApproversApi = new UserAPI();
-		console.log(user.assignedUnit);
+		console.log("taskApproverAPI", user.assignedUnit);
 		if (user.token !== undefined) {
 			console.log("User Token: ", user.token);
 			taskApproversApi
@@ -91,7 +91,7 @@ const Dashboard = () => {
 				.then(taskapprovers => {
 					if (taskapprovers.error === undefined) {
 						const approvers = taskapprovers;
-						console.log({ approvers });
+						console.log("approvers", { approvers });
 						setAdminTaskApprovers(approvers.data);
 					}
 				})
