@@ -28,7 +28,7 @@ const Dashboard = () => {
 
 	// State for Users
 	const [userData, setUserData] = useState(
-		user?.tasks?.sort((a, b) => a.id - b.id)
+		user?.tasks.sort((a, b) => a.id - b.id)
 	);
 	const [userInData, setUserInData] = useState(
 		user?.tasks

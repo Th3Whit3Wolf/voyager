@@ -97,7 +97,7 @@ const MoreInfoDialog = ({
 								<Box
 									component="img"
 									sx={{ height: "90%", mt: 2 }}
-									alt={`${assignedUnit.name} patch`}
+									alt={`${assignedUnit?.name} patch`}
 									src={
 										import.meta.env.PROD
 											? `https://dashboard.heroku.com/apps/bsdi1-voyager-backend${img}`
@@ -118,7 +118,7 @@ const MoreInfoDialog = ({
 									</Typography>
 									{pocName}
 									<br />
-									{`Unit: ${assignedUnit.abbrev}/${assignedOfficeSymbol}`}
+									{`Unit: ${assignedUnit?.abbrev}/${assignedOfficeSymbol}`}
 									<br />
 									{`DSN: ${pocDSN}`}
 									<br />
@@ -196,14 +196,14 @@ const UserTableRow = ({ entry, theme }) => {
 				<TableCell sx={{ p: "10px 4.5px" }}>
 					<MoreInfoDialog
 						id={entry.id}
-						img={entry.task.approver.assignedUnit.img}
-						pocName={`${entry.task.approver.firstName} ${entry.task.approver.lastName}`}
-						pocDSN={entry.task.approver.dsn}
-						pocEmail={entry.task.approver.email}
-						assignedOfficeSymbol={entry.task.approver.assignedOfficeSymbol}
-						assignedUnit={entry.task.approver.assignedUnit}
-						title={entry.task.title}
-						description={entry.task.description}
+						img={entry?.task?.approver?.assignedUnit?.img}
+						pocName={`${entry?.task?.approver?.firstName} ${entry?.task?.approver?.lastName}`}
+						pocDSN={entry?.task?.approver?.dsn}
+						pocEmail={entry?.task?.approver?.email}
+						assignedOfficeSymbol={entry?.task?.approver?.assignedOfficeSymbol}
+						assignedUnit={entry?.task?.approver?.assignedUnit}
+						title={entry?.task?.title}
+						description={entry?.task?.description}
 						theme={theme}
 					/>
 				</TableCell>
@@ -218,13 +218,13 @@ const UserTableRow = ({ entry, theme }) => {
 						: null}
 				</TableCell>
 				<TableCell sx={{ p: "10px 4.5px" }}>
-					{entry.task.approver.firstName} {entry.task.approver.lastName}
+					{entry?.task?.approver?.firstName} {entry?.task?.approver?.lastName}
 				</TableCell>
 				<TableCell sx={{ p: "10px 4.5px" }}>
-					{entry.task.approver.dsn}
+					{entry?.task?.approver?.dsn}
 				</TableCell>
 				<TableCell sx={{ p: "10px 4.5px" }}>
-					{entry.task.approver.email}
+					{entry?.task?.approver?.email}
 				</TableCell>
 			</TableRow>
 		</>
