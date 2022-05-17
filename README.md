@@ -106,55 +106,61 @@ Allowing you to focus on what you actually need to do and help you do it.
 
 ## Getting Started
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ### Prerequisites
 
-- Docker must be installed on the system at a minimum
-  - note: while the server and user interface can be spun up manually, the database requires docker for installation)
+1. [Docker](https://www.docker.com/) must be installed on the system at a minimum. While the server and user interface can be spun up manually, the database requires docker for installation)
+2. A [Firebase Account](https://firebase.google.com/) with:
+   - A Project set up under your Firebase account
+   - Authentication set up configured for Email/Password Authentication
+   - Knowledge of your Firebase project's private key (see Project Settings)
+   - See [Firebase Docs](https://firebase.google.com/docs/admin/setup) on admin setup
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Installation
 
-### As a User
+- ### As a User
 
-- Navigate to: [https://bsdi1-voyager-frontend.herokuapp.com](https://bsdi1-voyager-frontend.herokuapp.com)
+  Navigate to: [https://bsdi1-voyager-frontend.herokuapp.com](https://bsdi1-voyager-frontend.herokuapp.com)
 
-### As Developer
+- ### As Developer
 
-- IF using Docker Compose (**recommended**)
-  1. git clone this repo
-  2. navigate into the repo (voyager by default if you did not rename the clone)
-  3. add firebase private key to `.secrets`
-     3a. create firebase project
-     3b. go to Project settings > Service accounts
-     3c. select `Generate new private key`
-     3d. move that key into `.secrets` from the project root directory
-     3e. create a `.env` file with `FIREBASE_PATH` set to the name of the file you added to the `.secrets` directory
+Docker Compose
 
-```bash
-mkdir .secrets
+1. Clone the Voyager Repo
+   - Example: `git clone git@github.com:Th3Whit3Wolf/voyager.git`
+2. Navigate into the repo
+   - Example: `cd voyager`
+3. Add firebase private key to `.secrets`
 
-cat << EOF > .env
-FIREBASE_PATH="firebaseVoyagerDev.json"
-EOF
+   - Per the prerequisites, you should already have a Firebase project and your private key
+   - Copy your key into `.secrets` from the project root directory
+   - Create a `.env` file with `FIREBASE_PATH` set to the name of the file you added to the `.secrets` directory
 
-mv firebaseVoyagerDev.json .secrets
-```
+   ```bash
+   mkdir .secrets
 
-4. Start up docker compose using one of two options
-   4a. type `docker compose up -d` on the terminal
-   4b. type `npm run docker:up` on the terminal
-5. Set up the database with initial seeding and generate the schema
-   5a. Navigate into the backend
-   5b. type `npm run db:reset`
-6. open a new browser and navigate to http://localhost:3000
-   6a. optionally, you can also find the container in Docker Desktop and open the UI from there
-7. to spin the application back down, you have two options:
-   7a. type `docker compose down`
-   7b. type `npm run docker:down`
+   cat << EOF > .env
+   FIREBASE_PATH="firebaseVoyagerDev.json"
+   EOF
 
+   mv firebaseVoyagerDev.json .secrets
+   ```
+
+4. From the voyager root directory, start up Docker compose `npm run docker:up`
+5. Set up the database schema and initialize with seeds
+   ```
+   cd backend
+   npm run db:reset
+   cd ..
+   ```
+6. Open a new browser and navigate to [http://localhost:3000](http://localhost:3000)
+7. To spin the application back down use `npm run docker:down`
+
+Note: If there are errors trying to get the application to load after spinning it up in step 4, then some Developers may have to do some steps manually:
+
+- IF there are errors, then some Developers may have too: - First, make sure all Docker containers are down with `npm run docker:down` - Second, remove all Docker voyager images - Then do the following steps
+` rm -rf pg-data cd frontend npm install cd ../backend npm install cd .. npm run docker:up cd backend npm run db:reset (select yes with "y" option) cd .. `
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
