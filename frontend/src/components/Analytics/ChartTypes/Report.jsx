@@ -369,6 +369,7 @@ const Report = ({ dataset }) => {
 			<Paper
 				sx={{
 					borderRadius: "6px",
+					m: "0 2rem",
 					boxShadow:
 						theme.palette.mode === "light"
 							? "0 .75em 1.5em -.185em rgba(	10, 10, 10,.2), 0 0 1px rgba(	10, 10, 10,.02)"
@@ -433,6 +434,7 @@ const Report = ({ dataset }) => {
 			<Paper
 				sx={{
 					borderRadius: "6px",
+					m: "0 2rem",
 					boxShadow:
 						theme.palette.mode === "light"
 							? "0 .75em 1.5em -.185em rgba(	10, 10, 10,.2), 0 0 1px rgba(	10, 10, 10,.02)"
@@ -494,6 +496,7 @@ const Report = ({ dataset }) => {
 			<Toolbar />
 			<Paper
 				sx={{
+					m: "0 2rem",
 					borderRadius: "6px",
 					boxShadow:
 						theme.palette.mode === "light"
@@ -558,6 +561,7 @@ const Report = ({ dataset }) => {
 			<Paper
 				sx={{
 					borderRadius: "6px",
+					m: "0 2rem",
 					boxShadow:
 						theme.palette.mode === "light"
 							? "0 .75em 1.5em -.185em rgba(	10, 10, 10,.2), 0 0 1px rgba(	10, 10, 10,.02)"

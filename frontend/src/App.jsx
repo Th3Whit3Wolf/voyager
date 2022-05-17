@@ -15,9 +15,8 @@ import {
 // Our Components
 import { Header, SideBar } from "#components";
 import { Login, Dashboard, PageNotFound } from "#pages";
-import { PageContext, UserContext } from "#context";
+import { PageContext, UserContext, ColorModeContext } from "#context";
 import getDesignTokens from "./theme.js";
-const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export default function App() {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -36,7 +35,6 @@ export default function App() {
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 	const usr = useMemo(() => ({ user, setUser }), [user]);
 	const pg = useMemo(() => ({ page, setPage }), [page]);
-	console.log("THEME: ", theme);
 	return (
 		<ColorModeContext.Provider value={colorMode}>
 			<UserContext.Provider value={usr}>

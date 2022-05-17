@@ -278,19 +278,12 @@ const Analytics = ({ user }) => {
 			</Grid>
 
 			<Toolbar />
-			<Paper
-				sx={{
-					p: "0 2rem",
-					backgroundColor: "transparent",
-					zIndex: 0,
-					boxShadow: "none"
-				}}
-			>
+			<>
 				{Object.entries(analyticsState).length === 0 && <Loading />}
 				{Object.entries(analyticsState).length > 0 && (
 					<Report dataset={analyticsState} />
 				)}
-			</Paper>
+			</>
 		</>
 	);
 };

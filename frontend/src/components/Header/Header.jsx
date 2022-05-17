@@ -1,23 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../space-force-logo.png";
-import { UserContext } from "#context";
-
+import { UserContext, ColorModeContext } from "#context";
 import {
 	Button,
 	Link,
 	AppBar,
 	Box,
 	Toolbar,
-	Typography,
 	useTheme,
-	Container
+	Container,
+	Grid
 } from "@mui/material";
+import Brightness2Icon from "@mui/icons-material/Brightness2";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useNavigate } from "react-router-dom";
 // Also need a small title shows USER or ADMIN
 
 const Header = () => {
 	const theme = useTheme();
 	const navigate = useNavigate();
+	const { toggleColorMode } = useContext(ColorModeContext);
 	const { user, setUser } = useContext(UserContext);
 
 	const handleClick = () => {
@@ -78,15 +80,22 @@ const Header = () => {
 						</h6>
 					)}
 				</Container>
-
-				<Box
-					sx={{
-						display: "flex",
-						flexGrow: 1,
-						justifyContent: "flex-end"
-					}}
-				>
-					{user?.firstName ? (
+				<Grid container spacing={2} sx={{ p: "0 0.25rem" }}>
+					<Grid xs={3} item></Grid>
+					<Grid xs={6} item>
+						{user?.assignedUnit && (
+							<Box
+								alt="Unit Patch"
+								variant="img"
+								src={
+									import.meta.env.PROD
+										? `https://dashboard.heroku.com/apps/bsdi1-voyager-backend${user.assignedUnit.img}`
+										: `http://localhost:8081${user.assignedUnit.img}`
+								}
+							/>
+						)}
+					</Grid>
+					<Grid xs={3} item>
 						<Container
 							disableGutters
 							sx={{
@@ -98,25 +107,37 @@ const Header = () => {
 								alignItems: "center"
 							}}
 						>
-							<Typography variant="p" sx={{ mr: "2rem" }}>
-								Welcome, {user.firstName}!
-							</Typography>
+							<Button
+								variant="contained"
+								sx={{
+									backgroundColor: theme.palette.gsb.primary,
+									mt: "0.75rem",
+									ml: "1.75rem"
+								}}
+								onClick={toggleColorMode}
+								data-testid="themeToggleButton"
+							>
+								{theme.palette.mode === "light" ? (
+									<Brightness7Icon />
+								) : (
+									<Brightness2Icon />
+								)}
+							</Button>
 							<Button
 								variant="contained"
 								onClick={handleClick}
 								data-testid="logoutButton"
 								sx={{
 									backgroundColor: theme.palette.gsb.primary,
-									mr: "0.75rem"
+									mt: "0.75rem",
+									ml: "1.75rem"
 								}}
 							>
 								Logout
 							</Button>
 						</Container>
-					) : (
-						""
-					)}
-				</Box>
+					</Grid>
+				</Grid>
 			</Toolbar>
 		</AppBar>
 	);
