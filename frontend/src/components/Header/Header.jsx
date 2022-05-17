@@ -20,8 +20,6 @@ const NewHeader = () => {
 	const navigate = useNavigate();
 	const { user, setUser } = useContext(UserContext);
 
-	console.log("THEME:", theme);
-
 	const handleClick = () => {
 		// Do some stuff
 		setUser({});
