@@ -96,7 +96,7 @@ const MoreInfoDialog = ({
 								alt={`${assignedUnit?.name} patch`}
 								src={
 									import.meta.env.PROD
-										? `https://dashboard.heroku.com/apps/bsdi1-voyager-backend${img}`
+										? `https://bsdi1-voyager-backend.herokuapp.com${img}`
 										: `http://localhost:8081${img}`
 								}
 							/>
