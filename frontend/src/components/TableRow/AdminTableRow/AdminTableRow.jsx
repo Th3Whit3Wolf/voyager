@@ -110,7 +110,7 @@ const DeleteDialog = ({ name, desc, id, handleDelete, theme }) => {
 
 // Start of the AdminTableRow React Hook
 const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
-	console.log("admintablerow", entry);
+	//console.log("admintablerow", entry);
 	const { user, setUser } = useContext(UserContext);
 
 	//START of AdminTableRow State
@@ -190,12 +190,13 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 
 	const updatePoc = e => {
 		e.preventDefault();
-		const newPOC = e.target.value;
-		setPoc(newPOC);
-		if (poc.id !== newPOC.id) {
+		console.log("update POC", e.target.value, poc.id);
+		const newPOC = parseInt(e.target.value);
+		if (parseInt(poc.id) !== parseInt(e.target.value)) {
 			handlePut({
-				approverID: newPOC.id
+				approverID: parseInt(e.target.value)
 			});
+			setPoc(newPOC);
 		}
 	};
 
@@ -249,17 +250,14 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 						id="outlined-select-poc"
 						select
 						label="POC Name"
-						value={`${poc.firstName} ${poc.lastName}`}
+						value={`${poc.id}`}
 						onChange={updatePoc}
 						sx={{ width: "40ch" }}
 						helperText="Please select the POC"
 					>
 						{approverList.length > 0 &&
 							approverList.map(approver => (
-								<MenuItem
-									key={approver.id}
-									value={`${approver.firstName} ${approver.lastName}`}
-								>
+								<MenuItem key={approver.id} value={`${approver.id}`}>
 									{approver.firstName} {approver.lastName}
 								</MenuItem>
 							))}
