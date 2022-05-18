@@ -79,42 +79,43 @@ const ReportList = ({ title, dataObj, theme }) => {
 			<Divider />
 			<Collapse in={open} timeout="auto" unmountOnExit>
 				<List component="div" disablePadding>
-					{dataObj.oversight.map(obj => {
-						return Object.entries(obj).map(([label, value]) => {
-							return (
-								<>
-									<ListItemButton
-										key={`${title}-${label}`}
-										sx={{
-											width: "100%",
-											whiteSpace: "no-wrap",
-											"&.Mui-selected": {
-												backgroundColor: theme.palette.selected
-											},
-											"&.MuiListItemButton-root:hover": {
-												backgroundColor: theme.palette.hover.list
-											},
-											p: "0 2em"
-										}}
-									>
-										<ListItemIcon>
-											<PersonIcon sx={{ color: theme.palette.gsb.primary }} />
-										</ListItemIcon>
+					{Object(dataObj).entries !== undefined &&
+						dataObj?.oversight?.map(obj => {
+							return Object.entries(obj).map(([label, value]) => {
+								return (
+									<>
+										<ListItemButton
+											key={`${title}-${label}`}
+											sx={{
+												width: "100%",
+												whiteSpace: "no-wrap",
+												"&.Mui-selected": {
+													backgroundColor: theme.palette.selected
+												},
+												"&.MuiListItemButton-root:hover": {
+													backgroundColor: theme.palette.hover.list
+												},
+												p: "0 2em"
+											}}
+										>
+											<ListItemIcon>
+												<PersonIcon sx={{ color: theme.palette.gsb.primary }} />
+											</ListItemIcon>
 
-										<ListItemText
-											primary={label}
-											secondary={`${value} Users`}
+											<ListItemText
+												primary={label}
+												secondary={`${value} Users`}
+											/>
+										</ListItemButton>
+										<Divider
+											component="li"
+											variant="inset"
+											sx={{ backgroundColor: theme.palette.gsb.primary }}
 										/>
-									</ListItemButton>
-									<Divider
-										component="li"
-										variant="inset"
-										sx={{ backgroundColor: theme.palette.gsb.primary }}
-									/>
-								</>
-							);
-						});
-					})}
+									</>
+								);
+							});
+						})}
 				</List>
 			</Collapse>
 			<ListItemButton
