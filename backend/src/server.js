@@ -5,7 +5,7 @@ import session from "express-session";
 import helmet from "helmet";
 import actuator from "express-actuator";
 import expressPino from "express-pino-logger";
-import cors from "cors";
+// import cors from "cors";
 import routes from "#routes";
 import { logger } from "#config";
 
@@ -34,38 +34,33 @@ app.use(
 			maxAge: 1000 * 60 * 60 * 24 /* one day */,
 			secure: NODE_ENV === "production"
 		},
-		proxy : true,
+		proxy: true,
 		resave: false
 	})
 );
 app.use(log);
-
-if (NODE_ENV === "production") {
-	app.use(
-		cors({
-			origin: "https://bsdi1-voyager-frontend.herokuapp.com",
-			allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-			methods: ["GET", "PUT", "POST", "DELETE"]
-		})
-	);
-} else {
-	app.use((req, res, next) => {
-		res.header({ "Access-Control-Allow-Origin": NODE_ENV === "production" ? "https://bsdi1-voyager-frontend.herokuapp.com" : "http://localhost:3000" });
-		res.header({
-			"Access-Control-Allow-Headers":
-				"Origin, X-Requested-With, Content-Type, Accept, Authorization"
-		});
-		res.header({
-			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
-		});
-		res.header({
-			"Cross-Origin-Resource-Policy": "same-site"
-		});
-		next();
-	});
-}
 app.use(express.json());
 app.use(express.static("src/static"));
+
+app.use((req, res, next) => {
+	res.header({
+		"Access-Control-Allow-Origin":
+			NODE_ENV === "production"
+				? "https://bsdi1-voyager-frontend.herokuapp.com"
+				: "http://localhost:3000"
+	});
+	res.header({
+		"Access-Control-Allow-Headers":
+			"Origin, X-Requested-With, Content-Type, Accept, Authorization"
+	});
+	res.header({
+		"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+	});
+	res.header({
+		"Cross-Origin-Resource-Policy": "same-site"
+	});
+	next();
+});
 
 /*
 ## Endpoints provided by Express Actuator
