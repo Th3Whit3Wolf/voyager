@@ -125,6 +125,7 @@ const UnitController = new Controller("Unit", {
 								},
 								createdAt: true,
 								updatedAt: true,
+								dueDate: true,
 								completedAt: true
 							}
 						}
@@ -241,6 +242,7 @@ const UnitController = new Controller("Unit", {
 								},
 								createdAt: true,
 								updatedAt: true,
+								dueDate: true,
 								completedAt: true
 							}
 						}

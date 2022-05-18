@@ -121,7 +121,7 @@ const AdminTable = ({ data, kind, approverList }) => {
 			isActive: true,
 			kind: kind,
 			assignerID: user.id,
-			approverID: user.tasksAssigned[0].approver.id,
+			approverID: approverList[0].id,
 			unitID: user.assignedUnit.id
 		};
 		addTask

@@ -133,6 +133,16 @@ const UserTable = ({ data }) => {
 									color: theme.palette.gsb.text
 								}}
 							>
+								Due Date
+							</TableCell>
+							<TableCell
+								sx={{
+									height: "40px",
+									p: "10px 9.5",
+									backgroundColor: theme.palette.gsb.background,
+									color: theme.palette.gsb.text
+								}}
+							>
 								Completion Date
 							</TableCell>
 							<TableCell

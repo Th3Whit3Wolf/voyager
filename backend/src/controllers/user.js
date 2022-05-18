@@ -116,6 +116,7 @@ const UserController = new Controller("User", {
 								}
 							}
 						},
+						dueDate: true,
 						createdAt: true,
 						updatedAt: true,
 						completedAt: true

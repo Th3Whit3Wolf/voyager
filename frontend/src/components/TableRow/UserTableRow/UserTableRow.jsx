@@ -210,7 +210,16 @@ const UserTableRow = ({ entry, theme }) => {
 						  })
 						: null}
 				</TableCell>
-
+				<TableCell sx={{ p: "10px 4.5px" }}>
+					{entry?.dueDate
+						? new Date(entry?.dueDate).toLocaleDateString("en-US", {
+								year: "numeric",
+								month: "long",
+								day: "numeric",
+								timeZone: "GMT"
+						  })
+						: null}
+				</TableCell>
 				<TableCell sx={{ p: "10px 4.5px" }}>
 					{entry?.task?.approver?.firstName} {entry?.task?.approver?.lastName}
 				</TableCell>
