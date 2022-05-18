@@ -253,7 +253,6 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 						value={`${poc.id}`}
 						onChange={updatePoc}
 						sx={{ width: "40ch" }}
-						helperText="Please select the POC"
 					>
 						{approverList.length > 0 &&
 							approverList.map(approver => (
