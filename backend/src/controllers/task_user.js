@@ -13,6 +13,7 @@ const TaskUserController = new Controller("TaskUser", {
 				task: true,
 				user: true,
 				completedAt: true,
+				dueDate: true,
 				createdAt: true,
 				updatedAt: true
 			}

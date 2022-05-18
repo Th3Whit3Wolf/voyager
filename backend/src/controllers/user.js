@@ -22,6 +22,7 @@ const UserController = new Controller("User", {
 						name: true,
 						abbrev: true,
 						function: true,
+						img: true,
 						assignedUsers: {
 							select: {
 								firstName: true,
@@ -48,7 +49,24 @@ const UserController = new Controller("User", {
 						description: true,
 						isActive: true,
 						kind: true,
-						approver: true,
+						approver: {
+							select: {
+								id: true,
+								firstName: true,
+								lastName: true,
+								email: true,
+								dsn: true,
+								assignedOfficeSymbol: true,
+								assignedUnit: {
+									select: {
+										name: true,
+										abbrev: true,
+										function: true,
+										img: true
+									}
+								}
+							}
+						},
 						createdAt: true,
 						updatedAt: true
 					}
@@ -67,10 +85,20 @@ const UserController = new Controller("User", {
 								kind: true,
 								approver: {
 									select: {
+										id: true,
 										firstName: true,
 										lastName: true,
 										email: true,
-										dsn: true
+										dsn: true,
+										assignedOfficeSymbol: true,
+										assignedUnit: {
+											select: {
+												name: true,
+												abbrev: true,
+												function: true,
+												img: true
+											}
+										}
 									}
 								},
 								assigner: {
@@ -88,6 +116,7 @@ const UserController = new Controller("User", {
 								}
 							}
 						},
+						dueDate: true,
 						createdAt: true,
 						updatedAt: true,
 						completedAt: true

@@ -15,7 +15,8 @@ import ModifyAdminTable from "./Tables/AdminTable/ModifyAdminTable";
 import Analytics from "./Analytics/Analytics";
 
 import UserSettings from "./UserSettings/UserSettings";
-
+import SideBar from "./SideBar/SideBar";
+import TaskPanel from "./TaskPanel/TaskPanel";
 export {
 	Header,
 	Loading,
@@ -29,5 +30,7 @@ export {
 	UserSettings,
 	DeleteDialog,
 	InfoDialog,
-	Analytics
+	SideBar,
+	Analytics,
+	TaskPanel
 };

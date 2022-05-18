@@ -1,22 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 
 // Our Components and Utilities
-import { UserContext } from "#context";
+import { PageContext, UserContext } from "#context";
 
 import { UserAPI } from "#services";
 
 // Third Party Components and Utilities
-import { Paper, Tab, TableContainer, Button } from "@mui/material";
+import { Paper, Tab, Button, Toolbar } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import {
-	UserTable,
-	AdminTable,
-	UserSettings,
-	ModifyAdminTable,
-	Analytics
-} from "#components";
-
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { UserTable, AdminTable, UserSettings, Analytics } from "#components";
 
 // There is no longer a useNavigate state prop called role.
 // There is now, instead, a UserContext object being provided
@@ -28,7 +20,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 const Dashboard = () => {
 	const { user, setUser } = useContext(UserContext);
-
+	const { page } = useContext(PageContext);
 	// State for Tabs
 	const [tabValue, setTabValue] = useState("1");
 
@@ -52,8 +44,7 @@ const Dashboard = () => {
 	////////////////////////////////////////// ADMIN VIEW ////////////////////////////////////
 
 	// State for Admin and Admin Pagination
-	const [start, setStart] = useState(0);
-	const [end, setEnd] = useState(50);
+
 	const [revision, setRevision] = useState(0);
 
 	const [data, setData] = useState(
@@ -85,9 +76,9 @@ const Dashboard = () => {
 	// since the Users view has so few tasks compared
 	// to the Admin view and pagination isn't needed.
 
-	const retrieveTaskApproversThatShareAdminUnitID = () => {
+	const retrieveTaskApproversThatShareAdminUnitID = e => {
 		const taskApproversApi = new UserAPI();
-		console.log(user.assignedUnit);
+		console.log("taskApproverAPI", user.assignedUnit);
 		if (user.token !== undefined) {
 			console.log("User Token: ", user.token);
 			taskApproversApi
@@ -100,7 +91,7 @@ const Dashboard = () => {
 				.then(taskapprovers => {
 					if (taskapprovers.error === undefined) {
 						const approvers = taskapprovers;
-						console.log({ approvers });
+						console.log("approvers", { approvers });
 						setAdminTaskApprovers(approvers.data);
 					}
 				})
@@ -108,24 +99,7 @@ const Dashboard = () => {
 		}
 	};
 
-	const calculateTotalPaginationPages = () => {
-		if (dataForAdminIn)
-			setTotalAdminInPages(parseInt(dataForAdminIn.length / (end - start)) + 1);
-		if (dataForAdminOut)
-			setTotalAdminOutPages(
-				parseInt(dataForAdminOut.length / (end - start)) + 1
-			);
-	};
-
 	useEffect(retrieveTaskApproversThatShareAdminUnitID, []);
-
-	useEffect(calculateTotalPaginationPages, [
-		user,
-		dataForAdminIn,
-		dataForAdminOut,
-		start,
-		end
-	]);
 
 	useEffect(() => {
 		let idxs = [];
@@ -150,185 +124,149 @@ const Dashboard = () => {
 		setRevision(revision + 1);
 	}, [user]);
 
-	const changeInprocessPage = e => {
-		console.log(e.target.value);
-		setStart((parseInt(e.target.value) - 1) * (end - start));
-		setEnd(parseInt(e.target.value) * (end - start));
-		setRevision(revision + 1);
-	};
+	if (page === "Tasks") {
+		if (user?.role?.kind === "USER") {
+			if (userInData.length > 0 && userOutData.length > 0) {
+				return (
+					<TabContext value={tabValue}>
+						<TabList onChange={(e, nv) => setTabValue(nv)} sx={{ ml: "4rem" }}>
+							<Tab
+								label="Inprocessing Tasks"
+								value="1"
+								data-testid="buttonInprocessingTasks"
+							/>
+							<Tab
+								label="Outprocessing Tasks"
+								value="2"
+								data-testid="buttonOutprocessingTasks"
+							/>
+						</TabList>
 
-	const changeOutprocessPage = e => {
-		console.log(e.target.value);
-		setStart((parseInt(e.target.value) - 1) * (end - start));
-		setEnd(parseInt(e.target.value) * (end - start));
-		setRevision(revision + 1);
-	};
-
-	// END OF FUNCTIONS FOR ADMIN VIEW PAGINATION LOGIC --Tony | Line 70 to 141
-
-	if (user?.role?.kind === "USER") {
-		return (
-			<>
-				<TabContext value={tabValue}>
-					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab
-							label="Inprocessing Tasks"
-							value="1"
-							data-testid="buttonInprocessingTasks"
-						/>
-						<Tab
-							label="Outprocessing Tasks"
-							value="2"
-							data-testid="buttonOutprocessingTasks"
-						/>
-						<Tab label="User Settings" value="3" />
-					</TabList>
-
-					<TabPanel value="1">
-						<TableContainer component={Paper}>
-							{userData.length > 0 && <UserTable alldata={userInData} />}
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="2">
-						<TableContainer component={Paper}>
-							{userData.length > 0 && <UserTable alldata={userOutData} />}
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="3">
-						<UserSettings settings={user} />
-					</TabPanel>
-				</TabContext>
-				{/* <Doughnut data={donutData} /> */}
-			</>
-		);
-	}
-	if (user?.role?.kind?.includes("ADMIN")) {
-		return (
-			<>
-				{/* <Doughnut data={donutData} />; */}
-				<TabContext value={tabValue}>
-					<TabList onChange={(e, nv) => setTabValue(nv)}>
-						<Tab
-							label="Inprocessing Tasks"
-							value="1"
-							data-testid="buttonInprocessingTasks"
-						/>
-						<Tab
-							label="Outprocessing Tasks"
-							value="2"
-							data-testid="buttonOutprocessingTasks"
-						/>
-						<Tab
-							label="User Settings"
-							value="3"
-							data-testid="buttonUserSettings"
-						/>
-						{/* <Tab label="Modify Admins" value="4" /> */}
-						<Tab label="Analytics" value="5" data-testid="buttonAnalytics" />
-					</TabList>
-
-					<TabPanel value="1">
-						<p>
-							Displaying {dataForAdminIn.slice(start, end).length} of{" "}
-							{dataForAdminIn.length} Inprocessing Tasks.
-						</p>
-						Page:{" "}
-						{adminInForLoop.map(idx => (
-							<Button
-								sx={{ minWidth: "10px" }}
-								key={idx}
-								onClick={changeInprocessPage}
-								value={idx + 1}
+						<TabPanel value="1">
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									m: "0 2rem"
+								}}
 							>
-								{idx + 1}
-							</Button>
-						))}
-						<TableContainer component={Paper}>
+								{userData.length > 0 && <UserTable data={userInData} />}
+							</Paper>
+						</TabPanel>
+
+						<TabPanel value="2">
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									m: "0 2rem"
+								}}
+							>
+								{userData.length > 0 && <UserTable data={userOutData} />}
+							</Paper>
+						</TabPanel>
+					</TabContext>
+				);
+			} else {
+				return (
+					<>
+						{userInData.length > 0 && (
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									alignContent: "center",
+									m: "0 2rem"
+								}}
+							>
+								{userData.length > 0 && <UserTable data={userInData} />}
+							</Paper>
+						)}
+						{userOutData.length > 0 && (
+							<Paper
+								sx={{
+									overflow: "hidden",
+									borderRadius: "6px",
+									m: "0 2rem"
+								}}
+							>
+								{userData.length > 0 && <UserTable data={userOutData} />}
+							</Paper>
+						)}
+					</>
+				);
+			}
+		} else if (user?.role?.kind?.includes("ADMIN")) {
+			return (
+				<TabContext value={tabValue}>
+					<TabList onChange={(e, nv) => setTabValue(nv)} sx={{ ml: "4rem" }}>
+						<Tab
+							label="Inprocessing Tasks"
+							value="1"
+							data-testid="buttonInprocessingTasks"
+						/>
+						<Tab
+							label="Outprocessing Tasks"
+							value="2"
+							data-testid="buttonOutprocessingTasks"
+						/>
+					</TabList>
+
+					<TabPanel value="1">
+						<Paper
+							sx={{
+								overflow: "hidden",
+								borderRadius: "6px",
+								m: "0 2rem"
+							}}
+						>
 							{dataForAdminIn.length > 0 && (
 								<AdminTable
 									key={revision}
 									data={dataForAdminIn}
-									start={start}
-									end={end}
-									revision={revision}
 									approverList={adminTaskApprovers}
 									kind={"IN_PROCESSING"}
 								/>
 							)}
-						</TableContainer>
+						</Paper>
 					</TabPanel>
 
 					<TabPanel value="2">
-						<p>
-							Displaying {dataForAdminOut.slice(start, end).length} of{" "}
-							{dataForAdminOut.length} Outprocessing Tasks.
-						</p>
-						{adminOutForLoop.map(idx => (
-							<Button
-								sx={{ minWidth: "10px" }}
-								key={idx}
-								onClick={changeOutprocessPage}
-								value={idx + 1}
-							>
-								{idx + 1}
-							</Button>
-						))}
-						<TableContainer component={Paper}>
+						<Paper
+							sx={{
+								overflow: "hidden",
+								borderRadius: "6px",
+								m: "0 2rem"
+							}}
+						>
 							{dataForAdminIn.length > 0 && (
 								<AdminTable
-									key={revision}
 									data={dataForAdminOut}
-									start={start}
-									end={end}
-									revision={revision}
 									approverList={adminTaskApprovers}
 									kind={"OUT_PROCESSING"}
 								/>
 							)}
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="3">
-						<UserSettings settings={user} />
-					</TabPanel>
-
-					<TabPanel value="4">
-						This is where I modify Admins.
-						<p>
-							This should show as a table view, where each row has a status and
-							can be toggled as complete or not. Clicking on a row might show
-							more info?
-						</p>
-						<TableContainer component={Paper}>
-							<ModifyAdminTable
-								data={
-									tabValue === "3"
-										? data?.filter(tasker => tasker.kind === "IN_PROCESSING")
-										: data?.filter(tasker => tasker.kind === "OUT_PROCESSING")
-								}
-							/>
-						</TableContainer>
-					</TabPanel>
-
-					<TabPanel value="5">
-						<TableContainer component={Paper}>
-							<Analytics user={user} />
-						</TableContainer>
+						</Paper>
 					</TabPanel>
 				</TabContext>
+			);
+		}
+	} else if (page === "Analytics") {
+		return (
+			<>
+				{user?.role?.kind?.includes("ADMIN") ? <Analytics user={user} /> : ""}
+			</>
+		);
+	} else if (page === "Settings") {
+		return <UserSettings settings={user} />;
+	} else {
+		// Generic View to Show if All Else Fails
+		return (
+			<>
+				<h2>This is a Default Catchall View</h2>
+				<p>Somehow authenticated but not as a viable role and made it here.</p>
 			</>
 		);
 	}
-
-	// Generic View to Show if All Else Fails
-	return (
-		<>
-			<h2>This is a Default Catchall View</h2>
-			<p>Somehow authenticated but not as a viable role and made it here.</p>
-		</>
-	);
 };
-
 export default Dashboard;

@@ -7,7 +7,6 @@ import { TaskAPI, UserAPI } from "#services/api";
 import styles from "./HtmlDecorator.module.css";
 
 // Third Party Components
-import { Link } from "react-router-dom";
 
 // MUI Components
 import {
@@ -22,15 +21,96 @@ import {
 	DialogActions,
 	DialogTitle,
 	DialogContentText,
-	Select,
-	MenuItem
+	MenuItem,
+	Slide,
+	Typography,
+	Divider
 } from "@mui/material";
+const Transition = React.forwardRef(function Transition(props, ref) {
+	return <Slide direction="up" ref={ref} {...props} />;
+});
+import { Delete } from "@mui/icons-material";
+import { Box } from "@mui/system";
 
-import { Delete, Star } from "@mui/icons-material";
-import { DeleteDialog, InfoDialog } from "#components";
+const DeleteDialog = ({ name, desc, id, handleDelete, theme }) => {
+	const [open, setOpen] = useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
+	const handleAgree = () => {
+		handleDelete(id);
+		setOpen(false);
+	};
+
+	return (
+		<div>
+			<Button onClick={handleClickOpen}>
+				<IconButton
+					aria-label="delete"
+					data-testid={`delete-button delete-button-${id}`}
+				>
+					<Delete />
+				</IconButton>
+			</Button>
+			<Dialog
+				open={open}
+				TransitionComponent={Transition}
+				keepMounted
+				onClose={handleClose}
+				aria-describedby="delete-dialog-description"
+				sx={{ borderTopRightRadius: "6px", borderTopLeftRadius: "6px" }}
+				PaperProps={{
+					sx: {
+						borderTopRightRadius: "6px",
+						borderTopLeftRadius: "6px",
+						p: 0,
+						m: 0
+					}
+				}}
+			>
+				<DialogTitle
+					sx={{
+						textAlign: "center",
+						borderTopRightRadius: "6px",
+						borderTopRightLeft: "6px",
+						color: theme.palette.gsb.text,
+						backgroundColor: theme.palette.gsb.background
+					}}
+				>
+					Delete Task
+				</DialogTitle>
+				<DialogContent>
+					<DialogContentText id="alert-dialog-slide-description">
+						<Typography variant="h4" sx={{ mt: 2, textAlign: "center" }}>
+							Are you sure you want to delete this task?
+						</Typography>
+						<Box sx={{ mt: 2 }}>
+							<Typography variant="h5">{name}</Typography>
+							<Typography variant="h6">{desc}</Typography>
+						</Box>
+					</DialogContentText>
+				</DialogContent>
+				<Divider />
+				<DialogActions>
+					<Button onClick={handleAgree} autoFocus>
+						Yes
+					</Button>
+					<Button onClick={handleClose}>No</Button>
+				</DialogActions>
+			</Dialog>
+		</div>
+	);
+};
 
 // Start of the AdminTableRow React Hook
-const AdminTableRow = ({ entry, setMessage, approverList }) => {
+const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
+	//console.log("admintablerow", entry);
 	const { user, setUser } = useContext(UserContext);
 
 	//START of AdminTableRow State
@@ -39,43 +119,11 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	const [oldTitle, setOldTitle] = useState(entry.title);
 	const [taskDesc, setTaskDesc] = useState(entry.description);
 	const [oldDesc, setOldDesc] = useState(entry.description);
-
-	const [pocName, setPocName] = useState(
-		entry.approver.firstName + " " + entry.approver.lastName
-	);
 	const [taskKind, setTaskKind] = useState(entry.kind);
-	const [pocID, setPocID] = useState(entry.approver.id);
-	const [pocPhone, setPocPhone] = useState(`${entry.approver.dsn}`);
-	const [pocEmail, setPocEmail] = useState(`${entry.approver.email}`);
+	const [poc, setPoc] = useState(entry?.approver);
 	// END of AdminTableRow State
 
-	// START of Dialog Boxes State -- see Jelani
-	const [open, setOpen] = useState(false);
-	const [delete_open, delete_setOpen] = useState(false);
-	const [info_open, info_setOpen] = useState(false);
-	// END of Dialog Boxes State
-
-	const handleChange = event => {
-		console.log(`Switch has been changed id ${entry.id}`);
-		setIsActive(event.target.vlue);
-	};
-
-	const delete_handleClickOpen = () => {
-		delete_setOpen(true);
-	};
-
-	const handleClose = () => {
-		delete_setOpen(false);
-		info_setOpen(false);
-		setOpen(false);
-	};
-
-	const info_handleClickOpen = () => {
-		info_setOpen(true);
-	};
 	var updatedAt = new Date(entry.updatedAt);
-	//const DeleteDialogProps = { delete_open, handleClose, entry };
-	//const InfoDialogProps = { info_open, handleClose, entry };
 
 	const handleDelete = value => {
 		const deleteTask = new TaskAPI();
@@ -128,29 +176,32 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			if (taskTitle !== oldTitle)
-				handlePut(JSON.stringify({ title: taskTitle }));
+			if (taskTitle !== oldTitle) handlePut({ title: taskTitle });
 		}, 1000);
 		return () => clearTimeout(timer);
 	}, [taskTitle]);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			if (taskDesc !== oldDesc)
-				handlePut(JSON.stringify({ description: taskDesc }));
+			if (taskDesc !== oldDesc) handlePut({ description: taskDesc });
 		}, 1000);
 		return () => clearTimeout(timer);
 	}, [taskDesc]);
 
-	const updatePocID = e => {
-		setPocID(parseInt(e.target.value));
-		let raw = {
-			approverID: e.target.value
-		};
-		handlePut(raw);
+	const updatePoc = e => {
+		e.preventDefault();
+		console.log("update POC", e.target.value, poc.id);
+		const newPOC = parseInt(e.target.value);
+		if (parseInt(poc.id) !== parseInt(e.target.value)) {
+			handlePut({
+				approverID: parseInt(e.target.value)
+			});
+			setPoc(newPOC);
+		}
 	};
 
 	const updateIsActive = e => {
+		e.preventDefault();
 		let raw = {
 			isActive: !isActive
 		};
@@ -159,170 +210,106 @@ const AdminTableRow = ({ entry, setMessage, approverList }) => {
 	};
 
 	return (
-		<>
-			{/* <DeleteDialog dialogDetails={dialogDetails} /> */}
-			{/* modal for delete(trash can icon) */}
-			<Dialog open={delete_open} onClose={handleClose}>
-				<DialogTitle id="delete-modal">
-					{`Are you sure you want to delete ${entry.title}`}
-				</DialogTitle>
-				<DialogContentText id="delete-dialog-description">
-					You will not be able to reset this deletion
-				</DialogContentText>
-				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleClose} autoFocus>
-						Delete
-					</Button>
-				</DialogActions>
-			</Dialog>
-			<Dialog open={info_open} onClose={handleClose}>
-				<DialogTitle id="more-info-modal">{`${entry.title}`}</DialogTitle>
-				<DialogContentText id="info-dialog-description-task-type">
-					{`${entry.task_type}`}
-				</DialogContentText>
-				<DialogContentText id="info-dialog-Space">
-					{
-						"------------------------------------------------------------------------------------------"
-					}
-				</DialogContentText>
-				<DialogContentText id="info-dialog-POC-Owner">
-					{`POC: ${entry.approver}------Unit Owner: ${entry.owner}
-					`}
-					{""}
-				</DialogContentText>
-				<DialogContentText id="info-dialog-Space">
-					{
-						"------------------------------------------------------------------------------------------"
-					}
-				</DialogContentText>
-				<DialogContentText id="info-dialog-description-">
-					{`${entry.description}`}
-				</DialogContentText>
-				<DialogContentText id="info-dialog-Space">
-					{
-						"------------------------------------------------------------------------------------------"
-					}
-				</DialogContentText>
-				<DialogContentText id="info-dialog-date">
-					{`${
-						updatedAt.getUTCMonth() + 1
-					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
-				</DialogContentText>
-
-				<DialogActions>
-					<Button onClick={handleClose}>Exit</Button>
-				</DialogActions>
-			</Dialog>
-			{/* <Dialog open={open} onClose={handleClose}>
-				<DialogContent>
-					<DialogContentText id="alert-dialog-description">
-						More Info Coming
-					</DialogContentText>
-				</DialogContent>
-			</Dialog> */}
-			<TableRow>
-				<TableCell>
-					<Switch
-						checked={isActive}
-						name="isActive"
-						value={isActive}
-						onChange={updateIsActive}
-					/>
-				</TableCell>
-				<TableCell>
+		<TableRow
+			hover
+			role="checkbox"
+			tabIndex={-1}
+			sx={{
+				"&.MuiTableRow-root:hover": {
+					backgroundColor: theme.palette.hover.table
+				}
+			}}
+		>
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				<Switch
+					checked={isActive}
+					name="isActive"
+					value={isActive}
+					onChange={updateIsActive}
+				/>
+			</TableCell>
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				<TextField
+					size="small"
+					value={taskTitle}
+					sx={{ width: "30ch" }}
+					onChange={e => setTaskTitle(e.target.value)}
+				/>
+			</TableCell>
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				<TextField
+					size="small"
+					value={taskDesc}
+					sx={{ width: "45ch" }}
+					onChange={e => setTaskDesc(e.target.value)}
+				/>
+			</TableCell>
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				<div>
 					<TextField
-						size="small"
-						value={taskTitle}
-						sx={{ width: "30ch" }}
-						onChange={e => setTaskTitle(e.target.value)}
-					/>
-				</TableCell>
-				<TableCell>
-					<TextField
-						size="small"
-						value={taskDesc}
-						sx={{ width: "45ch" }}
-						onChange={e => setTaskDesc(e.target.value)}
-					/>
-				</TableCell>
-				<TableCell>
-					<Select
-						value={pocID}
-						onChange={updatePocID}
-						sx={{ width: "20ch" }}
-						name="pocID"
+						id="outlined-select-poc"
+						select
+						label="POC Name"
+						value={`${poc.id}`}
+						onChange={updatePoc}
+						sx={{ width: "40ch" }}
 					>
 						{approverList.length > 0 &&
-							approverList.map((approver, idx) => (
-								<MenuItem key={idx} value={approver.id}>
+							approverList.map(approver => (
+								<MenuItem key={approver.id} value={`${approver.id}`}>
 									{approver.firstName} {approver.lastName}
 								</MenuItem>
 							))}
-					</Select>
-				</TableCell>
-				<TableCell>
-					<TextField
-						size="small"
-						value={pocPhone}
-						sx={{ width: "25ch" }}
-						variant="standard"
-						disabled
-					/>
-				</TableCell>
-				<TableCell>
-					{/* <TextField size="small" value={pocEmail} sx={{ width: "25ch" }} /> */}
-					<a
-						href={`mailto:${pocEmail}?subject=Regarding Task #${entry.id}: ${
-							entry.title
-						}&body=Task #${
-							entry.id
-						}, ${taskTitle}%0D%0A%0D%0A Description: ${taskDesc} %0D%0A%0D%0A Task is Active: ${isActive} %0D%0A%0D%0A Task Type: ${taskKind
-							.toLowerCase()
-							.replace(
-								"_",
-								" "
-							)} %0D%0A%0D%0A ...begin Email here %0D%0A%0D%0A %0D%0A%0D%0A %0D%0A%0D%0A Regards, %0D%0A%0D%0A ${
-							user.firstName
-						} ${user.lastName} %0D%0A ${user.role.kind.replace(
+					</TextField>
+				</div>
+			</TableCell>
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				<TextField
+					size="small"
+					value={poc.dsn}
+					sx={{ width: "25ch" }}
+					variant="standard"
+					disabled
+				/>
+			</TableCell>
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				<a
+					href={`mailto:${poc.email}?subject=Regarding Task #${entry.id}: ${
+						entry.title
+					}&body=Task #${
+						entry.id
+					}, ${taskTitle}%0D%0A%0D%0A Description: ${taskDesc} %0D%0A%0D%0A Task is Active: ${isActive} %0D%0A%0D%0A Task Type: ${taskKind
+						.toLowerCase()
+						.replace(
 							"_",
 							" "
-						)}&from={user.email}`}
-						className={styles.mail}
-					>
-						{pocEmail}
-					</a>
-				</TableCell>
-				<TableCell>
-					{`${
-						updatedAt.getUTCMonth() + 1
-					} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
-				</TableCell>
-				<TableCell>
-					<IconButton
-						aria-label="info"
-						onClick={() => {
-							info_handleClickOpen();
-							console.log(`Info Request id ${entry.id}`);
-						}}
-					>
-						<Star />
-					</IconButton>
-				</TableCell>
-				<TableCell>
-					<IconButton
-						aria-label="delete"
-						onClick={e => {
-							//delete_handleClickOpen();
-							handleDelete(entry.id);
-						}}
-						data-testid={`delete-button delete-button-${entry.id}`}
-					>
-						<Delete />
-					</IconButton>
-				</TableCell>
-			</TableRow>
-		</>
+						)} %0D%0A%0D%0A ...begin Email here %0D%0A%0D%0A %0D%0A%0D%0A %0D%0A%0D%0A Regards, %0D%0A%0D%0A ${
+						user.firstName
+					} ${user.lastName} %0D%0A ${user.role.kind.replace(
+						"_",
+						" "
+					)}&from={user.email}`}
+					className={styles.mail}
+				>
+					{poc.email}
+				</a>
+			</TableCell>
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				{`${
+					updatedAt.getUTCMonth() + 1
+				} - ${updatedAt.getUTCDate()} - ${updatedAt.getUTCFullYear()}`}
+			</TableCell>
+
+			<TableCell sx={{ p: "10px 4.5px" }}>
+				<DeleteDialog
+					id={entry.id}
+					name={taskTitle}
+					desc={taskDesc}
+					handleDelete={handleDelete}
+					theme={theme}
+				/>
+			</TableCell>
+		</TableRow>
 	);
 };
 export default AdminTableRow;

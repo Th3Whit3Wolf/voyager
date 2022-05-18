@@ -13,6 +13,7 @@ const UnitController = new Controller("Unit", {
 				name: true,
 				abbrev: true,
 				function: true,
+				img: true,
 				assignedUsers: {
 					select: {
 						id: true,
@@ -55,7 +56,24 @@ const UnitController = new Controller("Unit", {
 								description: true,
 								isActive: true,
 								kind: true,
-								approver: true,
+								approver: {
+									select: {
+										id: true,
+										firstName: true,
+										lastName: true,
+										email: true,
+										dsn: true,
+										assignedOfficeSymbol: true,
+										assignedUnit: {
+											select: {
+												name: true,
+												abbrev: true,
+												function: true,
+												img: true
+											}
+										}
+									}
+								},
 								createdAt: true,
 								updatedAt: true
 							}
@@ -74,10 +92,20 @@ const UnitController = new Controller("Unit", {
 										kind: true,
 										approver: {
 											select: {
+												id: true,
 												firstName: true,
 												lastName: true,
 												email: true,
-												dsn: true
+												dsn: true,
+												assignedOfficeSymbol: true,
+												assignedUnit: {
+													select: {
+														name: true,
+														abbrev: true,
+														function: true,
+														img: true
+													}
+												}
 											}
 										},
 										assigner: {
@@ -97,6 +125,7 @@ const UnitController = new Controller("Unit", {
 								},
 								createdAt: true,
 								updatedAt: true,
+								dueDate: true,
 								completedAt: true
 							}
 						}
@@ -144,7 +173,24 @@ const UnitController = new Controller("Unit", {
 								description: true,
 								isActive: true,
 								kind: true,
-								approver: true,
+								approver: {
+									select: {
+										id: true,
+										firstName: true,
+										lastName: true,
+										email: true,
+										dsn: true,
+										assignedOfficeSymbol: true,
+										assignedUnit: {
+											select: {
+												name: true,
+												abbrev: true,
+												function: true,
+												img: true
+											}
+										}
+									}
+								},
 								createdAt: true,
 								updatedAt: true
 							}
@@ -163,10 +209,20 @@ const UnitController = new Controller("Unit", {
 										kind: true,
 										approver: {
 											select: {
+												id: true,
 												firstName: true,
 												lastName: true,
 												email: true,
-												dsn: true
+												dsn: true,
+												assignedOfficeSymbol: true,
+												assignedUnit: {
+													select: {
+														name: true,
+														abbrev: true,
+														function: true,
+														img: true
+													}
+												}
 											}
 										},
 										assigner: {
@@ -186,6 +242,7 @@ const UnitController = new Controller("Unit", {
 								},
 								createdAt: true,
 								updatedAt: true,
+								dueDate: true,
 								completedAt: true
 							}
 						}
@@ -197,6 +254,7 @@ const UnitController = new Controller("Unit", {
 						name: true,
 						abbrev: true,
 						function: true,
+						img: true,
 						assignedUsers: true,
 						gainingUsers: true
 					}
@@ -207,6 +265,7 @@ const UnitController = new Controller("Unit", {
 						name: true,
 						abbrev: true,
 						function: true,
+						img: true,
 						assignedUsers: true,
 						gainingUsers: true
 					}
@@ -217,6 +276,7 @@ const UnitController = new Controller("Unit", {
 						name: true,
 						abbrev: true,
 						function: true,
+						img: true,
 						assignedUsers: true,
 						gainingUsers: true
 					}
@@ -227,6 +287,7 @@ const UnitController = new Controller("Unit", {
 						name: true,
 						abbrev: true,
 						function: true,
+						img: true,
 						assignedUsers: true,
 						gainingUsers: true
 					}
@@ -237,6 +298,7 @@ const UnitController = new Controller("Unit", {
 						name: true,
 						abbrev: true,
 						function: true,
+						img: true,
 						assignedUsers: true,
 						gainingUsers: true
 					}
@@ -247,6 +309,7 @@ const UnitController = new Controller("Unit", {
 						name: true,
 						abbrev: true,
 						function: true,
+						img: true,
 						assignedUsers: true,
 						gainingUsers: true
 					}

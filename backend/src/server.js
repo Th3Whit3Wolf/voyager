@@ -55,6 +55,9 @@ if (NODE_ENV === "production") {
 		res.header({
 			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
 		});
+		res.header({
+			"Cross-Origin-Resource-Policy": "same-site"
+		});
 		next();
 	});
 }
