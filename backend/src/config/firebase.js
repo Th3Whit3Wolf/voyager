@@ -1,19 +1,32 @@
 import admin from "firebase-admin";
-import { createRequire } from "module";
 
-const require = createRequire(import.meta.url);
-const { FIREBASE_VOYAGER_SERVICE_ACCOUNT } = process.env;
+const {
+	FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID,
+	FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY,
+	FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL,
+	FIREBASE_SERVICE_ACCOUNT_CLIENT_ID,
+	FIREBASE_SERVICE_ACCOUNT_AUTH_URI,
+	FIREBASE_SERVICE_ACCOUNT_TOKEN_URI,
+	FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL,
+	FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL
+} = process.env;
 
-let cert;
-
-try {
-	cert = require("/app/src/config/accountService.json");
-} catch {
-	cert = JSON.parse(FIREBASE_VOYAGER_SERVICE_ACCOUNT);
-}
+const serviceAccount = {
+	type: "service_account",
+	project_id: "bsdi-capstone",
+	private_key_id: FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID,
+	private_key: FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY.replace(/\\n/g, "\n"),
+	client_email: FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL,
+	client_id: FIREBASE_SERVICE_ACCOUNT_CLIENT_ID,
+	auth_uri: FIREBASE_SERVICE_ACCOUNT_AUTH_URI,
+	token_uri: FIREBASE_SERVICE_ACCOUNT_TOKEN_URI,
+	auth_provider_x509_cert_url:
+		FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL,
+	client_x509_cert_url: FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL
+};
 
 admin.initializeApp({
-	credential: admin.credential.cert(cert)
+	credential: admin.credential.cert(serviceAccount)
 });
 
 export default admin;
