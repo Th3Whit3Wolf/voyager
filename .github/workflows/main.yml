@@ -63,90 +63,90 @@ jobs:
           if (( $BACKEND > 0)); then echo "::set-output name=backend::true"; fi
           if (( $FRONTEND > 0)); then echo "::set-output name=frontend::true"; fi
 
-  # This workflow kicks off the build and test for the Frontend
-  frontend-build-and-test:
-    name: Build and Test Frontend
-    runs-on: ubuntu-latest
-    needs: [check_files]
-    if: ${{ github.event_name == 'push' || needs.check_files.outputs.frontend == 'true' }}
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: Build Frontend
-        run: |
-          docker build -t capstone-ui ./frontend
-      - name: Test Frontend
-        run: |
-          docker run -e CI=true capstone-ui npm run test
+  # # This workflow kicks off the build and test for the Frontend
+  # frontend-build-and-test:
+  #   name: Build and Test Frontend
+  #   runs-on: ubuntu-latest
+  #   needs: [check_files]
+  #   if: ${{ github.event_name == 'push' || needs.check_files.outputs.frontend == 'true' }}
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v3
+  #     - name: Build Frontend
+  #       run: |
+  #         docker build -t capstone-ui ./frontend
+  #     - name: Test Frontend
+  #       run: |
+  #         docker run -e CI=true capstone-ui npm run test
 
-  # This workflow kicks off the build and test for the Backend
-  backend-build-and-test:
-    name: Build and Test Backend
-    runs-on: ubuntu-latest
-    needs: [check_files]
-    if: ${{ github.event_name == 'push' || needs.check_files.outputs.backend == 'true' }}
-    services:
-      postgres:
-        image: postgres:14-alpine
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: postgres
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: Install Node v16
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: "npm"
-          cache-dependency-path: backend/package-lock.json
+  # # This workflow kicks off the build and test for the Backend
+  # backend-build-and-test:
+  #   name: Build and Test Backend
+  #   runs-on: ubuntu-latest
+  #   needs: [check_files]
+  #   if: ${{ github.event_name == 'push' || needs.check_files.outputs.backend == 'true' }}
+  #   services:
+  #     postgres:
+  #       image: postgres:14-alpine
+  #       env:
+  #         POSTGRES_USER: postgres
+  #         POSTGRES_DB: postgres
+  #         POSTGRES_PASSWORD: postgres
+  #       ports:
+  #         - 5432:5432
+  #       options: >-
+  #         --health-cmd pg_isready
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v3
+  #     - name: Install Node v16
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #         cache: "npm"
+  #         cache-dependency-path: backend/package-lock.json
 
-      - run: npm --prefix backend install
-      - name: Build Backend
-        run: |
-          docker build \
-          -t capstone-api \
-          ./backend
-      - name: Migrate Database
-        working-directory: backend
-        run: |
-          pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
-          node -v
-          export DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres"
-          npm run db:testMigration
-          npm run db:seed
+  #     - run: npm --prefix backend install
+  #     - name: Build Backend
+  #       run: |
+  #         docker build \
+  #         -t capstone-api \
+  #         ./backend
+  #     - name: Migrate Database
+  #       working-directory: backend
+  #       run: |
+  #         pg_isready -d postgres -h 172.17.0.1 -p 5432 -U postgres
+  #         node -v
+  #         export DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres"
+  #         npm run db:testMigration
+  #         npm run db:seed
 
-      - name: Test Backend
-        run: |
-          docker run \
-          -e CI=true \
-          -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
-          -e FIREBASE_SERVICE_ACCOUNT="${FIREBASE_SERVICE_ACCOUNT}" \
-          -e FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID="${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID}" \
-          -e FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY="${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY}" \
-          -e FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL="${FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL}" \
-          -e FIREBASE_SERVICE_ACCOUNT_CLIENT_ID="${FIREBASE_SERVICE_ACCOUNT_CLIENT_ID}" \
-          -e FIREBASE_SERVICE_ACCOUNT_AUTH_URI="${FIREBASE_SERVICE_ACCOUNT_AUTH_URI}" \
-          -e FIREBASE_SERVICE_ACCOUNT_TOKEN_URI="${FIREBASE_SERVICE_ACCOUNT_TOKEN_URI}" \
-          -e FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL="${FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL}" \
-          -e FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL="${FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL}" \
-          -e TEST_EMAIL="${TEST_EMAIL}" \
-          -e TEST_PASSWORD="${TEST_EMAIL}" \
-          -e VITE_REACT_APP_FIREBASE_API_KEY="${REACT_APP_FIREBASE_API_KEY}" \
-          -e VITE_REACT_APP_FIREBASE_AUTH_DOMAIN="${REACT_APP_FIREBASE_AUTH_DOMAIN}" \
-          -e VITE_REACT_APP_FIREBASE_PROJECT_ID="${REACT_APP_FIREBASE_PROJECT_ID}" \
-          -e VITE_REACT_APP_FIREBASE_STORAGE_BUCKET="${REACT_APP_FIREBASE_STORAGE_BUCKET}" \
-          -e VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID="${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}" \
-          -e VITE_REACT_APP_FIREBASE_APP_ID="${REACT_APP_FIREBASE_APP_ID}" \
-          capstone-api npm run test
+  #     - name: Test Backend
+  #       run: |
+  #         docker run \
+  #         -e CI=true \
+  #         -e DATABASE_URL="postgres://postgres:postgres@172.17.0.1:5432/postgres" \
+  #         -e FIREBASE_SERVICE_ACCOUNT="${FIREBASE_SERVICE_ACCOUNT}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID="${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY="${FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL="${FIREBASE_SERVICE_ACCOUNT_CLIENT_EMAIL}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_CLIENT_ID="${FIREBASE_SERVICE_ACCOUNT_CLIENT_ID}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_AUTH_URI="${FIREBASE_SERVICE_ACCOUNT_AUTH_URI}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_TOKEN_URI="${FIREBASE_SERVICE_ACCOUNT_TOKEN_URI}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL="${FIREBASE_SERVICE_ACCOUNT_AUTH_PROVIDER_X509_CERT_URL}" \
+  #         -e FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL="${FIREBASE_SERVICE_ACCOUNT_CLIENT_PROVIDER_X509_CERT_URL}" \
+  #         -e TEST_EMAIL="${TEST_EMAIL}" \
+  #         -e TEST_PASSWORD="${TEST_EMAIL}" \
+  #         -e VITE_REACT_APP_FIREBASE_API_KEY="${REACT_APP_FIREBASE_API_KEY}" \
+  #         -e VITE_REACT_APP_FIREBASE_AUTH_DOMAIN="${REACT_APP_FIREBASE_AUTH_DOMAIN}" \
+  #         -e VITE_REACT_APP_FIREBASE_PROJECT_ID="${REACT_APP_FIREBASE_PROJECT_ID}" \
+  #         -e VITE_REACT_APP_FIREBASE_STORAGE_BUCKET="${REACT_APP_FIREBASE_STORAGE_BUCKET}" \
+  #         -e VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID="${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}" \
+  #         -e VITE_REACT_APP_FIREBASE_APP_ID="${REACT_APP_FIREBASE_APP_ID}" \
+  #         capstone-api npm run test
 
   # This workflow kicks off the linter for Frontend.
   frontend-linter:
@@ -245,8 +245,8 @@ jobs:
   # This workflow kicks off the deployment to Heroku
   backend-deploy-to-heroku:
     name: Deploy Backend to Heroku
-    needs: [check_files, end-to-end-test]
-    if: ${{ github.event_name == 'push' || needs.check_files.outputs.backend == 'true' }}
+    needs: [check_files] #, end-to-end-test]
+    if: ${{ github.event_name == 'push' }} #|| needs.check_files.outputs.backend == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -264,8 +264,8 @@ jobs:
   # This workflow kicks off the deployment to Heroku
   frontend-deploy-to-heroku:
     name: Deploy Frontend to Heroku
-    needs: [check_files, end-to-end-test]
-    if: ${{ github.event_name == 'push' || needs.check_files.outputs.frontend == 'true' }}
+    needs: [check_files] #, end-to-end-test]
+    if: ${{ github.event_name == 'push' }} #|| needs.check_files.outputs.frontend == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
