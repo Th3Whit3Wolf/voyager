@@ -42,6 +42,8 @@ app.use(log);
 if (NODE_ENV === "production") {
 	app.use(
 		cors({
+			origin: "same-site",
+			allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
 			methods: ["GET", "PUT", "POST", "DELETE"]
 		})
 	);
