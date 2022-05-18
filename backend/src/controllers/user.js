@@ -51,6 +51,7 @@ const UserController = new Controller("User", {
 						kind: true,
 						approver: {
 							select: {
+								id: true,
 								firstName: true,
 								lastName: true,
 								email: true,
@@ -84,6 +85,7 @@ const UserController = new Controller("User", {
 								kind: true,
 								approver: {
 									select: {
+										id: true,
 										firstName: true,
 										lastName: true,
 										email: true,

@@ -58,6 +58,7 @@ const UnitController = new Controller("Unit", {
 								kind: true,
 								approver: {
 									select: {
+										id: true,
 										firstName: true,
 										lastName: true,
 										email: true,
@@ -91,6 +92,7 @@ const UnitController = new Controller("Unit", {
 										kind: true,
 										approver: {
 											select: {
+												id: true,
 												firstName: true,
 												lastName: true,
 												email: true,
@@ -172,6 +174,7 @@ const UnitController = new Controller("Unit", {
 								kind: true,
 								approver: {
 									select: {
+										id: true,
 										firstName: true,
 										lastName: true,
 										email: true,
@@ -205,6 +208,7 @@ const UnitController = new Controller("Unit", {
 										kind: true,
 										approver: {
 											select: {
+												id: true,
 												firstName: true,
 												lastName: true,
 												email: true,
