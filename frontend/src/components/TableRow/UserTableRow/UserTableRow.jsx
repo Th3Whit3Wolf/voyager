@@ -113,7 +113,11 @@ const MoreInfoDialog = ({
 								</Typography>
 								{pocName}
 								<br />
-								{`Unit: ${assignedUnit?.abbrev}/${assignedOfficeSymbol}`}
+								{`Unit: ${
+									assignedUnit.abbrev !== null
+										? assignedUnit.abbrev
+										: assignedUnit.name
+								}/${assignedOfficeSymbol}`}
 								<br />
 								{`DSN: ${pocDSN}`}
 								<br />
