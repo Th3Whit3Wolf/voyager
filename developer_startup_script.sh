@@ -1,3 +1,4 @@
+#!/bin/bash
 rm -rf pg-data
 cd frontend
 npm install
@@ -6,5 +7,6 @@ npm install
 cd ..
 npm run docker:up
 cd backend
-npm run db:reset
+yes | npm run db:reset
 cd ..
+open http://localhost:3000
