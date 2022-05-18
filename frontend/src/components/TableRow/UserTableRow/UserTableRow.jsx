@@ -8,26 +8,18 @@ import {
 	Checkbox,
 	Dialog,
 	DialogContent,
-	DialogContentText,
 	Grid,
 	IconButton,
 	Button,
-	DialogActions,
 	DialogTitle,
-	Stack,
 	Slide,
 	Typography,
-	Box,
-	Card,
-	CardMedia,
-	Toolbar,
-	Divider
+	Box
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
 
-import { Info, Email, Phone } from "@mui/icons-material";
+import { Info } from "@mui/icons-material";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -90,45 +82,46 @@ const MoreInfoDialog = ({
 				>
 					{title}
 				</DialogTitle>
-				<DialogContent>
-					<DialogContentText id="info-dialog-description">
-						<Grid container rowSpacing={1} columnSpacing={1}>
-							<Grid item xs={3}>
-								<Box
-									component="img"
-									sx={{ height: "90%", mt: 2 }}
-									alt={`${assignedUnit?.name} patch`}
-									src={
-										import.meta.env.PROD
-											? `https://dashboard.heroku.com/apps/bsdi1-voyager-backend${img}`
-											: `http://localhost:8081${img}`
-									}
-								/>
-							</Grid>
-							<Grid item xs={1}></Grid>
-							<Grid item xs={8}>
-								<Box>
-									<Typography variant="h5" sx={{ mt: 2 }}>
-										Description:
-									</Typography>
-									{description}
-									<br />
-									<Typography variant="h5" sx={{ mt: 1 }}>
-										POC:
-									</Typography>
-									{pocName}
-									<br />
-									{`Unit: ${assignedUnit?.abbrev}/${assignedOfficeSymbol}`}
-									<br />
-									{`DSN: ${pocDSN}`}
-									<br />
-									{`Email: ${pocEmail}`}
-								</Box>
-							</Grid>
+				<DialogContent sx={{ m: 0, pl: 0, pb: 0 }}>
+					<Grid container>
+						<Grid item sx={{ m: 0, p: 0 }}>
+							<Box
+								component="img"
+								sx={{
+									m: 0,
+									minWidth: "128px",
+									minHeight: "170px",
+									p: "1rem"
+								}}
+								alt={`${assignedUnit?.name} patch`}
+								src={
+									import.meta.env.PROD
+										? `https://dashboard.heroku.com/apps/bsdi1-voyager-backend${img}`
+										: `http://localhost:8081${img}`
+								}
+							/>
 						</Grid>
-					</DialogContentText>
+						<Grid item>
+							<Box lineHeight={1}>
+								<Typography variant="h5" sx={{ mt: 2 }}>
+									Description:
+								</Typography>
+								{description}
+								<br />
+								<Typography variant="h5" sx={{ mt: 1 }}>
+									POC:
+								</Typography>
+								{pocName}
+								<br />
+								{`Unit: ${assignedUnit?.abbrev}/${assignedOfficeSymbol}`}
+								<br />
+								{`DSN: ${pocDSN}`}
+								<br />
+								{`Email: ${pocEmail}`}
+							</Box>
+						</Grid>
+					</Grid>
 				</DialogContent>
-				<DialogActions></DialogActions>
 			</Dialog>
 		</div>
 	);
@@ -144,7 +137,7 @@ const UserTableRow = ({ entry, theme }) => {
 		entry.completedAt === null ? false : true
 	);
 	const [taskUpdated, setTaskUpdated] = useState(new Date(entry.updatedAt));
-
+	console.log("TASK", entry);
 	const handleOnChange = e => {
 		if (e.target.value === "false" || e.target.value === "true") {
 			const updateUserTask = new TaskUserAPI();
@@ -217,6 +210,7 @@ const UserTableRow = ({ entry, theme }) => {
 						  })
 						: null}
 				</TableCell>
+
 				<TableCell sx={{ p: "10px 4.5px" }}>
 					{entry?.task?.approver?.firstName} {entry?.task?.approver?.lastName}
 				</TableCell>
