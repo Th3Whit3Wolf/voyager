@@ -80,8 +80,16 @@ const Header = () => {
 						</h6>
 					)}
 				</Container>
-				<Grid container spacing={2} sx={{ p: "0 0.25rem" }}>
-					<Grid xs={3} item></Grid>
+				<Grid
+					container
+					spacing={1}
+					sx={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "flex-end",
+						p: "0 0.5rem"
+					}}
+				>
 					<Grid xs={6} item>
 						{user?.assignedUnit && (
 							<Box
@@ -101,10 +109,10 @@ const Header = () => {
 							sx={{
 								display: "flex",
 								flexDirection: "row",
-								justifyContent: "space-between",
+								justifyContent: "flex-end",
 								color: theme.palette.gsb.text,
-								pr: "5%",
-								alignItems: "center"
+								alignItems: "center",
+								pr: "10%"
 							}}
 						>
 							<Button
