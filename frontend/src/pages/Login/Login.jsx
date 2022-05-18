@@ -76,7 +76,6 @@ const Login = () => {
 								}
 							})
 							.catch(err => console.error(err))
-							.finally(setIsLoading(false));
 					});
 					// ...
 				})
@@ -84,7 +83,9 @@ const Login = () => {
 					const errorCode = error.code;
 					const errorMessage = error.message;
 					console.log({ errorCode }, { errorMessage });
-				});
+				})
+				.finally(setIsLoading(false));
+
 		}
 	};
 
