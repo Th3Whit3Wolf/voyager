@@ -34,6 +34,7 @@ app.use(
 			maxAge: 1000 * 60 * 60 * 24 /* one day */,
 			secure: NODE_ENV === "production"
 		},
+		proxy : true,
 		resave: false
 	})
 );
