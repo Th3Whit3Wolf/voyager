@@ -58,12 +58,13 @@ app.use(log);
 app.disable("x-powered-by");
 if (NODE_ENV === "production") {
 	app.use(
-		cors({
-			origin: "https://bsdi1-voyager-frontend.herokuapp.com",
-			allowedHeaders:
-				"Origin, X-Requested-With, Content-Type, Accept, Authorization",
-			methods: ["GET", "PUT", "POST", "DELETE"]
-		})
+		cors()
+		// cors({
+		// 	origin: "https://bsdi1-voyager-frontend.herokuapp.com",
+		// 	allowedHeaders:
+		// 		"Origin, X-Requested-With, Content-Type, Accept, Authorization",
+		// 	methods: ["GET", "PUT", "POST", "DELETE"]
+		// })
 	);
 } else {
 	app.use((req, res, next) => {
