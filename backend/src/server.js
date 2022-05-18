@@ -2,7 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 
 import session from "express-session";
-import helmet from "helmet";
+// import helmet from "helmet";
 import actuator from "express-actuator";
 import expressPino from "express-pino-logger";
 import cors from "cors";
@@ -16,22 +16,22 @@ const log = expressPino({
 	logger
 });
 
-app.use(
-	helmet.contentSecurityPolicy({
-		useDefaults: false,
-		directives: {
-			defaultSrc: ["'self'"],
-			scriptSrc: [
-				"'self'",
-				"https://bsdi1-voyager-frontend.herokuapp.com"
-			],
-			objectSrc: ["'none'"],
-			upgradeInsecureRequests: []
-		}
-	})
-);
+// app.use(
+// 	helmet.contentSecurityPolicy({
+// 		useDefaults: false,
+// 		directives: {
+// 			defaultSrc: ["'self'"],
+// 			scriptSrc: [
+// 				"'self'",
+// 				"https://bsdi1-voyager-frontend.herokuapp.com"
+// 			],
+// 			objectSrc: ["'none'"],
+// 			upgradeInsecureRequests: []
+// 		}
+// 	})
+// );
 
-app.use(helmet({ crossOriginResourcePolicy: { policy: "same-origin" } }));
+// app.use(helmet({ crossOriginResourcePolicy: { policy: "same-origin" } }));
 app.use(cookieParser());
 app.use(
 	actuator({
@@ -55,6 +55,7 @@ app.use(
 );
 app.use(log);
 
+app.disable("x-powered-by");
 if (NODE_ENV === "production") {
 	app.use(
 		cors({
