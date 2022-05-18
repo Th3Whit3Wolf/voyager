@@ -256,7 +256,10 @@ const AdminTableRow = ({ entry, setMessage, approverList, theme }) => {
 					>
 						{approverList.length > 0 &&
 							approverList.map(approver => (
-								<MenuItem key={approver.id} value={approver}>
+								<MenuItem
+									key={approver.id}
+									value={`${approver.firstName} ${approver.lastName}`}
+								>
 									{approver.firstName} {approver.lastName}
 								</MenuItem>
 							))}
