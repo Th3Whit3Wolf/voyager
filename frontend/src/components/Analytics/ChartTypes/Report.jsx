@@ -233,14 +233,12 @@ const Report = ({ dataset }) => {
 			});
 
 			let returnTemp = [];
-			let nos = [];
-			let com = [];
 			temp.forEach((entry, idx) => {
 				let nos = entry.filter(word => word === "NOT_STARTED").length;
 				let com = entry.filter(word => word === "COMPLETED").length;
 
 				returnTemp.push({
-					name: idx,
+					name: idx + 1,
 					"NOT STARTED": nos,
 					COMPLETED: com,
 					person: temp2[idx],
@@ -265,14 +263,12 @@ const Report = ({ dataset }) => {
 			});
 
 			let returnTemp = [];
-			let nos = [];
-			let com = [];
 			temp.forEach((entry, idx) => {
 				let nos = entry.filter(word => word === "NOT_STARTED").length;
 				let com = entry.filter(word => word === "COMPLETED").length;
 
 				returnTemp.push({
-					name: idx,
+					name: idx + 1,
 					"NOT STARTED": nos,
 					COMPLETED: com,
 					person: temp2[idx],
@@ -298,14 +294,12 @@ const Report = ({ dataset }) => {
 			});
 
 			let returnTemp = [];
-			let nos = [];
-			let com = [];
 			temp.forEach((entry, idx) => {
 				let nos = entry.filter(word => word === "NOT_STARTED").length;
 				let com = entry.filter(word => word === "COMPLETED").length;
 
 				returnTemp.push({
-					xlabels: idx + 1,
+					name: idx + 1,
 					"NOT STARTED": nos,
 					COMPLETED: com,
 					person: temp2[idx],
@@ -423,7 +417,7 @@ const Report = ({ dataset }) => {
 							height: "100%"
 						}}
 					>
-						{Object.keys(dataForLR).length > 0 && (
+						{Object.keys(dataForGR).length > 0 && (
 							<ReportList title="GAINING" dataObj={dataForGR} theme={theme} />
 						)}
 					</Grid>

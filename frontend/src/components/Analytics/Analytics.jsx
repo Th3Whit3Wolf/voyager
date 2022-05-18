@@ -270,8 +270,8 @@ const Analytics = ({ user }) => {
 					{Object.entries(analyticsState).length === 0 && <Loading />}
 					{Object.entries(analyticsState).length !== 0 && (
 						<InfoCard
-							title="Leaving"
-							value={analyticsState?.total?.leaving?.length}
+							title="Gaining"
+							value={analyticsState?.total?.gaining?.length}
 						/>
 					)}
 				</Grid>
