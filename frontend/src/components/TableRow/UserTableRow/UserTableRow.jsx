@@ -43,7 +43,7 @@ const MoreInfoDialog = ({
 	description,
 	theme
 }) => {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -91,7 +91,7 @@ const MoreInfoDialog = ({
 					{title}
 				</DialogTitle>
 				<DialogContent>
-					<DialogContentText id="alert-dialog-slide-description">
+					<DialogContentText id="info-dialog-description">
 						<Grid container rowSpacing={1} columnSpacing={1}>
 							<Grid item xs={3}>
 								<Box
