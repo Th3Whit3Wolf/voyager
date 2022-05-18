@@ -122,6 +122,11 @@ const Analytics = ({ user }) => {
 				gaining: [],
 				leaving: []
 			};
+			analyticsInfo.own = {
+				assigned: [],
+				gaining: [],
+				leaving: []
+			};
 			analyticsInfo.Commands = [];
 			analyticsInfo.Deltas = [];
 			analyticsInfo.Installations = [];
@@ -135,6 +140,7 @@ const Analytics = ({ user }) => {
 					["leaving", u.assignedUsers.filter(usr => usr.gainingUnitID !== null)]
 				].forEach(([k, v]) => {
 					analyticsInfo.total[k] = analyticsInfo.total[k].concat(v);
+					analyticsInfo.own[k] = analyticsInfo.own[k].concat(v);
 				});
 			});
 
