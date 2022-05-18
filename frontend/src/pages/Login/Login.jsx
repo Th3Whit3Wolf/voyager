@@ -233,7 +233,7 @@ const Login = () => {
 							>
 								Delta Admin
 							</Button> */}
-							<Button
+							{/* <Button
 								variant="contained"
 								color="error"
 								sx={{ marginBottom: "8px" }}
@@ -245,10 +245,10 @@ const Login = () => {
 								}}
 							>
 								Command Admin
-							</Button>
+							</Button> */}
 							<Button
 								variant="contained"
-								color="inherit"
+								color="warning"
 								sx={{ marginBottom: "8px" }}
 								onClick={() => {
 									setEmail("rick.sanchez@spaceforce.mil");

@@ -447,7 +447,7 @@ const Report = ({ dataset }) => {
 						color: theme.palette.gsb.text
 					}}
 				>
-					Losing Units
+					Losing Users
 				</h2>
 				<ResponsiveContainer width="95%" height={500}>
 					<BarChart
@@ -510,7 +510,7 @@ const Report = ({ dataset }) => {
 						color: theme.palette.gsb.text
 					}}
 				>
-					Assigned Units
+					Assigned Users
 				</h2>
 
 				<ResponsiveContainer width="95%" height={500}>
@@ -574,7 +574,7 @@ const Report = ({ dataset }) => {
 						color: theme.palette.gsb.text
 					}}
 				>
-					Gaining Units
+					Gaining Users
 				</h2>
 				<ResponsiveContainer width="95%" height={500}>
 					<BarChart
