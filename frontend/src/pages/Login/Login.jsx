@@ -75,7 +75,7 @@ const Login = () => {
 									navigate("/dashboard");
 								}
 							})
-							.catch(err => console.error(err))
+							.catch(err => console.error(err));
 					});
 					// ...
 				})
@@ -85,7 +85,6 @@ const Login = () => {
 					console.log({ errorCode }, { errorMessage });
 				})
 				.finally(setIsLoading(false));
-
 		}
 	};
 
