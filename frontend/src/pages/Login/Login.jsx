@@ -48,14 +48,12 @@ const Login = () => {
 					const userCred = userCredential.user;
 					userCred.getIdToken().then(token => {
 						const userapi = new UserAPI();
-						console.log({ token });
 						userapi
 							.email(`${email}`)
 							.get(token)
 							.then(response => response.json())
 							.then(d => {
 								let tempUser = d.data[0];
-								console.log(tempUser);
 								if (tempUser === undefined) {
 									alert(
 										"Invalid Authentication Details. Try again or Contact your POC."
@@ -245,7 +243,7 @@ const Login = () => {
 								}}
 							>
 								Command Admin
-							</Button> */}
+							</Button>
 							<Button
 								variant="contained"
 								color="warning"
@@ -256,7 +254,7 @@ const Login = () => {
 								}}
 							>
 								Site Admin
-							</Button>
+							</Button>*/}
 						</Box>
 					</Collapse>
 				</Card>

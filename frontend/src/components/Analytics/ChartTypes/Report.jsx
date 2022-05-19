@@ -37,7 +37,6 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 const ReportList = ({ title, dataObj, theme }) => {
-	console.log("ReportList (dataObj)", dataObj);
 	const [open, setOpen] = useState(true);
 
 	const handleClick = () => {
@@ -79,43 +78,42 @@ const ReportList = ({ title, dataObj, theme }) => {
 			<Divider />
 			<Collapse in={open} timeout="auto" unmountOnExit>
 				<List component="div" disablePadding>
-					{Object(dataObj).entries !== undefined &&
-						dataObj?.oversight?.map(obj => {
-							return Object.entries(obj).map(([label, value]) => {
-								return (
-									<>
-										<ListItemButton
-											key={`${title}-${label}`}
-											sx={{
-												width: "100%",
-												whiteSpace: "no-wrap",
-												"&.Mui-selected": {
-													backgroundColor: theme.palette.selected
-												},
-												"&.MuiListItemButton-root:hover": {
-													backgroundColor: theme.palette.hover.list
-												},
-												p: "0 2em"
-											}}
-										>
-											<ListItemIcon>
-												<PersonIcon sx={{ color: theme.palette.gsb.primary }} />
-											</ListItemIcon>
+					{dataObj?.oversight?.map(obj => {
+						return Object.entries(obj).map(([label, value]) => {
+							return (
+								<>
+									<ListItemButton
+										key={`${title}-${label}`}
+										sx={{
+											width: "100%",
+											whiteSpace: "no-wrap",
+											"&.Mui-selected": {
+												backgroundColor: theme.palette.selected
+											},
+											"&.MuiListItemButton-root:hover": {
+												backgroundColor: theme.palette.hover.list
+											},
+											p: "0 2em"
+										}}
+									>
+										<ListItemIcon>
+											<PersonIcon sx={{ color: theme.palette.gsb.primary }} />
+										</ListItemIcon>
 
-											<ListItemText
-												primary={label}
-												secondary={`${value} Users`}
-											/>
-										</ListItemButton>
-										<Divider
-											component="li"
-											variant="inset"
-											sx={{ backgroundColor: theme.palette.gsb.primary }}
+										<ListItemText
+											primary={label}
+											secondary={`${value} Users`}
 										/>
-									</>
-								);
-							});
-						})}
+									</ListItemButton>
+									<Divider
+										component="li"
+										variant="inset"
+										sx={{ backgroundColor: theme.palette.gsb.primary }}
+									/>
+								</>
+							);
+						});
+					})}
 				</List>
 			</Collapse>
 			<ListItemButton
@@ -158,14 +156,12 @@ const Report = ({ dataset }) => {
 	}
 	useEffect(() => {
 		setData(dataset);
-		console.log(user);
 	}, []);
 
 	//// FEATURE ENGINEERING
 	useEffect(() => {
 		// LEAVING
 		if (Object.entries(data).length > 0) {
-			console.log(data.own.leaving);
 			let temp = data.own.leaving.map(entry =>
 				entry.tasks.map(val => val.progress)
 			);
@@ -215,7 +211,6 @@ const Report = ({ dataset }) => {
 								break;
 						}
 					});
-					console.log("OVERSIGHT", { oversight });
 					fn({
 						oversightTotal: data.own[field].length,
 						oversight,
@@ -281,7 +276,6 @@ const Report = ({ dataset }) => {
 
 		// GAINING
 		if (Object.entries(data).length > 0) {
-			console.log("useeffect", data.own.gaining);
 			let temp = data.own.gaining.map(entry =>
 				entry.tasks.map(val => val.progress)
 			);
@@ -317,7 +311,6 @@ const Report = ({ dataset }) => {
 		if (!active || !tooltip) return null;
 		for (const bar of payload)
 			if (bar.dataKey === tooltip) {
-				console.log(bar);
 				return (
 					<div
 						style={{
