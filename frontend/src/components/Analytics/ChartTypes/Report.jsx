@@ -462,8 +462,8 @@ const Report = ({ dataset }) => {
 							dataKey="NOT STARTED"
 							fill={
 								theme.palette.mode === "light"
-									? theme.astroUXDSTheme.tag.tag2.lighten2
-									: theme.astroUXDSTheme.tag.tag2.darken2
+									? theme.astroUXDSTheme.tag.tag2.darken1
+									: theme.astroUXDSTheme.tag.tag2.lighten1
 							}
 							name="NOT STARTED"
 							onMouseOver={() => (tooltip = "NOT STARTED")}
