@@ -472,8 +472,8 @@ const Report = ({ dataset }) => {
 							dataKey="COMPLETED"
 							fill={
 								theme.palette.mode === "light"
-									? theme.astroUXDSTheme.tag.tag1.lighten2
-									: theme.astroUXDSTheme.tag.tag1.darken2
+									? theme.astroUXDSTheme.tag.tag1.darken1 
+									: theme.astroUXDSTheme.tag.tag1.lighten1
 							}
 							name="COMPLETED"
 							onMouseOver={() => (tooltip = "COMPLETED")}
